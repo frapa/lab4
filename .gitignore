@@ -1,0 +1,9 @@
+git
+.swp
+*.log
+*.aux
+*.toc
+*relazione.pdf
+*.synctex.gz
+*~
+*.out
