@@ -2,16 +2,17 @@
 
 \subsection*{Sorgente di corrente costante}
 
-Vogliamo verificare che il primo circuito realizzato (Figura \ref{fig:sorgente_corrente}) sia una sorgente di corrente costante. Ovvero, facendo riferimento alla Figura \ref{fig:sorgente_corrente}, abbiamo realizzato un circuito che mantiene l'intensità di corrente $I_0$ del ramo di retroazione negativa ad un valore costante di $\SI{1}{\milli\ampere}$, per qualunque valore assunto dalla resisenza variabile $R_v$.
+Vogliamo verificare che il primo circuito realizzato (Figura \ref{fig:generatore}) si comporti come una sorgente di corrente costante. Ovvero, facendo riferimento alla Figura \ref{fig:generatore}, abbiamo realizzato un circuito che mantiene l'intensità di corrente $I_0$ del ramo di retroazione negativa ad un valore costante di $\SI{1}{\milli\ampere}$, per qualunque valore assunto dalla resisenza variabile $R_v$.
 
 A tal fine abbiamo alimentato l'amplificatore operazionale con una tensione positiva $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e una negativa $V\ped{cc}^-\,=\,\SI{-15}{\volt}$ e abbiamo fornito una tensione in ingresso di $V\ped{in}\,=\,\SI{+3.9}{\volt}$.
 
 Per verificare il corretto funzionamento del circuito abbiamo misurato l'intensità di corrente $I_0$ per vari valori di $R_v$. I risultati ottenuti sono riportati in Tabella \ref{tab:corr_res}.
 
 
-\begin{table}[H]
+\begin{SCtable}[2]
     \centering
     \small
+%\begin{wrapfloat}{table}{I}{0pt}
     \begin{tabular}{l | c}
         \toprule
 		Corrente $I_0 \, [\si{\milli\ampere}]$ & $R_v \; [\si{\kilo\ohm}]$ \\
@@ -28,25 +29,30 @@ Per verificare il corretto funzionamento del circuito abbiamo misurato l'intensi
 		$ 1.009 \pm 0.0005 $ & $ 1 $ \\
         \bottomrule
     \end{tabular}
-    \caption{In questa tabella sono riportati i valori dell'intensità di corrente $I_0$, passante per il ramo di retroazione negativa del circuito in Figura \ref{fig:sorgente_corrente}, al variare della resisenza $R_v$.}
+    \caption{In questa tabella sono riportati i valori dell'intensità di corrente $I_0$, passante per il ramo di retroazione negativa del circuito in Figura \ref{fig:generatore}, al variare della resisenza $R_v$. Come è possibile osservare il valore di $I_0$ rimane costante per qualunque valore assunto da $R_v$. Facciamo inoltre notare che, al fine di verificare il funzionamento del circuito, la sensibilità del multimetro, usato per misurate $I_0$, risulta eccessiva. Infine la mancanza dell'errore sui valoridi $R_v$ è approfondita nel paragrafo seguente.}
     \label{tab:corr_res}
-\end{table}
+%\end{wrapfloat}
+\end{SCtable}
 
 Facciamo notare che gli errori sui valori di resistenza non sono riportati per il seguente motivo. 
 La regolazione del valore di $R_v$ è a vite, quindi manuale.
-Per avere un'idea del valore assunto dalla resistenza ci siamo aiutati con il multimetro che tuttavia ha una sensibilità di $\SI{0.01}{\ohm}$. Pur cercando di essere i più precisi possibile siamo riusciti ad avere oscillazioni del valore di $R_v$ attorno ad $\SI{1}{\ohm}$. Dal momento che, al fine dell'esperienza, quello che conta è verificare che l'intensità di corrente $I_0$ rimanga costante a variazioni di $\SI{}{\kilo\ohm}$ abbiamo deciso di troncare tutte le misure di resisenza a valori di centinaia di $\SI{}{\ohm}$.
+Per avere un'idea del valore assunto dalla resistenza ci siamo aiutati con il multimetro che tuttavia ha una sensibilità di $\SI{0.01}{\ohm}$. Pur cercando di essere i più precisi possibile siamo riusciti ad avere oscillazioni del valore di $R_v$ attorno ad $\SI{1}{\ohm}$. Dal momento che, al fine dell'esperienza, quello che conta è verificare che l'intensità di corrente $I_0$ rimanga costante a variazioni di $R_v$ dell'ordine di $\SI{}{\kilo\ohm}$ abbiamo deciso di troncare tutte le misure di resisenza a valori di centinaia di $\SI{}{\ohm}$.
 
 \subsection*{Sommatore pesato di segnali in ingresso}
 
-In questa sezione vogliamo montare e studiare il corretto funzionamento di un circuito che compie una sommatoria pesata dei segnali in ingresso. Questo circuito, riportato in Figura \ref{fig:sommatore}, è stato realizzato nel seguente modo: abbiamo alimentato l'amplificatore operazionale con una tensione positiva $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e una negativa $V\ped{cc}^-\,=\,\SI{-15}{\volt}$, abbiamo fornito in ingresso due forme d'onda con la stessa frequenza $\nu\,=\,\SI{1}{\kilo\hertz}$, ma con valori di tensione picco-picco differenti. Riferendoci sempre alla Figura \ref{fig:sommatore} i valori di resistenza che abbiamo scelto sono stati i seguenti: $R_1\,=\,\SI{50}{\kilo\ohm}$ e $R_2\,=\,\SI{100}{\kilo\ohm}$ ed infine $R_f\,=\,\SI{3.9}{\kilo\ohm}$.
+In questa sezione vogliamo montare e studiare il corretto funzionamento di un circuito che compie una sommatoria pesata dei segnali in ingresso. Questo circuito, riportato in Figura \ref{fig:sommatore}, è stato realizzato nel seguente modo: abbiamo alimentato l'amplificatore operazionale con una tensione positiva $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e una negativa $V\ped{cc}^-\,=\,\SI{-15}{\volt}$, abbiamo fornito in ingresso due forme d'onda con la stessa frequenza $\nu\,=\,\SI{1}{\kilo\hertz}$, ma con valori di tensione picco-picco differenti. Riferendoci sempre alla Figura \ref{fig:sommatore} i valori di resistenza che abbiamo scelto sono stati i seguenti: $R_1\,=\,\SI{50}{\kilo\ohm}$ e $R_2\,=\,\SI{100}{\kilo\ohm}$ ed infine $R\,=\,\SI{3.9}{\kilo\ohm}$.
 
-Grazie all'utilizzo dell'osciloscopio siamo stati in grado di appurarne il corretto funzionamento osservando l'andamento dei due segnali in ingresso ($V\ped{in1}\,e\,V\ped{in2} $) e del seganle in uscita ($V\ped{out}$), che come ci si poteva aspettare e risultato essere la somma dei due segnali in ingresso invertiti.
+Grazie all'utilizzo dell'osciloscopio siamo stati in grado di appurarne il corretto funzionamento osservando l'andamento dei due segnali in ingresso ($V\ped{in1}\,\,e\,\,V\ped{in2} $) e del seganle in uscita ($V\ped{out}$), che come ci si poteva aspettare è risultato essere la somma dei due segnali in ingresso invertiti.
 
 Inoltre, sfruttando le due regole fondamentali per un amplificatore operazionale, ovvero:
 \begin{itemize}
 	\item{Prima: la corrente che passa tra l'ingresso positivo e quelo negativo deve essere nulla;}
-	\item{Seconda: la differenza di potenziale tra lasorgente e uno dei due ingressi deve essere sempre uguale alla differenza di potenziale tra l'uscita e l'ingresso, in modo tale che, grazie alle leggi di Kirchhoff, la corrente passante per i due rami sia di pari intensità;}
+	\item{Seconda: la differenza di potenziale tra la sorgente e uno dei due ingressi deve essere sempre uguale alla differenza di potenziale tra l'uscita e l'ingresso, in modo tale che, grazie alle leggi di Kirchhoff, la corrente passante per i due rami sia di pari intensità;}
 \end{itemize}
+siamo in grado di ottenere una relazione che ci permette di prevedere il valore del segnale in uscita $V\ped{out}$ conoscendo i valori delle resistenze e l'intensità dei segnali in ingresso.
+\begin{equation}
+	V\ped{out}\,=\,R\cdot \Bigl(\,\frac{V\ped{in1}}{R_1}\,+\,\frac{V\ped{in2}}{R_2}\,\Bigr)
+\end{equation}
 
 
 
