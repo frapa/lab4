@@ -57,5 +57,18 @@ Infine abbiamo ricavato il valore di $V_a$ invertendo la relazione \ref{eq:offse
 
 Infine abbiamo anche preso una misura diretta della tensione di offset che è risultata essere: $V_a\,=\,(1.09\pm0.01)\SI{}{\milli\volt}$. Si può osservare che i due valori sono quasi compatibili entro le loro incertezze, quindi con spirito ottimistico possiamo affermare che in entambi i casi abbiamo raggiunto dei valori plausibili.
 
-\subsection*{Azzeramento di $V\ped{os}$ grazie al Trimer}
+\subsection*{Azzeramento di $V\ped{os}$ grazie al Trimmer}
+
+In questo paragrafo ci poniamo il problema di azzerare il valore della tensione di offset $V\ped{os}$. Per farlo abbiamo realizzato il circuito riportato in Figura \ref{fig:trimmer}.
+Per questo circuito, come per quelli precedenti le tensioni di alimentazione sono $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e $V\ped{cc}^-\,=\,\SI{-15}{\volt}$.
+Possiamo notare che in questa configurazione il terminale non invertente è collegato al comune, mentre quello invertente è collegato direttamente al ramo di retroazione negativo, e quindi abbiamo un emitter follower.
+Quindi al fine di avere una tensione di offset nulla abbiamo variato manualmente il valore della resistenza variabile $R_v$ fino a che non abbiamo ottenuto un valore nullo della tensione di output, $V\ped{out}\,=\,\SI{0}{\volt}$. In questo abbiamo effettiavamente ottenuto un OPAMP per sui collegando al comune i due ingressi la differenza di potenziale di output risulta effettivamente nulla, come per un amplificatore operazionale ideale.
+
+Quindi ricordando che $R_v$ ha un range di valori possibili compreso tra $0$ e $10$ $\SI{}{\kilo\ohm}$ riportiamo i valori delle due resistenze $R\ped{1-4}$ e $R\ped{4-5}$ che indicano rispettivamente il valore di resistenza tra il pin 1 e 4  e tra il 4 e il 5 dell'amplificatore operazionale. i valori ottenuti sono:
+
+\begin{equation}
+	R\ped{1-4}\,=\,(6.158\,\pm\,0.001)\SI{}{\kilo\ohm} \qquad \textbf{e} \qquad R\ped{4-5}\,=\,(4.417\,\pm\,0.001)\SI{}{\kilo\ohm}
+\end{equation}
+
+Come si può otare la somma dei due valori di resistenza, che sono in serie, è maggiore di $\SI{10}{\kilo\ohm}$. questo non è errato dal momento che il valore messimo di $R_v$ e superiore a $\SI{10}{\kilo\ohm}$.
 
