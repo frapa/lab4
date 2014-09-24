@@ -1,56 +1,61 @@
 \section*{Dati e risultati}
 
-\subsection*{Sorgente di corrente costante}
+\subsection*{Amplificatore operazionale open loop}
 
-Vogliamo verificare che il primo circuito realizzato (Figura \ref{fig:generatore}) si comporti come una sorgente di corrente costante. Ovvero, facendo riferimento alla Figura \ref{fig:generatore}, abbiamo realizzato un circuito che mantiene l'intensità di corrente $I_0$ del ramo di retroazione negativa ad un valore costante di $\SI{1}{\milli\ampere}$, per qualunque valore assunto dalla resisenza variabile $R_v$.
+In questo paragrafo voliamo descrivere il comportamento del nostro amplificatore operazionale nella configurazione open loop. Ovvero, come illustrato in Figura \ref{fig:open_loop}, andiamo ad alimentare il nostro OPAMP con una $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e $V\ped{cc}^-\,=\,\SI{-15}{\volt}$. Colleghiamo i due ingressi, invertente ($V^-$) e non invertente ($V^+$) al comune in modo da non avere alcun segnale in ingresso al nostro amplificatore operazionale. Inoltre non inseriamo alcun circuito di retroazione. Infine colleghiamo l'output all'oscilloscopio, in modo da ottenere il valore della tensione di output ($V\ped{out}$).
+A questo punto possiamo notare che: se l'amplificatore operazionale fose ideale la $V\ped{out}$ risulterebbe nulla, in quanto valgono le seguenti relazioni:
 
-A tal fine abbiamo alimentato l'amplificatore operazionale con una tensione positiva $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e una negativa $V\ped{cc}^-\,=\,\SI{-15}{\volt}$ e abbiamo fornito una tensione in ingresso di $V\ped{in}\,=\,\SI{+3.9}{\volt}$.
-
-Per verificare il corretto funzionamento del circuito abbiamo misurato l'intensità di corrente $I_0$ per vari valori di $R_v$.  Dal momento che la corrente passante per $R\,=\,\SI{3.9}{\kilo\ohm}$ ha la stessa intensità di $I_0$ ci aspettiamo di trovare un valore di $I_0$ che sia di $1\,\pm\,0.05\,\SI{}{\milli\ampere}$, dal momento che abbiamo assunto un'incertezza di $R$ del $5\%$ e l'errore sulla tensione ($V$) è di $\SI{0.005}{\volt}$.
-
-I risultati ottenuti sono riportati in Tabella \ref{tab:corr_res}.
-
-\begin{SCtable}[2]
-    \centering
-    \small
-%\begin{wrapfloat}{table}{I}{0pt}
-    \begin{tabular}{l | c}
-        \toprule
-		Corrente $I_0 \, [\si{\milli\ampere}]$ & $R_v \; [\si{\kilo\ohm}]$ \\
-        \midrule
-		$ 1.009 \pm 0.0005 $ & $ 10 $ \\
-		$ 1.009 \pm 0.0005 $ & $ 9 $ \\
-		$ 1.009 \pm 0.0005 $ & $ 8 $ \\
-		$ 1.009 \pm 0.0005 $ & $ 7 $ \\
-		$ 1.009 \pm 0.0005 $ & $ 6 $ \\
-		$ 1.009 \pm 0.0005 $ & $ 5 $ \\
-		$ 1.009 \pm 0.0005 $ & $ 4 $ \\
-		$ 1.009 \pm 0.0005 $ & $ 3 $ \\
-		$ 1.009 \pm 0.0005 $ & $ 2 $ \\
-		$ 1.009 \pm 0.0005 $ & $ 1 $ \\
-        \bottomrule
-    \end{tabular}
-    \caption{In questa tabella sono riportati i valori dell'intensità di corrente $I_0$, passante per il ramo di retroazione negativa del circuito in Figura \ref{fig:generatore}, al variare della resisenza $R_v$. Come è possibile osservare il valore di $I_0$ rimane costante per qualunque valore assunto da $R_v$. Facciamo inoltre notare che, al fine di verificare il funzionamento del circuito, la sensibilità del multimetro, usato per misurate $I_0$, risulta eccessiva. Infine la mancanza dell'errore sui valoridi $R_v$ è approfondita nel paragrafo seguente.}
-    \label{tab:corr_res}
-%\end{wrapfloat}
-\end{SCtable}
-
-Facciamo notare che gli errori sui valori di resistenza non sono riportati per il seguente motivo. 
-La regolazione del valore di $R_v$ è a vite, quindi manuale.
-Per avere un'idea del valore assunto dalla resistenza ci siamo aiutati con il multimetro che tuttavia ha una sensibilità di $\SI{0.01}{\ohm}$. Pur cercando di essere i più precisi possibile siamo riusciti ad avere oscillazioni del valore di $R_v$ attorno ad $\SI{1}{\ohm}$. Dal momento che, al fine dell'esperienza, quello che conta è verificare che l'intensità di corrente $I_0$ rimanga costante a variazioni di $R_v$ dell'ordine di $\SI{}{\kilo\ohm}$ abbiamo deciso di troncare tutte le misure di resisenza a valori di centinaia di $\SI{}{\ohm}$.
-
-\subsection*{Sommatore pesato di segnali in ingresso}
-
-In questa sezione vogliamo montare e studiare il corretto funzionamento di un circuito che compie una sommatoria pesata dei segnali in ingresso. Questo circuito, riportato in Figura \ref{fig:sommatore}, è stato realizzato nel seguente modo: abbiamo alimentato l'amplificatore operazionale con una tensione positiva $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e una negativa $V\ped{cc}^-\,=\,\SI{-15}{\volt}$, abbiamo fornito in ingresso due forme d'onda con la stessa frequenza $\nu\,=\,\SI{1}{\kilo\hertz}$, ma con valori di tensione picco-picco differenti. Riferendoci sempre alla Figura \ref{fig:sommatore} i valori di resistenza che abbiamo scelto sono stati i seguenti: $R_1\,=\,\SI{50}{\kilo\ohm}$ e $R_2\,=\,\SI{100}{\kilo\ohm}$ ed infine $R\,=\,\SI{3.9}{\kilo\ohm}$.
-
-Grazie all'utilizzo dell'osciloscopio siamo stati in grado di appurarne il corretto funzionamento osservando l'andamento dei due segnali in ingresso ($V\ped{in1}\,\,e\,\,V\ped{in2} $) e del seganle in uscita ($V\ped{out}$), che come ci si poteva aspettare è risultato essere la somma dei due segnali in ingresso invertiti.
-
-Inoltre, sfruttando le due regole fondamentali per un amplificatore operazionale, ovvero:
-\begin{itemize}
-	\item{Prima: la corrente che passa tra l'ingresso positivo e quelo negativo deve essere nulla;}
-	\item{Seconda: la differenza di potenziale tra la sorgente e uno dei due ingressi deve essere sempre uguale alla differenza di potenziale tra l'uscita e l'ingresso, in modo tale che, grazie alle leggi di Kirchhoff, la corrente passante per i due rami sia di pari intensità;}
-\end{itemize}
-siamo in grado di ottenere una relazione che ci permette di prevedere il valore del segnale in uscita $V\ped{out}$ conoscendo i valori delle resistenze e l'intensità dei segnali in ingresso.
 \begin{equation}
-	V\ped{out}\,=\,R\cdot \Bigl(\,\frac{V\ped{in1}}{R_1}\,+\,\frac{V\ped{in2}}{R_2}\,\Bigr)
+	V_d\,=\,V^+\,-\,V^- \qquad V\ped{out}\,=\,G\,V_d
 \end{equation}
+
+dove con $V_d$ si intende la differenza di potenziale tra i due ingressi dell'OPAMP e con $G$ indichiamo in guadagno del nostro amplificatore operazionale. Pertanto dal momento che i due ingressi si trovano entrambi alla stessa differenza di potenziale la loro differenza risulterebbe nulla e pertanto otterremmo $V\ped{out}\,=\,\SI{0}{\volt}$.
+Al contrario per l'amplificatore operazionale reale abbiamo ottenuto che, se $V\ped{out}\,=\,\SI{0}{\volt}$, la differenza di potenziale tra i due ingressi non è 0 ma risulta essere:
+
+\begin{equation}
+	V_d\,=\,(-12.80\,\pm\,0.01) \SI{}{\volt}
+\end{equation}
+
+Questo valore ci suggerisce che il nostro amplificatore operazionale, già a valori di tensione in ingresso nulli è in saturazione negativa. Per verificare quanto appena detto abbiamo deciso di collegare $V^-$ al comune e $V^+$ a una tensione di $\SI{-15}{\volt}$, in modo che l'OPAMP, fosse sicuramente in saturazione negativa. Quello che abbiamo osservato è che il valore di $V\ped{out}$ raggiunto è di $(-12.94\,\pm\,0.01)\,\SI{}{\volt}$ che è molto vicino al valore di $V_d$ ottenuto. Quindi possiamo dire che in entrambi i casi il nostro amplificatore operazionale si trova in saturazione negativa.
+
+\subsection*{Misura della tensione di offset}
+
+Ricordiamo che la tensione di offset $V\ped{os}$ è quella differenza di potenziale che deve essere applicata ad un amplificatore operazionale per ottenere in uscita una tensione nulla.
+Quindi al fine di misurare la tensione di offset del nostro amplificatore operazionale abbiamo montato il circuito riportato in Figura \ref{fig:offset} e lo abbiamo dimensionato in modo da determinare i valori più intelligenti di resistenza atti ad ottenere una buona stima di $V\ped{os}$.
+Come per il circuito precedente abbiamo che $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e $V\ped{cc}^-\,=\,\SI{-15}{\volt}$.
+In questo caso, sfruttando le regole per gli OPAMP e un po' di analisi circuitale, abbiamo ottenuto che:
+
+\begin{equation}
+	\left\{
+  \begin{array}{l l l}
+    I_1\,=\,\frac{V_a\,-\,0}{R_1}\\
+    I_2\,=\,\frac{V\ped{out}\,-\,V_a}{R_2}\\
+    I_1\,=\,I_2\,+\,I_{p}^-
+  \end{array} \right.\
+  \label{eq:sistema}
+\end{equation}
+
+\begin{equation}
+	V\ped{out}\,=\,I_2R_2\,+\,V_a
+	\label{eq:offset}
+\end{equation}
+
+dove, facendo riferimento alla Figura \ref{fig:offset}, abbiamo che $I_1$ è la corrente che passa per $R_1$, $I_2$ è la corrente del ramo di retroazione negativo, $I_{p}^-$ è la corrente di polarizzazione negativa, $V_a$ è la tensione presente sul nodo dell'ingresso invertente.
+Quindi con una serie di banali passaggi matemtici che sfruttano le relazioni \ref{eq:offset} e \ref{eq:sistema} otteniamo il seguente risultato:
+
+\begin{equation}
+	V\ped{out}\,=\,V_a\left(1+\frac{R_2}{R_1}\right)\,-\,I_{p}^-R_2
+	\label{eq:offset1}
+\end{equation}
+
+Quindi, ricordandoci che le correnti di polarizzazione sono dell'ordine di qualche decina di $\SI{}{\nano\ampere}$, abbiamo scelto i valori delle resistenze $R_1$ e $R_2$ in modo da minimizzare il contributo di $I_{p}^-R_2$. Pertanto abbiamo scelto i seguenti valori di resistenza: $R_1\,=\,\SI{10}{\ohm}$ e $R_2\,=\,\SI{10}{\kilo\ohm}$.
+Infine abbiamo ricavato il valore di $V_a$ invertendo la relazione \ref{eq:offset1} nella quale abbiamo trascurato l'effetto del termine $I_{p}^-R_2$, ottenendo:
+
+\begin{equation}
+	V_a\,\simeq\,V\ped{out}\frac{R_1+R_2}{R_1}\,=\, (0.97 \pm 0.07)\SI{}{\milli\volt}
+\end{equation}
+
+Infine abbiamo anche preso una misura diretta della tensione di offset che è risultata essere: $V_a\,=\,(1.09\pm0.01)\SI{}{\milli\volt}$. Si può osservare che i due valori sono quasi compatibili entro le loro incertezze, quindi con spirito ottimistico possiamo affermare che in entambi i casi abbiamo raggiunto dei valori plausibili.
+
+\subsection*{Azzeramento di $V\ped{os}$ grazie al Trimer}
+
