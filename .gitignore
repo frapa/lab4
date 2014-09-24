@@ -1,9 +1,11 @@
-git
-.swp
+*.swp
+*.swo
 *.log
 *.aux
 *.toc
 *relazione.pdf
+*quaderno.pdf
 *.synctex.gz
 *~
 *.out
+uncertainties*
