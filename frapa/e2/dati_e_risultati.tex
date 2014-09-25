@@ -2,9 +2,44 @@
 
 \paragraph{Tensione di offset}
 
-La tensione di offset
+Un amplificatore operazionale ideale amplifica la differenza tra i due segnali
+in ingresso. Questo significa che se i due segnali sono uguali, l'output deve essere zero.
+Negli operazionali reali, questo non è vero; esiste infatti una tensione di offset
+$V\ped{offset}$ tra gli ingressi per la quale l'output è nullo, e questa tensione è diversa da zero.
+Questa tensione è dovuta al processo produttivo di costruzione degli operazionali.
+Un amplificatore ha uno stadio di amplificazione differenziale in ingresso costruito utilizzando
+transistor, che non possono mai essere prodotti in maniera perfettamente uguale. Differenti
+transistor rispondono in modo anche abbastanza diverso agli input e questo causa uno sbilanciamento
+negli ingressi dell'operazionale, che varia in base al tipo di transistor utilizzati.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \def\svgwidth{0.5\textwidth}
     \subimport{figure/}{offset_graph.pdf_tex}
+    \caption{La figura mostra la tensione in uscita in funzione della differenza di tensione agli input di 
+        un operazionale reale e di uno ideale. La pendenza e $V\ped{offset}$ sono esagerate
+        (la pendenza è molto minore di quella reale, mentre la tensione di offset è molto più grande) per
+        motivi di chiarezza grafica. In un amplificatore reale, oltre
+        al fatto che esiste una tensione di offset, le tensioni di saturazione non coincidono con quelle
+        di alimentazione ed inoltre non sono simmetriche e neppure esattamente costanti (su un intervallo
+        $V\ped{diff}$ da 0 a -15 V abbiamo misurato una variazione di 0.14 V) e il guadagno non è infinito. }
+    \label{fig:v_offset_graph}
 \end{figure}
+
+\emph{Esistenza della tensione di offset.}
+La Figura \ref{fig:v_offset_graph} mostra la differenza tra la situazione reale e quella
+ideale. Come è ben visibile in figura, è necessario applicare una tensione di offset per
+avere un output nullo. In altre parole, collegando i due input allo stesso potenziale,
+nel caso ideale la tensione dovrebbe essere nulla, ma in quello reale non lo è.
+Per verificare questo fatto abbiamo montato il circuito \ref{fig:v_off_exists} e abbiamo misurato
+la tensione di output. È risultato che l'output era in saturazione negativa (come in Figura \ref{fig:v_offset_graph}),
+ovvero $V\ped{out} = -12.80 \pm 0.005$ V. Collegando l'ingresso invertente con tensioni negative fino a -15 V
+e vedendo che l'uscita restava circa costante (a -15 V ha raggiunto $-12.94 \pm 0.005$ V),
+ci siamo accertati di essere realmente in saturazione. Abbiamo quindi verificato l'esistenza
+della tensione di offset.
+
+\emph{Misura della tensione di offset.}
+Per misurare la tensione di offset abbiamo utilizzato il circuito \ref{fig:v_off_circ}.
+
+\paragraph{Correzione della tensione di offset}
+
+\paragraph{Correnti di polarizzazione}

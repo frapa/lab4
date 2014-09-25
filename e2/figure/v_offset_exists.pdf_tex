@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'offset_graph.pdf' (pdf, eps, ps)
+%% Accompanies image file 'v_offset_exists.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{512bp}%
+    \setlength{\unitlength}{135.84499512bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,16 +48,10 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.75)%
-    \put(0,0){\includegraphics[width=\unitlength]{offset_graph.pdf}}%
-    \put(0.86623449,0.31462765){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{diff}$}}}%
-    \put(0.41042776,0.67564273){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
-    \put(0.546875,0.4375){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{offset}$}}}%
-    \put(0.07843682,0.64817338){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{+15 V}}}%
-    \put(0.08628051,0.06988006){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{-15 V}}}%
-    \put(0.078125,0.1875){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{sat}^-$}}}%
-    \put(0.78125,0.578125){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{sat}^+$}}}%
-    \put(0.17849069,0.58488475){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Reale}}}%
-    \put(0.17949911,0.52437942){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Ideale}}}%
+  \begin{picture}(1,0.56034396)%
+    \put(0,0){\includegraphics[width=\unitlength]{v_offset_exists.pdf}}%
+    \put(0.53001584,0.47112521){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
+    \put(0.80356291,0.22054697){\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
+    \put(0.53001584,0.02944532){\makebox(0,0)[lb]{\smash{- 15 V}}}%
   \end{picture}%
 \endgroup%

@@ -15,9 +15,15 @@ Ci siamo serviti dei seguenti materiali:
     \item{Oscilloscopio Agilent DSO-X 2002A.}
 \end{itemize}
 
-\begin{figure}[b]
-        \onecolumn
+\begin{figure*}[b]
         \centering
+        \begin{subfigure}[b]{0.35\textwidth}
+            \def\svgwidth{\columnwidth}
+            \subimport{figure/}{v_offset_exists.pdf_tex}
+            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+            \label{fig:v_off_exists}
+        \end{subfigure}
+        ~
         \begin{subfigure}[b]{0.48\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{v_offset.pdf_tex}
@@ -35,4 +41,4 @@ Ci siamo serviti dei seguenti materiali:
         \end{subfigure}
         \caption{Circuiti costruiti durante l'esperienza}
         \label{fig:circuits}
-\end{figure}
+\end{figure*}
