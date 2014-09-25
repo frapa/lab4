@@ -17,6 +17,13 @@ Al contrario per l'amplificatore operazionale reale abbiamo ottenuto che, se $V\
 \end{equation}
 
 Questo valore ci suggerisce che il nostro amplificatore operazionale, già a valori di tensione in ingresso nulli è in saturazione negativa. Per verificare quanto appena detto abbiamo deciso di collegare $V^-$ al comune e $V^+$ a una tensione di $\SI{-15}{\volt}$, in modo che l'OPAMP, fosse sicuramente in saturazione negativa. Quello che abbiamo osservato è che il valore di $V\ped{out}$ raggiunto è di $(-12.94\,\pm\,0.01)\,\SI{}{\volt}$ che è molto vicino al valore di $V_d$ ottenuto. Quindi possiamo dire che in entrambi i casi il nostro amplificatore operazionale si trova in saturazione negativa.
+La situazione sopra descritta può essere meglio compresa facendo riferimento alla Figura \ref{fig:plot_Vd}:
+
+\begin{SCfigure}
+	\includegraphics[width=0.45\textwidth]{../figure/offset_graph.pdf}
+    \caption{Questo grafico mostra l'andamento della tensione di output $V\ped{out}$ al variare della differenza di potenziale tra i due ingressi $V_d$. Possiamo notare che se l'OPAMP fosse ben calibrato ad una $V_d=\SI{0}{\volt}$ corrisponderebbe una $V\ped{out}$ nulla, ma non è il nostro caso. Inoltre la linea tratteggiata riporta l'andamento che dovrebbe avere la $V\ped{out}$ di un amplificatore operazionale ideale, mentre la linea continua riporta l'andamento reale del nostro amplificatore operazionale UA741, dove si vede chiaramente ladifferenza di potenziale che c'è tra i due ingressi nonostante la tensione di output sia nulla.}
+    \label{fig:plot_Vd}
+\end{SCfigure}
 
 \subsection*{Misura della tensione di offset}
 
@@ -105,7 +112,7 @@ La procedura che abbiamo seguito per ricavare i valori delle due correnti è sta
 \begin{itemize}\itemsep2pt \parskip0pt \parsep0pt
 	\item{Con lo stesso procedimento illustrato nel paragrafo precedente abbiamo annullato la tensione di offset del nostro amplificatore operazionale;}
 	\item{Successivamente abbiamo sistemato le resistenze nei nostri circuiti. Le resistenze hanno i seguenti valori: $R_1=\SI{10}{\ohm}$, $R_2=\SI{10}{\kilo\ohm}$ e $R_3=\SI{100}{\kilo\ohm}$ per entrambe le configurazioni. Figura \ref{fig:ip_minus} e \ref{fig:ip_plus};}
-	\item{Quindi siamo andati a calcolare il valore delle due intensità di corrente di polarizzazione sia sfruttando la legge di Ohm, e quindi con una misura diretta della diferenza di potenziale ai capi della resistenza $R_3$, sia risolvendo il circuito e misurando la tensione di offset per le due configurazioni;}
+	\item{Quindi siamo andati a calcolare il valore delle due intensità di corrente di polarizzazione sia sfruttando la legge di Ohm, e quindi con una misura diretta della diferenza di potenziale ai capi della resistenza $R_3$, sia risolvendo il circuito e misurando la tensione di offset, quest'ultima solo per l'ingresso invertente;}
 \end{itemize}
 
 \subsubsection*{Misura della corrente di polarizzazione $I_{p}^-$}
@@ -145,13 +152,3 @@ Il valore della corrente di polarizzazione ottenuto grazie alla misura diretta d
 \end{equation}
 
 In questo caso non abbiamo avuto voglia di risolvere il circuito e quindi di verificare che il valore trovato di $I\ped{p}^+$ risulti compatibile con quello che avremmo potuto ottenere risolvendo il circuito nella configurazione illustrata in Figura \ref{fig:ip_plus}.
-
-
-
-
-
-
-
-
-
-
