@@ -17,13 +17,14 @@ Ci siamo serviti dei seguenti materiali:
 
 \begin{figure*}[b]
         \centering
+        \small
         \begin{subfigure}[b]{0.35\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{v_offset_exists.pdf_tex}
             \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
             \label{fig:v_off_exists}
         \end{subfigure}
-        ~
+        \quad
         \begin{subfigure}[b]{0.48\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{v_offset.pdf_tex}
@@ -31,12 +32,20 @@ Ci siamo serviti dei seguenti materiali:
                 per amplificare il valore della tensione di offset e renderla più facilmente misurabile.}
             \label{fig:v_off_circ}
         \end{subfigure}
-        ~
+        \quad
         \begin{subfigure}[b]{0.48\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{Ip_minus.pdf_tex}
             \caption{Circuito per la misura della corrente di polarizzazione $I_p^-$. Questo circuito
                 richiede la cancellazione della tensione di offset per funzionare.}
+            \label{fig:ip_minus_circ}
+        \end{subfigure}
+        \quad
+        \begin{subfigure}[b]{0.48\textwidth}
+            \def\svgwidth{\columnwidth}
+            \subimport{figure/}{Ip_plus.pdf_tex}
+            \caption{Circuito per la misura della corrente di polarizzazione $I_p^+$. Questo circuito
+                richiede il bilanciamento della tensione di offset per funzionare.}
             \label{fig:ip_minus_circ}
         \end{subfigure}
         \caption{Circuiti costruiti durante l'esperienza}

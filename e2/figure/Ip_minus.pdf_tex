@@ -50,12 +50,13 @@
   \makeatother%
   \begin{picture}(1,0.84929198)%
     \put(0,0){\includegraphics[width=\unitlength]{Ip_minus.pdf}}%
-    \put(0.06416297,0.42276846){\makebox(0,0)[lb]{\smash{$V_A$}}}%
-    \put(0.56162645,0.5311793){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
-    \put(0.56979789,0.20560389){\makebox(0,0)[lb]{\smash{- 15 V}}}%
-    \put(0.19602445,0.2579415){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_2$ = 10 $\Omega$}}}%
-    \put(0.35413748,0.74266156){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_2$ = 100 k$\Omega$}}}%
-    \put(0.72347038,0.32387231){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
-    \put(0.19602445,0.50518182){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_I$ = 100 k$\Omega$}}}%
+    \put(0.06416297,0.42276845){\makebox(0,0)[lb]{\smash{$V_A$}}}%
+    \put(0.56162645,0.53117929){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
+    \put(0.56979789,0.20560388){\makebox(0,0)[lb]{\smash{- 15 V}}}%
+    \put(0.19602445,0.25794149){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_2$ = 10 $\Omega$}}}%
+    \put(0.35413748,0.74266155){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_2$ = 100 k$\Omega$}}}%
+    \put(0.72347038,0.3238723){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
+    \put(0.19602445,0.50518181){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_I$ = 100 k$\Omega$}}}%
+    \put(0.30291342,0.34035493){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$I_p^-$}}}%
   \end{picture}%
 \endgroup%
