@@ -19,6 +19,7 @@
 \usepackage{import}
 \usepackage{enumitem}
 \usepackage{dblfloatfix}
+\usepackage{color}
 
 \setitemize{itemsep=-1pt}
 
@@ -29,6 +30,14 @@
 \setlength{\columnsep}{0.8cm}
 
 \numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\setlength{\fboxrule}{1pt}
+\titleformat{\section}[hang]
+    {\bfseries\sffamily\Large}
+    {\framebox[1em]{\thesection}}{0.5em}{}
+%\titleformat{\section}[hang]{\sffamily\color{Red}\bfseries\scshape\filleft\lsstyle}{}{2em}{#1\quad\rule[-0.25cm]{1.5pt}{1cm}\rlap{\qquad\Huge \thesection}}
 
 \begin{document}
 	\input{titolo.tex}

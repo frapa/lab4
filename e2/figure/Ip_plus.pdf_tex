@@ -54,7 +54,7 @@
     \put(0.60700257,0.42230467){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
     \put(0.61623227,0.05537991){\makebox(0,0)[lb]{\smash{- 15 V}}}%
     \put(0.14321847,0.37429816){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_2$ = 10 $\Omega$}}}%
-    \put(0.52237272,0.56977305){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_2$ = 100 k$\Omega$}}}%
+    \put(0.52237272,0.56977305){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_2$ = 10 k$\Omega$}}}%
     \put(0.77238228,0.19792366){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
     \put(0.31109516,0.11652006){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_I$ = 100 k$\Omega$}}}%
     \put(0.40606604,0.26576){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$I_p^+$}}}%

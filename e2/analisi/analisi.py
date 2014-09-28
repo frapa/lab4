@@ -10,6 +10,10 @@ R2 = ufloat(10000, 500)
 v_offset = v_out / (1 + R2/R1)
 print('v_offset = {}'.format(v_offset))
 
+v_out_trimmer = unumpy.uarray((0.003, 0.01), (0.003, 0.01))
+v_offset_trimmer = v_out_trimmer / (1 + R2/R1)
+print('v_offset_trimmer = {}'.format(v_offset_trimmer))
+
 # CALCOLO DELLE CORRENTI
 v_out_ip1 = unumpy.uarray((2.95, 2.81, 2.55), (0.005, 0.005, 0.005))
 Ri = ufloat(100000, 5000)
@@ -25,3 +29,6 @@ print('Ip+ = {}'.format(Ip2))
 # CORREZIONE V_OFFSET
 v_offset = (v_out + R2*Ip1) / (1 + R2/R1)
 print('v_offset = {}'.format(v_offset))
+
+v_offset_trimmer = (v_out_trimmer[0] + R2*Ip1) / (1 + R2/R1)
+print('v_offset_trimmer = {}'.format(v_offset_trimmer))

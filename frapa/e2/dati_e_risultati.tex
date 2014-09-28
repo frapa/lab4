@@ -1,5 +1,18 @@
 \subsection{Dati e risultati}
 
+\begin{figure}[t!]
+    \def\svgwidth{0.5\textwidth}
+    \subimport{figure/}{offset_graph.pdf_tex}
+    \caption{La figura mostra la tensione in uscita in funzione della differenza di tensione agli input di 
+        un operazionale reale e di uno ideale. La pendenza e $V\ped{offset}$ sono esagerate
+        (la pendenza è molto minore di quella reale, mentre la tensione di offset è molto più grande) per
+        motivi di chiarezza grafica. In un amplificatore reale, oltre
+        al fatto che esiste una tensione di offset, le tensioni di saturazione non coincidono con quelle
+        di alimentazione ed inoltre non sono simmetriche e neppure esattamente costanti (su un intervallo
+        $V\ped{diff}$ da 0 a -15 V abbiamo misurato una variazione di 0.14 V) e il guadagno non è infinito. }
+    \label{fig:v_offset_graph2}
+\end{figure}
+
 \subsubsection{Tensione di offset}
 
 Un amplificatore operazionale ideale amplifica la differenza tra i due segnali
@@ -12,31 +25,18 @@ transistor, che non possono mai essere prodotti in maniera perfettamente uguale.
 transistor rispondono in modo anche abbastanza diverso agli input e questo causa uno sbilanciamento
 negli ingressi dell'operazionale, che varia in base al tipo di transistor utilizzati.
 
-L'esistenza della tensione di offset implica anche che un cosiddetto ground viruale
-abbia in realtà una tensione un poco diversa da zero. La d.d.p. tra i due ingressi non è quindi
-precisamente zero.
-
-\begin{figure}[t!]
-    \def\svgwidth{0.5\textwidth}
-    \subimport{figure/}{offset_graph.pdf_tex}
-    \caption{La figura mostra la tensione in uscita in funzione della differenza di tensione agli input di 
-        un operazionale reale e di uno ideale. La pendenza e $V\ped{offset}$ sono esagerate
-        (la pendenza è molto minore di quella reale, mentre la tensione di offset è molto più grande) per
-        motivi di chiarezza grafica. In un amplificatore reale, oltre
-        al fatto che esiste una tensione di offset, le tensioni di saturazione non coincidono con quelle
-        di alimentazione ed inoltre non sono simmetriche e neppure esattamente costanti (su un intervallo
-        $V\ped{diff}$ da 0 a -15 V abbiamo misurato una variazione di 0.14 V) e il guadagno non è infinito. }
-    \label{fig:v_offset_graph}
-\end{figure}
+L'esistenza della tensione di offset implica anche che un cosiddetto ground virtuale
+abbia in realtà una tensione diversa da zero. In pratica si può anche vedere $V\ped{offset}$
+come la differenza di potenziale tra gli ingressi.
 
 \paragraph{Esistenza della tensione di offset.}
 
-La figura \ref{fig:v_offset_graph} mostra la differenza tra la situazione reale e quella
+La figura \ref{fig:v_offset_graph2} mostra la differenza tra la situazione reale e quella
 ideale. Come è ben visibile in figura, è necessario applicare una tensione di offset per
 avere un output nullo. In altre parole, collegando i due input allo stesso potenziale,
 nel caso ideale la tensione dovrebbe essere nulla, ma in quello reale non lo è.
-Per verificare questo fatto abbiamo montato il circuito \ref{fig:v_off_exists} e abbiamo misurato
-la tensione di output. È risultato che l'output era in saturazione negativa (come in Figura \ref{fig:v_offset_graph}),
+Per verificare questo fatto abbiamo montato il circuito \ref{fig:v_off_exists2} e abbiamo misurato
+la tensione di output. È risultato che l'output era in saturazione negativa (come in Figura \ref{fig:v_offset_graph2}),
 ovvero $V\ped{out} = -12.80 \pm 0.005$ V. Collegando l'ingresso invertente con tensioni negative fino a -15 V
 e vedendo che l'uscita restava circa costante (a -15 V ha raggiunto $-12.94 \pm 0.005$ V),
 ci siamo accertati di essere realmente in saturazione. Abbiamo quindi verificato l'esistenza
@@ -44,19 +44,145 @@ della tensione di offset.
 
 \paragraph{Misura della tensione di offset.}
 
-Per misurare la tensione di offset abbiamo utilizzato il circuito \ref{fig:v_off_circ}.
+Per misurare la tensione di offset abbiamo utilizzato il circuito \ref{fig:v_off_circ2}.
 Il circuito sfrutta l'amplificatore operazionale per amplificare la tensione $V\ped{offset}$
-in modo da renderla facilmente misurabile. Grossomodo, il funzionamento di questo circuito
-può essere riassunto così: poiché la differenza di potenziale tra gli ingressi è non nulla, 
-$V_A \neq 0$. Si ha quindi (facendo riferimento alla figura \ref{fig:circ_con_corr}):
+in modo da renderla facilmente misurabile.
+Poiché la differenza di potenziale tra gli ingressi è non nulla, 
+$V_A \neq 0$. Si ha quindi (facendo riferimento alla figura \ref{fig:circ_con_corr2}):
+
+\begin{equation}
+    I_1  = \frac{V_A}{R_1}, \qquad I_2 = I_1 - I_p^- = \frac{V_A}{R_1} - I_p^-
+\end{equation}
+
+da cui, usando la legge di Ohm, si ottiene
+
+\begin{equation}
+    V\ped{out} = V_A + R_2 I_2 = V_A + \frac{R_2}{R_1} V_A - R_2 I_p^-
+    \label{eq:law2}
+\end{equation}
+
+Questa formula riassume il funzionamento del circuito. Misurando $V\ped{out}$ è possibile
+ricavare facilmente il valore di $V_A$, assumendo che il contributo dato da $I_p^-$ sia trascurabile.
+Dato che la tensione di offset è la tensione che esiste tra i terminali
+di input dell'operazionale (uno è messo a comune), cioè $V_A = V\ped{offset}$, possiamo così misurare $V\ped{offset}$.
+
+Grossomodo, il funzionamento di questo circuito può essere pensato intuitivamente nel seguente modo.
+Supponiamo che la tensione di offset tra non invertente ed invertente sia positiva (cioè se il non invertente è a 0 V, l'invertente è a $V\ped{offset}$ V.).
+All'accensione dell'alimentazione,
+$V_A = 0 V$, per cui, essendo l'amplificatore non ideale, l'uscita sarà positiva (ricordo che un amplificatore
+operazionale segue una legge del tipo $V\ped{out} = G(V^+ - V^- + V\ped{offset})$, dove G è il guadagno differenziale).
+Il ramo di feedback tende quindi ad alzare la d.d.p. in $V_A$ e la avvicina a $V\ped{offset}$, riducendo $V\ped{out}$.
+Il ciclo di feedback si ripete (o meglio tutto si bilancia quasi istantaneamente) finché $V_A$ non diventa praticamente
+indistinguibile da $V\ped{offset}$ (grazie al fatto che il guadagno di un operazionale è enorme, circa $10^5$).
 
 \begin{figure}[t]
     \def\svgwidth{0.5\textwidth}
     \subimport{figure/}{v_offset_current.pdf_tex}
     \caption{ }
-    \label{fig:circ_con_corr}
+    \label{fig:circ_con_corr2}
 \end{figure}
+
+Poiché, come è evidente dalla \eqref{eq:law2}, anche $I_p^-$ ha un certo rilievo, abbiamo scelto i
+valori $R_1 = 10 \; \Omega$ e $R_2 = 10 \; k\Omega$, in modo da rendere il contributo del secondo termine molto
+grande rispetto a quello dell'ultimo termine.
+
+Dalle nostre misure è risultato:
+
+\begin{equation}
+    V\ped{out} = - 970 \pm 30 \;\si{\milli\volt} 
+\end{equation}
+
+da cui si calcola (abbiamo assunto 5\% di incertezza sui valori delle resistenze)
+
+\begin{equation}
+    V\ped{offset} = \frac{V\ped{out}}{1 + R_2/R_1} = - 0.97 \pm 0.07 \; \si{\milli\volt}
+\end{equation}
+
+in accordo con i valori tipici per un operazionale economico come l'UA741.
+
+Abbiamo inoltre misurato direttamente il valore di $V_A$, perché in questo caso è stato possibile
+farlo con il multimetro a nostra disposizione, ottenendo $V\ped{offset} = 1.07 \pm 0.005$ mV, risultato
+questi compatibile con quello precedente.
 
 \subsubsection{Correzione della tensione di offset}
 
+La tensione di offset può essere di qualche millivolt, come visto nel paragrafo precedente,
+e per alcune applicazioni di precisione questo può essere un grosso limite.
+In tal caso è necessario usare un amplificatore operazionale con una tensione di offset minore
+oppure si può annullarla utilizzando gli appositi piedini.
+
+Gran parte degli amplificatori operazionali è infatti munita di due piedini di regolazione dell'offset
+che vanno collegati agli estremi di una resistenza variabile. Il piedino centrale della resistenza
+va collegato all'alimentazione. Sbilanciando la resistenza in modo la tensione alimentazione-offset
+sia diversa per i due piedini, andiamo a polarizzare lo stadio differenziale in ingresso all'opamp,
+aggiustando in questo modo la risposta del circuito. Riusciamo così a ridurre $V\ped{offset}$ a qualche
+$\mu$\si{\volt}.
+
+Dopo aver eseguito l'operazione, abbiamo misurato la nuova tensione di offset con lo stesso circuito
+di prima (il circuito \ref{fig:v_off_circ2}). Abbiamo ottenuto
+
+\begin{equation}
+    V\ped{offset} = 3 \pm 3 \; \mu V
+\end{equation}
+
+che è notevolmente minore della precedente. Notare che in questo caso sarebbe stato molto più
+difficile misurare direttamente questa differenza di potenziale, dato che è molto piccola.
+
 \subsubsection{Correnti di polarizzazione}
+
+Oltre alla tensione di offset, un altra deviazione dall'idealità importante degli opamp reali è l'esistenza
+delle correnti di polarizzazione. Un amplificatore reale, al contrario di quello ideale, assorbe infatti una
+minima quantità di corrente attraverso gli ingressi. Queste correnti variano da qualche nanoampere a qualche
+femtoampere a seconda del tipo di transistor utilizzati per la costruzione dell'operazionale.
+
+Per misurare queste correnti dobbiamo sfruttare l'amplificazione fornita dall'operazionale, poiché
+le correnti sono troppo piccole per essere misurate con strumenti economici.
+
+\paragraph{Misura della corrente di polarizzazione assorbita dall'ingresso invertente.}
+
+Abbiamo quindi costruito il circuito \ref{fig:ip_minus_circ2}. Per la misura della corrente di polarizzazione
+è fondamentale usare un trimmer per eliminare la tensione di offset prima di montare il circuito.
+In questo caso vale $V_A = R_I I_p^-$. È necessario scegliere $R_I$ grande in modo da rendere $V_A$ più facilmente
+misurabile. Noi abbiamo optato per una resistenza da \SI{100}{\kilo\ohm}. Il circuito funziona poi come il
+precedente, vale infatti la stessa analisi circuitale del caso precedente.
+
+In questo caso però quello che vogliamo misurare è $I_p^-$ e non $V_A$. Sostituendo in \eqref{eq:law2}
+l'espressione di $V_A$, risulta:
+
+\begin{equation}
+    V\ped{out} = \left( R_I + \frac{R_2}{R_1} R_I - R_2 \right) I_p^-
+\end{equation}
+
+perciò
+
+\begin{equation}
+    I_p^- = \frac{V\ped{out}}{ R_I + \frac{R_2}{R_1} R_I - R_2}
+\end{equation}
+
+Facendo più misure di $V\ped{out}$ (l'output variava abbondantemente sul multimetro e sull'oscilloscopio),
+calcolando $I_p^-$ in ogni caso e poi facendo media e deviazione standard abbiamo ottenuto
+
+\begin{equation}
+    I_p^- = 27.7 \pm 1.7 \; \si{\nano\ampere}
+\end{equation}
+
+anche questo un valore tipico per amplificatori operazionali basati su transistor BJT.
+
+\paragraph{Misura della corrente di polarizzazione assorbita dall'ingresso non invertente.}
+
+Il procedimento in questo caso è del tutto analogo, ad eccezione del circuito; in questo caso
+abbiamo usato il \ref{fig:ip_plus_circ2}. La differenza sta nella posizione della resistenza $R_I$
+che deve adesso trasformare $I_p^+$ in una tensione e non $I_p^-$. Poiché l'offset è stato azzerato
+(o meglio, reso trascurabile, in queste misure $V_A$ è dell'ordine dei millivolt, mentre la tensione
+di offset, come mostrato prima è di microvolt) $V_A = R_I I_p^+$. Vale quindi la seguente formula, ricavata
+come quella del paragrafo precedente:
+
+\begin{equation}
+    I_p^- = \frac{V\ped{out} + R_2 I_p^-}{ R_I + \frac{R_2}{R_1} R_I}
+\end{equation}
+
+Con lo stesso procedimento di prima abbiamo quindi ottenuto
+
+\begin{equation}
+    I_p^- = -29 \pm 3 \; \si{\nano\ampere}
+\end{equation}
