@@ -78,7 +78,8 @@ indistinguibile da $V\ped{offset}$ (grazie al fatto che il guadagno di un operaz
 \begin{figure}[t]
     \def\svgwidth{0.5\textwidth}
     \subimport{figure/}{v_offset_current.pdf_tex}
-    \caption{ }
+    \caption{La figura riporta il circuito \ref{fig:v_off_circ2} con indicate le correnti che scorrono nei vari rami.
+		Il verso delle correnti è stato scelto coerentemente con il segno che abbiamo usato nei calcoli e per scrivere i risultati.}
     \label{fig:circ_con_corr2}
 \end{figure}
 
@@ -170,6 +171,9 @@ anche questo un valore tipico per amplificatori operazionali basati su transisto
 
 \paragraph{Misura della corrente di polarizzazione assorbita dall'ingresso non invertente.}
 
+Una corrente di polarizzazione entrante nell'ingresso non invertente è stata scelta positiva,
+cioè parliamo di corrente assorbita da tale ingresso. 
+
 Il procedimento in questo caso è del tutto analogo, ad eccezione del circuito; in questo caso
 abbiamo usato il \ref{fig:ip_plus_circ2}. La differenza sta nella posizione della resistenza $R_I$
 che deve adesso trasformare $I_p^+$ in una tensione e non $I_p^-$. Poiché l'offset è stato azzerato
@@ -178,11 +182,11 @@ di offset, come mostrato prima è di microvolt) $V_A = R_I I_p^+$. Vale quindi l
 come quella del paragrafo precedente:
 
 \begin{equation}
-    I_p^- = \frac{V\ped{out} + R_2 I_p^-}{ R_I + \frac{R_2}{R_1} R_I}
+    I_p^+ = \frac{V\ped{out} + R_2 I_p^-}{ R_I + \frac{R_2}{R_1} R_I}
 \end{equation}
 
 Con lo stesso procedimento di prima abbiamo quindi ottenuto
 
 \begin{equation}
-    I_p^- = -29 \pm 3 \; \si{\nano\ampere}
+    I_p^+ = -29 \pm 3 \; \si{\nano\ampere}
 \end{equation}
