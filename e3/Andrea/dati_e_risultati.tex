@@ -1,0 +1,78 @@
+\section*{Dati e risultati}
+
+\subsection*{Slew Rate}
+
+Per iniziare cerchiamo di capire cosa sia lo Slew Rate. In elettronica lo Slew Rate ($SR$) è definito come la massima variazione di tensione in uscita ($V\ped{out}$) per unità di tempo, quindi in formle abbiamo
+\begin{equation}
+	SR\,=\,\frac{\Delta V}{\Delta t}
+	\label{slew_rate_equation}
+\end{equation}
+dove con $\Delta V$ abbiamo indicato la differenza di potenziale in uscita dal circuito e con $\Delta t$ l'intervallo temporale preso in esame.
+Pertanto questo fattore indica la velocità di risposta di un dispositivo o circuito elettronico ad una rapida variazione di tesione in ingresso in un intervallo di tempo molto piccolo. Queste variazioni di tensione darebbero luogo a segnali che in uscita varierebbero troppo rapidamente per poter essere riprodotte dallo strumento. Infatti ogni apparato fisico è in grado di erogare quantità di correnti limitate e non infinite, pertanto si possono generare differenze di potenziale che non eccedono questa quantità ovvero la velocità di risposta o Slew Rate.
+
+Quindi per misurare effettivamente lo Slew Rate abbiamo realizzato il circuito riportato in Figura \ref{fig:slew_rate}. Le caratteristiche di questo circuito sono le seguenti: la tensione di alimentazione positiva ($V\ped{cc}^+$) vale $\SI{+15}{\volt}$ mentre quella negativa ($V\ped{cc}^-$) vale $\SI{-15}{\volt}$. All'ingresso non invertente ($V_p^+$) abbiamo deciso di fornire come segnale in entrata un'onda quadra in quanto, a nostro parere, è il tipo di imput più adatto per studiare questo fenomeno. Il segnale in ingresso ha le seguenti caratteristiche: frequenza ($\nu$) di $\SI{1}{\kilo\hertz}$ e differenza di potenziale picco-picco di $\SI{10}{\volt}$. Il circuito collegato all'uscita dell'OPAMP è stato realizzato su suggrimento del costruttore e il valore di resistenza usato vale $R\,=\,\SI{2.2}{\kilo\ohm}$, mentre per la capacità abbiamo usato un capacitore da $C\,=\,\SI{180}{\pico\farad}$.
+
+Tuttavia prima di andare a ricavare il valore dello Slew Rate del nostro circuito abbiamo deciso di valutare quello del nostro generatore di forme d'onda. Un valore approssimativo, probabilmente stimato in eccesso è: $SR\ped{0}\,=\,0.5\,\frac{\SI{}{\volt}}{\SI{}{\nano\second}}$.
+
+A questo punto, grazie all'oscilloscopio, siamo andati ad acquisire le forme d'onda del segnale in ingresso e in uscita dal nostro circuito. Quindi andando ad analizzare i dati ottenuti, riportati in Figura \ref{fig:slew_rate_plot}, abbiamo ottenuto che, per il nosro amplificatore operazionale $UA741$, gli Slew Rate di salita e discesa  valgono:
+\begin{equation}
+	SR_s\,=\,\frac{90\%V\ped{out}-10\%V\ped{out}}{t\ped{90\%}-t\ped{10\%}}\,=\,(\pm)\,\frac{\SI{}{\volt}}{\SI{}{\second}}
+	\label{slew_rate_value_s}
+\end{equation}
+\begin{equation}
+	SR_d\,=\,\frac{90\%V\ped{out}-10\%V\ped{out}}{t\ped{90\%}-t\ped{10\%}}\,=\,(\pm)\,\frac{\SI{}{\volt}}{\SI{}{\second}}
+	\label{slew_rate_value_d}
+\end{equation}
+dove con $SR_s$ indichiamo lo Slow Rate del fronte d'onda in salita, mentre $SR_d$ è relativo al fronte d'onda in discesa.
+
+\subsection*{Corrente massima erogabile}
+
+In questo paragrafo vogliamo invece valutare la corrente massima ($I$) erogabile dal nostro amplificatore operazionale. Per farlo abbiamo sfruttato il circuito riportato in Figura \ref{fig:current}
+
+Le caratteristiche di questo circuito sono le seguenti: la tensione di alimentazione positiva ($V\ped{cc}^+$) vale $\SI{+15}{\volt}$ mentre quella negativa ($V\ped{cc}^-$) vale $\SI{-15}{\volt}$. Come segnale di input all'ingresso non invertente ($V_p^+$) abbiamo deciso di usare una forma d'onda a dente di sega di frequenza ($\nu$) $\SI{500}{\hertz}$ e con una differenza di potenziale picco-picco di $\SI{10}{\volt}$. Il valore della resistenza di output vale $R\,=\,\SI{100}{\ohm}$.
+
+L'idea che vogliamo seguire per misurare la corrente massima ($I$) erogabile dall'OPAMP e quella di creare un collegamento a terra dell'output mediante una resistenza molto piccola in modo che questa assorba quasi tutta la corrente erogata dall'amplificatore. In questo modo grazie all'oscilloscopio andremo a misurare la differenza di potenziale dell'output ($V\ped{out}$) e sfruttando la legge di Ohm è possibile ricavare il valore della corente ($I$), ovvero:
+\begin{equation}
+	I\,=\,\frac{\Delta V}{R}\,=\,(\pm)\,\SI{}{\ampere}
+\end{equation}
+
+\subsection*{Banda passante dell'amplificatore operazionale}
+
+In questo paragrafo vogliamo discutere del problema del guadagno dell'amplificatore oparazionale in funzione delle frequeanze dei segnali AC in entrata. A tal fine abbiamo realizzato il circuito in Figura \ref{fig:banda_passante}.
+
+Le caratteristiche di questo circuito sono le seguenti: la tensione di alimentazione positiva ($V\ped{cc}^+$) vale $\SI{+15}{\volt}$ mentre quella negativa ($V\ped{cc}^-$) vale $\SI{-15}{\volt}$. Come segnale di input all'ingresso invertente ($V_p^-$) abbiamo deciso di usare una forma d'onda sinusoidale di frequenza ($\nu$) variabile e con una differenza di potenziale picco-picco di $\SI{50}{\milli\volt}$. I valori delle resistenze sono i seguenti: $R_1\,=\,\SI{10}{\kilo\ohm}\,/\,\SI{100}{\kilo\ohm}$ e $R_2\,=\,\SI{1}{\kilo\ohm}$.
+
+Per evitare che le misure acquisite siano alterate dalla tensione di offset abbiamo deciso di usare il trimer per azzerarla. Siamo riusciti ad avere una tensione di offset del valore di $V\ped{os}\,=\,\SI{5}{\milli\volt}$.
+
+Come prima cosa abbiamo deciso di studiare come varia il guadagno del nostro circuito al variare della frequenza del segnale in ingresso nel caso in cui il circuito abbia un guadagno ($G$) di 10 a 20 decibell. Per fare questo abbiamo deciso di adottare i seguenti valori di resistenza i seguenti: $R_1\,=\,\SI{10}{\kilo\ohm}$ e $R_2\,=\,\SI{1}{\kilo\ohm}$. In questo modo il rapporto tra $\frac{V\ped{out}}{V\ped{in}}\,=\,10$. A questo punto, grazie all'oscilloscopio, abbiamo acquisito i valori della tensione di output per vari valori di frequenza. Il risultato ottenuto è illustrato nel grafico in Figura \ref{fig:10DB_plot}
+
+
+
+
+
+Misurare la frequenza taglio con:
+G  10 (20 dB)
+G 100 (40 dB)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
