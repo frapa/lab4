@@ -1,1 +1,58 @@
 \subsection{Materiali e circuiti}
+
+Abbiamo realizzato i circuiti schematizzati in Figura \ref{fig:circuits2}.
+Ci siamo serviti dei seguenti materiali:
+
+\begin{itemize}
+    \item{Breadboard, cavi a banana e cavetti da breadboard.}
+    \item{Amplificatore operazionale UA741.}
+    \item{Resistenze: \SI{10}{\ohm}, \SI{10}{\kilo\ohm}, \SI{100}{\kilo\ohm}
+        e una variabile per aggiustare l'offset dell'amplificatore operazionale.
+        Nel nostro caso abbiamo usato una resistenza trimmer con un range operativo da 0
+        a \SI{10}{\kilo\ohm}.}
+    \item{Alimentatore di corrente continua.}
+    \item{Multimetro Agilent 34410A.}
+    \item{Oscilloscopio Agilent DSO-X 2002A.}
+\end{itemize}
+
+\begin{figure*}[t]
+        \centering
+        \small
+        \begin{subfigure}[b]{0.35\textwidth}
+            \def\svgwidth{\columnwidth}
+            \subimport{figure/}{slew_circ.pdf_tex}
+            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+            \label{fig:slew_circ3}
+        \end{subfigure}
+        \quad
+        \begin{subfigure}[b]{0.35\textwidth}
+            \def\svgwidth{\columnwidth}
+            \subimport{figure/}{max_curr_circ.pdf_tex}
+            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+            \label{fig:max_curr_circ3}
+        \end{subfigure}
+        \quad
+        \begin{subfigure}[b]{0.35\textwidth}
+            \def\svgwidth{\columnwidth}
+            \subimport{figure/}{banda_circ.pdf_tex}
+            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+            \label{fig:banda_circ3}
+        \end{subfigure}
+        \quad
+        \begin{subfigure}[b]{0.35\textwidth}
+            \def\svgwidth{\columnwidth}
+            \subimport{figure/}{guad_freq_bassa_circ.pdf_tex}
+            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+            \label{fig:gain_low_circ3}
+        \end{subfigure}
+        \quad
+        \begin{subfigure}[b]{0.35\textwidth}
+            \def\svgwidth{\columnwidth}
+            \subimport{figure/}{guad_freq_alta_circ.pdf_tex}
+            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+            \label{fig:gain_high_circ3}
+        \end{subfigure}
+
+        \caption{Circuiti costruiti durante l'esperienza}
+        \label{fig:circuits3}
+\end{figure*}
