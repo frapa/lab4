@@ -51,8 +51,8 @@
   \begin{picture}(1,0.60885711)%
     \put(0,0){\includegraphics[width=\unitlength]{guad_freq_bassa_circ.pdf}}%
     \put(0.59331783,0.3457168){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
-    \put(0.64263256,0.5758522){\makebox(0,0)[lb]{\smash{$R_2$}}}%
-    \put(0.23167649,0.5758522){\makebox(0,0)[lb]{\smash{$R_1$}}}%
+    \put(0.52263256,0.5758522){\makebox(0,0)[lb]{\smash{$R_2 = \SI{10}{\kilo\ohm}$}}}%
+    \put(0.11167649,0.5758522){\makebox(0,0)[lb]{\smash{$R_1 = \SI{10}{\kilo\ohm}$}}}%
     \put(0.3138677,0.36215505){\makebox(0,0)[lb]{\smash{$R_3$}}}%
     \put(0.59331783,0.0005137){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{- 15 V}}}%
     \put(0.00006164,0.30626589){\makebox(0,0)[lb]{\smash{V}}}%

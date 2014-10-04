@@ -1,55 +1,74 @@
 \subsection{Materiali e circuiti}
 
-Abbiamo realizzato i circuiti schematizzati in Figura \ref{fig:circuits2}.
 Ci siamo serviti dei seguenti materiali:
 
 \begin{itemize}
     \item{Breadboard, cavi a banana e cavetti da breadboard.}
     \item{Amplificatore operazionale UA741.}
-    \item{Resistenze: \SI{10}{\ohm}, \SI{10}{\kilo\ohm}, \SI{100}{\kilo\ohm}
+    \item{Resistenze: \SI{100}{\ohm}, \SI{2.2}{\kilo\ohm}, \SI{10}{\kilo\ohm}, \SI{100}{\kilo\ohm}
         e una variabile per aggiustare l'offset dell'amplificatore operazionale.
         Nel nostro caso abbiamo usato una resistenza trimmer con un range operativo da 0
         a \SI{10}{\kilo\ohm}.}
+    \item{Condensatore da 180 pF.}
     \item{Alimentatore di corrente continua.}
+    \item{Generatore di forme d'onda Agilent 33120A.}
     \item{Multimetro Agilent 34410A.}
     \item{Oscilloscopio Agilent DSO-X 2002A.}
 \end{itemize}
 
+Per le misure abbiamo utilizzato i circuiti riportati in figura \ref{fig:circuits3},
+che verranno spiegati nei seguenti paragrafi.
+
 \begin{figure*}[t]
         \centering
         \small
-        \begin{subfigure}[b]{0.35\textwidth}
+        \begin{subfigure}[b]{0.32\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{slew_circ.pdf_tex}
-            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+            \caption{Circuito utilizzato per misuraro lo slew rate dell'opamp. Il circuito è
+		riportato sul manuale dell'operazionale ed è lo standard per questo tipo di misure.}
             \label{fig:slew_circ3}
         \end{subfigure}
-        \quad
-        \begin{subfigure}[b]{0.35\textwidth}
+        ~
+        \begin{subfigure}[b]{0.32\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{max_curr_circ.pdf_tex}
-            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+            \caption{Per la misura della massima corrente erogabile dall'operazionale ci siamo
+		serviti del circuito in figura.}
             \label{fig:max_curr_circ3}
         \end{subfigure}
-        \quad
-        \begin{subfigure}[b]{0.35\textwidth}
+        ~
+        \begin{subfigure}[b]{0.32\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{banda_circ.pdf_tex}
-            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+            \caption{Circuito di cui abbiamo misurato la banda passante. Il circuito è stato utilizzato
+		in due differenti configurazioni: una con guadagno di 20 dB e $R_2 = \SI{10}{\kilo\ohm}$
+		e l'altro con un guadagno di 20 dB e $R_2 = \SI{100}{\kilo\ohm}$.}
             \label{fig:banda_circ3}
         \end{subfigure}
-        \quad
-        \begin{subfigure}[b]{0.35\textwidth}
+        ~
+        \begin{subfigure}[b]{0.32\textwidth}
             \def\svgwidth{\columnwidth}
+	    \vspace{0.5cm}
             \subimport{figure/}{guad_freq_bassa_circ.pdf_tex}
-            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+	    \vspace{0pt}
+            \caption{Circuito utilizzato per misurare il guadagno open loop di un amplificatore
+		operazionale. Il circuito è pensato per fare misure a basse frequenze, dove
+		l'operazionale ha un guadagno molto elevato (~ $10^5$). Quando l'operazionale viene
+		usato ad alte frequenze il suo guadagno si riduce notevolmente e il circuito in figura
+		diventa inutilizzabile. In questi regimi si utilizza il circuito \ref{eq:gain_high_circ3}.}
             \label{fig:gain_low_circ3}
         \end{subfigure}
-        \quad
-        \begin{subfigure}[b]{0.35\textwidth}
+        ~
+        \begin{subfigure}[b]{0.32\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{guad_freq_alta_circ.pdf_tex}
-            \caption{Circuito utilizzato per osservare l'esistenza della tensione di offset.}
+	    \vspace{0pt}
+            \caption{Circuito per la misura del guadagno open loop ad alte frequenze. In circuito in pratica
+		serve a fare una misura diretta del guadagno, tuttavia utilizza un ramo di feedback per impedire
+		saturazioni non volute (per esempio causate dalla tensione di offset, che non può mai essere
+		perfettamente oppure da altre tensioni DC dovute all'alimentazione che vengono amplificate moltissimo
+		perché a bassa frequenza).}
             \label{fig:gain_high_circ3}
         \end{subfigure}
 

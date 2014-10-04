@@ -48,6 +48,15 @@ una sorgente di corrente costante.
 
 \subsubsection{Sommatore pesato di tensioni.}
 
+\begin{SCfigure*}[1][t!]
+    \includegraphics[width=1.4\columnwidth]{figure/graph.pdf}
+    \caption{Il grafico riporta un esempio del funzionamento del circuito \ref{fig:sommatore1}.
+        I canali $V_1$ e $V_2$ sono stati impostati rispettivamente a una tensione continua di 1 V e
+        ad una sinusoide 1 Vpp (peak-to-peak) di frequenza 1 kHz di offset nullo. La sinusoide nera
+        mostra l'output: è esattamente quello che ci si aspettava dalla formula \eqref{eq:sommatore_pesato1}.}
+    \label{fig:graph1}
+\end{SCfigure*}
+
 Il sommatore pesato di tensioni che abbiamo realizzato è il circuito \ref{fig:sommatore1},
 ed è pensato per fornire il seguente output
 
@@ -69,7 +78,7 @@ La resistenza $R$ determina il guadagno del circuito. Per esempio per la tension
 $V_1$ il guadagno vale
 
 \begin{equation}
-    G = \frac{V\ped{out}}{V_1} = \frac{R}{R_1} = 0.078 \pm 0.006
+    G = \frac{V\ped{out}}{V_1} = \frac{R}{R_1} = 0.2 \pm 0.014
 \end{equation}
 
 dove abbaimo considerato incertezze sulle resistenze pari al 5\%.
@@ -86,3 +95,12 @@ stati utili per vedere contemporaneamente i due input e l'output), per cui abbia
 usare la funzione di persistenza per visualizzare i 3 segnali, che non permette di salvare i dati.
 A causa di questo fatto non siamo riusciti a riportare i grafici che mostrino il funzionamento
 del circuito.
+
+Siamo quindi tornati in laboratorio alcuni giorni dopo e abbiamo montato il circuito una seconda
+volta per acquisire almeno un grafico che mostrasse il funzionamento del circuito.
+Il risultato è riportato in figura \ref{fig:graph1}. Per motivi di chiarezza del grafico, abbiamo
+scelto $V_1 = 1$ V DC, mentre $V_2$ era un onda sinusoidale di frequenza 1 kHz e di ampiezza 1 V
+picco-picco. L'output è riportato in figura e corrisponde a quanto previsto dalla
+formula \eqref{eq:sommatore_pesato1}.
+
+Il guadagno per $V_1$ è esattamente 0.2 come calcolato sopra. L'amplificatore è invertente.

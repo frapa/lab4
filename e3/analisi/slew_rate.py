@@ -8,6 +8,7 @@ from uncertainties import ufloat
 
 # SALITA
 data_s = np.genfromtxt(open("../dati/scope_0.csv"), delimiter=",", skip_header=2)
+cut = np.genfromtxt(open("../dati/scope_12.csv"), delimiter=",", skip_header=2)
 
 t_s = data_s[:,0]
 v1_s = data_s[:,1] / 2.0
@@ -107,6 +108,46 @@ ax2.plot([t10d.nominal_value, t10d.nominal_value], [min_s, max_s])
 ax2.plot([t90d.nominal_value, t90d.nominal_value], [min_s, max_s])
 
 ax2.set_xlim((start_td, end_td))
+
+# niceness
+f11 = plt.figure(figsize=(6, 5))
+ax11 = f11.add_subplot(111)
+f11.suptitle("Slew rate")
+
+p4 = ax11.errorbar(x=t_s, y=v1_s, linewidth=2, c="gray")
+p3 = ax11.errorbar(x=t_s, y=v2_s, linewidth=2, c="black")
+ax11.errorbar([start_ts, end_ts], [s10.nominal_value, s10.nominal_value], c="black", fmt="--")
+ax11.errorbar([start_ts, end_ts], [s90.nominal_value, s90.nominal_value], c="black", fmt="--")
+ax11.errorbar([t10s.nominal_value, t10s.nominal_value], [-6, s10.nominal_value], c="black", fmt="--")
+ax11.errorbar([t90s.nominal_value, t90s.nominal_value], [-6, s90.nominal_value], c="black", fmt="--")
+
+ax11.set_xticklabels(("", "-20", "-10", "0", "10", "20"))
+ax11.set_xlim((start_ts, end_ts))
+ax11.set_ylim((-6, 6))
+ax11.set_xlabel(u"Tempo [μs]")
+ax11.set_ylabel("Tensione [V]")
+ax11.grid(True)
+
+ax11.legend((p3, p4), ("Ingresso", "Uscita"), loc="upper left")
+f11.savefig("../figure/slew_graph1.pdf")
+
+# niceness
+f111 = plt.figure(figsize=(6, 5))
+ax111 = f111.add_subplot(111)
+f111.suptitle("Slew rate")
+
+pin = ax111.errorbar(x=cut[:,0], y=cut[:,1], linewidth=2, c="gray")
+pout = ax111.errorbar(x=cut[:,0], y=cut[:,2], linewidth=2, c="black")
+
+ax111.set_xticklabels(("", "-40", "-20", "0", "20", "40"))
+ax111.set_xlim((-0.00005, 0.00005))
+ax111.set_ylim((-12, 12))
+ax111.set_xlabel(u"Tempo [μs]")
+ax111.set_ylabel("Tensione [V]")
+ax111.grid(True)
+
+ax111.legend((pin, pout), ("Ingresso", "Uscita"), loc="upper left")
+f111.savefig("../figure/slew_signal3.pdf")
 
 # mostra
 plt.show()

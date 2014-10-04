@@ -17,17 +17,19 @@
 
 Un amplificatore operazionale ideale amplifica la differenza tra i due segnali
 in ingresso. Questo significa che se i due segnali sono uguali, l'output deve essere zero.
-Negli operazionali reali, questo non è vero; esiste infatti una tensione di offset
-$V\ped{offset}$ tra gli ingressi per la quale l'output è nullo, e questa tensione è diversa da zero.
+Negli operazionali reali questo non è vero: esiste infatti una tensione di offset
+$V\ped{offset}$ tra gli ingressi per la quale l'output è nullo, mentre se
+gli ingressi sono allo stesso potenziale l'uscita non è nulla (anzi spesso l'uscita è
+in saturazione a causa dell'enorme guadagno dell'amplificatore).
 Questa tensione è dovuta al processo produttivo di costruzione degli operazionali.
-Un amplificatore ha uno stadio di amplificazione differenziale in ingresso costruito utilizzando
+Un amplificatore ha uno stadio di amplificazione differenziale in ingresso costruito utilizzando due
 transistor, che non possono mai essere prodotti in maniera perfettamente uguale. Differenti
 transistor rispondono in modo anche abbastanza diverso agli input e questo causa uno sbilanciamento
-negli ingressi dell'operazionale, che varia in base al tipo di transistor utilizzati.
+negli ingressi dell'operazionale.
 
 L'esistenza della tensione di offset implica anche che un cosiddetto ground virtuale
 abbia in realtà una tensione diversa da zero. In pratica si può anche vedere $V\ped{offset}$
-come la differenza di potenziale tra gli ingressi.
+come la differenza di potenziale mantenuta tra gli ingressi se non sono collegati tra di loro.
 
 \paragraph{Esistenza della tensione di offset.}
 
@@ -36,7 +38,7 @@ ideale. Come è ben visibile in figura, è necessario applicare una tensione di 
 avere un output nullo. In altre parole, collegando i due input allo stesso potenziale,
 nel caso ideale la tensione dovrebbe essere nulla, ma in quello reale non lo è.
 Per verificare questo fatto abbiamo montato il circuito \ref{fig:v_off_exists2} e abbiamo misurato
-la tensione di output. È risultato che l'output era in saturazione negativa (come in Figura \ref{fig:v_offset_graph2}),
+la tensione di output. È risultato che l'output era in saturazione negativa (come in figura \ref{fig:v_offset_graph2}),
 ovvero $V\ped{out} = -12.80 \pm 0.005$ V. Collegando l'ingresso invertente con tensioni negative fino a -15 V
 e vedendo che l'uscita restava circa costante (a -15 V ha raggiunto $-12.94 \pm 0.005$ V),
 ci siamo accertati di essere realmente in saturazione. Abbiamo quindi verificato l'esistenza
@@ -64,12 +66,12 @@ da cui, usando la legge di Ohm, si ottiene
 Questa formula riassume il funzionamento del circuito. Misurando $V\ped{out}$ è possibile
 ricavare facilmente il valore di $V_A$, assumendo che il contributo dato da $I_p^-$ sia trascurabile.
 Dato che la tensione di offset è la tensione che esiste tra i terminali
-di input dell'operazionale (uno è messo a comune), cioè $V_A = V\ped{offset}$, possiamo così misurare $V\ped{offset}$.
+di input dell'operazionale, cioè $V_A = V\ped{offset}$, possiamo così misurare $V\ped{offset}$.
 
 Grossomodo, il funzionamento di questo circuito può essere pensato intuitivamente nel seguente modo.
 Supponiamo che la tensione di offset tra non invertente ed invertente sia positiva (cioè se il non invertente è a 0 V, l'invertente è a $V\ped{offset}$ V.).
 All'accensione dell'alimentazione,
-$V_A = 0 V$, per cui, essendo l'amplificatore non ideale, l'uscita sarà positiva (ricordo che un amplificatore
+$V_A = 0$ V, per cui, essendo l'amplificatore non ideale, l'uscita sarà positiva (ricordo che un amplificatore
 operazionale segue una legge del tipo $V\ped{out} = G(V^+ - V^- + V\ped{offset})$, dove G è il guadagno differenziale).
 Il ramo di feedback tende quindi ad alzare la d.d.p. in $V_A$ e la avvicina a $V\ped{offset}$, riducendo $V\ped{out}$.
 Il ciclo di feedback si ripete (o meglio tutto si bilancia quasi istantaneamente) finché $V_A$ non diventa praticamente
@@ -103,23 +105,25 @@ in accordo con i valori tipici per un operazionale economico come l'UA741.
 
 Abbiamo inoltre misurato direttamente il valore di $V_A$, perché in questo caso è stato possibile
 farlo con il multimetro a nostra disposizione, ottenendo $V\ped{offset} = 1.07 \pm 0.005$ mV, risultato
-questi compatibile con quello precedente.
+quasi compatibile con quello precedente.
 
 \subsubsection{Correzione della tensione di offset}
 
 La tensione di offset può essere di qualche millivolt, come visto nel paragrafo precedente,
 e per alcune applicazioni di precisione questo può essere un grosso limite.
-In tal caso è necessario usare un amplificatore operazionale con una tensione di offset minore
-oppure si può annullarla utilizzando gli appositi piedini.
+In tal caso è necessario usare un amplificatore operazionale con una tensione di offset minore.
+È anche possibile ridurre la tensione di offset utilizzando gli appositi piedini, come faremo in seguito.
 
 Gran parte degli amplificatori operazionali è infatti munita di due piedini di regolazione dell'offset
 che vanno collegati agli estremi di una resistenza variabile. Il piedino centrale della resistenza
-va collegato all'alimentazione. Sbilanciando la resistenza in modo la tensione alimentazione-offset
+va collegato all'alimentazione. Sbilanciando la resistenza in modo che la tensione alimentazione-offset
 sia diversa per i due piedini, andiamo a polarizzare lo stadio differenziale in ingresso all'opamp,
 aggiustando in questo modo la risposta del circuito. Riusciamo così a ridurre $V\ped{offset}$ a qualche
 $\mu$\si{\volt}.
 
-Dopo aver eseguito l'operazione, abbiamo misurato la nuova tensione di offset con lo stesso circuito
+Questa operazione si esegue misurando la tensione di offset e regolando la resistenza fino a raggiungere
+il valore di tensione minore possibile.
+Dopo questa operazione, abbiamo misurato la nuova tensione di offset con lo stesso circuito
 di prima (il circuito \ref{fig:v_off_circ2}). Abbiamo ottenuto
 
 \begin{equation}
@@ -137,7 +141,7 @@ minima quantità di corrente attraverso gli ingressi. Queste correnti variano da
 femtoampere a seconda del tipo di transistor utilizzati per la costruzione dell'operazionale.
 
 Per misurare queste correnti dobbiamo sfruttare l'amplificazione fornita dall'operazionale, poiché
-le correnti sono troppo piccole per essere misurate con strumenti economici.
+le correnti sono troppo piccole per essere misurate accuratamente con gli strumenti a nostra disposizione.
 
 \paragraph{Misura della corrente di polarizzazione assorbita dall'ingresso invertente.}
 
@@ -172,9 +176,9 @@ anche questo un valore tipico per amplificatori operazionali basati su transisto
 \paragraph{Misura della corrente di polarizzazione assorbita dall'ingresso non invertente.}
 
 Una corrente di polarizzazione entrante nell'ingresso non invertente è stata scelta positiva,
-cioè parliamo di corrente assorbita da tale ingresso. 
+come abbiamo fatto per l'ingresso invertente. 
 
-Il procedimento in questo caso è del tutto analogo, ad eccezione del circuito; in questo caso
+Il procedimento è del tutto analogo al precedente, ad eccezione del circuito; in questo caso
 abbiamo usato il \ref{fig:ip_plus_circ2}. La differenza sta nella posizione della resistenza $R_I$
 che deve adesso trasformare $I_p^+$ in una tensione e non $I_p^-$. Poiché l'offset è stato azzerato
 (o meglio, reso trascurabile, in queste misure $V_A$ è dell'ordine dei millivolt, mentre la tensione
