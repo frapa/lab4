@@ -20,7 +20,8 @@ Questo valore ci suggerisce che il nostro amplificatore operazionale, già a val
 La situazione sopra descritta può essere meglio compresa facendo riferimento alla Figura \ref{fig:plot_Vd}:
 
 \begin{SCfigure}
-	\includegraphics[width=0.45\textwidth]{../figure/offset_graph.pdf}
+	\def\svgwidth{0.5\textwidth}
+    \subimport{figure/}{offset_graph.pdf_tex}
     \caption{Questo grafico mostra l'andamento della tensione di output $V\ped{out}$ al variare della differenza di potenziale tra i due ingressi $V_d$. Possiamo notare che se l'OPAMP fosse ben calibrato ad una $V_d=\SI{0}{\volt}$ corrisponderebbe una $V\ped{out}$ nulla, ma non è il nostro caso. Inoltre la linea tratteggiata riporta l'andamento che dovrebbe avere la $V\ped{out}$ di un amplificatore operazionale ideale, mentre la linea continua riporta l'andamento reale del nostro amplificatore operazionale UA741, dove si vede chiaramente la differenza di potenziale che c'è tra i due ingressi nonostante la tensione di output sia nulla.}
     \label{fig:plot_Vd}
 \end{SCfigure}
@@ -62,26 +63,31 @@ Quindi, ricordandoci che le correnti di polarizzazione sono dell'ordine di qualc
 Infine abbiamo ricavato il valore di $V_a$ invertendo la relazione \ref{eq:offset1} nella quale abbiamo trascurato l'effetto del termine $I_{p}^-R_2$, ottenendo:
 
 \begin{equation}
-	V\ped{os}\,\simeq\,V\ped{out}\frac{R_1+R_2}{R_1}\,=\, (0.97 \pm 0.07)\SI{}{\milli\volt}
+	V\ped{os}\,\simeq\,V\ped{out}\frac{R_1+R_2}{R_1}\,=\, (-0.97 \pm 0.07)\SI{}{\milli\volt}
 \end{equation}
 
 Infine abbiamo anche preso una misura diretta della tensione di offset che è risultata essere: $V\ped{os}\,=\,(1.09\pm0.01)\SI{}{\milli\volt}$. Si può osservare che i due valori sono quasi compatibili entro le loro incertezze, quindi con spirito ottimistico possiamo affermare che in entambi i casi abbiamo raggiunto dei valori plausibili.
 
 \subsection*{Azzeramento di $V\ped{os}$ grazie al Trimmer}
 
-In questo paragrafo ci poniamo il problema di azzerare il valore della tensione di offset $V\ped{os}$. Per farlo abbiamo realizzato il circuito riportato in Figura \ref{fig:trimmer}.
-Per questo circuito, come per quelli precedenti le tensioni di alimentazione sono $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e $V\ped{cc}^-\,=\,\SI{-15}{\volt}$.
-Possiamo notare che in questa configurazione il terminale non invertente è collegato al comune, mentre quello invertente è collegato direttamente al ramo di retroazione negativo, e quindi abbiamo un emitter follower.
+In questo paragrafo ci poniamo il problema di azzerare il valore della tensione di offset $V\ped{os}$.
+
+Per farlo usiamo l'amplificatore operazionale in configurazione emitter follower con l'ingresso non invertente collegato direttamente al comune, mentre quello invertente è collegato direttamente al ramo di retroazione negativo. Per questo circuito, come per quelli precedenti le tensioni di alimentazione sono $V\ped{cc}^+\,=\,\SI{+15}{\volt}$ e $V\ped{cc}^-\,=\,\SI{-15}{\volt}$.
+
 Quindi, al fine di avere una tensione di offset nulla, abbiamo variato manualmente il valore della resistenza variabile $R_v$ fino a che non abbiamo ottenuto un valore nullo della tensione di output, $V\ped{out}\,=\,\SI{0}{\volt}$.
 In questo modo abbiamo effettiavamente ottenuto un OPAMP per cui, collegando al comune i due ingressi, la differenza di potenziale di output risulta effettivamente nulla, come per un amplificatore operazionale ideale.
 
-Quindi ricordando che $R_v$ ha un range di valori possibili compreso tra $0$ e $10$ $\SI{}{\kilo\ohm}$ riportiamo i valori delle due resistenze $R\ped{1-4}$ e $R\ped{4-5}$ che indicano rispettivamente il valore di resistenza tra il pin 1 e 4  e tra il 4 e il 5 dell'amplificatore operazionale. I valori ottenuti sono:
+In realtà non siamo stati così bravi da ottenere un valore nullo di $V\ped{os}$, ma abbiamo ottenuto il seguente valore:
+
+\begin{equation}
+	V\ped{os}\,=\,(3\,\pm\,3)\SI{}{\micro\ampere}
+\end{equation}
+
+Infine ricordando che $R_v$ ha un range di valori possibili compreso tra $0$ e $10$ $\SI{}{\kilo\ohm}$ riportiamo i valori delle due resistenze $R\ped{1-4}$ e $R\ped{4-5}$ che indicano rispettivamente il valore di resistenza tra il pin 1 e 4  e tra il 4 e il 5 dell'amplificatore operazionale, che ci hanno permesso di ridurre notevolmente la tensione di offset dell nostro OPAMP. I valori ottenuti sono:
 
 \begin{equation}
 	R\ped{1-4}\,=\,(6.158\,\pm\,0.001)\SI{}{\kilo\ohm} \qquad \textbf{e} \qquad R\ped{4-5}\,=\,(4.417\,\pm\,0.001)\SI{}{\kilo\ohm}
 \end{equation}
-
-Salta subito all'occhio che la somma dei due valori di resistenze, che sono in serie, è maggiore di $\SI{10}{\kilo\ohm}$. Questo non è errato dal momento che il valore messimo di $R_v$ e superiore a $\SI{10}{\kilo\ohm}$, in quanto lo abbiamo misurato col multimetro.
 
 \subsection*{Studio delle correnti di polarizzazione}
 
@@ -93,19 +99,21 @@ Dal momento che le due correnti hanno un'intensità molto piccola, dell'ordine d
 
 \begin{figure}[H]
         \centering
-        \begin{subfigure}[b]{0.45\textwidth}
-                \includegraphics[width=\textwidth]{../figure/Ip_minus.pdf}
+        \begin{subfigure}[b]{0.48\textwidth}
+        		\def\svgwidth{\textwidth}
+                \subimport{figure/}{Ip_minus.pdf_tex}
                 \caption{Amplificatore operazionale: configurazione per la misura di $I_{p}^-$}
                 \label{fig:ip_minus}
         \end{subfigure}
         ~
-        \begin{subfigure}[b]{0.45\textwidth}
-                \includegraphics[width=\textwidth]{../figure/Ip_plus.pdf}
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+        		\def\svgwidth{\textwidth}
+                \subimport{figure/}{Ip_plus.pdf_tex}
                 \caption{Amplificatore operazionale: configurazione per la misura di $I_{p}^+$}
                 \label{fig:ip_plus}
         \end{subfigure}
         \caption{Questi circuiti illustrano le configurazioni adottate per misurare le due correnti di polarizzazione riferite ai due ingressi (invertente e non invertente) dell'amplificatore operazionale.}
-        \label{fig:circuits}
 \end{figure}
 
 La procedura che abbiamo seguito per ricavare i valori delle due correnti è stata relativamente semplice.
@@ -120,7 +128,7 @@ La procedura che abbiamo seguito per ricavare i valori delle due correnti è sta
 Il valore della corrente di polarizzazione ottenuto grazie alla misura diretta della tensione ai capi della resistenza (Figura \ref{fig:ip_minus}) è il sguente:
 
 \begin{equation}
-	I\ped{p1}^-\,=\,\frac{\Delta V}{R_3}\,=\,(\,\pm\,)\,\SI{}{\nano\ampere}
+	I\ped{p1}^-\,=\,\frac{\Delta V}{R_3}\,=\,(30\,\pm\,5)\,\SI{}{\nano\ampere}
 \end{equation}
 
 Mentre, se vogliamo calcolare $I_{p}^-$ sfruttando il valore della tensione di output, quindi risolvendo il circuito, dobbiamo, come prima cosa, ricavare l'equazione che lega $V\ped{out}$ con i vari parametri circuitali: resistenze e tensioni del circuito. Questa equazione, già ottenuta nel secondo paragrafo di queso elaborato, è:
@@ -138,17 +146,17 @@ quindi con una serie di passaggi algebrici possiamo ottenere la seguente espress
 dalla quale otteniamo che il valore della corrente di polarizzazione dell'ingresso invertente ha valore:
 
 \begin{equation}
-	I\ped{p2}^-\,=\,(\,\pm\,)\,\SI{}{\nano\ampere}
+	I\ped{p2}^-\,=\,(27.7\,\pm\,1.7)\,\SI{}{\nano\ampere}
 \end{equation}
 
 e come si può osservare le due misure $I\ped{p1}^-$ e $I\ped{p2}^-$ risultano essere compatibili entro le loro incertezze.
 
 \subsubsection*{Misura della corrente di polarizzazione $I_{p}^+$}
 
-Il valore della corrente di polarizzazione ottenuto grazie alla misura diretta della tensione ai capi della resistenza è il sguente:
+Il procedimento è analogo al caso precedente, soltanto che il circuito sfruttato è quello illustrato in Figura \ref{fig:ip_plus}. Pertanto grazie ad una semplice analisi circuitale abbiamo trovato che il valore della corrente di polarizzazione dell'ingresso non invertente vale:
 
 \begin{equation}
-	I\ped{p}^+\,=\,\frac{\Delta V}{R_3}\,=\,(30\,\pm\,10)\,\SI{}{\nano\ampere}
+	I\ped{p}^+\,=\,\frac{(V\ped{out}+I_p^-R_2)}{R_1+R_2}\,=\,(-29\,\pm\,3)\,\SI{}{\nano\ampere}
 \end{equation}
 
-In questo caso non abbiamo avuto voglia di risolvere il circuito e quindi di verificare che il valore trovato di $I\ped{p}^+$ risulti compatibile con quello che avremmo potuto ottenere risolvendo il circuito nella configurazione illustrata in Figura \ref{fig:ip_plus}.
+Anche in questo caso abbiamo ottenuto un valore della corrente di polarizzazione che è caratteristico per un amplificatore $UA741$, ovvero dell'ordine delle decine di $\SI{}{\nano\ampere}$.
