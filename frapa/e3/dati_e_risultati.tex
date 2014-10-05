@@ -1,6 +1,6 @@
 \subsection{Dati e risultati}
 
-\paragraph{Slew rate}
+\paragraph{Slew rate.}
 
 La prima parte dell'esperienza era centrata sulla misura dello slew rate
 dell'amplificatore operazionale. Lo slew rate è il tasso di cambiamento massimo
@@ -72,7 +72,7 @@ pure abbastanza seria, nonostante la frequenza non sia poi così alta (è grande
     \label{fig:slew_signal3}
 \end{figure}
 
-\paragraph{Corrente massima}
+\paragraph{Corrente massima.}
 
 In questo paragrafo ci proponiamo di misurare la corrente massima che il nostro amplificatore
 riesce a fornire dall'uscita. Per la misura ci siamo serviti del circuito \ref{fig:max_curr_circ3}.
@@ -87,4 +87,84 @@ sempre triangolare, di 2.7 V da picco a picco. Dividendo a metà (cioè prendend
 assume, nell'altra metà dell'onda la corrente scorre semplicemente al rovescio) e usando la legge di Ohm
 si ottiene $I\ped{max} = 13.5 \pm 0.7$ mA. Il range tipico riportato sul manuale è 10-20 mA.
 
-\paragraph{Banda passante}
+\paragraph{Banda passante.}
+
+\begin{figure*}[t]
+    \includegraphics[width=\textwidth]{figure/freq_ris.pdf}
+    \caption{La figura mostra l'amplificazione in frequenza del circuito \ref{fig:banda_circ3}
+        nelle due varianti con guadagno di 20 db e 40 db circa. I circuiti si comportano come filtri
+        passa basso con frequenza di taglio di $108 \pm 6$ kHz (20 db) e $11 \pm 5$ kHz (40 db).
+        Sono filtri di primo ordine, con un'attenuazione di 20 db per decade.}
+    \label{fig:freq_ris3}
+\end{figure*}
+
+La banda passante di un circuito è la banda di frequenze nella quale il segnale non viene attenuato.
+Quantitativamente si considera l'intervallo dello spettro in frequenza del circuito tra le
+frequenze alle quali il segnale viene attenuato di -3 dB rispetto al massimo, cioè le frequenze di taglio. Abbiamo quindi
+registrato la risposta in frequenza del circuito \ref{fig:banda_circ3}, che è un semplice amplificatore
+non invertente di guadagno $G = R_2/R_1$. Abbiamo considerato due configurazioni del circuito:
+una con $R_2 = \SI{10}{\kilo\ohm}$ e l'altra con $R_2 = \SI{100}{\kilo\ohm}$, mentre $R_1 = \SI{1}{\kilo\ohm}$
+in entrambi i casi. I due circuiti amplificavano quindi 20 dB e 40 dB rispettivamente.
+
+Abbiamo quindi fornito in ingresso una sinusoide di $V = 50$ mVpp e abbiamo misurato con
+l'oscilloscopio l'ampiezza dell'onda in uscita variando la frequenza all'ingresso.
+Il valore di 50 mV è stato scelto perché volevamo fare misure fino a 1 MHz circa e non volevamo
+che lo slew rate dell'amplificatore influisse sulle misure. Infatti a 1 MHz un onda sinusoidale
+va dal massimo al minimo in 0.5 $\mu$s e quindi è necessario che l'ampiezza sia al massimo 0.25 V (assumendo 0.5 V$\mu$s)
+affinché l'operazionale non abbia problemi. In realtà la pendenza massima della sinusoide è ancora maggiore,
+quindi per essere conservativi abbiamo scelto 1/5 del valore massimo. Successivamente,
+calcolando in ogni punto il guadagno in decibel con la formula $G = 20\log_{10}(R_2/R_1)$
+e plottando i valori in funzione della frequenza, abbiamo ottenuto i grafici in figura \ref{fig:freq_ris3}.
+La banda passante dei due circuiti è:
+
+\begin{itemize}
+    \item{Da zero a $108 \pm 6$ kHz per il circuito con guadagno 20 dB.}
+    \item{Da zero a $11 \pm 5$ kHz per il circuito con guadagno 20 dB.}
+\end{itemize}
+
+Il fatto che il guadagno di questi circuiti non sia costante su tutte le frequenze è dovuto al fatto che ad alte frequenze
+il guadagno open loop dell'operazionale diminuisce di molto e quindi la retroazione non funziona più come dovrebbe.
+Con queste misure volevamo mostrare proprio questo fatto, che rappresenta l'ultimo aspetto degli amplificatori
+operazionali reali che vogliamo andare a studiare. Infatti il guadagno open loop non è costante, ma fortemente dipendente
+dalla frequenza, come mostreremo nel seguente paragrafo.
+
+\paragraph{Guadagno in funzione della frequenza.}
+
+Abbiamo sempre detto che un operazionale ha un guadagno differenziale enorme, dell'ordine di 100-120 dB
+(nel caso ideale sarebbe infinito). Tuttavia questo è vero solo a frequenze molto basse, dell'ordine dei
+10 Hz. A frequenze più alte il guadagno si riduce notevolmente, fino a diventare unitario attorno ad 1 MHz.
+
+La misura del guadagno è difficile, soprattutto a basse frequenze, poiché il guadagno è enorme e la misura
+diretta è impossibile. Inoltre a causa dell'enorme guadagno una misura senza retroazione è praticamente
+impossibile, perché anche piccole tensioni DC in ingresso (dovute a rumore o al genratore di forme d'onda o anche la semplice
+tensione di offset che è impossibile eliminare completamente)
+vengono amplificate moltissimo, portanto l'output in saturazione.
+
+La soluzione è utilizzare l'intelligente circuito \ref{fig:gain_low_circ3}. Abbiamo usato le resistenze
+$R_3 = \SI{100}{\kilo\ohm}$ e $R_4 = \SI{100}{\ohm}$. Nel circuito il segnale in ingresso $V$ è simile
+alla tensione presente in $V_A$. Il partitore di tensione formato da $R_3$ ed $R_4$ fa si che all'ingresso
+invertente sia presente una tensione $V_A \cdot [R_3 / (R_3 + R_4)] = V_A/1001$. Il ramo di feedback serve a impedire all'operazionale di
+saturare, mentre $R_1$ è necessaria al corretto funzionamento del feedback (altrimenti $V_A$ sarebbe costretta ad
+essere uguale a $V$, e quindi il feedback non agirebbe). Misurando $V_A$ e $V\ped{out}$ e sapendo
+che il comportamento dell'amplificatore è modellizzato dalla formula $V\ped{out} = A(V^+ - V^-)$, dove $V^+$ e $V^-$ sono
+le tensioni agli ingressi non invertente ed invertente rispettivamente, mentre A è il guadagno che vogliamo
+misurare, si ha:
+
+\begin{equation}
+    A = \frac{R_3 + R_4}{R_3}\frac{V\ped{out}}{V_A} = 1001\,\frac{V\ped{out}}{V_A}
+\end{equation}
+%
+(Il segno meno è sparito perché noi consideriamo solo l'ampiezza, e non la fase, di $V\ped{out}$ e $V_A$.)
+
+È importante notare che all'aumentare della frequenza il guadagno diminuisce e quindi, a parità
+di input, $V_A$ aumenta, mentre $V\ped{out}$ diminuisce. Ad un certo punto questo andamento è controproducente
+perché $V\ped{out}$ diventa troppo piccola per una misura affidabile. Al raggiungimento di questo
+punto abbiamo quindi deciso di utilizzare il circuito \ref{fig:gain_high_circ3} che permette una
+semplice misura diretta del guadagno, mediante la formula:
+
+\begin{equation}
+    A = \frac{V\ped{out}}{V_A}
+\end{equation}
+
+Per le misure abbiamo utilizzato la canonica onda sinusoidale di 50 mVpp (sempre per non avere
+problemi con lo slew rate).
