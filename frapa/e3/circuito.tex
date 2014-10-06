@@ -19,7 +19,7 @@ Ci siamo serviti dei seguenti materiali:
 Per le misure abbiamo utilizzato i circuiti riportati in figura \ref{fig:circuits3},
 che verranno spiegati nei seguenti paragrafi.
 
-\begin{figure*}[t]
+\begin{figure*}[b!]
         \centering
         \small
         \begin{subfigure}[b]{0.32\textwidth}
@@ -47,8 +47,9 @@ che verranno spiegati nei seguenti paragrafi.
             \label{fig:banda_circ3}
         \end{subfigure}
         ~
-        \begin{subfigure}[b]{0.32\textwidth}
-            \def\svgwidth{\columnwidth}
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \def\svgwidth{0.8\columnwidth}
 	    \vspace{0.5cm}
             \subimport{figure/}{guad_freq_bassa_circ.pdf_tex}
 	    \vspace{0pt}
@@ -56,12 +57,13 @@ che verranno spiegati nei seguenti paragrafi.
 		operazionale. Il circuito è pensato per fare misure a basse frequenze, dove
 		l'operazionale ha un guadagno molto elevato (circa $10^5$). Quando l'operazionale viene
 		usato ad alte frequenze il suo guadagno si riduce notevolmente e il circuito in figura
-		diventa inutilizzabile. In questi regimi si utilizza il circuito \ref{eq:gain_high_circ3}.}
+		diventa inutilizzabile. In questi regimi si utilizza il circuito \ref{fig:gain_high_circ3}.}
             \label{fig:gain_low_circ3}
         \end{subfigure}
         ~
-        \begin{subfigure}[b]{0.32\textwidth}
-            \def\svgwidth{\columnwidth}
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \def\svgwidth{0.8\columnwidth}
             \subimport{figure/}{guad_freq_alta_circ.pdf_tex}
 	    \vspace{0pt}
             \caption{Circuito per la misura del guadagno open loop ad alte frequenze. In circuito in pratica

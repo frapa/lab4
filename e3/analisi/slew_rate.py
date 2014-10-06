@@ -112,7 +112,7 @@ ax2.set_xlim((start_td, end_td))
 # niceness
 f11 = plt.figure(figsize=(6, 5))
 ax11 = f11.add_subplot(111)
-f11.suptitle("Slew rate")
+ax11.set_title("Slew rate")
 
 p4 = ax11.errorbar(x=t_s, y=v1_s, linewidth=2, c="gray")
 p3 = ax11.errorbar(x=t_s, y=v2_s, linewidth=2, c="black")
@@ -134,7 +134,7 @@ f11.savefig("../figure/slew_graph1.pdf")
 # niceness
 f111 = plt.figure(figsize=(6, 5))
 ax111 = f111.add_subplot(111)
-f111.suptitle("Slew rate")
+ax111.set_title("Slew rate")
 
 pin = ax111.errorbar(x=cut[:,0], y=cut[:,1], linewidth=2, c="gray")
 pout = ax111.errorbar(x=cut[:,0], y=cut[:,2], linewidth=2, c="black")

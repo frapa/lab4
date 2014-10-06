@@ -67,7 +67,7 @@ ax2.plot([11e3, 11e3], [0, 50], c="black")
 
 ax2.set_xlabel("Frequenza [Hz]")
 ax2.set_ylabel("Guadagno [dB]")
-ax2.set_xlim((10, 1e6))
+ax2.set_xlim((10, 5e5))
 ax2.set_ylim((0, 50))
 ax2.grid(True)
 ax2.set_title("Guadagno 40 dB")

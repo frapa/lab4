@@ -19,14 +19,16 @@ vout_high = unumpy.uarray(data_high[:,2] / 2.0, data_high[:,4])
 
 G_high = vout_high / va_high
 
+print(G_low, G_high)
+print(20*unumpy.log10(G_low), 20*unumpy.log10(G_high))
 
 f1 = plt.figure()
 ax1 = f1.add_subplot(111)
 ax1.set_xscale('log')
 ax1.set_yscale('log')
 
-p1 = ax1.errorbar(x=freq_low, y=unumpy.nominal_values(G_low), fmt="o", c="black")
-p2 = ax1.errorbar(x=freq_high, y=unumpy.nominal_values(G_high), fmt="o", c="gray")
+p1 = ax1.errorbar(x=freq_low, y=unumpy.nominal_values(G_low), yerr=unumpy.std_devs(G_low), fmt="o", c="black")
+p2 = ax1.errorbar(x=freq_high, y=unumpy.nominal_values(G_high), yerr=unumpy.std_devs(G_high), fmt="o", c="gray")
 
 ax1.set_title("Guadagno di un opamp in funzione della frequenza")
 ax1.set_xlabel("Frequenza [Hz]")

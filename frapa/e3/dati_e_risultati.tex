@@ -15,7 +15,7 @@ per una misura diretta. Il ramo di feedback serve per fare un amplificatore
 con guadagno unitario (un follower), mentre resistenza e capacità servono per polarizzare
 l'operazionale e per tagliare le frequenze alte (i rimbalzi che si hanno ai bordi delle onde quadre).
 
-\begin{figure}[t!]
+\begin{figure}[t]
     \includegraphics[width=\columnwidth]{figure/slew_graph1.pdf}
     \caption{La figura mostra il comportamento dell'operazionale ad un brusco cambiamento della tensione
         differenziale in ingresso. Il circuito realizzato (il \ref{fig:slew_circ3}) è un emitter follower
@@ -63,7 +63,7 @@ poiché lo slew rate è minore). In figura \ref{fig:slew_signal3} sono mostrati 
 alla frequenza di 20 kHz. La deformazione del segnale è evidente sia in salita che in discesa ed è
 pure abbastanza seria, nonostante la frequenza non sia poi così alta (è grande l'ampiezza del segnale).
 
-\begin{figure}[t]
+\begin{figure}
     \includegraphics[width=\columnwidth]{figure/slew_signal3.pdf}
     \caption{La figura mostra il comportamento dell'operazionale ad un brusco cambiamento della tensione
         differenziale in ingresso. Il circuito realizzato (il \ref{fig:slew_circ3}) è un emitter follower
@@ -167,4 +167,32 @@ semplice misura diretta del guadagno, mediante la formula:
 \end{equation}
 
 Per le misure abbiamo utilizzato la canonica onda sinusoidale di 50 mVpp (sempre per non avere
-problemi con lo slew rate).
+problemi con lo slew rate). Il grafico in figura \ref{fig:A_vs_freq3} mostra l'andamento misurato,
+che è simile al grafico tipico riportato sul manuale. L'amplificatore ha un guadagno in continua di
+99.9 $\pm$ 0.4 dB (circa la metà del valore tipico 106 dB), e si comporta come un filtro RC con un'attenuazione
+di 20 dB/decade (6 db/ottava).
+
+\begin{SCfigure*}
+    \includegraphics[width=0.7\textwidth]{figure/A_vs_freq.pdf}
+    \caption{Il grafico mostra l'andamento del guadagno open loop dell'amplificatore operazionale UA741
+        in funzione della frequenza. Come si vede il guadagno è massimo solo in una ristretta banda di
+        frequenze, fino a circa 8 Hz. Poi il guadagno diminuisce ad un decimo ogni decade.
+        I punti neri sono stati rilevati con il circuito \ref{fig:gain_low_circ3} e si vede
+        che a frequenze alte l'incertezza diventa cospicua, mentre
+        quelli grigi sono stati misurati con il circuito \ref{fig:gain_high_circ3}. Nei punti dove l'incertezza non
+        è visibile essa è minore della dimensione dei punti. Il guadagno diventa unitario a circa 1 MHz.}
+    \label{fig:A_vs_freq3}
+\end{SCfigure*}
+
+\begin{SCfigure*}
+    \includegraphics[width=0.7\textwidth]{figure/gabp.pdf}
+    \caption{Nel grafico sono visibili gli stessi dati delle figure \ref{fig:freq_ris3} e \ref{fig:A_vs_freq3}, solo che sono
+        mostrati assieme. Come si vede è proprio a causa dell'andamento del guadagno in frequenza dell'opamp che
+        questi circuiti hanno una frequenza di taglio ed una riduzione del guadagno.}
+    \label{fig:gabp3}
+\end{SCfigure*}
+
+Nella figura \ref{fig:gabp3} abbiamo riportato lo stesso grafico con anche gli andamenti in frequenza degli amplificatori
+non invertenti del paragrafo precedente, per mostrare come l'attenuazione del segnale che si osserva in questi circuiti
+sia dovuta al comportamento in frequenza dell'operazionale. Per applicazione ad alta frequenza sono disponibili
+amplificatori senza condensatori all'interno.
