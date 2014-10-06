@@ -16,14 +16,32 @@ Tuttavia prima di andare a ricavare il valore dello Slew Rate del nostro circuit
 
 A questo punto, grazie all'oscilloscopio, siamo andati ad acquisire le forme d'onda del segnale in ingresso e in uscita dal nostro circuito. Quindi andando ad analizzare i dati ottenuti, riportati in Figura \ref{fig:slew_rate_plot}, abbiamo ottenuto che, per il nosro amplificatore operazionale $UA741$, gli Slew Rate di salita e discesa  valgono:
 \begin{equation}
-	SR_s\,=\,\frac{90\%V\ped{out}-10\%V\ped{out}}{t\ped{90\%}-t\ped{10\%}}\,=\,(\pm)\,\frac{\SI{}{\volt}}{\SI{}{\second}}
+	SR_s\,=\,\frac{90\%V\ped{out}-10\%V\ped{out}}{t\ped{90\%}-t\ped{10\%}}\,=\,(0.498\,\pm\,0.004)\,\frac{\SI{}{\volt}}{\SI{}{\micro\second}}
 	\label{slew_rate_value_s}
 \end{equation}
 \begin{equation}
-	SR_d\,=\,\frac{90\%V\ped{out}-10\%V\ped{out}}{t\ped{90\%}-t\ped{10\%}}\,=\,(\pm)\,\frac{\SI{}{\volt}}{\SI{}{\second}}
+	SR_d\,=\,\frac{90\%V\ped{out}-10\%V\ped{out}}{t\ped{90\%}-t\ped{10\%}}\,=\,(-0.353\,\pm\,0.003)\,\frac{\SI{}{\volt}}{\SI{}{\micro\second}}
 	\label{slew_rate_value_d}
 \end{equation}
 dove con $SR_s$ indichiamo lo Slow Rate del fronte d'onda in salita, mentre $SR_d$ è relativo al fronte d'onda in discesa.
+
+Inoltre nei grafici in Figura \ref{fig:slew_rate_plot} sono illustrati due esempi del fenomeno detto Slew Rate.
+
+\begin{figure}[h]
+        \centering
+        \begin{subfigure}[b]
+        		%\def\svgwidth{\textwidth}
+                \includegraphics[scale=0pt]{slew_graph1.pdf}
+                \caption{.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]
+        		%\def\svgwidth{\textwidth}
+                \includegraphics[scale=0pt]{slew_signal3.pdf}
+                \caption{.}
+        \end{subfigure}
+        \label{slew_rate_plot}
+\end{figure}
 
 \subsection*{Corrente massima erogabile}
 
@@ -33,7 +51,7 @@ Le caratteristiche di questo circuito sono le seguenti: la tensione di alimentaz
 
 L'idea che vogliamo seguire per misurare la corrente massima ($I$) erogabile dall'OPAMP e quella di creare un collegamento a terra dell'output mediante una resistenza molto piccola in modo che questa assorba quasi tutta la corrente erogata dall'amplificatore. In questo modo grazie all'oscilloscopio andremo a misurare la differenza di potenziale dell'output ($V\ped{out}$) e sfruttando la legge di Ohm è possibile ricavare il valore della corente ($I$), ovvero:
 \begin{equation}
-	I\,=\,\frac{\Delta V}{R}\,=\,(\pm)\,\SI{}{\ampere}
+	I\,=\,\frac{\Delta V}{R}\,=\,(13.5\,\pm\,0.7)\,\SI{}{\ampere}
 \end{equation}
 
 \subsection*{Banda passante dell'amplificatore operazionale}
@@ -69,14 +87,14 @@ In quest'ultimo paragrafo ci proponiamo di studiare come varia il guadagno ($G$)
         \centering
         \begin{subfigure}[b]{0.45\textwidth}
         		\def\svgwidth{\textwidth}
-                \subimport{Figure/}{guad_freq_alta_circ.pdf_tex}
+                \subimport{Figure/}{guad_freq_bassa_circ.pdf_tex}
                 \caption{Circuito usato per misurare il guadagno $G$ del'amplificatore a basse frequenze.}
                 \label{fig:G_open_loop_basso}
         \end{subfigure}
         ~
         \begin{subfigure}[b]{0.45\textwidth}
         		\def\svgwidth{\textwidth}
-                \subimport{Figure/}{guad_freq_bassa_circ.pdf_tex}
+                \subimport{Figure/}{guad_freq_alta_circ.pdf_tex}
                 \caption{Circuito usato per misurare il guadagno $G$ del'amplificatore ad alte frequenze .}
                 \label{fig:G_open_loop_alto}
         \end{subfigure}
@@ -85,7 +103,6 @@ In quest'ultimo paragrafo ci proponiamo di studiare come varia il guadagno ($G$)
 
 A tal fine abbiamo realizzato il circuito riportato in Figura \ref{fig:G_open_loop_basso} per la misura del guadagno fino a frequenze dell'ordine dei $\SI{100}{\kilo\hertz}$. Per misurare il guadagno a frequenze più elevate fino all'ordine dei mega Hertz abbiamo dovuto adottare la configurazione circuitale illustrata in Figura \ref{fig:G_open_loop_alto}. Le caratteristiche di questi circuiti sono le seguenti: la tensione di alimentazione positiva ($V\ped{cc}^+$) vale $\SI{+15}{\volt}$ mentre quella negativa ($V\ped{cc}^-$) vale $\SI{-15}{\volt}$. Come segnale di input all'ingresso invertente ($V_p^-$) abbiamo deciso di usare una forma d'onda sinusoidale di frequenza ($\nu$) variabile e con una differenza di potenziale picco-picco di $\SI{50}{\milli\volt}$.
 
-Per frequenze alte, superiori alle centinaia di Hertz, abbiamo dovuto cambiare il circuito utilizzato, quindi non abbiamo potuto più prendere una misura diretta della tensione di output ($V\ped{out}$), perchè l'oscilloscopio non riusciva a leggere con sufficiente precisione la tensione di output, infatti l'errore sulla misura era paragonabile alla misura stessa.
-Pertanto abbiamo adottato il circuito in Figura \ref{fig:G_open_loop_alto}, la cui potenzialità consiste nel riuscire a controllare la tensione in ingresso senza agire direttamente su di esso, grazie alla resistenza posta tra la sorgente e il nodo $V_A$.
+Per frequenze basse, inferiori alle centinaia di Hertz, abbiamo utilizzato il circuito in Figura \ref{fig:G_open_loop_basso} per il seguente motivo. Poichè, con l'oscilloscopio non ci era possibile acqusire direttamente la tensione $V^-$ in quanto troppo piccola per essere letta dall'oscilloscopio, abbiamo usato il circuito sopra citato sfruttando la retroazione negativa, che in $V_A$, permette di leggere valori di tensione più accettabili.
 
 I risultati ottenuti sono riportati in Figura \ref{fig:G_openloop_plot}
