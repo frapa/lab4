@@ -7,3 +7,10 @@ A riguardo della corrente massima che il nostro amplificatore operazionale può 
 Anche per quanto riguarda i range di valori di frequanza che permettono di mantenere un guadagno costate dell'OPAMP possiamo dire che quelli trovati sono compatibili con quelli forniti dal costruttore. Come è possibile osservare dai grafici in Figura \ref{fig:DB_plot} il guadagno dell'amplificatore operazionale diminuisce man mano che le frequenze aumentano fino quasi a diventare unitario per frequenze che si aggirano attorno ai $\SI{}{\mega\hertz}$.
 
 Per concludere possimo dire che il grafico ottenuto (Figura \ref{fig:G_openloop_plot1}) relativo al guadagno $G$ dell'amplificatore operazionale in configurazione open loop è simole a quello fornitoci dal costruttore. Pertanto possiamo concludere che con quest'ultima verifica abbiamo discusso tutte le caratteristiche che differenziano un OPAMP ideale da uno reale e abbiamo anche verificato che le specifiche tecniche fornitci dal costruttore sono corrette e trovano riscontro con l'analisi sperimentale.
+
+\begin{figure}[h]
+\centering
+    \includegraphics[width=0.7\textwidth]{Figure/gabp.pdf}
+    \caption{Nel grafico sono visibili gli stessi dati delle Figure \ref{fig:DB_plot} e \ref{fig:G_openloop_plot1}. Come si può notare è proprio a causa dell'andamento del guadagno in funzione della frequenza dell'OPAMP che questi circuiti hanno una frequenza di taglio ed una riduzione del guadagno. Come riportato nella didascalia la linea grigia mostra l'andamento del guadagno del circuito (Figura \ref{fig:banda_passante}) con $G$ ideale di 20 dB, mentre la linea nera è relativa ad un guadagno ideale $G$ di 40 dB. Per la discussione sulle incertezze di misura si rimanda alla discussione fatta per il grafico in Figura \ref{fig:G_openloop_plot1}.}
+    \label{fig:G_openloop_plot2}
+\end{figure}

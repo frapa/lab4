@@ -12,6 +12,23 @@ Pertanto questo fattore indica la velocità di risposta di un dispositivo o circ
 
 Quindi per misurare effettivamente lo Slew Rate abbiamo realizzato il circuito riportato in Figura \ref{fig:slew_rate}. Le caratteristiche di questo circuito sono le seguenti: la tensione di alimentazione positiva ($V\ped{cc}^+$) vale $\SI{+15}{\volt}$ mentre quella negativa ($V\ped{cc}^-$) vale $\SI{-15}{\volt}$. All'ingresso non invertente ($V_p^+$) abbiamo deciso di fornire come segnale in entrata un'onda quadra in quanto, a nostro parere, è il tipo di imput più adatto per studiare questo fenomeno. Il segnale in ingresso ha le seguenti caratteristiche: frequenza ($\nu$) di $\SI{1}{\kilo\hertz}$ e differenza di potenziale picco-picco di $\SI{10}{\volt}$. Il circuito collegato all'uscita dell'OPAMP è stato realizzato su suggrimento del costruttore e il valore di resistenza usato vale $R\,=\,\SI{2.2}{\kilo\ohm}$, mentre per la capacità abbiamo usato un capacitore da $C\,=\,\SI{180}{\pico\farad}$.
 
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[]{0.45\textwidth}
+        	\includegraphics[scale=0.55]{Figure/slew_graph1.pdf}
+            \caption{La figura mostra il comportamento dell'amplificatore operazionale ad un brusco cambiamento della tensione differenziale in ingresso. Il circuito realizzato (Figura \ref{fig:slew_rate}) è un emitter follower e dovrebbe copiare il segnale in ingresso all'uscita. Invece, a causa del fatto che lo slew rate dell'operazionale è finito, la tensione impiega circa 20 $\mu$s a passare da -5 V a 5 V.}
+                \label{fig:slew_rate_plot1}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[]{0.45\textwidth}
+        	\includegraphics[scale=0.55]{Figure/slew_signal3.pdf}
+        	\caption{La figura mostra il comportamento dell'amplificatore operazionale ad un brusco cambiamento della tensione differenziale in ingresso. Il circuito realizzato (Figura \ref{fig:slew_rate}) è un emitter follower e dovrebbe copiare il segnale in ingresso all'uscita. Invece, a causa del fatto che lo slew rate dell'operazionale è finito, la tensione impiega circa 20 $\mu$s a passare da -5 V a 5 V.}
+	       	\label{fig:slew_rate_plot2}
+	    \end{subfigure}
+        \caption{}
+        \label{slew_rate_plot}
+\end{figure}
+
 Tuttavia prima di andare a ricavare il valore dello Slew Rate del nostro circuito abbiamo deciso di valutare quello del nostro generatore di forme d'onda. Un valore approssimativo, probabilmente stimato in eccesso è: $SR\ped{0}\,=\,0.5\,\frac{\SI{}{\volt}}{\SI{}{\nano\second}}$.
 
 A questo punto, grazie all'oscilloscopio, siamo andati ad acquisire le forme d'onda del segnale in ingresso e in uscita dal nostro circuito. Quindi andando ad analizzare i dati ottenuti, riportati in Figura \ref{fig:slew_rate_plot}, abbiamo ottenuto che, per il nosro amplificatore operazionale $UA741$, gli Slew Rate di salita e discesa  valgono:
@@ -37,7 +54,7 @@ Inoltre nei grafici in Figura \ref{fig:slew_rate_plot} sono illustrati due esemp
 %\begin{figure}[]
 %        \includegraphics[scale=0.5]{Figure/slew_signal3.pdf}
 %        \caption{La figura mostra il comportamento dell'amplificatore operazionale ad un brusco cambiamento della tensione differenziale in ingresso. Il circuito realizzato (Figura \ref{fig:slew_rate}) è un emitter follower e dovrebbe copiare il segnale in ingresso all'uscita. Invece, a causa del fatto che lo slew rate dell'operazionale è finito, la tensione impiega circa 20 $\mu$s a passare da -5 V a 5 V.}
- %       \label{fig:slew_rate_plot2}
+%       \label{fig:slew_rate_plot2}
 %\end{figure}
 
 \subsection*{Corrente massima erogabile}
@@ -76,12 +93,6 @@ Per evitare che le misure acquisite siano alterate dalla tensione di offset abbi
 Come prima cosa abbiamo deciso di studiare come varia il guadagno del nostro circuito al variare della frequenza del segnale in ingresso nel caso in cui il circuito abbia un guadagno ($G$) di 10 o 20 decibell. Per fare questo abbiamo deciso di adottare i seguenti valori di resistenza: $R_1\,=\,\SI{10}{\kilo\ohm}$ e $R_2\,=\,\SI{1}{\kilo\ohm}$. In questo modo il rapporto tra $\frac{V\ped{out}}{V\ped{in}}\,=\,10$. A questo punto, grazie all'oscilloscopio, abbiamo acquisito i valori della tensione di output per vari valori di frequenza. Il risultato ottenuto è illustrato nel grafico in Figura \ref{fig:DB_plot}.
 Abbiamo seguito una procedura analoga nel caso in cui il nostro circuito abbia un guadagno ($G$) di 100 o 40 decibell. Per fare questo abbiamo deciso di adottare i seguenti valori di resistenza: $R_1\,=\,\SI{100}{\kilo\ohm}$ e $R_2\,=\,\SI{1}{\kilo\ohm}$. In questo modo il rapporto tra $\frac{V\ped{out}}{V\ped{in}}\,=\,100$. Il risultato ottenuto è illustrato nel grafico in Figura \ref{fig:DB_plot}.
 
-\begin{figure}[H]
-    \includegraphics[width=\textwidth]{Figure/freq_ris.pdf}
-    \caption{La figura mostra l'amplificazione in frequenza del circuito in Figura \ref{fig:banda_passante} nelle due varianti con guadagno di 20 db e 40 db circa. I circuiti si comportano come filtri passa basso con frequenza di taglio di $108 \pm 6$ kHz (20 db) e $11 \pm 5$ kHz (40 db). Sono filtri di primo ordine, con un'attenuazione di 20 db per decade.}
-    \label{fig:DB_plot}
-\end{figure}
-
 Come si evince dai grafici riportati in Figura \ref{fig:DB_plot} si nota immediatamente che l'amplificatore operazionale non ha un comportamneto ideale in quanto il guadagno non è costante per tutti i valori di resistenza in ingresso. Infatti vi è un range di valori per i quali l'amplificazione rimane costante. Questo range è appunto la banda passante del nostro amplificatore operazionale. Abbiamo ottenuto infatti che:
 \begin{itemize}\itemsep2pt \parskip0pt \parsep0pt
     \item{Banda passante per il circuito con gudagno di 20 dB: da zero a $108 \pm 6$ \SI{}{\kilo\hertz}.}
@@ -92,6 +103,12 @@ Inoltre è possibile notare come il circuito si comporti come un filtro passa ba
     \item{Circuito con guadagno di 20 dB: $\nu\ped{0}\,=\,(108\,\pm\,6)\SI{}{\kilo\hertz}$.}
     \item{Circuito con guadagno di 40 dB: $\nu\ped{0}\,=\,(11\,\pm\,5)\SI{}{\kilo\hertz}$.}
 \end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{Figure/freq_ris.pdf}
+    \caption{La figura mostra l'amplificazione in frequenza del circuito in Figura \ref{fig:banda_passante} nelle due varianti con guadagno di 20 db e 40 db circa. I circuiti si comportano come filtri passa basso con frequenza di taglio di $108 \pm 6$ kHz (20 db) e $11 \pm 5$ kHz (40 db). Sono filtri di primo ordine, con un'attenuazione di 20 db per decade.}
+    \label{fig:DB_plot}
+\end{figure}
 
 \subsection*{Guadagno open loop}
 
@@ -131,9 +148,3 @@ I risultati ottenuti sono riportati in Figura \ref{fig:G_openloop_plot1} e \ref{
     \caption{Il grafico mostra l'andamento del guadagno open loop dell'amplificatore operazionale UA741 in funzione della frequenza. Come si vede il guadagno è massimo solo in una ristretta banda di frequenze, fino a circa 8 Hz. Poi il guadagno diminuisce ad un decimo ogni decade. I punti neri sono stati rilevati con il circuito \ref{fig:G_open_loop_basso} e si vede che a frequenze alte l'incertezza diventa cospicua, mentre quelli grigi sono stati misurati con il circuito \ref{fig:G_open_loop_alto}. Nei punti dove l'incertezza non è visibile essa è minore della dimensione dei punti. Il guadagno diventa unitario a circa 1 MHz.}
     \label{fig:G_openloop_plot1}
 \end{SCfigure}
-
-\begin{SCfigure*}
-    \includegraphics[width=0.7\textwidth]{Figure/gabp.pdf}
-    \caption{Nel grafico sono visibili gli stessi dati delle Figure \ref{fig:DB_plot} e \ref{fig:G_openloop_plot1}. Come si può notare è proprio a causa dell'andamento del guadagno in funzione della frequenza dell'OPAMP che questi circuiti hanno una frequenza di taglio ed una riduzione del guadagno. Come riportato nella didascalia la linea grigia mostra l'andamento del guadagno del circuito (Figura \ref{fig:banda_passante}) con $G$ ideale di 20 dB, mentre la linea nera è relativa ad un guadagno ideale $G$ di 40 dB. Per la discussione sulle incertezze di misura si rimanda alla discussione fatta per il grafico in Figura \ref{fig:G_openloop_plot1}.}
-    \label{fig:G_openloop_plot2}
-\end{SCfigure*}
