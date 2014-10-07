@@ -115,14 +115,25 @@ In quest'ultimo paragrafo ci proponiamo di studiare come varia il guadagno ($G$)
         \caption{}
 \end{figure}
 
-A tal fine abbiamo realizzato il circuito riportato in Figura \ref{fig:G_open_loop_basso} per la misura del guadagno fino a frequenze dell'ordine dei $\SI{100}{\kilo\hertz}$. Per misurare il guadagno a frequenze più elevate fino all'ordine dei mega Hertz abbiamo dovuto adottare la configurazione circuitale illustrata in Figura \ref{fig:G_open_loop_alto}. Le caratteristiche di questi circuiti sono le seguenti: la tensione di alimentazione positiva ($V\ped{cc}^+$) vale $\SI{+15}{\volt}$ mentre quella negativa ($V\ped{cc}^-$) vale $\SI{-15}{\volt}$. Come segnale di input all'ingresso invertente ($V_p^-$) abbiamo deciso di usare una forma d'onda sinusoidale di frequenza ($\nu$) variabile e con una differenza di potenziale picco-picco di $\SI{50}{\milli\volt}$. Abbiamo scelto questo valore sempre per evitare problemi con lo Slew Rate dell'amplificatore operazionale.
+A tal fine abbiamo realizzato i circuiti riportati nelle Figure \ref{fig:G_open_loop_basso} e \ref{fig:G_open_loop_alto}. Le caratteristiche di questi circuiti sono le seguenti: la tensione di alimentazione positiva ($V\ped{cc}^+$) vale $\SI{+15}{\volt}$ mentre quella negativa ($V\ped{cc}^-$) vale $\SI{-15}{\volt}$. Come segnale di input all'ingresso invertente ($V_p^-$) abbiamo deciso di usare una forma d'onda sinusoidale di frequenza ($\nu$) variabile e con una differenza di potenziale picco-picco di $\SI{50}{\milli\volt}$. Abbiamo scelto questo valore sempre per evitare problemi con lo Slew Rate dell'amplificatore operazionale.
 
-Per frequenze basse, inferiori alle centinaia di Hertz, abbiamo utilizzato il circuito in Figura \ref{fig:G_open_loop_basso} per il seguente motivo. Poichè, con l'oscilloscopio non ci era possibile acqusire direttamente la tensione $V^-$ in quanto troppo piccola per essere letta dall'oscilloscopio, a causa dell'effetto di retroazione negativa del circuito. Abbiamo pertanto adottato la configurazione circuitale in Figura \ref{fig:G_open_loop_basso}. In questo modo possiamo ottenere il valore di $V^-$ tramite la misura della differenza di potenziale $V_A$ che ...
+Il primo circuito, in Figura \ref{fig:G_open_loop_basso}, è stato usato per misurare il guadagno $G$ dell'amplificatore operazionale per frequenze inferiori alle centinaia di $\SI{}{\kilo\hertz}$. Abbiamo adottato questa particolare configurazione circuitale per il seguente motivo. Come osservato nel paragrafo precedente il guadagno dell'amplificatore operazionale è massimo per frequenze comprese tra i 10 e i 100  $\SI{}{\kilo\hertz}$. Pertanto un segnale in ingresso molto piccolo $\SI{50}{\milli\volt}$ viene amplificato notevolmente. Questo è dovuto anche al corretto funzionamento della retroazione negativa. Ora, proprio a causa della retroazione negativa, se facessimo una misura diretta della tensione ai capi dell'ingresso invertente $V^-$ otterremmo un valore di tensione troppo piccolo per essere letto correttamente dall'oscilloscopio, in quanto non ha una sufficiente sensibilità. Per questo motivo, usando la configurazione circuitale in Figura \ref{fig:G_open_loop_basso}, siamo in grado di ottenere il valore della tensione di $V^-$ in modo indiretto, sfruttando la differenza di potenziale $V_A$. Infatti vale che:
+\begin{equation*}
+        V^-\,=\,V_A\,\frac{R_4}{R_3+R_4}
+\end{equation*}
+e noi siamo in grado di misurare senza problemi la tensione in $V_A$. Pertanto dal momento che $V^+\,=\,\SI{0}{\volt}$ il nostro segnale in ingresso $V\ped{in}\,\equiv\,V^-$.
+Il secondo circuito, in Figura \ref{fig:G_open_loop_alto}, è stato usato per misurare il guadagno $G$ dell'amplificatore operazionale per frequenze superiori alle centinaia di $\SI{}{\kilo\hertz}$. A queste frequene non abbiamo riscontrato problemi nella misura diretta della dfferenza di ptenziale in $V^-$, pertanto non ci sono ulteriori considerazioni da fare.
 
-Per frequenze alte non ci sono problemi e abbiamo pertanto sfruttato il circuito in Figura \ref{fig:G_open_loop_alto} per cui il guadagno dovrebbe essere unitario, se fosse un OPAMP ideale, e quindi abbiamo preso una misura diretta di $V^-$ con gui calcolare poi il guadagno del circuito.
+I risultati ottenuti sono riportati in Figura \ref{fig:G_openloop_plot1} e \ref{fig:G_openloop_plot2}
 
-I risultati ottenuti sono riportati in Figura \ref{fig:G_openloop_plot}
+\begin{SCfigure}
+    \includegraphics[width=0.7\textwidth]{Figure/A_vs_freq.pdf}
+    \caption{Il grafico mostra l'andamento del guadagno open loop dell'amplificatore operazionale UA741 in funzione della frequenza. Come si vede il guadagno è massimo solo in una ristretta banda di frequenze, fino a circa 8 Hz. Poi il guadagno diminuisce ad un decimo ogni decade. I punti neri sono stati rilevati con il circuito \ref{fig:G_open_loop_basso} e si vede che a frequenze alte l'incertezza diventa cospicua, mentre quelli grigi sono stati misurati con il circuito \ref{fig:G_open_loop_alto}. Nei punti dove l'incertezza non è visibile essa è minore della dimensione dei punti. Il guadagno diventa unitario a circa 1 MHz.}
+    \label{fig:G_openloop_plot1}
+\end{SCfigure}
 
-
-
-
+\begin{SCfigure*}
+    \includegraphics[width=0.7\textwidth]{Figure/gabp.pdf}
+    \caption{Nel grafico sono visibili gli stessi dati delle Figure \ref{fig:DB_plot} e \ref{fig:G_openloop_plot1}. Come si può notare è proprio a causa dell'andamento del guadagno in funzione della frequenza dell'OPAMP che questi circuiti hanno una frequenza di taglio ed una riduzione del guadagno. Come riportato nella didascalia la linea grigia mostra l'andamento del guadagno del circuito (Figura \ref{fig:banda_passante}) con $G$ ideale di 20 dB, mentre la linea nera è relativa ad un guadagno ideale $G$ di 40 dB. Per la discussione sulle incertezze di misura si rimanda alla discussione fatta per il grafico in Figura \ref{fig:G_openloop_plot1}.}
+    \label{fig:G_openloop_plot2}
+\end{SCfigure*}
