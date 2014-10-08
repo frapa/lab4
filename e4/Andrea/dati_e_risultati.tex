@@ -1,2 +1,30 @@
 \section*{Dati e risultati}
 
+\subsection*{Comparatore}
+
+In questo paragrafo vogliamo studiare e verificare il corretto funzionamento del nostro comparatore LM311. Come suggerisce il nome stesso un comparatore, in elettronica, è un dispositivo che mette a confronto un segnale in ingesso variabile con un livello di tensione di riferimento fissa. Inoltre una delle caratteristiche fondamentali di questo componente è quella di poter prendere in imput segali continui, ma di restituire in uscita solo valori discreti. In particolare in output restituisce due valori possibili di tensione: $V\ped{sat}^+$ e $V\ped{sat}^-$ con $V\ped{sat^+}\,\geq\,V\ped{sat}^-$.
+
+Per fare quanto ci siamo proposti abbiamo montato il circuito riportato in Figura \ref{fig:comparatore}. Le caratteristiche di questo circuito sono le seguenti: la tensione di alimentazione positiva $V\ped{cc}^+$ ha un valore di $\SI{+15}{\volt}$, la tensione di alimentazione negativa $V\ped{cc}^-$ ha un valore di $\SI{-15}{\volt}$. L'ingresso invertente è colegato direttamente al comune, mentre all'ingresso non invertente abbiamo dato in imput un segnale ondulatorio $V\ped{in}$, generato dal generatore di forme d'onda.
+
+A questo punto non ci rimane che scegliere il valore di resistenza $R$ di pull-up adatto a questa configurazione. Per scegliere tale valore abbiamo sfruttato l'indicazione fornitaci dal costruttore che il comparatore non sopporta correnti superiori a $\SI{50}{\milli\ampere}$. Dal momento che la resistenza è collegata a $V\ped{cc}^+$ che ha un valore di $\SI{+15}{\volt}$, sfruttando la legge di Hom ($R\,=\,\frac{\Delta V}{I}$, dove $I$ indica la corrente passante per la resistenza) possiamo ricavare il valore di resistenza utile al fine di avere una corrente $I\,=\,\SI{15}{\milli\ampere}$. Pertanto otteniamo che $R\,=\,\SI{10}{\kilo\ohm}$.
+
+Detto questo, grazie all'oscilloscopio, siamo andati a studiare il comportamento del comparatore per vari seganli in imput. Infatti se tutto funziona correttamente dovremmo ottenere che nel caso in cui $V^+\,\geq\,V^-$ allora $V\ped{out}\,=\,V\ped{cc}^+$, mentre quando $V^+\,\leq\,V^-$ allora $V\ped{out}\,=\,\SI{0}{\volt}$. Facciamo notare che in questo caso $V\ped{in}\,\equiv\,V^+$, $V^-\,=\,\SI{0}{\volt}$. I risultati ottenuti sono riportati nei grafici in Figura \ref{fig:commutatore_plot}.
+
+\subsection*{Trigger di Schmitt non inverente}
+
+In questo paragrafo vogliamo realizzare un trigger di Schmitt non invertente, studiarne i valori di soglia, quindi ottenere $V\ped{sat}^+$ e $V\ped{sat}^-$ ed infine calcolarne l'isteresi.
+
+Come prima cosa cerciamo di capire cosa sia un trigger di Schmitt. Il trigger di Schmitt è un particolare tipo di comparatore, è un circuito che consente di trasformare un segnale analogico ($V\ped{in}$) in un'uscita ($V\ped{out}$) che varia soltanto tra due valori di tensione, a seconda che l'ingresso superi una certa soglia ($V\ped{OH}$) o sia inferiore ad una seconda soglia ($V\ped{OL}$, più bassa di $V\ped{OH}$). Una delle sue applicazioni è la produzione di onde quadre a partire da un segnale sinusoidale, per questo è molto utilizzato nei circuiti logici per creare il segnale di sincronismo (clock).
+
+Quindi il circuito che abbiamo realizzato è riportato in Figura \ref{trigger_schmitt}. Le specifiche di questo circuito sono: la tensione di alimentazione positiva $V\ped{cc}^+$ ha un valore di $\SI{+15}{\volt}$, la tensione di alimentazione negativa $V\ped{cc}^-$ ha un valore di $\SI{-15}{\volt}$. La tensione $V_A\,\equiv\,V\ped{cc}^+$, e la resistenza $R_3\,=\,\SI{10}{\kilo\ohm}$ per lo stesso motivo illustrato nel paragrafo precedente. 
+
+Ora cerchiamo di capire come funziona tale circuito. Il trigger (grilletto) di Schmitt ha una tensione d'ingresso ($V\ped{in}$) ed una d'uscita ($V\ped{out}$). L'uscita può avere un valore o basso ($V\ped{sat}^-$) o alto ($V\ped{sat}^+$).
+Nella configurazione non invertente quando l'entrata è al di sotto della tensione di soglia bassa ($V\ped{OL}$), l'uscita assume il valore ($V\ped{sat}^-$); quando l'entrata si trova al di sopra della tensione di riferimento ($V\ped{OH}$), l'uscita assume il valore alto ($V\ped{sat}^+$). Quando il valore in ingresso si trova compreso tra le due soglie ($V\ped{OH}$ e $V\ped{OL}$), l'uscita conserva il valore precedente finché l'entrata non sia variata sufficientemente da farne scattare il cambio (azione di trigger).
+
+Consideriamo un sistema simile, ma con soltanto una sola soglia d'ingresso. Un segnale in entrata rumoroso, di ampiezza prossima al valore di soglia, può oscillare rapidamente attorno a tale valore, facendo pertanto oscillare l'uscita tra il suo valore basso ed alto. Con il trigger di Schmitt, un segnale rumoroso vicino ad una soglia può causare una sola commutazione del valore d'uscita, dopo di che deve crescere verso l'altra soglia al fine di causare una ulteriore commutazione. Quindi grazie a questa configurazione si possono attenuare notevolmente le sbavature dovute al rumore del segnale in ingresso.
+
+Quindi, fatte queste considerazioni, abbiamo deciso di adottare i seguenti valori per le resistenze $R_1$ e $R_2$:
+\begin{equation}
+        R_1\,=\,\SI{100}{\ohm} \qquad \text{e} \qquad R_2\,=\,\SI{100}{\kilo\ohm}
+\end{equation}
+Abbiamo scelto questi valori perchè?????? MA E IO CHE CAZZO NE SO????

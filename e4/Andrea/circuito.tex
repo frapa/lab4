@@ -5,7 +5,9 @@ Il materiale utilizzato per questa esperienza di laboratorio è il sguente:
 \begin{itemize} \itemsep2pt \parskip0pt \parsep0pt
     \item{Breadboard, cavetti e cavi a banana per le connessioni;}
     \item{Amplificatore operazionale UA741 a 8 pin;}
-    \item{Resistenze da \SI{10}{\ohm}, \SI{2.2}{\kilo\ohm}, \SI{10}{\kilo\ohm} e \SI{100}{\kilo\ohm} ed una resistenza variabile tra $0$ e $10$ \SI{}{\kilo\ohm};}
+    \item{Comparatore LM311 a 8 pin;}
+    \item{Un fotodiodo , un led e capacità varie;}
+    \item{Resistenze varie ed una resistenza variabile tra $0$ e $10$ \SI{}{\kilo\ohm};}
     \item{Generatore di funzioni d'onda: Agilent 33120A;}
     \item{Multimetro: Agilent Technologies 34410A;}
     \item{Oscilloscopio: Agilent DSO-X 2002A;}
@@ -15,20 +17,20 @@ Facciamo presente che sui valori di resistenza riportati in tutto l'elaborato no
 
 \section*{Circuiti}
 
-\begin{figure}[h]
-        \centering
-        \begin{subfigure}[b]{0.45\textwidth}
-        	\def\svgwidth{\textwidth}
-                \subimport{Figure/}{slew_circ.pdf_tex}
-                \caption{Circuito usato per misurare lo Slew Rate dell'amplificatore operazionale. E' un circuito in configurazione emitter follower, con circuito di retroazione negativo.}
-                \label{fig:slew_rate}
-        \end{subfigure}
-        ~
-        \begin{subfigure}[b]{0.45\textwidth}
-        	\def\svgwidth{\textwidth}
-                \subimport{Figure/}{max_curr_circ.pdf_tex}
-                \caption{Circuito usato per misurare il valore della corrente massima generabile dall'amplificatore. L'amplificatore operazionale è usato in configurazione emitter follower con circuito di retroazione negativo.}
-                \label{fig:current}
-        \end{subfigure}
-        \caption{}
-\end{figure}
+%\begin{figure}[h]
+%        \centering
+%        \begin{subfigure}[b]{0.45\textwidth}
+%        	\def\svgwidth{\textwidth}
+%                \subimport{Figure/}{slew_circ.pdf_tex}
+%                \caption{Circuito usato per misurare lo Slew Rate dell'amplificatore operazionale. E' un circuito in configurazione emitter follower, con circuito di retroazione negativo.}
+%                \label{fig:slew_rate}
+%        \end{subfigure}
+%        ~
+%        \begin{subfigure}[b]{0.45\textwidth}
+%        	\def\svgwidth{\textwidth}
+%                \subimport{Figure/}{max_curr_circ.pdf_tex}
+%                \caption{Circuito usato per misurare il valore della corrente massima generabile dall'amplificatore. L'amplificatore operazionale è usato in configurazione emitter follower con circuito di retroazione negativo.}
+%                \label{fig:current}
+%        \end{subfigure}
+%        \caption{}
+%\end{figure}
