@@ -1,0 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# s = salita, d = discesa
+
+# SALITA
+data_s = np.genfromtxt(open("../dati/scope_0.csv"), delimiter=",", skip_header=2)
+
+t_s = data_s[:,0]
+v1_s = data_s[:,1]
+v2_s = data_s[:,2]
+
+print(len(t_s), len(t_s[t_s < 0]))
+start_t = np.mean(t_s[t_s < 0])
+end_t = np.mean(t_s[t_s > 0.0000188])
+min_s = min(v2_s)
+max_s = max(v2_s)
+
+# PLOTS
+f = plt.figure()
+ax = f.add_subplot(111)
+
+p2 = ax.errorbar(x=t_s, y=v2_s)
+ax.plot([start_t, end_t], [max_s, max_s])
+ax.plot([start_t, end_t], [min_s, min_s])
+
+ax.set_xlim((start_t, end_t))
+
+plt.show()
