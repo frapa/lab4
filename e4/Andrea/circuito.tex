@@ -1,0 +1,34 @@
+\section*{Materiale}
+
+Il materiale utilizzato per questa esperienza di laboratorio è il sguente:
+
+\begin{itemize} \itemsep2pt \parskip0pt \parsep0pt
+    \item{Breadboard, cavetti e cavi a banana per le connessioni;}
+    \item{Amplificatore operazionale UA741 a 8 pin;}
+    \item{Resistenze da \SI{10}{\ohm}, \SI{2.2}{\kilo\ohm}, \SI{10}{\kilo\ohm} e \SI{100}{\kilo\ohm} ed una resistenza variabile tra $0$ e $10$ \SI{}{\kilo\ohm};}
+    \item{Generatore di funzioni d'onda: Agilent 33120A;}
+    \item{Multimetro: Agilent Technologies 34410A;}
+    \item{Oscilloscopio: Agilent DSO-X 2002A;}
+\end{itemize}
+
+Facciamo presente che sui valori di resistenza riportati in tutto l'elaborato non abbiamo riportato la loro incertezza per motivi di chiarezza e leggibilità dello scritto. Tuttavia abbiamo assunto un errore del $5\%$ sul valore nominale delle resistenze.
+
+\section*{Circuiti}
+
+\begin{figure}[h]
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+        	\def\svgwidth{\textwidth}
+                \subimport{Figure/}{slew_circ.pdf_tex}
+                \caption{Circuito usato per misurare lo Slew Rate dell'amplificatore operazionale. E' un circuito in configurazione emitter follower, con circuito di retroazione negativo.}
+                \label{fig:slew_rate}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.45\textwidth}
+        	\def\svgwidth{\textwidth}
+                \subimport{Figure/}{max_curr_circ.pdf_tex}
+                \caption{Circuito usato per misurare il valore della corrente massima generabile dall'amplificatore. L'amplificatore operazionale è usato in configurazione emitter follower con circuito di retroazione negativo.}
+                \label{fig:current}
+        \end{subfigure}
+        \caption{}
+\end{figure}
