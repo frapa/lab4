@@ -48,6 +48,29 @@ dove con $\tau\ped{teo}$ indichiamo il tempo caratteristico di carica del conden
 
 I risultati ottenuti sono riportati in Figura \ref{fig:oscillatore_pot}.
 
+\subsection*{Interruttore crepuscolare}
+
+In questo ultimo paragrao ci occupiamo della progettazione e della realizzazione di un interruttore crepuscolare. Prima di tutto aniamo a spiegare che cosa sia un interruttore crepuscolare: è un componente elettronico che permette l'attivazione automatica di un circuito di illuminazione una volta raggiunta una soglia minima di illuminazione dell'ambiente. Tale soglia può essere impostata a piacere dall'operatore.
+
+Detto questo sfruttiamo il circuito riportato in Figura \ref{fig:interruttore} per spiegare i passaggi che ci hanno portato alla realizzazione dell'interruttore repuscolare. Come si può notare lo stadio di ingresso del nostro circuito è costituito da un fototransistor, che è un dispositivo elettronico che permette di trasformare la radiazione elettromagnetica, in questo caso la radiazione luminosa, in un segnale elettrico di corrente con la presenza di un opportuno potenziale ai suoi estremi.
+Il secondo stadio del nosro circito è costituito da un amplificatore operazionale UA741. Con questo amplificatore vogliamo appunto amplificare il segnale in ingresso. Inoltre possiamo osservare che la sua configurazione è quella di una sorgente di corente costante infatti. Per questo motivo in uscita da questo stadio avremo un intensità di corrente molto maggiore a quella in ingresso. Tutto questo ci è permesso se imponiamo un valore della resistenza $R_3$ molto elevato, come ad esempio $\SI{1}{\mega\ohm}$, in modo che grazie ad una semplice analisi circuitale si possa ottenere che il segale in uscita vale:
+\begin{equation}
+        V\ped{out}\,=\,-I\,R_3 \qquad \text{dove con $I$ indichiamo la corrente entrante nell'amplificatore operazionale.}
+\end{equation}
+e pertanto anche la corrente in uscita risulta amplificata, naturalmente se $R_1\,\leq\,R_3$.
+Per questo motivo le specifiche del secondo stadio del nostro circuito sono le seguenti: la tensione di alimentazione positiva $V\ped{cc}^+$ ha un valore di $\SI{+15}{\volt}$, la tensione di alimentazione negativa $V\ped{cc}^-$ ha un valore di $\SI{-15}{\volt}$. L'ingresso non invertente è collegato al comune e $R_3\,=\,\SI{1}{\mega\ohm}$.
+Per concludere andiamo ad analizzare il terzo ed ultimo stadio del nostro circuito. Questa parte è costituita principalmente da un comparatore LM311. Come prima oservazione possiamo dire che l'ingresso invertente è collegato ad un trimer, ai cui capi è applicata una differenza di potenziale di $\SI{+15}{\volt}$, in modo che l'operatore possa scegiere la soglia a cui far scattare il comparatore. Quindi è un controllo manuale per il settaggio del circuito. Proseguendo possiamo notare che come comparatore svolge la semplice funzione descritta anche nel primo paragrafo di questo elaborato. Ovvero quando $V^+$ (ingreso non invertente) è maggiore di $V^-$ (ingresso invertente) il comparatore si comporta come un interruttore aperto. Pertanto l'output del comparatore ($V\ped{out}$) assumerà un valore di tensione $V\ped{sat}^+$ e quindi il led nel ramo di pull-up non si accenderà in quanto in quel ramo non scorre corrente. Nel momento in cui $V^+\,\leq\,V^-$ allora ilcomparatore si comporta come un interruttore chiuso e porta loutput a una tesione nulla. Quindi nel ramo di pull-up scorre corrente e il led si illumina.
+Infine per completezza riportiamo le specifiche di questo ultimo stadio del nostro circuito. La tensione di alimentazione positiva $V\ped{cc}^+$ ha un valore di $\SI{+15}{\volt}$, la tensione di alimentazione negativa $V\ped{cc}^-$ ha un valore di $\SI{-15}{\volt}$. I valori di resistenza sono i seguenti: $R_1\,=\,\SI{10}{\kilo\ohm}$, $R_2\,=\,\SI{100}{\kilo\ohm}$ ed infine $R_4\,=\,\SI{1}{\kilo\ohm}$. 
+
+Questo quindi è, a grandi linee, il ragionamento che ci ha portato alla realizzazione di questo interruttore crepuscolare, del quale, tra l'altro, abbiamo testato il corretto funzionmento verificando che il led si accendesse quando l'intesità luminosa dell'ambiente non era sufficientemente elevata. Tutto ha funzionato corretttamente.
+
+
+
+
+
+
+
+
 
 
 
