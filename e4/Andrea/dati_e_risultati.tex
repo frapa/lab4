@@ -2,7 +2,7 @@
 
 \subsection*{Comparatore}
 
-In questo paragrafo vogliamo studiare e verificare il corretto funzionamento del nostro comparatore LM311. Come suggerisce il nome stesso un comparatore, in elettronica, è un dispositivo che mette a confronto un segnale in ingesso variabile con un livello di tensione di riferimento fissa. Inoltre una delle caratteristiche fondamentali di questo componente è quella di poter prendere in imput segali continui, ma di restituire in uscita solo valori discreti. In particolare in output restituisce due valori possibili di tensione: $V\ped{sat}^+$ e $V\ped{sat}^-$ con $V\ped{sat^+}\,\geq\,V\ped{sat}^-$.
+In questo paragrafo vogliamo studiare e verificare il corretto funzionamento del nostro comparatore LM311. Come suggerisce il nome stesso un comparatore, in elettronica, è un dispositivo che mette a confronto un segnale in ingesso variabile con un livello di tensione di riferimento fissa. Inoltre una delle caratteristiche fondamentali di questo componente è quella di poter prendere in imput segali continui, ma di restituire in uscita solo valori discreti. In particolare in output restituisce due valori possibili di tensione: $V\ped{sat}^+$ e $V\ped{sat}^-$ con $V\ped{sat^+}\,\geq\,V\ped{sat}^-$. Questo è dovuto all'enorme amplificazione del comparatore che permette di portare l'output ($V\ped{out}$) subito ai valori di saturazione positivi ($V\ped{sat}^+$) o negativi ($V\ped{sat}^-$) a seconda del seganle in ingresso ($V\ped{in}$)
 
 Per fare quanto ci siamo proposti abbiamo montato il circuito riportato in Figura \ref{fig:comparatore}. Le caratteristiche di questo circuito sono le seguenti: la tensione di alimentazione positiva $V\ped{cc}^+$ ha un valore di $\SI{+15}{\volt}$, la tensione di alimentazione negativa $V\ped{cc}^-$ ha un valore di $\SI{-15}{\volt}$. L'ingresso invertente è colegato direttamente al comune, mentre all'ingresso non invertente abbiamo dato in imput un segnale ondulatorio $V\ped{in}$, generato dal generatore di forme d'onda.
 
@@ -27,4 +27,32 @@ Quindi, fatte queste considerazioni, abbiamo deciso di adottare i seguenti valor
 \begin{equation}
         R_1\,=\,\SI{100}{\ohm} \qquad \text{e} \qquad R_2\,=\,\SI{100}{\kilo\ohm}
 \end{equation}
-Abbiamo scelto questi valori perchè?????? MA E IO CHE CAZZO NE SO????
+
+Il risultato ottenuto e illustrato nel grafico riportato in Figura \ref{fig:schimtt_plot}.
+
+\subsection*{Oscillatore a rilassamento}
+
+In questo paragrafo vogliamo studiare un oscillatore a rilassamento, ovvero, sfruttando il circuito riportato in Figura \ref{fig:oscillatore}, andremo a studiare il segnale in uscita dall'amplificatore operazionale ($V\ped{out}$) e ai capi del condensatore ($V_c$) ne trarremo le dovute conclusioni. Faccimo presente che per questo circuito è stato utilizzato l'amplificatore operazionale UA741 e non il comparatore LM311.
+
+Come primo passo cerchiamo di capire cosa sia un oscillatore a rilassamento. Gli oscillatori a rilassamento sono dispositivi eletronici in grado di emettere seganli elettrici di varie forme non sinusoidali. Possono emettere, per esempio, onde quadre o onde a dente di sega.
+La caratteristica fondamentale del circuito è che idealmente entrambi gli ingressi sono collegati al conume, tuttavia nel nostro caso per l'ingresso non invertente ($V^+$) il collegamento avviene grazie ad una resistenza, che è un componente lineare. Alcontrario per l'ingresso invertente ($V^-$) il collegamento avviene tramite un condensatore, che è un componente non lineare. Ed è proprio il componente non lineare che periodicamente, scaricando l'energia accumulata, crea una diffrenza di potenziale notevole in uscita, tale da portare in saturazione negativa o positiva l'amplificatore operazionale.
+Sostenzialmente possimo immaginare il circuito in Figura \ref{oscillatore} come un trigger di Schmitt. All'inizio l'OPAMP amplifica la tensione di offset (V\ped{os}). Quindi in un primo momento la tensione di output (V\ped{out}) assume valore positivo o per essere precisi si porta in saturazione positiva ($V\ped{sat}^+$) e grazie al ramo di retroazione negativo permette la carica del condensatore. Ad un certo punto l'OPAMP si porta in saturazione negativa overo l'output assume un valore corrispondente a ($V\ped{sat}^-$) e il condensatore, sempre per effetto della retroazione negativa comincia a scaricarsi. Questo ciclo che prevede il passaggio dell'output da valori di tensioni positivi a negativi, che portano quindi il condensatore a cicli di carica e scarica, si ripete all'infinito.
+
+Le specifiche del circuito realizzato sono: la tensione di alimentazione positiva $V\ped{cc}^+$ ha un valore di $\SI{+15}{\volt}$, la tensione di alimentazione negativa $V\ped{cc}^-$ ha un valore di $\SI{-15}{\volt}$. I valori di resistenza usati sono i seguenti: $R_1\,e\,R_2\,=\,\SI{10}{\kilo\ohm}$ mentre per $R$ abbiamo usato un trimer in modo da poter variare la frequanza delle oscillazioni a nostro piacimento. La capcità del condensatore vale $C\,=\,\SI{100}{\nano\farad}$
+
+Possimo variare la frequenza delle oscillazioni a nostro piacimento in quanto abbiamo studiato che:
+\begin{equation}
+        \tau\ped{teo}\,=\,2RC\,\ln \left(1+\frac{2R_1}{R_2}\right)   
+\end{equation}
+dove con $\tau\ped{teo}$ indichiamo il tempo caratteristico di carica del condensatore, teorico. Con $R$ indichiamo la resistenza variabile, con $C$ facciamo riferimento alla capacità del condensatore e $R_1$ e $R_2$ sono le resistenze di cui sopra.
+
+I risultati ottenuti sono riportati in Figura \ref{fig:oscillatore_pot}.
+
+
+
+
+
+
+
+
+
