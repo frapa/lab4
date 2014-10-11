@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'comparatore.pdf' (pdf, eps, ps)
+%% Accompanies image file 'oscillatore.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{164.11999512bp}%
+    \setlength{\unitlength}{279.31992188bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,13 +48,16 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.86838898)%
-    \put(0,0){\includegraphics[width=\unitlength]{comparatore.pdf}}%
-    \put(0.73117233,0.80648309){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
-    \put(0.78588778,0.48819225){\makebox(0,0)[lb]{\smash{\SI{10}{\kilo\ohm}}}}%
-    \put(0.36558617,0.09968316){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{- 15 V}}}%
-    \put(0.06336827,0.49939071){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{in}$}}}%
-    \put(0.85303439,0.27029004){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
-    \put(0.78966611,0.5871314){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{R}}}%
+  \begin{picture}(1,0.97422311)%
+    \put(0,0){\includegraphics[width=\unitlength]{oscillatore.pdf}}%
+    \put(0.50966648,0.6256625){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
+    \put(0.51682672,0.1731348){\makebox(0,0)[lb]{\smash{$R = \SI{10}{\kilo\ohm}$}}}%
+    \put(0.66003169,0.70299318){\makebox(0,0)[lb]{\smash{$R\ped{v}$}}}%
+    \put(0.10084739,0.67451982){\makebox(0,0)[lb]{\smash{C = 100 nF}}}%
+    \put(0.37362176,0.83187766){\makebox(0,0)[lb]{\smash{$R = \SI{10}{\kilo\ohm}$}}}%
+    \put(0.29840942,0.33795765){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{B}$}}}%
+    \put(0.30201927,0.54546772){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{A}$}}}%
+    \put(0.51109852,0.44522424){\makebox(0,0)[lb]{\smash{- 15 V}}}%
+    \put(0.88915964,0.58842921){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
   \end{picture}%
 \endgroup%

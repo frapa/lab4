@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'comparatore.pdf' (pdf, eps, ps)
+%% Accompanies image file 'crepuscolare.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{164.11999512bp}%
+    \setlength{\unitlength}{396.51643066bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,13 +48,19 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.86838898)%
-    \put(0,0){\includegraphics[width=\unitlength]{comparatore.pdf}}%
-    \put(0.73117233,0.80648309){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
-    \put(0.78588778,0.48819225){\makebox(0,0)[lb]{\smash{\SI{10}{\kilo\ohm}}}}%
-    \put(0.36558617,0.09968316){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{- 15 V}}}%
-    \put(0.06336827,0.49939071){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{in}$}}}%
-    \put(0.85303439,0.27029004){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
-    \put(0.78966611,0.5871314){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{R}}}%
+  \begin{picture}(1,0.59514948)%
+    \put(0,0){\includegraphics[width=\unitlength]{crepuscolare.pdf}}%
+    \put(0.89227072,0.53567755){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
+    \put(0.22991721,0.34461429){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
+    \put(0.20629662,0.48584425){\makebox(0,0)[lb]{\smash{R = 1 $\si{\mega\ohm}$}}}%
+    \put(0.387878,0.19329653){\makebox(0,0)[lb]{\smash{R = $\SI{10}{\kilo\ohm}$}}}%
+    \put(0.6299865,0.06215437){\makebox(0,0)[lb]{\smash{R = $\SI{100}{\kilo\ohm}$}}}%
+    \put(0.89227072,0.35187748){\makebox(0,0)[lb]{\smash{R = $\SI{1}{\kilo\ohm}$}}}%
+    \put(0.93585025,0.45578252){\makebox(0,0)[lb]{\smash{LED}}}%
+    \put(0.09573374,0.16101542){\makebox(0,0)[lb]{\smash{Q}}}%
+    \put(0.42822942,0.35470215){\makebox(0,0)[lb]{\smash{$R\ped{v}$}}}%
+    \put(0.72077719,0.19329648){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{- 15 V}}}%
+    \put(0.04019366,0.04081566){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{- 50 mV}}}%
+    \put(0.23050747,0.13882208){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{- 15 V}}}%
   \end{picture}%
 \endgroup%
