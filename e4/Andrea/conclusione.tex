@@ -1,10 +1,10 @@
 \section*{Conclusione}
 
-Per quanto concerne l'analisi e lo studio del comparatore possiamo subito dire che il circuito da noi realizzato (Figura \ref{fig:comparatore}) funziona correttamente. Infatti il segnale in uscita dal comparatore è un onda quadra con una tensione picco picco di $\SI{}{\volt}$ che coincide con la tensione di saturazioe positiva del nostro LM311. Questo risultato è visibile chiaramente nel grafico in Figura \ref{fig:comparatore_plot}.
+Per quanto concerne l'analisi e lo studio del comparatore possiamo subito dire che il circuito da noi realizzato (Figura \ref{fig:comparatore}) funziona correttamente. Infatti il segnale in uscita dal comparatore è un onda quadra con una tensione picco picco di $(14.5\pm0.1)\SI{}{\volt}$ che coincide con la tensione di saturazioe positiva del nostro LM311, che come abbiamo visto vale: $V\ped{sat}^+\,=\,(14.5\pm0.1)\SI{}{\volt}$. Questo risultato è visibile chiaramente nel grafico in Figura \ref{fig:comparatore_plot}.
 
 Per quanto riguarda il trigger di Schmitt possiamo dire che tutto ha funzionato correttamente. In particolare riportiamo i valori di soglia che abbiamo ottenuto come anche i valori di saturazione positivi e negativi:
 \begin{equation}
-        V\ped{sat}^+\,=\,(\pm)\SI{}{\volt} \qquad \text{e} \qquad V\ped{sat}^-\,=\,(\pm)\SI{}{\volt}
+        V\ped{sat}^+\,=\,(13.7\pm0.1)\SI{}{\volt} \qquad \text{e} \qquad V\ped{sat}^-\,=\,(-13.7\pm0.1)\SI{}{\volt}
 \end{equation}
 \begin{equation}
         V\ped{OH}\,=\,\SI{0}{\milli\volt} \qquad \text{e} \qquad V\ped{OL}\,=\,(-12.9\pm0.1)\SI{}{\milli\volt}
@@ -13,14 +13,15 @@ Inoltre mediante il grafico in Figura \ref{fig:isteresi_plot} possiamo dire che 
 \begin{equation}
         \Delta V \,=\,(12.9\pm0.1)\SI{}{\milli\volt} \qquad \text{dove} \qquad \Delta V \,\equiv\, V\ped{OH} - V\ped{OL} 
 \end{equation}
+Quindi, come è possibile osservare dai valori sopra citati, in questo caso particolare abbiamo che l'intervallo di tolleranza non è simmetrico rispetto allo zero infatti i valori di tensione che non provocano lo switch dell'amplificatore operazionale sono compresi tra $(-12.9\pm0.1)\SI{}{\milli\volt}$ e $\SI{0}{\milli\volt}$.
 
-A riguardo dell'oscillatore a rilassamento possiamo dire che analizzando il circuito realizzato (Figura \ref{fig:oscillatore}) abbiamo trovato che le tensioni ai due ingressi (invertente e non invertente) risultano essere:
+A riguardo dell'oscillatore a rilassamento possiamo dire che analizzando il circuito realizzato (Figura \ref{fig:oscillatore}) abbiamo trovato che la tensione di saturazione positiva vale:
 \begin{equation}
-        V^+\,=\,(\pm)\SI{}{\volt} \qquad \text{e} \qquad V^-\,=\,(\pm)\SI{}{\volt}
+        V\ped{sat}^+\,=\,(27.3\pm0.1)\SI{}{\volt}
 \end{equation}
-Analizzando invece il circuito, quindi andando a fare una semplice analisi circuitale possiamo ottenere la frequenza del segnale in uscita ($\nu\ped{out}$) che risulta essere:
+Analizzando invece il circuito possiamo ottenere la frequenza del segnale in uscita ($\nu\ped{out}$) che risulta essere:
 \begin{equation}
         \nu\ped{out}\,=\,(\pm)\SI{}{\hertz}
 \end{equation}
 
-Per quanto riguarda l'interruttore crepuscolare possiamo sempliemente concludere che tutto ha funzionato correttamente.
+Infine per quanto riguarda l'interruttore crepuscolare possiamo sempliemente concludere che tutto ha funzionato correttamente.

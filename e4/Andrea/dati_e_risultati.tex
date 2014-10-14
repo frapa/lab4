@@ -83,7 +83,7 @@ In questo paragrafo vogliamo studiare un oscillatore a rilassamento, ovvero, sfr
 
 Come primo passo cerchiamo di capire cosa sia un oscillatore a rilassamento. Gli oscillatori a rilassamento sono dispositivi eletronici in grado di emettere seganli elettrici di varie forme non sinusoidali. Possono emettere, per esempio, onde quadre o onde a dente di sega.
 La caratteristica fondamentale del circuito è che idealmente entrambi gli ingressi sono collegati al conume, tuttavia nel nostro caso per l'ingresso non invertente ($V^+$) il collegamento avviene grazie ad una resistenza, che è un componente lineare. Alcontrario per l'ingresso invertente ($V^-$) il collegamento avviene tramite un condensatore, che è un componente non lineare. Ed è proprio il componente non lineare che periodicamente, scaricando l'energia accumulata, crea una diffrenza di potenziale notevole in uscita, tale da portare in saturazione negativa o positiva l'amplificatore operazionale.
-Sostenzialmente possimo immaginare il circuito in Figura \ref{oscillatore} come un trigger di Schmitt. All'inizio l'OPAMP amplifica la tensione di offset (V\ped{os}). Quindi in un primo momento la tensione di output (V\ped{out}) assume valore positivo o per essere precisi si porta in saturazione positiva ($V\ped{sat}^+$) e grazie al ramo di retroazione negativo permette la carica del condensatore. Ad un certo punto l'OPAMP si porta in saturazione negativa overo l'output assume un valore corrispondente a ($V\ped{sat}^-$) e il condensatore, sempre per effetto della retroazione negativa comincia a scaricarsi. Questo ciclo che prevede il passaggio dell'output da valori di tensioni positivi a negativi, che portano quindi il condensatore a cicli di carica e scarica, si ripete all'infinito.
+Sostenzialmente possimo immaginare il circuito in Figura \ref{fig:oscillatore} come un trigger di Schmitt. All'inizio l'OPAMP amplifica la tensione di offset (V\ped{os}). Quindi in un primo momento la tensione di output (V\ped{out}) assume valore positivo o per essere precisi si porta in saturazione positiva ($V\ped{sat}^+$) e grazie al ramo di retroazione negativo permette la carica del condensatore. Ad un certo punto l'OPAMP si porta in saturazione negativa overo l'output assume un valore corrispondente a ($V\ped{sat}^-$) e il condensatore, sempre per effetto della retroazione negativa comincia a scaricarsi. Questo ciclo che prevede il passaggio dell'output da valori di tensioni positivi a negativi, che portano quindi il condensatore a cicli di carica e scarica, si ripete all'infinito.
 
 Le specifiche del circuito realizzato sono: la tensione di alimentazione positiva $V\ped{cc}^+$ ha un valore di $\SI{+15}{\volt}$, la tensione di alimentazione negativa $V\ped{cc}^-$ ha un valore di $\SI{-15}{\volt}$. I valori di resistenza usati sono i seguenti: $R_1\,e\,R_2\,=\,\SI{10}{\kilo\ohm}$ mentre per $R$ abbiamo usato un trimer in modo da poter variare la frequanza delle oscillazioni a nostro piacimento. La capcità del condensatore vale $C\,=\,\SI{100}{\nano\farad}$
 
@@ -115,19 +115,3 @@ Per concludere andiamo ad analizzare il terzo ed ultimo stadio del nostro circui
 Infine per completezza riportiamo le specifiche di questo ultimo stadio del nostro circuito. La tensione di alimentazione positiva $V\ped{cc}^+$ ha un valore di $\SI{+15}{\volt}$, la tensione di alimentazione negativa $V\ped{cc}^-$ ha un valore di $\SI{-15}{\volt}$. I valori di resistenza sono i seguenti: $R_1\,=\,\SI{10}{\kilo\ohm}$, $R_2\,=\,\SI{100}{\kilo\ohm}$ ed infine $R_4\,=\,\SI{1}{\kilo\ohm}$. 
 
 Questo quindi è, a grandi linee, il ragionamento che ci ha portato alla realizzazione di questo interruttore crepuscolare, del quale, tra l'altro, abbiamo testato il corretto funzionmento verificando che il led si accendesse quando l'intesità luminosa dell'ambiente non era sufficientemente elevata. Tutto ha funzionato corretttamente.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
