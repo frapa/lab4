@@ -72,6 +72,13 @@ Tutto quello detto fino a questo punto può essere riassunto nel grafico riporta
 
 \subsection*{Oscillatore a rilassamento}
 
+\begin{wrapfloat}{figure}{I}{0pt}
+        \def\svgwidth{0.45\textwidth}
+        \subimport{figure/}{oscillatore.pdf_tex}
+        \caption{Oscillatore a rilassamento. Prestare attenzione che l'ampificatore operazionale utilizzato è il comparatore LM311.}
+        \label{fig:oscillatore}
+\end{wrapfloat}
+
 In questo paragrafo vogliamo studiare un oscillatore a rilassamento, ovvero, sfruttando il circuito riportato in Figura \ref{fig:oscillatore}, andremo a studiare il segnale in uscita dall'amplificatore operazionale ($V\ped{out}$) e ai capi del condensatore ($V_c$) ne trarremo le dovute conclusioni. Faccimo presente che per questo circuito è stato utilizzato l'amplificatore operazionale UA741 e non il comparatore LM311.
 
 Come primo passo cerchiamo di capire cosa sia un oscillatore a rilassamento. Gli oscillatori a rilassamento sono dispositivi eletronici in grado di emettere seganli elettrici di varie forme non sinusoidali. Possono emettere, per esempio, onde quadre o onde a dente di sega.
@@ -82,13 +89,18 @@ Le specifiche del circuito realizzato sono: la tensione di alimentazione positiv
 
 Possimo variare la frequenza delle oscillazioni a nostro piacimento in quanto abbiamo studiato che:
 \begin{equation}
-        \tau\ped{teo}\,=\,2RC\,\ln \left(1+\frac{2R_1}{R_2}\right)   
+        \tau\ped{teo}\,=\,2RC\,\ln \left(1+\frac{2R_1}{R_2}\right)\,=\,(\pm)\SI{}{\second}  
 \end{equation}
 dove con $\tau\ped{teo}$ indichiamo il tempo caratteristico di carica del condensatore, teorico. Con $R$ indichiamo la resistenza variabile, con $C$ facciamo riferimento alla capacità del condensatore e $R_1$ e $R_2$ sono le resistenze di cui sopra.
 
-I risultati ottenuti sono riportati in Figura \ref{fig:oscillatore_pot}.
-
 \subsection*{Interruttore crepuscolare}
+
+\begin{wrapfloat}{figure}{O}{0pt}
+        \def\svgwidth{0.45\textwidth}
+        \subimport{figure/}{crepuscolare.pdf_tex}
+        \caption{circuito rappresentante l'interruttore crepuscolare, che come possiamo notare è composto da tre blocchi. Il fototransistor, la sorgente di corente costante ed il comparatore.}
+        \label{fig:interruttore}
+\end{wrapfloat}
 
 In questo ultimo paragrao ci occupiamo della progettazione e della realizzazione di un interruttore crepuscolare. Prima di tutto aniamo a spiegare che cosa sia un interruttore crepuscolare: è un componente elettronico che permette l'attivazione automatica di un circuito di illuminazione una volta raggiunta una soglia minima di illuminazione dell'ambiente. Tale soglia può essere impostata a piacere dall'operatore.
 
