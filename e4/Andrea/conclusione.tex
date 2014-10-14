@@ -1,8 +1,18 @@
 \section*{Conclusione}
 
-Comparatore: verifica funzionamento e tensione di output
+Per quanto concerne l'analisi e lo studio del comparatore possiamo subito dire che il circuito da noi realizzato (Figura \ref{fig:comparatore}) funziona correttamente. Infatti il segnale in uscita dal comparatore è un onda quadra con una tensione picco picco di $\SI{}{\volt}$ che coincide con la tensione di saturazioe positiva del nostro LM311. Questo risultato è visibile chiaramente nel grafico in Figura \ref{fig:comparatore_plot}.
 
-Trigger:calcolo valori soglia verifica curva d’isteresi (valori soglia, grafico XY)
+Per quanto riguarda il trigger di Schmitt possiamo dire che tutto ha funzionato correttamente. In particolare riportiamo i valori di soglia che abbiamo ottenuto come anche i valori di saturazione positivi e negativi:
+\begin{equation}
+        V\ped{sat}^+\,=\,(\pm)\SI{}{\volt} \qquad \text{e} \qquad V\ped{sat}^-\,=\,(\pm)\SI{}{\volt}
+\end{equation}
+\begin{equation}
+        V\ped{OH}\,=\,\SI{0}{\milli\volt} \qquad \text{e} \qquad V\ped{OL}\,=\,(-12.9\pm0.1)\SI{}{\milli\volt}
+\end{equation}
+Inoltre mediante il grafico in Figura \ref{fig:isteresi_plot} possiamo dire che la larghezza del ciclo di isteresi è:
+\begin{equation}
+        \Delta V \,=\,(12.9\pm0.1)\SI{}{\milli\volt} \qquad \text{dove} \qquad \Delta V \,\equiv\, V\ped{OH} - V\ped{OL} 
+\end{equation}
 
 Oscillatore: veder v+ v- e output più tensione ai capi condensatore
 
