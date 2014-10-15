@@ -28,17 +28,17 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1280"
-     inkscape:window-height="973"
+     inkscape:window-width="1920"
+     inkscape:window-height="1029"
      id="namedview3401"
      showgrid="true"
      fit-margin-top="10"
      fit-margin-left="20"
      fit-margin-right="-110"
      fit-margin-bottom="20"
-     inkscape:zoom="5.2444444"
-     inkscape:cx="120.92792"
-     inkscape:cy="49.376563"
+     inkscape:zoom="2.6222222"
+     inkscape:cx="176.93702"
+     inkscape:cy="40.418159"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="1"
@@ -205,7 +205,7 @@
            sodipodi:role="line"
            y="0"
            x="0"
-           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">R = \SI{10}{\kilo\ohm}</tspan></text>
+           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">$R_3 = \SI{10}{\kilo\ohm}$</tspan></text>
 </g><path
        inkscape:connector-curvature="0"
        id="path3503"
@@ -251,7 +251,7 @@
            sodipodi:role="line"
            y="0"
            x="0"
-           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">R = \SI{100}{\ohm}</tspan></text>
+           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">$R_1 = \SI{100}{\ohm}$</tspan></text>
 </g><path
        inkscape:connector-curvature="0"
        id="path3529"
@@ -297,7 +297,7 @@
            sodipodi:role="line"
            y="0"
            x="0"
-           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">R = \SI{100}{\kilo\ohm}</tspan></text>
+           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">$R_2 = \SI{100}{\kilo\ohm}$</tspan></text>
 </g><path
        inkscape:connector-curvature="0"
        id="path3553"

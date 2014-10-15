@@ -18,7 +18,7 @@ ax1 = f.add_subplot(223)
 ax2 = f.add_subplot(222)
 ax21 = f.add_subplot(224)
 
-f.suptitle("Rumore con e senza trigger")
+f.suptitle("Rumore con e senza trigger", fontsize=16)
 
 pin = ax1.plot(t, vin, c="black")
 pout = ax.plot(t, vout, c="black")
@@ -34,7 +34,6 @@ ax.set_xticklabels([])
 
 ax.set_title("Senza soglia")
 
-ax.set_ylabel(r"$V_{in}$ [V]")
 ax21.set_xlabel("Tempo [$\mu$s]")
 ax2.set_ylabel(r"$V_{out}$ [V]")
 ax21.set_ylabel(r"$V_{in}$ [mV]")

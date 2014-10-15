@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'trigger_schmitt.pdf' (pdf, eps, ps)
+%% Accompanies image file 'diff.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{212.3675293bp}%
+    \setlength{\unitlength}{332.55080566bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,14 +48,17 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.76672763)%
-    \put(0,0){\includegraphics[width=\unitlength]{trigger_schmitt.pdf}}%
-    \put(0.80483537,0.69335673){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
-    \put(0.8349718,0.51291427){\makebox(0,0)[lb]{\smash{$R_3 = \SI{10}{\kilo\ohm}$}}}%
-    \put(0.17193833,0.1625781){\makebox(0,0)[lb]{\smash{$R_1 = \SI{100}{\ohm}$}}}%
-    \put(0.50347103,0.16257819){\makebox(0,0)[lb]{\smash{$R_2 = \SI{100}{\kilo\ohm}$}}}%
-    \put(0.61648266,0.24922082){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{- 15 V}}}%
-    \put(0.08909506,0.14374283){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{in}$}}}%
-    \put(0.89901172,0.34196025){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
+  \begin{picture}(1,0.83522702)%
+    \put(0,0){\includegraphics[width=\unitlength]{diff.pdf}}%
+    \put(0.71162299,0.63943058){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{+ 15 V}}}%
+    \put(0.71162299,0.33872466){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{- 15 V}}}%
+    \put(0.03082448,0.49509176){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{in}$}}}%
+    \put(0.31950218,0.24249877){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Trimmer}}}%
+    \put(0.34827149,0.18970478){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\SI{10}{\kilo\ohm}}}}%
+    \put(0.30747392,0.57928941){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\SI{10}{\kilo\ohm}}}}%
+    \put(0.30747392,0.3868376){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\SI{10}{\kilo\ohm}}}}%
+    \put(0.69237756,0.71160002){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\SI{20}{\kilo\ohm}}}}%
+    \put(0.64426458,0.19438579){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\SI{10}{\kilo\ohm}}}}%
+    \put(0.92091403,0.44697881){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{out}$}}}%
   \end{picture}%
 \endgroup%

@@ -38,8 +38,8 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1280"
-     inkscape:window-height="973"
+     inkscape:window-width="1920"
+     inkscape:window-height="1029"
      id="namedview4"
      showgrid="true"
      fit-margin-top="20"
@@ -47,8 +47,8 @@
      fit-margin-right="20"
      fit-margin-bottom="20"
      inkscape:zoom="3.1864979"
-     inkscape:cx="281.09994"
-     inkscape:cy="194.71846"
+     inkscape:cx="281.72759"
+     inkscape:cy="157.05956"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="1"
@@ -247,7 +247,7 @@
            sodipodi:role="line"
            y="-31.999998"
            x="128"
-           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">$R = \SI{10}{\kilo\ohm}$</tspan></text>
+           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">$R\ped{p} = \SI{10}{\kilo\ohm}$</tspan></text>
 </g><path
        inkscape:connector-curvature="0"
        id="path120"
@@ -462,7 +462,7 @@
          x="88"
          y="-216"
          sodipodi:role="line"
-         id="tspan118-4">$R = \SI{10}{\kilo\ohm}$</tspan></text>
+         id="tspan118-4">$R\ped{n} = \SI{10}{\kilo\ohm}$</tspan></text>
 <text
        xml:space="preserve"
        style="font-size:16.25px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"

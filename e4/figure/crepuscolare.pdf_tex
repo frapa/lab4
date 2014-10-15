@@ -52,10 +52,10 @@
     \put(0,0){\includegraphics[width=\unitlength]{crepuscolare.pdf}}%
     \put(0.89227072,0.53567755){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
     \put(0.22991721,0.34461429){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
-    \put(0.20629662,0.48584425){\makebox(0,0)[lb]{\smash{R = 1 $\si{\mega\ohm}$}}}%
-    \put(0.387878,0.19329653){\makebox(0,0)[lb]{\smash{R = $\SI{10}{\kilo\ohm}$}}}%
-    \put(0.6299865,0.06215437){\makebox(0,0)[lb]{\smash{R = $\SI{100}{\kilo\ohm}$}}}%
-    \put(0.89227072,0.35187748){\makebox(0,0)[lb]{\smash{R = $\SI{1}{\kilo\ohm}$}}}%
+    \put(0.20629662,0.48584425){\makebox(0,0)[lb]{\smash{$R_1 = 1 \si{\mega\ohm}$}}}%
+    \put(0.387878,0.19329653){\makebox(0,0)[lb]{\smash{$R_2 = \SI{10}{\kilo\ohm}$}}}%
+    \put(0.6299865,0.06215437){\makebox(0,0)[lb]{\smash{$R_3 = \SI{100}{\kilo\ohm}$}}}%
+    \put(0.89227072,0.35187748){\makebox(0,0)[lb]{\smash{$R_4 = \SI{1}{\kilo\ohm}$}}}%
     \put(0.93585025,0.45578252){\makebox(0,0)[lb]{\smash{LED}}}%
     \put(0.09573374,0.16101542){\makebox(0,0)[lb]{\smash{Q}}}%
     \put(0.42822942,0.35470215){\makebox(0,0)[lb]{\smash{$R\ped{v}$}}}%

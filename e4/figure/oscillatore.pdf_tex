@@ -51,10 +51,10 @@
   \begin{picture}(1,0.97422311)%
     \put(0,0){\includegraphics[width=\unitlength]{oscillatore.pdf}}%
     \put(0.50966648,0.6256625){\makebox(0,0)[lb]{\smash{+ 15 V}}}%
-    \put(0.51682672,0.1731348){\makebox(0,0)[lb]{\smash{$R = \SI{10}{\kilo\ohm}$}}}%
+    \put(0.51682672,0.1731348){\makebox(0,0)[lb]{\smash{$R\ped{p} = \SI{10}{\kilo\ohm}$}}}%
     \put(0.66003169,0.70299318){\makebox(0,0)[lb]{\smash{$R\ped{v}$}}}%
     \put(0.10084739,0.67451982){\makebox(0,0)[lb]{\smash{C = 100 nF}}}%
-    \put(0.37362176,0.83187766){\makebox(0,0)[lb]{\smash{$R = \SI{10}{\kilo\ohm}$}}}%
+    \put(0.37362176,0.83187766){\makebox(0,0)[lb]{\smash{$R\ped{n} = \SI{10}{\kilo\ohm}$}}}%
     \put(0.29840942,0.33795765){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{B}$}}}%
     \put(0.30201927,0.54546772){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{A}$}}}%
     \put(0.51109852,0.44522424){\makebox(0,0)[lb]{\smash{- 15 V}}}%

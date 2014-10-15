@@ -1,7 +1,5 @@
 \subsection{Materiali e circuiti}
 
-\subsection{Materiali e circuiti}
-
 Per la costruzione dei quattro circuiti \ref{fig:circuits4} ci
 siamo serviti dei seguenti materiali:
 
@@ -10,7 +8,7 @@ siamo serviti dei seguenti materiali:
     \item{Amplificatore operazionale LM311.}
     \item{Resistenze: \SI{100}{\ohm}, 2 da \SI{10}{\kilo\ohm} e \SI{100}{\kilo\ohm}.}
     \item{Capacità da 100 nF.}
-    \item{Fotodiodo}
+    \item{Fototransistor.}
     \item{Alimentatore di corrente continua.}
     \item{Generatore di forme d'onda Agilent 33120A.}
     %\item{Multimetro Agilent 34410A.}
@@ -19,35 +17,34 @@ siamo serviti dei seguenti materiali:
 
 \begin{figure*}[b!]
         \centering
-        \begin{subfigure}[b]{0.38\textwidth}
+        \begin{subfigure}[b]{0.33\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{comparatore.pdf_tex}
             \caption{Comparatore semplice.}
             \label{fig:comparatore4}
         \end{subfigure}
+        \quad
+        \begin{subfigure}[b]{0.63\textwidth}
+            \def\svgwidth{\columnwidth}
+            \subimport{figure/}{crepuscolare.pdf_tex}
+            \caption{Interruttore crepuscolare.}
+            \label{fig:crepuscolare4}
+        \end{subfigure}
         ~
-        \begin{subfigure}[b]{0.58\textwidth}
+        \begin{subfigure}[b]{0.48\textwidth}
+            \def\svgwidth{\columnwidth}
+            \subimport{figure/}{oscillatore.pdf_tex}
+            \caption{Oscillatore a rilassamento.}
+            \label{fig:oscillatore4}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.44\textwidth}
             \def\svgwidth{\columnwidth}
             \subimport{figure/}{trigger_schmitt.pdf_tex}
             \caption{Comparatore con isteresi (trigger di Schmitt). Questo circuito
                 sfrutta una retroazione positiva per evitare che il comparatore
                 scatti più volte a causa del rumore (elettrico o non).}
             \label{fig:trigger_schmitt4}
-        \end{subfigure}
-        ~
-        \begin{subfigure}[b]{0.48\textwidth}
-            \def\svgwidth{\columnwidth}
-            %\subimport{figure/}{oscillatore.pdf_tex}
-            \caption{Oscillatore a rilassamento.}
-            \label{fig:oscillatore4}
-        \end{subfigure}
-        ~
-        \begin{subfigure}[b]{0.48\textwidth}
-            \centering
-            \def\svgwidth{0.8\columnwidth}
-            %\subimport{figure/}{crepuscolare.pdf_tex}
-            \caption{Interruttore crepuscolare.}
-            \label{fig:crepuscolare4}
         \end{subfigure}
 
         \caption{Circuiti costruiti durante l'esperienza}

@@ -28,13 +28,13 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1280"
-     inkscape:window-height="973"
+     inkscape:window-width="1920"
+     inkscape:window-height="1029"
      id="namedview4686"
      showgrid="true"
-     inkscape:zoom="1.5185751"
-     inkscape:cx="190.67863"
-     inkscape:cy="29.813504"
+     inkscape:zoom="6.0743004"
+     inkscape:cx="325.18849"
+     inkscape:cy="111.33602"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="1"
@@ -106,10 +106,6 @@
        id="path4722"
        style="fill:none;stroke:#000000;stroke-width:0.71999997;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
        d="m 284.33058,59.807928 0,19.219379" /><path
-       inkscape:connector-curvature="0"
-       id="path4734"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       d="m 274.32,62.6398 4.31992,0 0,4.31992 -4.31992,0 0,-4.31992 z" /><path
        inkscape:connector-curvature="0"
        id="path4736"
        style="fill:none;stroke:#000000;stroke-width:0.71999997;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
@@ -221,7 +217,7 @@
            sodipodi:role="line"
            y="0"
            x="0"
-           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">R = 1 $\si{\mega\ohm}$</tspan></text>
+           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">$R_1 = 1 \si{\mega\ohm}$</tspan></text>
 </g><path
        inkscape:connector-curvature="0"
        id="path4800"
@@ -267,7 +263,7 @@
            sodipodi:role="line"
            y="0"
            x="0"
-           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">R = $\SI{10}{\kilo\ohm}$</tspan></text>
+           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">$R_2 = \SI{10}{\kilo\ohm}$</tspan></text>
 </g><path
        inkscape:connector-curvature="0"
        id="path4824"
@@ -313,7 +309,7 @@
            sodipodi:role="line"
            y="0"
            x="0"
-           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">R = $\SI{100}{\kilo\ohm}$</tspan></text>
+           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">$R_3 = \SI{100}{\kilo\ohm}$</tspan></text>
 </g><path
        inkscape:connector-curvature="0"
        id="path4848"
@@ -357,7 +353,7 @@
            sodipodi:role="line"
            y="-139.99997"
            x="360"
-           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">R = $\SI{1}{\kilo\ohm}$</tspan></text>
+           style="font-size:13px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">$R_4 = \SI{1}{\kilo\ohm}$</tspan></text>
 </g><path
        inkscape:connector-curvature="0"
        id="path4874"
