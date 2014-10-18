@@ -3,7 +3,7 @@
 \subsection*{Raddrizzatore di precisione a semionda}
 
 \begin{wrapfloat}{figure}{O}{0pt}
-        \def\svgwidth{0.45\textwidth}
+        \def\svgwidth{0.4\textwidth}
         \subimport{figure/}{raddrizzatore.pdf_tex}
         \caption{Raddrizzatore di precisione a semionda. Alimentato, inizialmente con una $V\ped{in}\,=\,\SI{1.02}{\volt}$ di frequenza $\nu\,=\,\SI{50}{\hertz}$.}
         \label{fig:radd}
@@ -16,8 +16,9 @@ Naturalmente tutta la parte di segnale in ingresso negativa non viene minimamant
 Ora passiamo ad un'analisi più approfondita del nostro circuito (Figura \ref{fig:radd}). Come possimo subito notare l'amplificatore operazionale è in configurazione emitter follower non invertente. Quindi in prima approssimazione si ha che $V\ped{in}\,\equiv\,V\ped{out}$. Ora dal momento che in uscita vi è un diodo verrebbe naturale pensare che il segnale in uscita debba essere attenuato di $\SI{0.6}{\volt}$ rispetto a quello in ingresso. Questo non accade per il seguente motivo, che possiamo comprendere grazie all'analisi circuitale del sistema. Grazie alle regole per gli amplificatori operazionali abbiamo quanto segue:
 \begin{equation}
         \left\{
-                \begin{array}{l l}
+                \begin{array}{l l l}
                         V\ped{ol}\,=\,A(V^+ - V^-)\\
+                        \\
                         V\ped{out}\,=\,V\ped{ol}-\Delta V
                 \end{array}
          \right.
@@ -45,41 +46,105 @@ Per oviare a questo problema si possono apportare alcune modifiche al circuto ch
 
 \subsection*{Raddrizzatore di precisione a semionda ottimizzato}
 
-\begin{wrapfloat}{figure}{I}{0pt}
+\begin{wrapfloat}{figure}{O}{0pt}
         \def\svgwidth{0.5\textwidth}
         \subimport{figure/}{radd_ott.pdf_tex}
-        \caption{Raddrizzatore di precisione a semionda ottimizzato.}
+        \caption{Raddrizzatore di precisione a semionda ottimizzato. Come $V\ped{in}$ è stata fornita un onda sinusoidale con ddp picco picco di $\SI{1.02}{\volt}$ e una frequenza $\nu\,=\,\SI{50}{\hertz}$.}
         \label{fig:radd_ott}
 \end{wrapfloat}
 
 In questa sezione ci occupiamo di discutere i vantaggi di un raddrizzatore a semionda realizzato come in Figura \ref{fig:radd_ott}. Come accennato nel paragrafo precedente il grande problema della configurazione precedente è quello che per $V\ped{in}$ negativi $V\ped{ol}$ raggiungeva quasi istantaneamente il valore di tensione tensione $V\ped{cc}^-$ e quindi in salita vi era un lasso temporale in cui $V\ped{out}$ manteneva un valore di tensione nullo a dispetto di un $V\ped{in}$ in ingresso positivo (Figura \ref{radd_plot2}).
 
-Per ovviare a questo inconveniente abbiamo realizzato il circuito illustrato in Figura \ref{fig:radd_ott}. La parte fondamentale risiede nell'inserimento di un secondo diodo (D2) e delle due resistenze $R_1$ e $R_2$.
+Per ovviare a questo inconveniente abbiamo realizzato il circuito illustrato in Figura \ref{fig:radd_ott}. La parte fondamentale risiede nell'inserimento di un secondo diodo ($D_2$) e delle due resistenze $R_1$ e $R_2$.
 
-Passiamo ora ad una discussione sull'andamento del segnale in uscita $V\ped{out}$ in funzione di $V\ped{in}$. Quando $V\ped{in}$ è positivo abbiamo che il segnae di output risulta esser, con le approssimazioni discusse anche nel paragrafo precedente:
+Passiamo ora ad una discussione sull'andamento del segnale in uscita $V\ped{out}$ in funzione di $V\ped{in}$. Quando $V\ped{in}$ è positivo abbiamo che il segnale di output risulta essere, con le approssimazioni discusse anche nel paragrafo precedente:
 \begin{equation}
-        V\ped{out}\,=\,-V\ped{in}\,\frac{R_2}{R_1}
+        \left\{
+                \begin{array}{l l l}
+                        V\ped{out}\,=\,-V\ped{in}\,\frac{R_2}{R_1}\\
+                        \\
+                        V\ped{ol}\,=\,-V\ped{in}\,\frac{R_2}{R_1} + \Delta V
+                \end{array}
+         \right.
+         \label{eq:radd_ott}
 \end{equation}
-e dal momento che $R_1\,=\,R_2$ il segnale in uscita è una replica del segnale in ingresso sfasato di $\pi$.
-Tuttavia NON HO PIU' VOGLIA. 
+pertanto $V\ped{ol}$ è negativo, quindi abbiamo che $D_1$ è in conduzione, mentre $D_2$ è interdetto. Per questi motivi $V\ped{out}$ si troverà a ground, in quanto non vi è passaggio di corrente e sia $R_3$ che $R_2$ sono connesse a ground.
+Quando $V\ped{in}$ è nullo noi sapiamo che $V^-$ si trova ad un valore di ground virtuale, come anche nel caso in cui $V\ped{in}$ sia positivo o negativo. Quindi $V\ped{out}$ avrà anche esso un valore di tensione nullo. Quindi anche $V\ped{ol}\,=\,\SI{0}{\volt}$ e entrambi i diodi ($D_1$ e $D_2$) risulteranno interdetti e non vi sarà passaggio di corrente.
+Nel caso in cui $V\ped{in}$ risulti negativo si ha che il valore di $V\ped{out}$ vale $-V\ped{in}\,\frac{R_2}{R_1}$, che quindi è un valore positivo. In questa configurazione grazie alle equazioni \ref{eq:radd_ott} possimo osservare come $D_1$ sia interdetto, mentre $D_2$ risulti in conduzione e quindi il segnale in uscita $V\ped{out}$ sia la copia di $V\ped{in}$ sfasato di $\pi$. Inoltre possiamo oservare che il minimo valore raggiunto da $V\ped{ol}$ equivale a $\SI{-0.6}{\volt}$ e quindi $V\ped{ol}$ non avrà mai un valore di tensione pari alla saturazione negativa, evitando pertanto il problema osservato nel pargrafo precedente. Ovvero non ci sarà ritardo, durante la fase di salita, da parte dell'amplificatore operazionale nello seguire il segnale in ingresso, dal momento che l'amplificatore non deve commuare da saturazione negativa a valori di tensioni positivi.
 
-SCUSA PASA DOMANI LA FINISCO PERDONAMI CHIEDO VENIA, QUESTA MATTINA È STATA UN INFERNO!!!!!!!!!!
+Quanto appena detto si può visualizzare facilmente dai grafici riportati in Figura \ref{fig:radd_ott_plot} che descrivono gli andamenti di $V\ped{out}$ e $V\ped{ol}$ in funzione di $V\ped{in}$.
 
+\subsection*{Amplificatore differenziale}
 
+\begin{wrapfloat}{figure}{O}{0pt}
+        \def\svgwidth{0.5\textwidth}
+        \subimport{figure/}{diff.pdf_tex}
+        \caption{Amplificatore alle differenze usato per annullare gli effetti di rumore ad un segnale in ingresso. Abbiam fornito come sorgente di rumore un segnale sinusoidale di frequenza $\SI{10}{\kilo\hertz}$ e con una ddp. picco picco di $\SI{1}{\volt}$. Il segnale in ingresso, $V\ped{in}$, ha un valore di $\SI{2}{\volt}$ costante.}
+        \label{fig:amp_diff}
+\end{wrapfloat}
 
+In questo paragrafo vogliamo illustrare la capacità di un circuito con amplificatore alle differenze di annullare il segnale in modo comune, quindi in modo pratico le sorgenti di rumore, e di amplificare solamente il segnale reale.
+A tal fine abbiamo realizzato il circuito illustrato in Figura \ref{fig:amp_diff}. Per questo circuito abbiamo verificato, grazie all'oscilloscopio, che il segnale di output $V\ped{out}$ risultasse costante nel tempo e presentasse un ndamento sinusoidale. Infatti, se tutto funziona correttamente, deve essere la copia amplificata di $V\ped{in}$.
+Quanto osservato è riportato nel grafico in Figura \ref{fig:amp_diff_pot}.
 
+\subsection*{Amplificatore per strumentazione}
 
+\begin{wrapfloat}{figure}{O}{0pt}
+        \def\svgwidth{0.5\textwidth}
+        \subimport{figure/}{inst_amp.pdf_tex}
+        \caption{Amplificatore per strumentazione AD622.}
+        \label{fig:inst_amp}
+\end{wrapfloat}
 
+Come prima cosa cerciamo di capire cosa sia un'amlificatore per strumentazione.
+Un amplificatore da strumentazione (in inglese: Instrumentation amplifier) è un amplificatore operazionale particolarmente adatto per amplificare i segnali provenienti dai trasduttori. Il trasduttore è un qualunque dispositivo che può trasmettere dell'energia da un punto a un altro alterandone alcune delle caratteristiche che la identificano.
+Ritornando all'amplificatore per strumentazione: la sua struttura è derivata dall'amplificatore differenziale. Infatti rispetto al classico amplificatore operazionale questo ne presenta due in più che migliorano (aumentandola) l'impedenza d'ingresso e permettono di variare l'amplificazione del segnale differenziale d'ingresso $V\ped{in}$  variando un solo componente: $R_v$. Normalmente si presenta come un unico chip con due pin a cui va connesso il resistore $R_v$.
+La relazione che sussiste tra $V\ped{out}$ e il segnale in ingresso è data da:
+\begin{equation}
+        V\ped{out}\,=\,(-V\ped{in})\,\left(1 + \frac{2R_1}{R_v}\right)\,\frac{R_3}{R_2}
+\end{equation}
 
+Detto questo, quello che vogliamo verificare e sperimentare in questo paragrafo è verificare il corretto funzionamento dell'amplificatore per strumentazione misurando la variazione del valore nominale di una resistenza commerciale al variare della temperatura. Proprio per fare questo abbiamo realizzato il circuito riportato in Figura \ref{fig:inst_amp}. Come è possibile notare il circuito presenta in ingresso una configurazione a ponte di Wheatstone. Quindi se nel montaggio del circuito, come è stato fatto, ci preoccupiamo di porre la resistenza $R_s$ lontana dal resto dei componenti possiamo andare a riscaldarla o raffreddarla senza intaccare il corretto funzionamento dei restanti elementi circuitli. Quindi variando la temperatura della resistenza andiamo a variarne il suo stesso valore di resistenza. Infatti vale che: data una resistenza con valore nominale $R$:
+\begin{equation}
+        \Delta R\,=\,R\,\left(\frac{-200}{10^6}\right) \qquad \text{variazione dal valore nominale di R per variazioni di $^\circ C$.}
+        \label{eq:R}
+\end{equation}
+dove con $\Delta R$ indichiamo la varazione sul valore di resistenza nominale, $-200\,\frac{ppm}{^\circ C}$ è il coefficiente di temperatura.
+Quindi quello che andremo a fare è valutare, per variazioni di temperatura operativa di $R_s$ lo sbilanciamento nel ponte di Wheastone. Infatti se alimentiamo il ponte con una tensione $V\ped{in}\,=\,\SI{5}{\volt}$ costante, possiamo misurare direttamente la variazione del segnale in uscita $\Delta V\ped{out}$, infatti:
+\begin{equation}
+        \Delta V\ped{out}\,=\,G\,V\ped{in}\,\left(\frac{\Delta R_s}{R_s + R\ped{st}}\right)
+        \label{eq:V}
+\end{equation}
+dove con $\Delta R$ indichiamola variazione di $R_s$ dal suo valore nominale, $R\ped{st}$ indichiamo il valore di resistenza $R_s$ alla temperatura operativa $t$. $G$ è il guadagno dellamplificatore per strumentazione che è di circa $G\,\simeq\,1000$.
+Quindi con dei semplici passaggi algebrici che conivolgono le equazioni (\ref{eq:R}) e (\ref{eq:V}) possiamo ottenere:
+\begin{equation}
+        R\ped{st}\,=\,\left(\frac{-200}{10^6}\right)\,G\,\frac{V\ped{out}}{\Delta V}
+        \label{eq:R_t}
+\end{equation}
+Quindi è possibile ricavare il valore di resistenza che assume $R_s$ al variare della tensione $V\ped{out}$, variazione causata dall'alterazione della teperatura di lavoro di $R_s$.
 
+\subsection*{Termoresistenza Pt100}
 
+La termoresistenza, comunemente chiamata termometro a resistenza o RTD (dall'inglese Resistance Temperature Detector), è un sensore di temperatura che sfrutta la variazione della resistività di alcuni materiali al variare della temperatura. In particolare per i metalli esiste una relazione lineare che lega resistività e temperatura:
+\begin{equation}
+    \rho (T)\,=\,\rho_0\cdot[1 + \alpha(T - T_0)]
+\end{equation}
+dove $T$ è la temperatura, $\rho (T)$ è la resistività del materiale alla temperatura $T$, $\rho_0$ è la resistività del materiale alla temperatura $T_0$ e $\alpha$ un coefficiente che dipende dal materiale.
+Sfruttando la relazione che lega resistenza ($R$) e resistività (tramite la sezione $S$ e la lunghezza $L$ del conduttore):
+\begin{equation}
+    R\,=\,\frac{\rho L}{S} 
+\end{equation}
+si ottiene:
+\begin{equation}
+    R(T)\,=\,R_0 \cdot [1 + \alpha(T - T_0)]
+\end{equation}
+Da quest'ultima relazione si può dunque risalire alla temperatura da una misura di resistenza.
 
+Quello che vogliamo fare in questa ultima parte della relazione è effettuare una misura di resistenza di un termosensore PT100 a 4 fili, egrazie al multimetro possiamo conoscere sia il valore di resistenza che di temperatura, quindi non abbiamo bisogno di scomodare nessuna delle equazioni precedenti. Quindi l'obbiettivo è realizzare una simulazione in laboratorio di una condizione di misura equivalente a quella che si avrebbe con dei lunghi cavi di collegamento.
+Per questo scopo utilizziamo delle resistenze da $\SI{10}{\ohm}$ in serie sui cavi, in modo da simularne una lunghezza non indifferente e quindi anche una resistenza intrinseca.
+Perchè effettuare misure a 4 fili? Il nocciolo della questione è che se effettuassi delle misure a due fili io, nella misura, terrei conto non solo del valore di resistenza del termosensore, ma anche delle resistenze dei cavi, che sono rappresentate dalle due resistenze in serie con questi. Al contrario grazie alle misure a 4 fili io posso eliminare l’errore della misura causato dalle resistenze dei cavi di connessione. In che modo? Aiutandoci dalla Figura \ref{fig:termoresistenza}, che illustra il circuito realizzato, possimo osservare come: il generatore di corrente costante Itest del multimetro non risente delle resistenze di linea. Mentre la misura voltmetrica ad alta impedenza sulle boccole sense HI e LO non è influenzata dalle resistenze di linea.
 
-
-
-
-
-
+NON SO IL PERCHE' E ORA NON CI VOGLIO PENSARE.
 
 
 
