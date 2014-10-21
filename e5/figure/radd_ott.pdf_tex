@@ -60,6 +60,6 @@
     \put(0.51121639,0.5544584){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$D_2$}}}%
     \put(0.67937968,0.25176449){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{o1}$}}}%
     \put(0.90712079,0.31230325){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{o}$}}}%
-    \put(0.77386337,0.21560997){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R_3$ }}}%
+    \put(0.77386337,0.21560997){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R\ped{L}$ }}}%
   \end{picture}%
 \endgroup%

@@ -1,4 +1,4 @@
-%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
+%% Creator: Inkscape inkscape 0.48.3.1, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'raddrizzatore.pdf' (pdf, eps, ps)
 %%
@@ -56,6 +56,6 @@
     \put(0.19239087,0.20028382){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{in}$}}}%
     \put(0.56237328,0.36702259){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$V\ped{o1}$}}}%
     \put(0.66476826,0.23327867){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\SI{10}{\kilo\ohm}$}}}%
-    \put(0.70225633,0.27949092){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{R}}}%
+    \put(0.70225633,0.27949092){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R\ped{L}$}}}%
   \end{picture}%
 \endgroup%
