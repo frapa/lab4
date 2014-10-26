@@ -35,7 +35,7 @@ Osserviamo inoltre che la potenza dissipata $W$ per effetto Joule sulla termores
 \paragraph*{$3^\circ$ Stadio:}
 
 Anche in questo caso abbiamo come nucleo del blocco un amplificatore operazionale OP07. Tuttavia in questo caso il suo compito è quello di amplificare la tensione all'ingresso invertente $V\ped{in2}\,\equiv\,V\ped{out1}$. Ora per analizzare questo blocco è necessario anticipare parte delle considerazioni relative al $4^\circ$ stadio. Infatti noi vogliamo che in uscita da questo blocco $V\ped{out2}$ vi sia una differenza di potenziale di $\SI{5}{\volt}$ in modo tale che quando la temperaura è a $0\,^\circ$C $R\ped{Pt100}\,=\,\SI{100}{\ohm}$ e in uscita dall'amplificatore per strumentazione si legga una differenza di potenziale nulla, visto che i due ingressi sono alla stessa tensione.
-Quindi al fine di realizzare questo proposito possiamodeterminare il guadagno che deve avere l'amlificatore operazionale OP07, infatti:
+Quindi al fine di realizzare questo proposito possiamo determinare il guadagno che deve avere l'amlificatore operazionale OP07, infatti:
 \begin{equation}
 	G_3\,=\,\frac{V\ped{out2}}{V\ped{in2}}\,=\,\frac{\SI{5}{\volt}}{\SI{0.1}{\volt}}\,=\, 50
 	\qquad \text{e sapendo che} \qquad
@@ -64,18 +64,46 @@ Ora che abbiamo trovato quanto deve valere il guadagno dell'amplificatore per st
 	\label{eq:Rgain}
 \end{equation}
 
-
 Con questo abbiamo finito di discutere i componenti del circuito e le loro funzioni. Tuttavia vogliamo precisare che per avere dei valori di tensione in uscita dai vari blocchi, che fossero quelli desiderati, le resistnze di ugni blocco sono state realizzate con una serie tra una resistenza prossima al valore stabilito e una resistenza variabile (trimmer), in modo da poterne regolare il valore e avere i segnali in uscita quasi perfetti.
 
+\subsection*{Sistema di termostatazione}
 
+In questa sezione vogliamo sfruttare il termometro elettronico, realizzato in precedenza, per realizzare un termoregolatore con controllo proporzionale (o sistema di termostatazione). A tale proposito cerchiamo di capire cosa sia questo sistema di termostatazione. Qusto dispositivo ci permette di acquisire in ingresso un valore, di un processo generico, e lo confronta con un valore di riferimento. La differenza tra i due segnali, comunemente chamato segnale di errore $V\ped{err}$, viene usata per determinare il valore della variabile in uscita dal controllo proporzionale. Questa variabile in genere è la quantità manipolabile del processo.
 
+Quindi il circuito che siamo andati a realizzare è riportato in Figura \ref{fig:controllo}. Come è possibile osservare lo schema circuitale è analogo a quello del circuito realizzato in precedenza fatta eccezione per l'aggiunta di un quinto blocco, che è il blocco di controllo.
 
+Analizziamo ora in dettaglio questo $5^\circ$ stadio per capire cosa effettivamente stiamo facendo:
+Un sistema di controllo è costituito principalmente da tre parti fondamentali: la prima è il nodo di confronto. E' un blocco funzionale che riceve in ingresso due segnali, $V\ped{read}\,\equiv\,V\ped{out3}$ e $V\ped{set}$, e restituisce in uscita la differenza tra questi due $V\ped{err}$. In questo caso specifico vogliamo confrontare la temperatura letta dal termometro elettrico $T\ped{read}$ con una valore di temperatura $T\ped{set}$, decisa dall'esterno, a cui desisdero termostatare. Quidi questo stadio è rappresentato dall'amplificatore operazioanle OP07 nel quale $T\ped{read}$ corrispnde al valore di tensione $V\ped{out3}$ mentre $T\ped{set}$ è la tensione inposta dall'esterno mediante l'uso di un trimmer. tale trimmer è alimentato ala tensione di $\SI{5}{\volt}$ quindi permette di fare regolazioni di temperatura tra $0^\circ$C e $50^\circ$C.
+La seconda parte consiste in un blocco di retroazione che in generale è formato da un trasduttore.
+La terza ed ultima parte del nostro blocco è il sistema di controllo vero e proprio. Nel nostro caso è composto da un amplificatore di potenza, un tansistor Q12N2222 di potenza e un attuatore che in questo caso specifico è la resistenza riscaldante ($R\ped{risc}\,=\,\SI{27}{\kilo\ohm}$). Il transistor, a seconda che sia in regione di saturazione o interdizione, permette o meno ilpassaggio di corrente attarverso la resistenza riscaldante, riscaldandola o meno per effetto Joule.
 
+Pertanto in un sistema di controllo di temperatura proporzionale si effettua una regolazione continua della potenza erogata
+dall’elemento riscaldante. Tale potenza è “proporzionale” al valore della differenza tra $T\ped{set}$ e la temperatura $T\ped{read}$. La potenza fornita dall’elemento riscaldante viene continuamente modulata in funzione del segnale di errore $V\ped{err}$, differenza tra $T\ped{set}$ e $T\ped{read}$.
 
+Quindi se osserviamo più in dettaglio l'amplificatore differenziale OP07 possiamo notare come la sua funzone sia quella di amplificare la diferenza di potenziale tra i suoi due ingressi:
+\begin{equation}
+	V\ped{err}\,=\,G\,(V\ped{set} - V\ped{read}) \qquad \text{dove $G$ rappresenta il guadagno dell'operazionale.}
+\end{equation}
+Quindi abbiamo che: 
+\begin{equation}
+	G\,=\,\frac{R_4}{R_3}\,=\,\frac{R_6}{R_5}\,=\,100
+\end{equation}
+nel caso in cui si sia scelto che $R_4\,=\,\SI{100}{\kilo\ohm}$ e $R_3\,=\,\SI{1}{\kilo\ohm}$. Questi valori di resistenza non sono casuali, infatti se $V\ped{err}\,=\,\SI{1}{\volt}$ allora la differenza di potenziale $\Delta V\ped{}\,=\, (V\ped{set} - V\ped{read})$ é uguale a $\SI{100}{\milli\volt}$. Quindi per ogni variazione di $1^\circ$C io so che $V\ped{err}$ varia di $\SI{10}{\volt}$.
 
+Quindi con questi dati ora passiamo ad analizzare il transistor a giunzione bipolare npn 2N2222. Osserviamo che la tensione in uscita dal comparatore $V\ped{err}$ varia tra $\SI{0}{\volt}$ e la tensione di saturazione positiva $V\ped{sat}^+$. Quindi imponiamo un range proporzionale tra $\SI{0}{\volt}$ e $\SI{+10}{\volt}$ tale per cui se $V\ped{err}$ è maggiore di $\SI{+10}{\volt}$ il transistor vada in saturazione e fornisca alla resistenza riscaldante la massima corrente erogabile. Mentre nel caso in cui $V\ped{err}$ sia compreso nella fascia proporzionale il transistor è interdetto e non permette il passaggi di corrente. In questo modo quando $T\ped{read}\,\leq\,T\ped{set}$ il transistor è in saturazione e permette di portare la resistenza riscaldante alla stessa temperatura della termoresistenza, non appena $T\ped{read}\,\geq\,T\ped{set}$ allora il transistor è interdetto e non vi è passaggio di corrente in modo tale da mantenere la resistenza riscaldante alla temperatura della termoresistenza.
 
+Quindi per determinare il corretto valore di resistenza ($R_b$) da inserire tra l'uscita del comparatore e la base del transistor al fine di realizzare quanto descritto in precedenza diciamo che: sapendo che per mandare in saturazione in transistor dobbiamo avere una differenza di potenziale tra collettore ed emettitore $V\ped{ce}\,\leq\,\SI{0.4}{\volt}$ possiamo determinare la corrente di collettore $I_c$:
+\begin{equation}
+	I_c\,=\,\frac{(V\ped{power} - V\ped{ce})}{R\ped{risc}}\,=\,\SI{170}{\milli\ampere}
+\end{equation}
+dove con $V\ped{power}$ abbiamo indicato la tensione di alimentazione del colletore e della resistenza riscaldante. Quindi a questo punto sapendo che il guadagno del transistor $\beta\,=\,75$ possiamo determinare la corrente di base $I_b$. Infatti $I_b\,=\,\frac{I_c}{\beta}\,=\,\SI{2.27}{\milli\ampere}$. A questo punto siamo pronti per ricavare il valore di resistenza $R_b$ che ci interessa:
+\begin{equation}
+	R_b\,=\,\frac{V\ped{err} - V\ped{be}}{I_b}\,=\,\SI{3.8}{\kilo\ohm}
+\end{equation}
+dove con $V\ped{be}$ indichiamo la tensione di base dal momento che l'emettitore è collegato direttamente a ground.
+Noi abbiamo deciso di porre $R_b\,=\,\SI{2.2}{\kilo\ohm}$ in modo tale da essere sicuramente in regione di saturazione in quanto se $R_b$ è minore di quella trovata teoricamente sappiamo che $V\ped{ce}$ è sicuramente inferiore di $\SI{0.4}{\volt}$.
 
-
+Infine facciamo presente che è caldamente consigliato portare al comune l'emettitore del transistor in modo separato dal resto del circuito per evitare di creare un ``groun loop'' e quindi alterare tutte le tensioni di riferimento dell'intero circuito.
 
 %\begin{wrapfloat}{figure}{O}{0pt}
 %        \def\svgwidth{0.4\textwidth}
