@@ -1,6 +1,6 @@
 \subsection{Dati e risultati}
 
-Lo schema del circuito realizzato è mostrato in figura \ref{fig:circ}. Lo scopo del circuito è
+Lo schema del circuito realizzato è mostrato in figura \ref{fig:circ6}. Lo scopo del circuito è
 quello di misurare la temperatura tramite la resistenza PT100 e di attivare o disattivare
 la resistenza $R_s$ (l'elemento riscaldante) in modo che la temperatura rimanga ad un valore impostato.
 È il funzionamento di base di un termostato di una casa o di un forno elettrico.
@@ -16,24 +16,24 @@ Riporiamo in ogni sezione i risultati dei nostri test.
 I primi tre blocchi (1, 2 e 3) servono per la lettura della temperatura, mentre il 4 comanda il circuito di riscaldamento.
 Le specifiche che sono state richieste erano le seguenti: l'output dei primi 3 circuiti doveva essere una tensione
 proporzionale alla temperatura, con una costante di proporzionalità di 100 mV/\si{\celsius}. Inoltre
-l'output doveva essere 0 V a 0 \si{\celsius}. In questo modo la lettura della temperatura è semplicissima,
-ogni grado cCelsius corrisponde a 0.1 V.
+l'output doveva essere 0 V a 0 \si{\celsius}. In questo modo la lettura della temperatura è semplice,
+ogni grado Celsius corrisponde a 0.1 V.
 
 \paragraph{Generatore di tensione di riferimento.}
 
 Per costruire il circuito di nostro interesse è importante avere a disposizione una sorgente di tensione
 stabilizzata, utile in più punti del circuito. Poiché il nostro scopo era di costruire un termostato
-e non uno stabilizzatore di tensione, ne abbiamo utilizzato uno integrato, il REF02. All'apparenza del tutto
+e non uno stabilizzatore di tensione, abbiamo utilizzato uno stabilizzatore integrato, il REF02. All'apparenza del tutto
 simile ad un comune operazionale, questo integrato necessita di essere alimentato da una tensione da 8 V a 40 V
 (nel nostro caso 15 V come gli altri operazionali presenti nel circuito) e di essere collegato a comune. L'output
-dell'integrato è una tensione di 5 V con qualche millivolt di errore. Oltre ad avere una buona stabilità
+dell'integrato è una tensione di 5 V con qualche millivolt di errore. Oltre ad avere una buona stabilità, il REF02
 ha anche un ottimo coefficiente termico, con un output che varia di soli 10 ppm/$^\circ$C.
 
 Il REF02 in nostro possesso forniva in output 5.004 V. 
 
 \paragraph{Conversione da resistenza a tensione.}
 
-Il blocco 1 serve per leggere, mediante la resistenza al platino PT100 la temperatura dell'ambiente (o meglio della
+Il blocco 1 serve per leggere, mediante la resistenza al platino PT100 la temperatura dell'ambiente (o meglio, della
 resistenza $R_s$) e a trasformarla in una tensione. Questo blocco è un generatore di corrente costante da 1 mA, corrente
 che passa poi attraverso la PT100 (l'ingresso dell'operazionale assorbe pochi nanoampere). Si ha quindi una tensione in uscita
 proporzionale alla temperatura.
@@ -43,15 +43,15 @@ a 0$^\circ$C si avrebbe un errore di 1 \si{\ohm} nella lettura della resistenza 
 errore del tutto non trascurabile.
 
 Poiché dal REF02 arrivano 5 V e l'ingresso invertente è un ground virtuale, per ottenere la corrente desiderata
-è necessario utilizzare una resistenza da 5 \si{\kilo\ohm}. Dato che questo valore deve essere preciso, al posto
+è necessario utilizzare una resistenza da 5 \si{\kilo\ohm}. Dato che questo valore deve essere preciso per il motivo visto sopra, al posto
 di utilizzare una resistenza da 5 \si{\kilo\ohm} con il 5\% di incertezza è consigliabile usarne una più piccola
-(per esempio 4.7 \si{\kilo\ohm} come abbiamo fatto noi) e poi mettere in serie un potenziomentro $P_1$ da 1 \si{\kilo\ohm}
+(per esempio 4.7 \si{\kilo\ohm}) e poi mettere in serie un potenziomentro $P_1$ da 1 \si{\kilo\ohm}
 in modo da poter regolare a piacere la resistenza. Questo trucco è molto utile e lo abbiamo usato in altre parti del circuito.
 Sempre per la stessa ragione è necessario usare un operazionale con una tensione di offset piccola.
 Abbiamo utilizzato un OP07, che è costruito per avere una tensione
 di offset bassa. Il produttore riporta un massimo di 75 $\mu$V, circa 20 volte di meno di un $\mu$A741. 
 
-Per la taratura abbiamo collegato un amperometro in serie al generatore di corrente e agendo sul trimmer
+Per la taratura abbiamo collegato un amperometro in serie al generatore di corrente e, agendo sul trimmer,
 ci siamo assicurati che passasse una corrente di 1 mA. Siamo riusciti ad ottenere una corrente di 1.0001 $\pm$ 1 mA!
 
 \paragraph{Amplificatori (blocchi 2 e 3).}
@@ -63,7 +63,7 @@ in modo da poter leggere comodamente la temperatura e da rendere semplice la mis
 Era inoltre richiesto che a 0 \si{\celsius} l'output del blocco 3 fosse di 0 V, per poter leggere
 la temperatura direttamente con il voltmetro senza dover fare calcoli. Per ottenere
 questo risultato il blocco 3 è un'INA (l'AD622 come nella precedente esperienza) che amplifica
-la differenza tra i suoi due ingressi. Fornendo su uno degli input il segnale amplificato proveniente
+la differenza tra i suoi due ingressi. Fornendo a uno degli input dell'INA il segnale amplificato proveniente
 dalla resistenza al platino e all'altro una tensione opportuna è possibile eliminare la tensione
 (l'offset) dovuta ai 100 \si{\ohm} a 0 \si{\celsius} della PT100.
 
@@ -76,28 +76,29 @@ di 5 V. In questo modo il terzo blocco può fare il confronto tra la tensione di
 del termometro e fornire un output nullo a 0 \si{\celsius}. È inoltre necessario regolare il guadagno dell'INA $U_3$
 in modo che l'uscita vari di 100 mV/\si{\celsius}.
 
-Facciamo alcuni brevi calcoli per capire come tarare il circuito. Il blocco due deve avere un guadagno $G_2 = 50$
+Facciamo alcuni brevi calcoli per capire come tarare il circuito. Il blocco 2 deve avere un guadagno $G_2 = 50$
 per trasformare i 100 mV forniti dal primo blocco a 0 \si{\celsius} in 5V, quindi due valori di resistenza opportuna
-sono 100 \si{\kilo\ohm} e 2 \si{\kilo\ohm}. Il terzo blocco riceve quindi
+sono 100 \si{\kilo\ohm} e 2 \si{\kilo\ohm} (questo secondo valore si ottiene sommando resistenza da 1.5 \si{\kilo\ohm}
+e potenziometro da 1 \si{\kilo\ohm} per poter tarare il guadagno). Il terzo blocco riceve quindi
 $V_2 = 5 \;\si{\volt} + 0.385 \times G_2T\; \si{\milli\volt} = 5 + 0.01925 \times T$ V.
 Vogliamo quindi che il guadagno del blocco 3 sia $G_3 = 100/19.25 = 5.195$. L'AD622 può essere tarato per avere
 un guadagno $G_3$ da 1 a 1000 collegando i due piedini di guadagno con una resistenza opportuna. La formula per
 calcolare questa resistenza è $R_G = \SI{50.5}{\kilo\ohm}/(G_3 - 1) \simeq \SI{12040}{\ohm}$. Per ottenere questa
 resistenza abbiamo usato il solito trucco di mettere una resistenza da \SI{10}{\kilo\ohm} in serie ad un potenziometro
-da \SI{10}{\kilo\ohm}, fornire in input un segnale noto e verificare che l'uscita fosse quella desiderata.
+da \SI{10}{\kilo\ohm}.
 
 Per testare il funzionamento dei due blocchi abbiamo collegato il circuito al generatore di tensione in modo da
 poter variare l'ingresso di ciascun blocco e leggere col multimetro l'uscita. In questo modo ci siamo assicurati
 che i guadagni fossero impostati più precisamente possibile al valore voluto.
 
 A questo punto siamo in possesso di un termometro di facile lettura. Abbiamo quindi testato i primi tre blocchi
-collegati tra loro, misurando la temperatura del laboratorio: abbiamo letto $V_3 = 2.68$ V che vuol dire 26.8\si{\celsius}.
+collegati tra loro, misurando la temperatura del laboratorio: abbiamo letto $V_3 = 2.68$ V che vuol dire 26.8 \si{\celsius}.
 Confrontando il risultato con quello degli altri gruppi abbiamo trovato un buon accordo.
 
 \paragraph{Elemento riscaldante e circuito di controllo.}
 
 Ora che siamo in possesso di un termometro, possiamo vedere come funziona l'ultimo blocco. Quello che volgliamo
-ottenere è la termostatazione di una resistenza, vale a dire mantenere una resistenza ad una determinata temperatura.
+ottenere è la termostatazione di una resistenza, vale a dire che lo scopo è mantenere una resistenza ad una determinata temperatura.
 La resistenza riscaldante $R_s$ si riscalda grazie al passaggio di corrente. Deve essere collegata a +5 V e a comune
 mediante un transistor di potenza, come il 2N2222 da noi utilizzato. Il transistor deve essere di potenza poiché per scaldare
 la resistenza è necessario il passaggio di una grande corrente. È necessario usare una resistenza piccola, come quella
@@ -105,7 +106,7 @@ da 27 \si{\ohm} che abbiamo usato noi, per assicurare il passaggio di una grande
 da collettore a emettitore del transistor è di 0.4 V, quindi usando la resistenza riferita sopra si ottiene
 $I = (V\ped{alimentazione} - V\ped{CE}\ap{sat}) / R_s = 170$ mA.
 
-Bisogna notare che la resistenza $R_s$ non è stata alimentata dal REF02 e abbiamo allestito un canale di alimentazione e un cavo
+Bisogna notare che la resistenza $R_s$ non è stata alimentata dal REF02: abbiamo allestito un canale di alimentazione e un cavo
 per il comune saparato dal resto del circuito. Questo è fondamentale per il corretto funzionamento del circuito.
 Il REF02 non è in grado di fornire 170 mA di corrente. Inoltre usare lo stesso filo del resto del circuito per il collegamento
 a comune è molto problematico perché la corrente è ingente e questo fa si che, anche se la resistenza dei cavi è piccola,
@@ -130,7 +131,7 @@ Se per esempio al piedino centrale ($V_5$) di $P_4$ ci sono 4 V allora la temper
 Il blocco 4 è un altro amplificatore differenziale che confronta la temperatura letta e trasformata dai primi 3 blocchi con quella desiderata,
 amplificando di 100 volte la differenza. Se la tensione all'input invertente $V_3$ è superiore a quella impostata significa che la temperatura
 è più alta del voluto e l'amplificatore va in saturazione negativa mandando il transistor in cut-off. Se la tensione $V_3$ è minore
-di quella impostata si ottiene che $V_4 = 100\times(V_5 - V_3)$. Perciò quando la differenza tra temperatura misurata e desiderata è 1\si{\celsius}
+di quella impostata si ottiene che $V_4 = 100\times(V_5 - V_3)$. Perciò, quando la differenza tra temperatura misurata e desiderata è 1\si{\celsius},
 $V_4 = 10$ V. Vogliamo che a questa tensione il transistor vada in saturazione, in modo che se $V_4$ aumenta ancora la corrente rimanga fissa.
 Affinché il transistor vada in saturazione è necessario che $I_C = 170 \;\si{\milli\ampere} = \beta I_B \implies I_B = 2.27$ mA.
 La tensione di base $V_B$ del transistor in regione lineare è 1.3 V (a causa della caduta base-emettitore. Il valore 1.3 V è
