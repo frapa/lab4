@@ -37,7 +37,8 @@ Il blocco 1 serve per leggere, mediante la resistenza al platino PT100 la temper
 resistenza $R_s$) e a trasformarla in una tensione. Questo blocco è un generatore di corrente costante da 1 mA, corrente
 che passa poi attraverso la PT100 (l'ingresso dell'operazionale assorbe pochi nanoampere). Si ha quindi una tensione in uscita
 proporzionale alla temperatura.
-La PT100 è una resistenza che vale 100 \si{\ohm} a 0$^\circ$C e che ha un coefficiente di temperatura di 0.385 \si{\milli\ohm\per\celsius}.
+La PT100 è una resistenza che vale 100 \si{\ohm} a 0$^\circ$C e che ha un coefficiente di temperatura di 0.385 \si{\milli\ohm\per\celsius}. Abbiamo scelto il valore di 1 mA per la corrente perché in questo modo la PT100 dissipa 0.1 mV, un valore molto
+ridotto che evita surriscaldamenti della resistenza e il conseguente errore nella lettura della temperatura.
 La precisione nel valore della corrente è fondamentale, infatti, se per esempio al posto di 1 mA passasse 1.01 mA,
 a 0$^\circ$C si avrebbe un errore di 1 \si{\ohm} nella lettura della resistenza che equivale ad un incertezza di circa \SI{3}{\celsius},
 errore del tutto non trascurabile.
