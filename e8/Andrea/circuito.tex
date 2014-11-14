@@ -1,15 +1,14 @@
 \section*{Materiale}
 
-Il materiale utilizzato per questa esperienza di laboratorio è il sguente:
+Il materiale utilizzato per questa esperienza di laboratorio è il seguente:
 
 \begin{itemize} \itemsep2pt \parskip0pt \parsep0pt
     \item{Breadboard, cavetti e cavi a banana per le connessioni;}
-    \item{Amplificatore operazionale OP07 a 8 pin;}
-    \item{Amplificatore per strumentazione AD622 a 8 pin;}
-    \item{Circuito integrato REF02, che è un generatore di tensione di riferimento $\SI{5}{\volt}$;}
-    \item{Diodi, capacità varie e un trasduttore di temperatura Pt100;}
-    \item{Resistenze varie e resistenze variabili tra $0$ e $10$ \SI{}{\kilo\ohm};}
-    \item{Transistor di potenza Q12N2222 e una resistenza riscaldante;}
+    \item{Amplificatore operazionale UA741 a 8 pin;}
+    \item{Resistenze da \SI{1}{\kilo\ohm} e \SI{10}{\kilo\ohm};}
+    \item{Resistenza variabili tra $0$ e $1$ \si{\kilo\ohm};}
+    \item{Capacità da \SI{15}{\nano\farad};}
+    \item{Alimentatore di tensione continua;}
     \item{Generatore di funzioni d'onda: Agilent 33120A;}
     \item{Multimetro: Agilent Technologies 34410A;}
     \item{Oscilloscopio: Agilent DSO-X 2002A;}
@@ -17,22 +16,32 @@ Il materiale utilizzato per questa esperienza di laboratorio è il sguente:
 
 Facciamo presente che sui valori di resistenza riportati in tutto l'elaborato non abbiamo riportato la loro incertezza per motivi di chiarezza e leggibilità dello scritto. Tuttavia abbiamo assunto un errore del $5\%$ sul valore nominale delle resistenze.
 
-%\section*{Circuiti}
+\section*{Circuito}
 
-%\begin{figure}[h]
-%        \centering
-%        \begin{subfigure}[b]{0.45\textwidth}
-%        	\def\svgwidth{\textwidth}
-%                \subimport{Figure/}{slew_circ.pdf_tex}
-%                \caption{Circuito usato per misurare lo Slew Rate dell'amplificatore operazionale. E' un circuito in configurazione emitter follower, con circuito di retroazione negativo.}
-%                \label{fig:slew_rate}
-%        \end{subfigure}
-%        ~
-%        \begin{subfigure}[b]{0.45\textwidth}
-%        	\def\svgwidth{\textwidth}
-%                \subimport{Figure/}{max_curr_circ.pdf_tex}
-%                \caption{Circuito usato per misurare il valore della corrente massima generabile dall'amplificatore. L'amplificatore operazionale è usato in configurazione emitter follower con circuito di retroazione negativo.}
-%                \label{fig:current}
-%        \end{subfigure}
-%        \caption{}
-%\end{figure}
+\begin{figure}[h]
+    \begin{circuitikz}
+        \draw
+            (0, 4) node[rground] {}
+            to [C, l=15 nF] (0, 6)
+            to (1, 6)
+            to [R, l=10 <\kilo\ohm>] (1, 4)
+            node[rground] {}
+            (1, 6) to [R, l=$R_2\;10\si{\kilo\ohm}$] (1, 8)
+            to [C, l=15 nF] (6.5, 8)
+            to (6.5, 3)
+            to [vR, l=$R_V\;1\si{\kilo\ohm}$] (3, 3)
+            (5, 5.5) node[op amp, yscale=-1] (opamp) {} 
+            (1, 6) to (opamp.+)
+            (opamp.-) to (3, 5) to (3, 3)
+            to [R, l_=$R_1\;47\si{\ohm}$] (3, 1)
+            to [lamp, l=12 V 50 mA] (3, 0)
+            node[rground] {}
+            (opamp.out) to[short, -o] (7, 5.5)
+            node[anchor=west] {$V\ped{out}$}
+            (opamp.up) to [short, -o] ++(0, -0.5) node[below] {$-V\ped{cc}$}
+            (opamp.down) to [short, -o] ++(0, .5) node[above] {$+V\ped{cc}$}
+        ;
+    \end{circuitikz}
+    \caption{Oscillatore a ponte di Wien.}
+    \label{fig:oscillatore}
+\end{figure}
