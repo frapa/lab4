@@ -2,42 +2,11 @@
 
 \begin{itemize}
     \item{Breadboard, cavi a banana e cavetti vari.}
-    \item{3 amplificatori operazionali OP07 e un'amplificatore strumentale AD622.}
-    \item{Isolatore ISO 124.}
-    \item{Resistenze: \SI{220}{\ohm}, \SI{3.9}{\kilo\ohm}, \SI{10}{\kilo\ohm}, \SI{100}{\kilo\ohm}.}
-    \item{Capacità: $3\times$10 nF, 100 nF, 470 nF.}
-    \item{2 batterie da 9 V.}
-    \item{Cavi con calza e 3 elettrodi per la misura.}
+    \item{Amplificatori operazionale.}
+    \item{Lampadina da 12 V @ 50 mA.}
+    \item{Resistenze: \SI{47}{\ohm}, \SI{10}{\kilo\ohm}, trimmer da \SI{1}{\kilo\ohm}.}
+    \item{Capacità: $2\times$15 nF.}
+    \item{Sonda compensabile.}
     \item{Alimentatore di tensione continua.}
-    \item{Generatore di forme d'onda Agilent 33120A.}
-    \item{Multimetro Agilent 34410A.}
     \item{Oscilloscopio Agilent DSO-X 2002A.}
 \end{itemize}
-
-\begin{figure}[b]
-    \begin{circuitikz}
-        \draw
-            (0, 4) node[rground] {}
-            to [C, l=15 nF] (0, 6)
-            to (1, 6)
-            to [R, l=10 <\kilo\ohm>] (1, 4)
-            node[rground] {}
-            (1, 6) to [R, l=$R_2\;10\si{\kilo\ohm}$] (1, 8)
-            to [C, l=15 nF] (6.5, 8)
-            to (6.5, 3)
-            to [vR, l=$R_V\;1\si{\kilo\ohm}$] (3, 3)
-            (5, 5.5) node[op amp, yscale=-1] (opamp) {} 
-            (1, 6) to (opamp.+)
-            (opamp.-) to (3, 5) to (3, 3)
-            to [R, l_=$R_1\;47\si{\ohm}$] (3, 1)
-            to [lamp, l=12 V 50 mA] (3, 0)
-            node[rground] {}
-            (opamp.out) to[short, -o] (7, 5.5)
-            node[anchor=west] {$V\ped{out}$}
-            (opamp.up) to [short, -o] ++(0, -0.5) node[below] {$-V\ped{cc}$}
-            (opamp.down) to [short, -o] ++(0, .5) node[above] {$+V\ped{cc}$}
-        ;
-    \end{circuitikz}
-    \caption{Oscillatore a ponte di Wien.}
-    \label{fig:circ8}
-\end{figure}
