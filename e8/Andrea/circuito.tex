@@ -22,12 +22,12 @@ Facciamo presente che sui valori di resistenza riportati in tutto l'elaborato no
     \begin{circuitikz}
         \draw
             (0, 4) node[rground] {}
-            to [C, l=15 nF] (0, 6)
+            to [C, l=10 nF] (0, 6)
             to (1, 6)
-            to [R, l=10 <\kilo\ohm>] (1, 4)
+            to [R, l=$R_2\;10\si{\kilo\ohm}$] (1, 4)
             node[rground] {}
             (1, 6) to [R, l=$R_2\;10\si{\kilo\ohm}$] (1, 8)
-            to [C, l=15 nF] (6.5, 8)
+            to [C, l=10 nF] (6.5, 8)
             to (6.5, 3)
             to [vR, l=$R_V\;1\si{\kilo\ohm}$] (3, 3)
             (5, 5.5) node[op amp, yscale=-1] (opamp) {} 

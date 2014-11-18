@@ -4,13 +4,13 @@ L'oscillatore a ponte di Wien si può realizzare seguendo lo schema circuitale r
 Il circuito è quindi costituito da un amplificatore operazionale UA741 che presenta due due reti di retroazione, una positiva e una negativa.
 
 Analizziamo inizialmente la rete di retroazione positiva e il suo effetto sulla tensione di output $V\ped{out}$.
-Questo ramo di retroazione è formato da una resistenza $R$ in serie ad un condensatore $C$, quindi possimo dire che sia un filtro passa alto. Questo primo blocco avrà un'impedenza $Z_4$. L'ingresso non invertente $V^+$ è collegato al comune mediante un parallelo tra una resistenza $R$ ed un condensatore $C$. Questo secocndo blocco avrà un'impdenza $Z_3$.
+Questo ramo di retroazione è formato da una resistenza $R_2$ in serie ad un condensatore $C$, quindi possimo dire che sia un filtro passa alto. Questo primo blocco avrà un'impedenza $Z_4$. L'ingresso non invertente $V^+$ è collegato al comune mediante un parallelo tra una resistenza $R_2$ ed un condensatore $C$. Questo secocndo blocco avrà un'impdenza $Z_3$.
 
 Quindi grazie al calcolo delle impedenze, analizzando singolarmente la struttura del ramo di retroazione positiva, possiamo trovare la funzione di trasferimento di questo piccolo circuito. Ovvero:
 \begin{equation}
 	Z_3\,=\,\frac{R}{1 + i \omega C R} \qquad \text{e} \qquad Z_4\,=\,R + \frac{1}{i \omega C}
 \end{equation}
-quindi otteniamo che:
+dove abbiamo indicato con $R$ le resistenze $R_2\,=\,\SI{10}{\kilo\ohm}$. Quindi otteniamo che:
 \begin{equation}
 	V\ped{O}\,=\,\frac{Z_3}{Z_3 + Z_4} \cdot V\ped{I}\,=\,\frac{i \omega R C}{(1 + i \omega C R)^2 + i \omega C R} \cdot V\ped{I}
 \end{equation}
@@ -59,6 +59,8 @@ Pertanto cerchiamo ora di capire come bilanciare questo scompenso tra resistenze
 D'altro canto se si volesse agire direttamente sul circuito si può sempre usare una resistenza variabile, più precisamente un trimmer, come $R_v$. In questo modo è possibile innescare i circuito creando uno scompenso tra i valori di $R_v$ e $2R_2$ in modo che $\left|A \cdot \beta \right|\, \geq \,1$ e successivamente, regolando $R_v$, si porta l'oscillatore ad una situazione di stabilità imponendo la condizione $R_v\,=\,2R_2$.
 
 Nel nostro caso abbiamo deciso di andare sul sicuro e abbiamo deciso di adottare entrambe le soluzioni, ovvero abbiamo collegato in serie alla resistenza $R_1$ una lampadina da \SI{12}{\volt} ad una corrente di \SI{50}{\milli\ampere} e abbiamo usato, come $R_v$, un trimmer.
+
+Quello che abbiamo osservao è riportato nei grafici in Figura \ref{fig:}
 
 
 
