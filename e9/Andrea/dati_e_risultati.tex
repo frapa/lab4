@@ -57,7 +57,35 @@ Quindi se per esempio A è fisso ad 1 logico, in base al valore di B oteniamo un
 
 \subsection*{Porta XOR}
 
+In questa sezione vogliamo realizzare una porta XOR utilizzando solamente delle porte NAND. La tabella di verità di una porta XOR è la seguente:
 
+\begin{center}
+	\begin{tabular}{lll}
+	\toprule
+		A & B & C \\
+	\midrule
+		0 & 0 & 0 \\
+		0 & 1 & 1 \\
+		1 & 0 & 1 \\
+		1 & 1 & 0 \\
+	\bottomrule
+	\end{tabular}
+\end{center}
+
+La configurazione circuitale che abbiamo adotato al fine di realizare una XOR con solo porte NAND è raffigurata in Figura \ref{fig:xor}. La tabella di verità di questo circuito è la seguente:
+
+\begin{center}
+	\begin{tabular}{llllll}
+	\toprule
+		A & B & C & D & E & F \\
+	\midrule
+		0 & 0 & 1 & 1 & 1 & 0 \\
+		0 & 1 & 1 & 1 & 0 & 1 \\
+		1 & 0 & 1 & 0 & 1 & 1 \\
+		1 & 1 & 0 & 1 & 1 & 0 \\
+	\bottomrule
+	\end{tabular}
+\end{center}
 
 PORTA XOR
 Realizzare un porta XOR con solo porte di tipo NAND
