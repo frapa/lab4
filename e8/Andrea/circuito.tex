@@ -5,8 +5,7 @@ Il materiale utilizzato per questa esperienza di laboratorio è il seguente:
 \begin{itemize} \itemsep2pt \parskip0pt \parsep0pt
     \item{Breadboard, cavetti e cavi a banana per le connessioni;}
     \item{Amplificatore operazionale UA741 a 8 pin;}
-    \item{Resistenze da \SI{1}{\kilo\ohm} e \SI{10}{\kilo\ohm};}
-    \item{Resistenza variabili tra $0$ e $1$ \si{\kilo\ohm};}
+    \item{Resistenze da \SI{1}{\kilo\ohm}, \SI{10}{\kilo\ohm} e una resistenza variabili tra $0$ e $1$ \si{\kilo\ohm};}
     \item{Capacità da \SI{15}{\nano\farad};}
     \item{Alimentatore di tensione continua;}
     \item{Generatore di funzioni d'onda: Agilent 33120A;}
@@ -19,15 +18,16 @@ Facciamo presente che sui valori di resistenza riportati in tutto l'elaborato no
 \section*{Circuito}
 
 \begin{figure}[h]
+\centering
     \begin{circuitikz}
         \draw
             (0, 4) node[rground] {}
-            to [C, l=10 nF] (0, 6)
+            to [C, l=$C_2\;10\si{\nano\farad}$] (0, 6)
             to (1, 6)
-            to [R, l=$R_2\;10\si{\kilo\ohm}$] (1, 4)
+            to [R, l=$R_3\;10\si{\kilo\ohm}$] (1, 4)
             node[rground] {}
             (1, 6) to [R, l=$R_2\;10\si{\kilo\ohm}$] (1, 8)
-            to [C, l=10 nF] (6.5, 8)
+            to [C, l=$C_1\;10\si{\nano\farad}$] (6.5, 8)
             to (6.5, 3)
             to [vR, l=$R_V\;1\si{\kilo\ohm}$] (3, 3)
             (5, 5.5) node[op amp, yscale=-1] (opamp) {} 
