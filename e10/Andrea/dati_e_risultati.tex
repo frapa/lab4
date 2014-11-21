@@ -1,0 +1,116 @@
+\section*{Dati e risultati}
+
+\subsection*{Tempo di propagazione di un segnale}
+
+In questa sezione della relazione vogliamo studiare il tempo di propagazione di un segnale all'interno di una porta logica. Nel nostro caso useremo porte NAND.
+
+Prima di procedere, è doveroso chiarire come mai la risposta della porta ad una variazione del segnale e alla sua propagazione non sia immediata.
+Per rispondere a questa domanda ome prima cosa è doveroso ricordare che tutte le porte logiche che tilizziamo e andeamo ad utilizzare sono basate sulla Logica Transistor-Transistor o in forma abbreviata logica TTL. Pertanto le porte utilizzate logiche sono implementate tramite reti di transistor e resistenze opportunamente interconnessi. Quindi l'intera rete presenta delle giunzioni che come sappiamo possono assumere il ruolo di fastidiose capacità parassite. E naturalmente una caparità per quanto piccola possa essere produce sempre un ritardo nella propagazione di un segnale.
+
+Detto questo possiamo andare a realizzare il circuito che ci permette di apprezzare questo ritardo nella trasmissione del segnale. Il circuito è raffigurato in Figura \ref{fig:ritardo}. Con questo circuito vogliamo amplificare questo effetto di ritardo solo su uno dei due ingressi della quarta porta NAND. In questo modo possiamo capire infatti se sussiste un ritardo e, se sì, quanto vale indicativamente. Come possiamo osservare le porte NAND così connesse non sono altro che una serie di NOT messi in cascata.
+
+Inoltre ricordiamo quale sia la tabella di verità di una porte NAND:
+
+\begin{center}
+	\begin{tabular}{lll}
+	\toprule
+		A & B & O\\
+	\midrule
+		0 & 0 & 1 \\
+		0 & 1 & 1 \\
+		1 & 0 & 1 \\
+		1 & 1 & 0 \\
+	\bottomrule
+	\end{tabular}
+\end{center}
+
+Quindi in base alla geometria del circuito che abbiamo realizzato, dato un segnale A di ingresso, l'uscita del circuito dovrebbe assumere lo stesso valore dell'ingresso. Infatti se anlizziamo la tabella di verità di questo circuito otteniamo quanto illustrato nella Tabela \ref{tab:ritardo}.
+
+\begin{wrapfloat}{table}{I}{300pt}
+\centering
+	\begin{tabular}{l | llll | l}
+	\toprule
+		In & A & B & C & D & Out\\
+	\midrule
+		1 & 0 & 1 & 0 & 1 & 1 \\
+		0 & 1 & 0 & 1 & 0 & 1 \\
+	\bottomrule
+	\end{tabular}
+	\caption{Tabella di verità del circuito in Figura \ref{fig:ritardo}}
+	\label{tab:ritardo}
+\end{wrapfloat}
+
+Nella Tabella \ref{tab:ritardo} abbiamo indicato con In il valore del segnale in ingresso al circuito, con Out il valore del segnale in uscita dallo stesso e le altre lettere sono riferite alle uscite delle varie porte NAND riportate in Figura \ref{fig:ritardo}.
+
+Andiamo ora a verificare sperimentalmente che la tabela di verità sia corretta. A tal fine abbiamo Connesso l'ingresso del circuito al generatore di funzioni. Abbiamo dato come segnale in input un'onda quadra di frequenza $f\,=\,\SI{100}{\kilo\hertz}$ di ampiezza \SI{2.5}{\volt} con una tensione di offset di \SI{1.25}{\volt}. Dopo di chè abbiamo connesso l'uscita del circuito all'oscilloscopio e siamo andati a osservare il comportamento del segnale in uscita.
+
+Quello che abbiamo ottenuto è riportato in Figura \ref{fig:ritardo1_plot}:
+
+Come è possibile osservare dal grafico in Figura \ref{fig:ritardo1} l'uscita del nostro circuito non è quella prevista, o meglio, lo sarebbe a meno di un piccolo intervallo temporale in cui l'uscita del circuito assume valore di verità nullo. Questo è dovuto appunto alla presenza delle capacità parassite interne alle porte logiche che rallentano la trasmissione del segnale. Infatti se si parte con un segnale in ingresso ad 0 logico, sugli ingressi della quarta porta NAND (C e D) giungeranno i valori di verità 1 e 0 rispettivamente. Pertanto l'uscita del circuito deve essere ad 1 logico, trattandosi di una porta NAND. Nel momento in cui il segnale in ingresso assume valore di verità 1 abbiamo un ritardo nella trasmissione della variazione in uno dei due ingressi della quarta porta NAND. Per questo motivo, per un breve intervallo temporale, stimato circa XXX, abbiamo la seguente situazione: In = 1, C = 1 (a causa del ritardo di trasmissione del segnale ha ancora il valore di verità relativo al segnale in ingresso precedente), D = 1 e quindi Out = 0. Quindi questa è la spiegazione per la breve variazione di tensione in uscita dal circuito. Infine facciamo notare che questo fenomeno non occorre quando l'input passa da 1 a 0 in quanto si avrebbe che C = 0 e D = 0 quindi Out = 1.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\begin{wrapfloat}{figure}{I}{0pt}
+%\includegraphics[width=0.5\textwidth]{Relativo}
+%\caption{Esempio di figura ‘‘avvolta’’ da un testo.}
+%\end{wrapfloat}
+
+%\begin{center}
+%	\begin{tabular}{lll}
+%	\toprule
+%		A & B & C \\
+%	\midrule
+%		& & \\
+%		& & \\
+%		& & \\
+%		& & \\
+%	\bottomrule
+%	\end{tabular}
+%\end{center}
+
+%\begin{figure}[t!]
+%    \centering
+%    \includegraphics[width=\columnwidth]{figure/comp.pdf}
+%    \caption{Input dell'oscilloscopio con una sonda compensabile. Cambiando capacità
+%        si può ottenere una sottocompensazione, una sovracompensazione oppure compensare perfettamente
+%        le capacità, ottenendo un'onda quadra.}
+%    \label{fig:compensazione}
+%\end{figure}
+
+%\begin{wrapfloat}{figure}{O}{0pt}
+%        \def\svgwidth{0.4\textwidth}
+%        \subimport{figure/}{raddrizzatore.pdf_tex}
+%        \caption{Raddrizzatore di precisione a semionda. Alimentato, inizialmente con una $V\ped{in}\,=\,\SI{1.02}{\volt}$ di frequenza $\nu\,=\,\SI{50}{\hertz}$.}
+%        \label{fig:radd}
+%\end{wrapfloat}
+
+%\begin{SCfigure}[][p]
+%        \centering
+%        \includegraphics[width=0.7\textwidth]{figure/rett.pdf}
+%        \caption{Questo grafico illustra l'andamento di $V\ped{out}$, linea nera, in funzione di $V\ped{in}$, linea grigia. Si nota chiaramente, come da previsioni, che la parte negativa del segnale in ingresso impediscse al diodo di condurre, pertanto la tensione di output risulta nulla. Inoltre, come si può osservare, il fronte di salita di $V\ped{out}$ presenta un leggero ritardo rispetto al segnale in ingresso $V\ped{in}$. Questo ritardo è stato stimato essere approssimativamente di circa $(152\pm10)\SI{}{\micro\second}$.}
+%        \label{fig:radd_plot1}
+%\end{SCfigure}
