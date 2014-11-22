@@ -23,7 +23,7 @@ Inoltre ricordiamo quale sia la tabella di verità di una porte NAND:
 	\bottomrule
 	\end{tabular}
 \end{center}
-
+%
 Quindi in base alla geometria del circuito che abbiamo realizzato, dato un segnale A di ingresso, l'uscita del circuito dovrebbe assumere lo stesso valore dell'ingresso. Infatti se anlizziamo la tabella di verità di questo circuito otteniamo quanto illustrato nella Tabela \ref{tab:ritardo}.
 
 \begin{wrapfloat}{table}{I}{300pt}
@@ -48,14 +48,56 @@ Quello che abbiamo ottenuto è riportato in Figura \ref{fig:ritardo1_plot}:
 
 Come è possibile osservare dal grafico in Figura \ref{fig:ritardo1} l'uscita del nostro circuito non è quella prevista, o meglio, lo sarebbe a meno di un piccolo intervallo temporale in cui l'uscita del circuito assume valore di verità nullo. Questo è dovuto appunto alla presenza delle capacità parassite interne alle porte logiche che rallentano la trasmissione del segnale. Infatti se si parte con un segnale in ingresso ad 0 logico, sugli ingressi della quarta porta NAND (C e D) giungeranno i valori di verità 1 e 0 rispettivamente. Pertanto l'uscita del circuito deve essere ad 1 logico, trattandosi di una porta NAND. Nel momento in cui il segnale in ingresso assume valore di verità 1 abbiamo un ritardo nella trasmissione della variazione in uno dei due ingressi della quarta porta NAND. Per questo motivo, per un breve intervallo temporale, stimato circa XXX, abbiamo la seguente situazione: In = 1, C = 1 (a causa del ritardo di trasmissione del segnale ha ancora il valore di verità relativo al segnale in ingresso precedente), D = 1 e quindi Out = 0. Quindi questa è la spiegazione per la breve variazione di tensione in uscita dal circuito. Infine facciamo notare che questo fenomeno non occorre quando l'input passa da 1 a 0 in quanto si avrebbe che C = 0 e D = 0 quindi Out = 1.
 
+\subsection*{Porta NOT TTL Open Collector}
 
+In questa sezione vogliamo verificare il corretto funzionamento di una porta NOT con tecnologia TTL Open Collector, modello SN74LS05N. Una porta NOT TTL Open Collector si può schemattizzare come un transistor. Il segnale in ingresso alla base è l'input della porta logica, mentre il collettore è l'output della porta logica.
+Detto questo passiamo alla realizzazione del circuito: Figura \ref{fig:not}.
+Dal momento che vogliamo pilotare un LED dobbiamo anche prestare attenzione alle sue caratteistihe, in modo da non farci passare una corrente eccessiva e rischiare pertanto di bruciarlo. A tal fine abbiamo dimensionato il circuito sapendo che: c'è una caduta di tensione di \SI{1}{\volt} sul LED in conduzione, l'intensità di corrente indicata che dovrebbe scorrere sul LED è di \SI{5}{\milli\ampere}, una caduta di \SI{0.4}{\volt} tra collettore ed emettitore del transistor e l'alimentazione del collettore a \SI{9}{\volt}. Quindi trammite una serie di calcoli elementari abbiamo ottenuto che il valore di resistenza $R$ teorico deve essere di circa \SI{1.52}{\kilo\ohm}. Tuttavia abbiamo deciso di realizzare la nostra resistenza con una resistenza da \SI{1}{\kilo\ohm} in serie con un trimmer. In questo modo, grazie al multimetro, abbiamo regolato il trimmer in modo da avere esattamente \SI{5}{\milli\ampere} di corrente passanti sul LED. Il valore di resistenza sperimentale trovaro vale: $R\,=\,\SI{1.34}{\kilo\ohm}$.
 
+Quindi a questo punto siamo andati a verificare il corretto funzionamento della nostra porta NOT TTL Open collector. Abbiamo ottenuto che quando in input il segnale è ad 1 logico, ovvero \SI{5}{\volt} il LED è acceso quindi l'uscita è all'1 logico, mentre quando l'input si trova allo 0 logico il LED è anch'esso spento, 0 ogico.
+Questo comportamento è corretto. Infatti quando l'input è ad 1 logico, il transistor è in conduzione e l'uscita si trova a circa \SI{0.4}{\volt} che è ancora 0 logico, pertanto c'è una differenza di potenziale ei cali del LED e questo si accende. Al contrario, quando l'input è allo 0 logico, il ransistor è interdetto, non scorre corrente, quindi il collettore sarà ad una tensione di circa \SI{9}{\volt} quindi ad 1 logico. Pertanto non passando corrente il LED è spento.
 
+\subsection*{Porta buffer TTL 3State}
 
+In questa sezione vogliamo verificare il corretto funzionamento di una porta buffer TTL 3-state modello 74LS125A. Per farlo realizziamo un circuito per trasmissione half-duplex tramite porte 3-state al fine di condividere lo stesso canale trasmissivo. Circuito riportato in Figura \ref{fig:buffer}. Quindi fatta la tabela di verità di tale circuito ne verificheremo la correttezza.
 
+Ricordiamo che in elettronica digitale, una porta logica si dice three state, tri-state o 3-state quando la sua uscita può trovarsi in un terzo stato di alta impedenza (Z) oltre ai due livelli logici della logica binaria.
+Uno dei principali dispositivi a tre stati è il buffer a tre stati (o buffer tri-state). La sua tabella di verità è la seguente:
 
+\begin{center}
+	\begin{tabular}{lll}
+	\toprule
+		B & In & Out\\
+	\midrule
+		0 & 0 & Z \\
+		0 & 1 & Z \\
+		1 & 0 & 0 \\
+		1 & 1 & 1 \\
+	\bottomrule
+	\end{tabular}
+\end{center}
+%
+dove con In abbiamo indicato lo stadio di ingresso, con B il segnale di pilotaggio e Out indica l'output della porta.
+Quindi un buffer tri-state può essere pensato come interruttore. Se B è acceso, l'interruttore è chiuso e il segnale in ingresso viene trasmesso; se B è spento, l'interruttore è aperto e l'uscita si trova ad alta impedenza.
 
+La tabella di verità del circuito in Figura \ref{fig:buffer} è la seguente:
 
+\begin{center}
+	\begin{tabular}{lllll}
+	\toprule
+		In & B & A & C & O\\
+	\midrule
+		0 & 0 & 0 & 0 & 0 \\
+		1 & 0 & 1 & 0 & 1 \\
+		0 & 1 & Z & 0 & 0 \\
+		1 & 1 & Z & 0 & 0 \\
+	\bottomrule
+	\end{tabular}
+\end{center}
+%
+Tale tabella è stata conferata anche dall'analisi sperimentale del circuito. Circuito che riceve ininput un onda quadra, con frequenza a scelta di ampezza \SI{2.5}{\volt} e offset di \SI{1.25}{\volt}. 
+
+\subsection*{Multiplexing}
 
 
 
