@@ -26,12 +26,12 @@ che una volta semplificata un po' prende la forma
     \begin{circuitikz}[scale=0.85, transform shape]
         \draw
             (0, 4) node[rground] {}
-            to [C, l=$C_1$ 15 nF] (0, 6)
+            to [C, l=$C_1$ 10 nF] (0, 6)
             to (1, 6)
             to [R, l=$R_3\;10 \si{\kilo\ohm}$] (1, 4)
             node[rground] {}
             (1, 6) to [R, l=$R_2\;10\si{\kilo\ohm}$] (1, 8)
-            to [C, l=$C_2$ 15 nF] (6.5, 8)
+            to [C, l=$C_2$ 10 nF] (6.5, 8)
             to (6.5, 3)
             to [vR, l=$R_V\;1\si{\kilo\ohm}$] (3, 3)
             (5, 5.5) node[op amp, yscale=-1] (opamp) {} 
@@ -62,7 +62,7 @@ Nel dominio delle frequenze ($s = i\omega$) si ottiene il guadagno
 \end{equation}
 
 Il grafico del guadagno è riportato in figura \ref{fig:partitore8}. Il massimo del guadagno si ha alla frequenza
-angolare $\omega = 1/RC$ o per $f = 2\pi/RC \simeq \SI{42}{\kilo\hertz}$, dove il guadagno vale $1/3$. In pratica il partitore
+angolare $\omega = 1/RC$ o per $f = 2\pi/RC \simeq 1.6 \pm 0.3 \si{\kilo\hertz}$, dove il guadagno vale $1/3$. In pratica il partitore
 si comporta come un filtro passa banda di primo ordine con un'attenuazione al di fuori delle frequenze di taglio
 di -20 dB/decade.
 
@@ -75,7 +75,7 @@ di -20 dB/decade.
 
 È quindi evidente che delle frequenze presenti nello ``scalino'' dopo l'accensione, alcune saranno più presenti
 all'ingresso non-invertente dell'operazionale a causa di questo filtro. Le frequenze che vengono passate più facilmente,
-sono attorno ai 42 kHz, vengono ridotte di un terzo.
+sono attorno ai 1.6 kHz, vengono ridotte di un terzo.
 
 Poiché l'operazionale ha anche un altro ramo di feedback negativo, l'operazionale tenderà ad aggiustare $V\ped{out}$
 in modo che $V^-$ sia una replica di $v^+$. In questo caso significa che $V\ped{out}$ conterrà la stessa proporzione
@@ -83,7 +83,7 @@ delle frequenze presenti all'ingresso $V^+$, poiché il ramo di retroazione nega
 le frequenze.
 
 A questo punto il ``ciclo'' ricomincia, poiché all'ingresso non invertente giunge una versione filtrata di $V\ped{out}$.
-Il sistema tende ad attenuare di molto le frequenze molto distanti dal picco a 42 kHZ, ma avendo un guadagno di 1/3 tende
+Il sistema tende ad attenuare di molto le frequenze molto distanti dal picco a 1.6 kHZ, ma avendo un guadagno di 1/3 tende
 ad attenuare anche le frequenze di picco. È evidente che se sul ramo di retroazione negativa il guadagno fosse esattamente 3
 in modo da compensare il guadagno 1/3 sull'altro ramo,
 si avrebbe che tutte le frequenze tranne quella centrale vengono rimosse, mentre quella centrale rimane inalterata.
@@ -185,6 +185,11 @@ si è rivelato stabile. La figura \ref{fig:stab8} mostra la tensione $V\ped{out}
 Abbiamo inoltre provato ad inserire dei condensatori di disaccoppiamento sull'alimentazione dell'operazionale, notando che
 l'output diventava instabile, producendo una sinusoide a tratti stabile e a tratti di ampiezza variabile.
 Il passaggio tra i tratti di stabilità ed instabilità era periodico di periodo circa 0.3 secondi ed e riportato in figura \ref{fig:instabilita8}.
+
+La frequenza che abbiamo misurato nell'output dell'oscillatore era di $1675 \pm 5$ Hz, mentre la frequenza passata
+dal filtro passa banda formato dal partitore, che può essere calcolata come indicato sopra, è $1600 \pm 300$ Hz. Risulta
+tutto coerente e compatibile con la teoria. Abbiamo usato 5\% di incertezza sui valori delle resistenze e 20\% su quelli
+delle capacità.
 
 \paragraph{Compensazione delle sonde.}
 

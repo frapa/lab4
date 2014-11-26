@@ -22,7 +22,7 @@
 \usepackage{color}
 \usepackage[siunitx]{circuitikz}
 \usepackage{tikz}
-\usetikzlibrary{arrows,decorations.pathreplacing,decorations.pathmorphing,backgrounds,positioning,fit}
+\usetikzlibrary{arrows,decorations.pathreplacing,decorations.pathmorphing,backgrounds,positioning,fit,shapes.misc}
 \usepackage{rotating}
 
 \setitemize{itemsep=-1pt}
@@ -42,6 +42,18 @@
     {\bfseries\sffamily\Large}
     {\framebox[1em]{\thesection}}{0.5em}{}
 %\titleformat{\section}[hang]{\sffamily\color{Red}\bfseries\scshape\filleft\lsstyle}{}{2em}{#1\quad\rule[-0.25cm]{1.5pt}{1cm}\rlap{\qquad\Huge \thesection}}
+
+\newcommand\marktopleft[1]{%
+    \tikz[overlay,remember picture] 
+        \node (marker-#1-a) at (-0.3ex,1.5ex) {};%
+}
+
+\newcommand\markbottomright[1]{%
+    \tikz[overlay,remember picture] 
+        \node (marker-#1-b) at (0,0) {};%
+    \tikz[overlay,remember picture,thick,inner sep=3pt]
+        \node[draw,rectangle,fit=(marker-#1-a.center) (marker-#1-b.center)] {};%
+}
 
 \begin{document}
 	\input{titolo.tex}
@@ -65,4 +77,6 @@
 	\subimport{e8/}{relazione}
     \twocolumn
 	\subimport{e9/}{relazione}
+    \twocolumn
+	\subimport{e10/}{relazione}
 \end{document}
