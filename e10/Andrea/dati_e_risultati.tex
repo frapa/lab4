@@ -99,8 +99,33 @@ Tale tabella è stata conferata anche dall'analisi sperimentale del circuito. Ci
 
 \subsection*{Multiplexing}
 
+In questa ultima sezione il nostro obbiettivo è quello di realizzare un Multiplexing. Che cosa è? In parole povere è un dispositivo che permette a segnali in ingresso (detti tributari) tramite canali separati, quindi distinti tra di loro, di essere trasmessi mediante un solo segnale in uscita (detto multiplato). Quindi la trasmissione di numerosi segnali viene effettuata da un unico collegamento fisico. In questo modo non occorre associare ad ogni input un output differente, ma si riesce a convogliare tutto il segnale in unica uscita.
 
+Tale circuito si può schematizzare in due blocchi principali: i primo blocco è quello di selezione, mentre il secondo blocco è quello di ``gating''. 
+Questi due blocchi sono raffigurati in Figura BHO.
 
+\paragraph*{Blocco di selezione:}
+la sua configurazione circuitale è riportata in Fugura XXX. Questo blocco sfrutta le proprieta delle porte logiche NOT e NAND. Grazie a queste porte io con due segnali in in ingresso posso ottenere quattro uscite che non sono mai contemporaneamente spente, o a 0 logico. Quindi, se io indico con $S_0$ e $S_1$ le due linee di selezione che abbiamo deciso di utilizzare (input), posso ottenere la seguente tabella di verità, dove con $Q_i$ abbiamo indicato le uscite del selettore.
+
+\begin{center}
+	\begin{tabular}{ll|llll}
+	\toprule
+		$S_0$ & $S_1$ & $Q_0$ & $Q_1$ & $Q_2$ & $Q_3$ \\
+	\midrule
+		0 & 0 & 0 & 1 & 1 & 1 \\
+		0 & 1 & 1 & 0 & 1 & 1 \\
+		1 & 0 & 1 & 1 & 0 & 1 \\
+		1 & 1 & 1 & 1 & 1 & 0 \\
+	\bottomrule
+	\end{tabular}
+\end{center}
+
+Indichiamo con $D_i$ i segnali che devono essere trasmessi. Questo primo blocco diventa pertanto una sorta di interruttore che mi permette di decidere quale segnale in ingresso ($D_i$) trasmettere lungo la linea dati comune. Pertanto a seconda dei valori che io imposto di $S_0$ ed $S_1$ posso decidere se trasmettere il segnale $D_0$ o $D_2$ ad esempio, ma mai due di questi contemporaneamente. Questo processo avviene grazie al secondo blocco detto di ``gating''.
+
+\paragraph*{Blocco di ``gating'':}
+questo blocco, illustrato in Figura XXX, è la parte di circuito che effettivamente permette o meno il passaggio dei dati, Indicati con $D_i$. Come già detto in precedenza sfruttando la porta porta buffer TTL 3State possiamo ottenere degli interruttori. Quindi se ad ogni $D_i$ accoppiamo il $Q_i$ corrispondente, per evitare confusione, otteniamo un interruttore che a seconda del valore assunto da $Q_i$ permette o meno la trasmissione del segnale. $Q_i\,=\,0$ il segnale è trasmesso se $Q_i\,=\,1$ il segnale non è trasmesso. Quindi, farendo riferimento alla tabella di verità del selettore, possiamo osservare come sia possibile permettere il passaggio di un solo segnale alla volta in un unica linea dati in uscita dal ``gating''.
+
+Quanto appena descritto è il funzionamento del nostro multiplexing.
 
 
 
