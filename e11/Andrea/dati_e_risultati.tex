@@ -109,11 +109,21 @@ Infine mantnendo la stessa configurazione circuitale fatta eccezione per l'inter
 Quello che abbiamo ottenuto è un funzionamento analogo a quello riscontrato per il circuito in Figura \ref{fig:rimbalzo}.
 L'unica variante che otteniamo e che i due ingressi possono avere lo stesso valore logico. Quindi in questo caso la tabella di verità é esattamente la Tabella \ref{tab:rimbalzo} con tutte e quattro le combinazioni di S e R possibili. 
 
+\subsection*{Divisore di frequenza}
 
+In questa ultima sezione vogliamo analizzare un divisore di frequenze. Se ci si pensa bene, già di per sè non è compito semlice realizzare un dispositivo che moltiplichi per un nuero intero positivo una frequenza, figuriamoci un dispositico che ne fraziona una data!
+Ebbene grazie al dispositivo Flip-Flop è possibile fare anche questa operazione. In particolare andiamo a realizzare un divisore di frequenze, ovvero un dispositivo che restituisce in uscita un segnale che ha una frequenza dimezzata rispetto a quello in ingresso.
+Il circuito che ci permette di fare questa operazione è raffigurato in Figura \ref{fig:divisore}. Questo circuito è realizzato a partire da un circuito integrato SN74LS109 a 16 pin che racchiude due FF JK Toggle.
 
+Al fine di capire come in uscita si possa ottenere una frequenza che è la metà rispetto a quella in ingresso dobbiamo spendere alcune parole per il Flip-Flop JK Toggle. Questo particolare tipo di FF ha la caratteristica che fissati i valori dei due ingressi J e K come 0-1 o 1-0 rispettivamente, sfruttando il segnale di clk, il dispositivo, solo sul fronte di discesa del segnale, fa cambiare stato alle uscite. In particolare inverte i valori di Q e $\overline{Q}$. Quindi dato un segnale di clock, le oscillazioni del segnale in uscita saranno scandite solo dal fronte in discesa dell'impulso di clk, quindi la frequenza in output risulta essere la metà di quella in in ingresso. Questo perchè tra due fronti di discesa di clk, che sono l'ampiezza dell'oscillazione di outpu, si hanno due cicli del segnale di clock.
 
+Pertanto se si mettono semplicemente a cascata due o più FF JK Toggle si possono dividere le frequenze per un fattore che corrisponde a $2^n$ con $n$ che indica il numero di dispositivi messi in cascata. Quindi se la frequenza di clock vale $f_0$ in base a quanti FF JK Toggle vengono posti in cascata possiamo ottenere il seguente risultato:
+\begin{equation}
+	f_n\,=\,\frac{f_0}{2^n}
+\end{equation}
+dove $f_n$ rppresenta la frequenza in uscita dal circuito.
 
-
+Quindi nel nostro caso abbiamo ottenuto il seguente risultato, illustrato nel rafico in Figura \ref{fig:divisore_plot}
 
 %\begin{wrapfloat}{table}{I}{300pt}
 %\centering
