@@ -1,0 +1,125 @@
+\subsection{Dati e risultati}
+
+\paragraph{Flip-Flop SR}
+
+Il flip-flop SR (Set-Reset, il nome deriva dalle terminazioni) è il primo elemento
+di memoria che incontriamo in questo corso. È un circuito sequenziale e non
+combinatorio, nel senso che il suo ouput dipende da quello che è avvenuto prima
+e non dallo stato delle entrate.
+
+\begin{figure}
+	\centering
+	\begin{circuitikz}
+		\draw
+			(2, 0) node[nand port] (s) {}
+			(2, 3) node[nand port] (r) {}
+			(5, 0) node[nand port] (q) {}
+			(5, 3) node[nand port] (qbar) {}
+			(0, 0) node[left] {S} -| (s.in 1) -| (s.in 2)
+			(0, 3) node[left] {R} -| (r.in 1) -| (r.in 2)
+			(s.out) -| (q.in 2)
+			(r.out) -| (qbar.in 1)
+			(q.out) --++ (0.5, 0) node[right] {Q} --++ (0, 0.5) 
+			(qbar.out) --++ (0.5, 0) node[right] {$\bar{\text{Q}}$} --++ (0, -0.5)
+			(qbar.in 2) --++ (0, -0.5) -- (5.65, 0.5)
+			(q.in 1) --++(0, 0.5) -- (5.65, 2.5)
+		;
+	\end{circuitikz}
+	\caption{}
+	\label{fig:ff_sr11}
+\end{figure}
+
+Il flip-flop SR è riportato in figura \ref{fig:ff_sr11}. Questo piccolo e straordinario circuito
+si basa sulla dipendenza reciproca tra entrate ed uscite delle porte NAND.
+
+\paragraph{Flip-Flop SR sincronizzarto}
+
+\begin{figure}
+	\centering
+	\begin{circuitikz}
+		\draw
+			(2, 0) node[nand port] (s) {}
+			(2, 3) node[nand port] (r) {}
+			(5, 0) node[nand port] (q) {}
+			(5, 3) node[nand port] (qbar) {}
+			(0, 0) node[left] {S} -| (s.in 2)
+			(0, 3) node[left] {R} -| (r.in 1)
+			(s.out) -| (q.in 2)
+			(r.out) -| (qbar.in 1)
+			(q.out) --++ (0.5, 0) node[right] {Q} --++ (0, 0.5) 
+			(qbar.out) --++ (0.5, 0) node[right] {$\bar{\text{Q}}$} --++ (0, -0.5)
+			(qbar.in 2) --++ (0, -0.5) -- (5.65, 0.5)
+			(q.in 1) --++(0, 0.5) -- (5.65, 2.5)
+			(0, 1.5) node[left] (clk) {CLK} -| (r.in 2)
+			(clk) -| (s.in 1)
+		;
+	\end{circuitikz}
+	\caption{}
+	\label{fig:ff_sr_sync11}
+\end{figure}
+
+\paragraph{Flip-Flop RS D-type}
+
+\begin{figure}
+	\centering
+	\begin{circuitikz}[transform shape, scale=0.95]
+		\draw
+			(2, 0) node[nand port] (s) {}
+			(2, 3) node[nand port] (r) {}
+			(5, 0) node[nand port] (q) {}
+			(5, 3) node[nand port] (qbar) {}
+			(-0.75, 3) node[not port] (not) {}
+			(-2, 0) node[left] (d) {D} -| (s.in 2)
+			(d) -| (not.in)
+			(not.out) -- (r.in 1)
+			(s.out) -| (q.in 2)
+			(r.out) -| (qbar.in 1)
+			(q.out) --++ (0.5, 0) node[right] {Q} --++ (0, 0.5) 
+			(qbar.out) --++ (0.5, 0) node[right] {$\bar{\text{Q}}$} --++ (0, -0.5)
+			(qbar.in 2) --++ (0, -0.5) -- (5.65, 0.5)
+			(q.in 1) --++(0, 0.5) -- (5.65, 2.5)
+			(0, 1.5) node[left] (clk) {CLK} -| (r.in 2)
+			(clk) -| (s.in 1)
+		;
+	\end{circuitikz}
+	\caption{}
+	\label{fig:ff_sr_dtype11}
+\end{figure}
+
+\paragraph{Antirimbalzo}
+
+\begin{figure}
+	\centering
+	\begin{circuitikz}
+		\draw
+			(0, 1.5) node[rground] (gnd) {}
+			(1, 1.5) node[spdt] (i) {}
+			(gnd) -- (i.in)
+			(5, 0) node[nand port] (q) {}
+			(5, 3) node[nand port] (qbar) {}
+			(i.out 2) --++ (0, -1.46) -| (q.in 2)
+			(i.out 1) --++ (0, 1.46) -| (qbar.in 1)
+			(q.out) --++ (0.5, 0) node[right] {Q} --++ (0, 0.5) 
+			(qbar.out) --++ (0.5, 0) node[right] {$\bar{\text{Q}}$} --++ (0, -0.5)
+			(qbar.in 2) --++ (0, -0.5) -- (5.65, 0.5)
+			(q.in 1) --++(0, 0.5) -- (5.65, 2.5)
+			(qbar.in 1) ++ (-1, 0) to[R, l=1 k] ++(0, 1.75) node[anchor=south] {$V\ped{cc}$}
+			(q.in 2) ++ (-1, 0) to[R, l=1 k] ++(0, -1.75) node[anchor=north] {$V\ped{cc}$}
+		;
+	\end{circuitikz}
+	\caption{}
+	\label{fig:antirimbalzo11}
+\end{figure}
+
+\paragraph{Divisore di frequenza}
+
+\begin{figure}
+	\centering
+	\begin{circuitikz}
+		\draw
+		
+		;
+	\end{circuitikz}
+	\caption{}
+	\label{fig:freq_div11}
+\end{figure}

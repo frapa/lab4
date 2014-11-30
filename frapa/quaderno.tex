@@ -1,4 +1,4 @@
-\documentclass[11pt, twoside, twocolumn, a4paper]{article}
+\documentclass[11pt, twoside, twocolumn, a4paper, draft]{article}
 \usepackage[italian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -22,7 +22,7 @@
 \usepackage{color}
 \usepackage[siunitx]{circuitikz}
 \usepackage{tikz}
-\usetikzlibrary{arrows,decorations.pathreplacing,decorations.pathmorphing,backgrounds,positioning,fit,shapes.misc}
+\usetikzlibrary{arrows,decorations.pathreplacing,decorations.pathmorphing,backgrounds,positioning,fit,shapes.misc,intersections}
 \usepackage{rotating}
 
 \setitemize{itemsep=-1pt}
@@ -40,7 +40,7 @@
 \setlength{\fboxrule}{1pt}
 \titleformat{\section}[hang]
     {\bfseries\sffamily\Large}
-    {\framebox[1em]{\thesection}}{0.5em}{}
+    {\framebox[1.3em]{\thesection}}{0.5em}{}
 %\titleformat{\section}[hang]{\sffamily\color{Red}\bfseries\scshape\filleft\lsstyle}{}{2em}{#1\quad\rule[-0.25cm]{1.5pt}{1cm}\rlap{\qquad\Huge \thesection}}
 
 \newcommand\marktopleft[1]{%
@@ -79,4 +79,12 @@
 	\subimport{e9/}{relazione}
     \twocolumn
 	\subimport{e10/}{relazione}
+    \twocolumn
+	\subimport{e11/}{relazione}
+    \twocolumn
+	\subimport{e12/}{relazione}
+    \twocolumn
+	\subimport{e13/}{relazione}
+    \twocolumn
+	\subimport{e14/}{relazione}
 \end{document}

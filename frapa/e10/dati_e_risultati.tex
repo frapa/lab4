@@ -149,6 +149,95 @@ spento se S = 1. Il circuito ha funzionato a dovere.
 
 \paragraph{Multiplexer}
 
+\begin{figure}
+	\centering
+	\begin{circuitikz}[transform shape, scale=0.9]
+	    \draw
+		% Piazzo le NAND
+		  (3,0) node[rotate=-90, american nand port] (nand3) {}
+		++(1.5,0) node[rotate=-90, american nand port] (nand2) {}
+		++(1.5,0) node[rotate=-90, american nand port] (nand1) {}
+		++(1.5,0) node[rotate=-90, american nand port] (nand0) {}
+	    ;
+		% Metto l'output
+		\node at (nand3.out) [below] {$Q_3$};
+		\node at (nand2.out) [below] {$Q_2$};
+		\node at (nand1.out) [below] {$Q_1$};
+		\node at (nand0.out) [below] {$Q_0$};
+		
+		% Coordinate inizio linee
+		\coordinate (cS0)  at (0,2) ;
+		\coordinate (cS0N) at (0,3)   ;
+		\coordinate (cS1)  at (0,4) ;
+		\coordinate (cS1N) at (0,5)   ;
+		
+		% Scrivo gli ingressi
+		\node at (cS0)  [left] {$S_0$};
+		\node at (cS0N) [left] {$\overline{S_0}$};
+		\node at (cS1)  [left] {$S_1$};
+		\node at (cS1N) [left] {$\overline{S_1}$};
+		    
+		% path per intersezioni linee di ingresso
+		% Linee:
+		\path[name path=S0]  (cS0)  -- ++(12,0);
+		\path[name path=S0N] (cS0N) -- ++(12,0);
+		\path[name path=S1]  (cS1)  -- ++(12,0);
+		\path[name path=S1N] (cS1N) -- ++(12,0);
+		% Porte:
+		\path[name path=n31] (nand3.in 1) -- ++(0,6);
+		\path[name path=n32] (nand3.in 2) -- ++(0,6);
+		\path[name path=n21] (nand2.in 1) -- ++(0,6);
+		\path[name path=n22] (nand2.in 2) -- ++(0,6);
+		\path[name path=n11] (nand1.in 1) -- ++(0,6);
+		\path[name path=n12] (nand1.in 2) -- ++(0,6);
+		\path[name path=n01] (nand0.in 1) -- ++(0,6);
+		\path[name path=n02] (nand0.in 2) -- ++(0,6);
+		
+		% prima parte (linee e not)
+		\draw
+		    (cS0N) ++(2,0) node[american not port] (not0) {} 
+		    (cS0) ++(1,0) |- (not0.in)
+		    (cS1N) ++(2,0) node[american not port] (not1) {} 
+		    (cS1) ++(1,0) |- (not1.in)
+		;
+		
+		% definizione di coordinate di partenza per le linee
+		\coordinate (nS0)  at (cS0)      ;
+		\coordinate (nS0N) at (not0.out) ;
+		\coordinate (nS1) at (cS1)       ;
+		\coordinate (nS1N) at (not1.out) ;
+		
+		% S0
+		\draw [name intersections={of=n32 and S0, by=x}]
+		    (nS0)--(x)--(nand3.in 2);
+		\draw [name intersections={of=n22 and S0, by=y}]
+		    (x)--(y)--(nand2.in 2);
+		    
+		% S0N
+		\draw [name intersections={of=n12 and S0N, by=x}]
+		    (nS0N)--(x)--(nand1.in 2);
+		\draw [name intersections={of=n02 and S0N, by=y}]
+		    (x)--(y)--(nand0.in 2);            
+	    
+		% S1
+		\draw [name intersections={of=n31 and S1, by=x}]
+		    (nS1)--(x)--(nand3.in 1);
+		\draw [name intersections={of=n11 and S1, by=y}]
+		    (x)--(y)--(nand1.in 1);
+		    
+		% S1N
+		\draw [name intersections={of=n21 and S1N, by=x}]
+		    (nS1N)--(x)--(nand2.in 1);
+		\draw [name intersections={of=n01 and S1N, by=y}]
+		    (x)--(y)--(nand0.in 1);            
+		
+		
+		%(0,1) node[left] {$S_1$} -| (nand1.in 1)
+	\end{circuitikz}
+	\caption{Circuito di selezione della linea.}
+	\label{fig:selezione10}
+\end{figure}
+
 Congiuntamente con un altro gruppo, abbiamo realizzato un sistema di Multiplexing/Demultiplexing. Il multiplexing
 è una tecnica che consente di trasmettere più segnali attraverso un unico cavo (per esempio per
 risparmiare prezioso cavo come nel telefono). L'idea di base è questa:
@@ -164,6 +253,85 @@ Abbiamo quindi 4 segnali in entrata, un cavo di collegamento che contiene un fil
 la selezione e un filo che trasporta il comune, in modo da non avere trasmittente e ricevente flottanti.
 I 2 cavi di selezione sono necessari perché 2 bit codificano 4 divesi stati, corrispondenti a quale delle 4
 linee di dati è attiva.
+
+\begin{figure}
+	\centering
+	\begin{circuitikz}[transform shape, scale=0.78]
+
+	% Nodi inizio linee
+		\node (D0) at (0,2) [left] {$D_0$} ;
+		\node (D1) at (0,3) [left] {$D_1$} ;
+		\node (D2) at (0,4) [left] {$D_2$} ;
+		\node (D3) at (0,5) [left] {$D_3$} ;
+		
+	     % Coordinate fine linee
+	     	\coordinate (D0F) at ($(D0)+(9,0)$);
+		\coordinate (D1F) at ($(D1)+(9,0)$);
+		\coordinate (D2F) at ($(D2)+(9,0)$);
+		\coordinate (D3F) at ($(D3)+(9,0)$);
+		
+	     % Piazzo i buffer
+	     	\node (buf0) at ($(D0)+(8,0)$)[buffer] {} ;
+	\node (buf1) at ($(D1)+(6,0)$)[buffer] {} ;
+		\node (buf2) at ($(D2)+(4,0)$)[buffer] {} ;
+		\node (buf3) at ($(D3)+(2,0)$)[buffer] {} ;
+		
+	     % Tiro le linee
+	     	\draw
+		(D0) -- (buf0.in) (buf0.out) -- (D0F)
+		    (D1) -- (buf1.in) (buf1.out) -- (D1F)
+		    (D2) -- (buf2.in) (buf2.out) -- (D2F)
+		    (D3) -- (buf3.in) (buf3.out) -- (D3F)
+		;
+		
+	     % Rettangolo
+	     	\draw
+		($(buf3.in)+(0,-5)$) rectangle ($(buf0.out)+(0,-4.4)$)
+		($(buf3)+(0,-5)$) node (Q3) [below] {$Q_3$}
+		    ($(buf2)+(0,-4)$) node (Q2) [below] {$Q_2$}
+		    ($(buf1)+(0,-3)$) node (Q1) [below] {$Q_1$}
+		    ($(buf0)+(0,-2)$) node (Q0) [below] {$Q_0$}
+		;
+		
+	     % Ingressi
+	     	\coordinate (S1Q) at ($(buf3.in)+(0,-5.8)$);
+		\coordinate (S1I) at ($(D3.east)+(0,-5.8)$);
+	    \draw
+		(S1Q) -- (S1I) node [left] {$S_1$}
+		    ($(S1Q)+(0,-0.8)$) -- ($(S1I)+(0,-0.8)$) node [left] {$S_0$}
+		;
+		
+	     % Metto i pallini
+	     	\node (buf3C) at ($(buf3)+(0,-0.55)$) [circle=0.1cm, draw]{};
+		\node (buf2C) at ($(buf2)+(0,-0.55)$) [circle=0.1cm, draw]{};
+		\node (buf1C) at ($(buf1)+(0,-0.55)$) [circle=0.1cm, draw]{};
+		\node (buf0C) at ($(buf0)+(0,-0.55)$) [circle=0.1cm, draw]{};
+		
+	     % Collego i Q ai pallini
+	     	\draw
+		(Q3.north) -- (buf3C.south)
+		    (Q2.north) -- (buf2C.south)
+		    (Q1.north) -- (buf1C.south)
+		    (Q0.north) -- (buf0C.south)
+		;
+		
+	     % Linea finale e output
+	     	\draw
+		(D0F)--(D3F)
+		    ($(D0F)!.5!(D3F)$) -- ++(0.5,0) node[right]{$OUT$}
+		;
+	    
+	    % Disegno i pallini di collegamento
+	    %	\fill (D3F) circle[radius=0.07cm] ;
+	 	%	\fill (D2F) circle[radius=0.07cm] ;
+	 	%	\fill (D1F) circle[radius=0.07cm] ;
+	 	%	\fill (D0F) circle[radius=0.07cm] ;
+
+	\end{circuitikz}
+	\caption{Filtro. Permette solo ad una linea di essere trasmessa.
+		Il quadrato in basso indica il selettore.}
+	\label{fig:filtro10}
+\end{figure}
 
 Il circuito è formato da 2 parti:
 
