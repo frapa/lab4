@@ -1,0 +1,706 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./quaderno.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size11.clo))
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/share/texmf-texlive/tex/generic/babel/italian.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def)
+
+Package babel Warning: No hyphenation patterns were loaded for
+(babel)                the language `Italian'
+(babel)                I will use the patterns loaded for \language=0 instead.
+
+)) (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/preprint/fullpage.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def)))
+(/usr/share/texmf-texlive/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty)
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty)
+(/usr/share/texmf-texlive/tex/latex/sidecap/sidecap.sty
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty))
+(/usr/share/texmf-texlive/tex/latex/siunitx/siunitx.sty
+(/usr/share/texmf-texlive/tex/latex/xkeyval/xkeyval.sty
+(/usr/share/texmf-texlive/tex/generic/xkeyval/xkeyval.tex))
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty)
+(/usr/share/texmf-texlive/tex/latex/tools/xspace.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/siunitx/config/si-prefix.cfg)
+(/usr/share/texmf-texlive/tex/latex/siunitx/config/si-named.cfg)
+(/usr/share/texmf-texlive/tex/latex/siunitx/config/si-addn.cfg)
+(/usr/share/texmf-texlive/tex/latex/siunitx/config/si-prefixed.cfg
+(/usr/share/texmf-texlive/tex/latex/siunitx/config/si-accepted.cfg)
+(/usr/share/texmf-texlive/tex/latex/siunitx/config/si-physical.cfg))
+(/usr/share/texmf-texlive/tex/latex/siunitx/config/si-abbr.cfg))
+(/usr/share/texmf-texlive/tex/latex/caption/caption.sty
+(/usr/share/texmf-texlive/tex/latex/caption/caption3.sty))
+(/usr/share/texmf-texlive/tex/latex/float/float.sty)
+(/usr/share/texmf-texlive/tex/latex/titlesec/titlesec.sty)
+(/usr/share/texmf-texlive/tex/latex/caption/subcaption.sty)
+(/usr/share/texmf-texlive/tex/latex/import/import.sty)
+(/usr/share/texmf-texlive/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/dblfloatfix.sty
+(/usr/share/texmf-texlive/tex/latex/base/fixltx2e.sty))
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg))
+(/usr/share/texmf-texlive/tex/latex/circuitikz/circuitikz.sty
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex)
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
+(/usr/share/texmf-texlive/tex/latex/ms/everyshi.sty))
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfrcs.code.tex))
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex))
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def)))
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex)
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex))
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+(/etc/texmf/tex/latex/config/color.cfg))
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathparser.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)))
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfloat.code.tex))
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorequick.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex))
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex)))
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleshapes.code.tex)
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleplot.code.tex)
+(/usr/share/texmf/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty)
+(/usr/share/texmf/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty))
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texmf/tex/generic/pgf/utilities/pgffor.code.tex))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex)
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmodulematrix.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) (/usr/share/texmf-texlive/tex/latex/xstring/xstring.sty
+(/usr/share/texmf-texlive/tex/generic/xstring/xstring.tex))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.
+code.tex)
+(/usr/share/texmf/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.p
+athmorphing.code.tex
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmoduledecorations.code.tex))
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcircutils.sty)
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcircmath.sty)
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcircshapes.sty)
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcircmonopoles.sty)
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcircbipoles.sty)
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcirctripoles.sty)
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcircquadpoles.sty)
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcirclabel.sty)
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcircvoltage.sty)
+(/usr/share/texmf-texlive/tex/latex/circuitikz/pgfcirccurrent.sty))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrow
+s.code.tex
+(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryarrows.code.tex))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecor
+ations.pathreplacing.code.tex
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecor
+ations.code.tex)
+(/usr/share/texmf/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.p
+athreplacing.code.tex))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecor
+ations.pathmorphing.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybackg
+rounds.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
+ioning.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.c
+ode.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshape
+s.misc.code.tex
+(/usr/share/texmf/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.t
+ex))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryinter
+sections.code.tex
+(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryintersections.code.tex))
+(/usr/share/texmf-texlive/tex/latex/rotating/rotating.sty) (./quaderno.aux)
+(/usr/share/texmf-texlive/tex/generic/babel/lgrcmr.fd)
+(/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-texlive/tex/latex/ms/ragged2e.sty
+(/usr/share/texmf-texlive/tex/latex/ms/everysel.sty))
+ABD: EveryShipout initializing macros (./titolo.tex) [1{/var/lib/texmf/fonts/ma
+p/pdftex/updmap/pdftex.map}] (./e1/relazione.tex (./e1/obbiettivo.tex)
+(./e1/circuito.tex (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd)
+Underfull \hbox (badness 2717) in paragraph at lines 7--8
+[]\OT1/cmr/m/n/10.95 Breadboard, cavi a ba-nana e cavet-ti da
+<e1/figure/schema_gen_corr.pdf, id=11, 578.16pt x 361.35pt>
+<e1/figure/circuito_sommatore.pdf, id=13, 578.16pt x 361.35pt>
+Overfull \hbox (1.13596pt too wide) in paragraph at lines 22--33
+ [][] |
+
+Overfull \hbox (1.13596pt too wide) in paragraph at lines 22--33
+ [] |
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./e1/dati_e_risultati.tex
+Underfull \hbox (badness 2591) in paragraph at lines 47--47
+[][]\OT1/cmr/m/n/10 : |La cor-
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+\OT1/cmr/m/n/10 ri-mane costante al
+
+Underfull \hbox (badness 5036) in paragraph at lines 47--47
+\OT1/cmr/m/n/10 di cari-co $\OML/cmm/m/it/10 R[]$\OT1/cmr/m/n/10 . Le
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+\OT1/cmr/m/n/10 in-certezze ri-portare
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+\OT1/cmr/m/n/10 sono in-certezze di
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+\OT1/cmr/m/n/10 risoluzione del mul-
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+\OT1/cmr/m/n/10 ti-metro (met^^Ra del-la
+
+Underfull \hbox (badness 1622) in paragraph at lines 47--47
+\OT1/cmr/m/n/10 sono ri-por-tate perch^^Re
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+\OT1/cmr/m/n/10 non ril-e-van-ti (sono
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+\OT1/cmr/m/n/10 co-munque del-l'or-dine
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<e1/figure/graph.pdf, id=15, 587.19376pt x 370.38374pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+[2]
+Underfull \vbox (badness 2837) has occurred while \output is active)
+(./e1/conclusione.tex
+Underfull \hbox (badness 1067) in paragraph at lines 106--1
+[]\OT1/cmr/m/n/10.95 Il guadag-no per $\OML/cmm/m/it/10.95 V[]$ \OT1/cmr/m/n/10
+.95 ^^Re esat-ta-mente 0.2 come
+)) [3] (./e2/relazione.tex (./e2/obbiettivo.tex) (./e2/circuito.tex
+Underfull \hbox (badness 2717) in paragraph at lines 7--8
+[]\OT1/cmr/m/n/10.95 Breadboard, cavi a ba-nana e cavet-ti da
+(./e2/figure/v_offset_exists.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e2/figure/v_offset_exists.pdf): PDF inclusion:
+ found PDF version <1.5>, but at most version <1.4> allowed
+<e2/figure/v_offset_exists.pdf, id=34, 136.35442pt x 76.40536pt>)
+Underfull \hbox (badness 4353) in paragraph at lines 24--24
+[]\OT1/cmr/m/n/10 (a) |Cir-cuito uti-liz-za-to per os-ser-vare
+(./e2/figure/v_offset.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e2/figure/v_offset.pdf): PDF inclusion: found 
+PDF version <1.5>, but at most version <1.4> allowed
+<e2/figure/v_offset.pdf, id=36, 278.56068pt x 179.30688pt>)
+(./e2/figure/Ip_minus.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e2/figure/Ip_minus.pdf): PDF inclusion: found 
+PDF version <1.5>, but at most version <1.4> allowed
+<e2/figure/Ip_minus.pdf, id=38, 243.58896pt x 206.87814pt>)
+(./e2/figure/Ip_plus.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e2/figure/Ip_plus.pdf): PDF inclusion: found P
+DF version <1.5>, but at most version <1.4> allowed
+<e2/figure/Ip_plus.pdf, id=40, 295.93282pt x 194.58853pt>))
+(./e2/dati_e_risultati.tex (./e2/figure/offset_graph.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e2/figure/offset_graph.pdf): PDF inclusion: fo
+und PDF version <1.5>, but at most version <1.4> allowed
+<e2/figure/offset_graph.pdf, id=42, 513.92pt x 385.44pt>)
+Overfull \hbox (11.38115pt too wide) in paragraph at lines 62--12
+[][] |
+[4] (./e2/figure/v_offset_current.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e2/figure/v_offset_current.pdf): PDF inclusion
+: found PDF version <1.5>, but at most version <1.4> allowed
+<e2/figure/v_offset_current.pdf, id=48, 278.56068pt x 179.30688pt>)
+Overfull \hbox (11.38115pt too wide) in paragraph at lines 62--84
+[][] |
+
+Underfull \hbox (badness 2753) in paragraph at lines 98--99
+[]\OT1/cmr/m/n/10.95 da cui si cal-co-la (ab-bi-amo as-sun-to 5% di
+
+Underfull \vbox (badness 4084) has occurred while \output is active [5]
+Underfull \hbox (badness 1502) in paragraph at lines 138--142
+\OT1/cmr/m/n/10.95 nanoam-pere a qualche fem-toam-pere a sec-on-da
+
+Underfull \hbox (badness 1515) in paragraph at lines 143--145
+\OT1/cmr/m/n/10.95 l'am-pli-fi-cazione for-ni-ta dal-l'-op-er-azionale, poich^^
+Se
+[6]) (./e2/conclusione.tex)) [7] (./e3/relazione.tex (./e3/obbiettivo.tex)
+(./e3/circuito.tex
+Underfull \hbox (badness 2717) in paragraph at lines 6--7
+[]\OT1/cmr/m/n/10.95 Breadboard, cavi a ba-nana e cavet-ti da
+(./e3/figure/slew_circ.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e3/figure/slew_circ.pdf): PDF inclusion: found
+ PDF version <1.5>, but at most version <1.4> allowed
+<e3/figure/slew_circ.pdf, id=62, 240.00456pt x 199.50534pt>)
+(./e3/figure/max_curr_circ.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e3/figure/max_curr_circ.pdf): PDF inclusion: f
+ound PDF version <1.5>, but at most version <1.4> allowed
+<e3/figure/max_curr_circ.pdf, id=64, 240.00456pt x 199.50534pt>)
+Underfull \hbox (badness 1635) in paragraph at lines 37--37
+\OT1/cmr/m/n/10 rente ero-ga-bile dal-l'-op-er-azionale ci
+(./e3/figure/banda_circ.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e3/figure/banda_circ.pdf): PDF inclusion: foun
+d PDF version <1.5>, but at most version <1.4> allowed
+<e3/figure/banda_circ.pdf, id=66, 244.23244pt x 171.96237pt>)
+(./e3/figure/guad_freq_bassa_circ.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e3/figure/guad_freq_bassa_circ.pdf): PDF inclu
+sion: found PDF version <1.5>, but at most version <1.4> allowed
+<e3/figure/guad_freq_bassa_circ.pdf, id=68, 244.24751pt x 148.71184pt>)
+(./e3/figure/guad_freq_alta_circ.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e3/figure/guad_freq_alta_circ.pdf): PDF inclus
+ion: found PDF version <1.5>, but at most version <1.4> allowed
+<e3/figure/guad_freq_alta_circ.pdf, id=70, 244.24852pt x 160.6pt>))
+(./e3/dati_e_risultati.tex
+<e3/figure/slew_graph1.pdf, id=72, 433.62pt x 361.35pt>
+<e3/figure/slew_signal3.pdf, id=74, 433.62pt x 361.35pt> [8]
+<e3/figure/freq_ris.pdf, id=79, 731.73375pt x 298.11375pt>
+Underfull \vbox (badness 10000) has occurred while \output is active [9]
+[10] <e3/figure/A_vs_freq.pdf, id=87, 587.19376pt x 442.65375pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+
+Underfull \hbox (badness 1337) in paragraph at lines 185--185
+[][]\OT1/cmr/m/n/10 : |Il grafi-co mostra
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--185
+\OT1/cmr/m/n/10 l'an-da-men-to del guadag-no
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--185
+\OT1/cmr/m/n/10 open loop del-l'am-pli-fi-ca-tore
+
+Underfull \hbox (badness 2922) in paragraph at lines 185--185
+\OT1/cmr/m/n/10 ristret-ta ban-da di fre-quen-ze,
+
+Underfull \hbox (badness 1960) in paragraph at lines 185--185
+\OT1/cmr/m/n/10 no diminuisce ad un dec-i-mo
+
+Underfull \hbox (badness 5878) in paragraph at lines 185--185
+\OT1/cmr/m/n/10 l'in-certez-za di-ven-ta cospicua,
+
+Underfull \hbox (badness 1688) in paragraph at lines 185--185
+\OT1/cmr/m/n/10 mis-urati con il cir-cuito 3.1e[].
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--185
+\OT1/cmr/m/n/10 Nei pun-ti dove l'in-certez-za
+
+Underfull \hbox (badness 1515) in paragraph at lines 185--185
+\OT1/cmr/m/n/10 non ^^Re vis-i-bile es-sa ^^Re mi-nore
+
+Underfull \hbox (badness 3861) in paragraph at lines 185--185
+\OT1/cmr/m/n/10 guadag-no di-ven-ta uni-tario a
+<e3/figure/gabp.pdf, id=89, 587.19376pt x 442.65375pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+
+Underfull \hbox (badness 1845) in paragraph at lines 193--193
+\OT1/cmr/m/n/10 i-bili gli stes-si dati delle fig-
+
+Underfull \hbox (badness 1062) in paragraph at lines 193--193
+\OT1/cmr/m/n/10 ure 3.4[] e 3.5[], so-lo che sono
+
+Underfull \hbox (badness 1237) in paragraph at lines 193--193
+\OT1/cmr/m/n/10 del-l'opamp che questi cir-cuiti
+) (./e3/conclusione.tex)) [11] [12] (./e4/relazione.tex (./e4/obbiettivo.tex)
+(./e4/circuito.tex
+Underfull \hbox (badness 2717) in paragraph at lines 4--5
+[]\OT1/cmr/m/n/10.95 Breadboard, cavi a ba-nana e cavet-ti da
+(./e4/figure/comparatore.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e4/figure/comparatore.pdf): PDF inclusion: fou
+nd PDF version <1.5>, but at most version <1.4> allowed
+<e4/figure/comparatore.pdf, id=97, 164.73544pt x 143.05444pt>)
+(./e4/figure/crepuscolare.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e4/figure/crepuscolare.pdf): PDF inclusion: fo
+und PDF version <1.5>, but at most version <1.4> allowed
+<e4/figure/crepuscolare.pdf, id=99, 398.00336pt x 236.87149pt>)
+(./e4/figure/oscillatore.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e4/figure/oscillatore.pdf): PDF inclusion: fou
+nd PDF version <1.5>, but at most version <1.4> allowed
+<e4/figure/oscillatore.pdf, id=101, 280.36737pt x 273.14038pt>)
+(./e4/figure/trigger_schmitt.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e4/figure/trigger_schmitt.pdf): PDF inclusion:
+ found PDF version <1.5>, but at most version <1.4> allowed
+<e4/figure/trigger_schmitt.pdf, id=103, 213.1639pt x 163.43866pt>))
+(./e4/dati_e_risultati.tex
+<e4/figure/comp_graph.pdf, id=105, 587.19376pt x 370.38374pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+
+Underfull \hbox (badness 2073) in paragraph at lines 22--22
+[][]\OT1/cmr/m/n/10 : |Es-em-pio di
+(./e4/figure/ist.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e4/figure/ist.pdf): PDF inclusion: found PDF v
+ersion <1.5>, but at most version <1.4> allowed
+<e4/figure/ist.pdf, id=107, 227.62204pt x 170.71654pt>) [13]
+Underfull \vbox (badness 10000) has occurred while \output is active [14]
+<e4/figure/isteresi.pdf, id=117, 587.19376pt x 370.38374pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+
+Underfull \hbox (badness 6927) in paragraph at lines 117--117
+[][]\OT1/cmr/m/n/10 : |Cur-va di
+
+Underfull \hbox (badness 6927) in paragraph at lines 117--117
+\OT1/cmr/m/n/10 is-tere-si del trig-ger di
+
+Underfull \hbox (badness 1810) in paragraph at lines 130--134
+\OT1/cmr/m/n/10.95 l'anal-isi di un cir-cuito com-ple-ta-mente di-ver-so,
+[15] <e4/figure/trigger_graph.pdf, id=122, 876.27374pt x 442.65375pt>
+Underfull \hbox (badness 2245) in paragraph at lines 180--186
+[] []\OT1/cmr/bx/n/10.95 In-ter-rut-tore cre-pus-co-lare.[] \OT1/cmr/m/n/10.95 
+L'ul-ti-mo cir-cuito
+[16]) (./e4/conclusione.tex)) [17] (./e5/relazione.tex (./e5/obbiettivo.tex)
+(./e5/circuito.tex
+Underfull \hbox (badness 2717) in paragraph at lines 4--5
+[]\OT1/cmr/m/n/10.95 Breadboard, cavi a ba-nana e cavet-ti da
+(./e5/figure/raddrizzatore.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e5/figure/raddrizzatore.pdf): PDF inclusion: f
+ound PDF version <1.5>, but at most version <1.4> allowed
+<e5/figure/raddrizzatore.pdf, id=130, 262.14839pt x 198.73111pt>)
+(./e5/figure/radd_ott.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e5/figure/radd_ott.pdf): PDF inclusion: found 
+PDF version <1.5>, but at most version <1.4> allowed
+<e5/figure/radd_ott.pdf, id=132, 338.00969pt x 240.92699pt>)
+(./e5/figure/diff.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e5/figure/diff.pdf): PDF inclusion: found PDF 
+version <1.5>, but at most version <1.4> allowed
+<e5/figure/diff.pdf, id=134, 333.79788pt x 278.79701pt>)
+(./e5/figure/inst_amp.pdf_tex
+
+pdfTeX warning: pdflatex (file ./e5/figure/inst_amp.pdf): PDF inclusion: found 
+PDF version <1.5>, but at most version <1.4> allowed
+<e5/figure/inst_amp.pdf, id=136, 362.2722pt x 243.4276pt>))
+(./e5/dati_e_risultati.tex
+<e5/figure/rett.pdf, id=138, 587.19376pt x 370.38374pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+
+Underfull \hbox (badness 2495) in paragraph at lines 17--17
+[][]\OT1/cmr/m/n/10 : |In-put e out-
+<e5/figure/rett_vo1.pdf, id=140, 587.19376pt x 370.38374pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+
+Underfull \hbox (badness 2707) in paragraph at lines 26--26
+[][]\OT1/cmr/m/n/10 : |In-put e ten-
+
+Underfull \hbox (badness 1210) in paragraph at lines 26--26
+\OT1/cmr/m/n/10 pli-fi-ca-tore op-er-azionale nel
+<e5/figure/rett_err.pdf, id=142, 587.19376pt x 370.38374pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+
+Underfull \hbox (badness 3954) in paragraph at lines 79--81
+[]\OT1/cmr/m/n/10.95 Abbiamo quin-di re-al-iz-za-to il cir-cuito 5.1b[].
+
+Underfull \hbox (badness 3849) in paragraph at lines 79--81
+\OT1/cmr/m/n/10.95 In questo ca-so il rad-driz-za-tore ^^Re in-ver-tente,
+[18] <e5/figure/radd_ott_graph.pdf, id=147, 587.19376pt x 442.65375pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+
+Underfull \hbox (badness 1297) in paragraph at lines 106--106
+[][]\OT1/cmr/m/n/10 : |Il rad-driz-za-tore
+
+Underfull \hbox (badness 1067) in paragraph at lines 106--106
+\OT1/cmr/m/n/10 ri-tar-di) man-te-nen-do $\OML/cmm/m/it/10 V[]$ \OT1/cmr/m/n/10
+ vi-
+
+Underfull \hbox (badness 1472) in paragraph at lines 106--106
+\OT1/cmr/m/n/10 in questo ca-so mantiene le
+[19] [20] <e5/figure/temp.png, id=156, 863.47594pt x 322.95656pt> [21]
+<e5/figure/scopiazzo.png, id=160, 403.5075pt x 265.99374pt>
+Underfull \vbox (badness 6978) has occurred while \output is active [22]))
+[23] (./e6/relazione.tex (./e6/obbiettivo.tex) (./e6/circuito.tex
+
+pdfTeX warning: pdflatex (file ./e6/figure/s.pdf): PDF inclusion: found PDF ver
+sion <1.5>, but at most version <1.4> allowed
+<e6/figure/s.pdf, id=167, 845.1575pt x 597.23125pt>
+Underfull \hbox (badness 2717) in paragraph at lines 10--11
+[]\OT1/cmr/m/n/10.95 Breadboard, cavi a ba-nana e cavet-ti da
+) (./e6/dati_e_risultati.tex
+Underfull \hbox (badness 1102) in paragraph at lines 36--45
+\OT1/cmr/m/n/10.95 plati-no PT100 la tem-per-atu-ra del-l'am-bi-ente (o
+[24] [25] [26]) (./e6/conclusione.tex
+Underfull \vbox (badness 1210) has occurred while \output is active)) [27]
+(./e7/relazione.tex (./e7/obbiettivo.tex) (./e7/circuito.tex)
+(./e7/dati_e_risultati.tex
+
+pdfTeX warning: pdflatex (file ./e7/figure/heart.pdf): PDF inclusion: found PDF
+ version <1.5>, but at most version <1.4> allowed
+<e7/figure/heart.pdf, id=182, 521.95pt x 521.95pt>
+
+pdfTeX warning: pdflatex (file ./e7/figure/s.pdf): PDF inclusion: found PDF ver
+sion <1.5>, but at most version <1.4> allowed
+<e7/figure/s.pdf, id=184, 843.71204pt x 711.0567pt> [28] [29]
+<e7/figure/ecg.pdf, id=193, 587.19376pt x 442.65375pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+<e7/figure/ecg_corsa.pdf, id=195, 587.19376pt x 442.65375pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+<e7/figure/ecg_fasi.pdf, id=197, 587.19376pt x 370.38374pt>
+endSC@dblfloat: \@tempdima=512.14963pt
+
+Underfull \hbox (badness 2951) in paragraph at lines 172--172
+\OT1/cmr/m/n/10 ^^Se un in-grandi-men-to del-la
+
+Underfull \hbox (badness 1776) in paragraph at lines 172--172
+\OT1/cmr/m/n/10 molto bene le varie onde
+) (./e7/conclusione.tex)) [30] [31] [32] (./e8/relazione.tex
+(./e8/obbiettivo.tex) (./e8/circuito.tex) (./e8/dati_e_risultati.tex
+
+LaTeX Warning: Reference `fig:circ8' on page 33 undefined on input line 3.
+
+
+Underfull \hbox (badness 3281) in paragraph at lines 10--13
+[] []\OT1/cmr/bx/n/10.95 Prin-ci-pio di fun-zion-a-men-to.[] \OT1/cmr/m/n/10.95
+ Al-l'ac-cen-sione
+
+! Package pgfkeys Error: I do not know the key '/tikz/rground' and I am going t
+o ignore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28             (0, 4) node[rground]
+                                      {}
+? 
+! Package pgfkeys Error: I do not know the key '/tikz/rground' and I am going t
+o ignore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32             node[rground]
+                               {}
+? ! Interruption.
+\GenericError  ...                                
+                                                  \endgroup 
+l.32             node[rground]
+                               {}
+? 
+! Package pgfkeys Error: I do not know the key '/tikz/vR' and I am going to ign
+ore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.36 ...  to [vR, l=$R_V\;1\si{\kilo\ohm}$] (3, 3)
+                                                  
+? 
+! Package pgfkeys Error: I do not know the key '/tikz/rground' and I am going t
+o ignore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.43             node[rground]
+                               {}
+? 
+Overfull \hbox (2.26332pt too wide) in paragraph at lines 49--50
+[][] |
+
+LaTeX Warning: Reference `fig:partitore8' on page 33 undefined on input line 64
+.
+
+! Interruption.
+<to be read again> 
+                   \setbox 
+l.71 ...aphics[width=\columnwidth]{figure/ctp.pdf}
+                                                  
+? <e8/figure/ctp.pdf, id=209, 442.65375pt x 334.24875pt> [33]
+
+! Package pgfkeys Error: I do not know the key '/tikz/rground' and I am going t
+o ignore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.102             (0, 0) node[rground]
+                                       {}
+? <e8/figure/inststab.pdf, id=214, 442.65375pt x 334.24875pt>
+<e8/figure/exp_imp.pdf, id=216, 876.27374pt x 442.65375pt>
+
+LaTeX Warning: Reference `fig:exp_imp8' on page 34 undefined on input line 169.
+
+
+[34] <e8/figure/stab.pdf, id=221, 876.27374pt x 442.65375pt>
+
+LaTeX Warning: Reference `fig:stab8' on page 35 undefined on input line 183.
+
+
+LaTeX Warning: Reference `fig:instabilita8' on page 35 undefined on input line 
+187.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \hbox (badness 10000) in paragraph at lines 196--198
+[] []\OT1/cmr/bx/n/10.95 Com-pen-sazione delle sonde.[] \OT1/cmr/m/n/10.95 Oltr
+e al-la
+
+Underfull \vbox (badness 6808) has occurred while \output is active [35]
+
+LaTeX Warning: Reference `fig:circ_sonda8' on page 36 undefined on input line 1
+99.
+
+
+LaTeX Warning: Reference `fig:circ_sonda8' on page 36 undefined on input line 2
+11.
+
+<e8/figure/comp.pdf, id=226, 442.65375pt x 334.24875pt>
+
+LaTeX Warning: Reference `fig:compensazione8' on page 36 undefined on input lin
+e 234.
+
+
+LaTeX Warning: Reference `fig:compensazione8' on page 36 undefined on input lin
+e 235.
+
+) (./e8/conclusione.tex))
+Underfull \vbox (badness 2221) has occurred while \output is active [36]
+[37] (./e9/relazione.tex (./e9/obbiettivo.tex) (./e9/circuito.tex)
+(./e9/dati_e_risultati.tex
+
+LaTeX Warning: Reference `fig:porte9' on page 38 undefined on input line 21.
+
+
+! Package pgfkeys Error: I do not know the key '/tikz/american nand port' and I
+ am going to ignore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30 ...        (1.75, 0) node[american nand port]
+                                                   (nand1) {}
+? 
+! Package PGF Math Error: Unknown function `in' (in 'in 1').
+
+See the PGF Math package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31                 (nand1.in 1)
+                                  to (nand1.in 2)
+? 
+! Package PGF Math Error: Unknown function `in' (in 'in 2').
+
+See the PGF Math package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31                 (nand1.in 1) to (nand1.in 2)
+                                                 
+? 
+! Package PGF Math Error: Unknown function `in' (in 'in 1').
+
+See the PGF Math package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 ...0) node [anchor=east] {IN} -| (nand1.in 1)
+                                                  
+? 
+! Package PGF Math Error: Unknown function `out' (in 'out').
+
+See the PGF Math package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33                 (nand1.out)
+                                 node [anchor=west] {OUT}
+? 
+! Package pgfkeys Error: I do not know the key '/tikz/american nand port' and I
+ am going to ignore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.43 ...        (1.75, 0) node[american nand port]
+                                                   (nand1) {}
+? 
+! Package pgfkeys Error: I do not know the key '/tikz/american nand port' and I
+ am going to ignore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44 ...         (3.5, 0) node[american nand port]
+                                                   (nand2) {}
+? Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+H for help, X to quit.
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.44 ...         (3.5, 0) node[american nand port]
+                                                   (nand2) {}
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on quaderno.log.
