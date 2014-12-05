@@ -1,2 +1,218 @@
 \subsection{Dati e risultati}
 
+\begin{figure*}[t]
+    \centering
+    \begin{circuitikz}[x=0.9cm, y=0.9cm]
+        \foreach \i in {1,...,4} {
+            \draw (\i*3.8, 0) -- (\i*3.8, 3) -- (\i*3.8 + 2, 3) -- (\i*3.8 + 2, 0) -- (\i*3.8, 0);
+            \draw (\i*3.8, 2.25) node[right] (J\i) {J\i};
+            \draw (\i*3.8, 0.75) node[right] (K\i) {K\i};
+            \draw (\i*3.8 + 2, 2.25) node[left] (Q\i) {Q\i};
+            \draw (\i*3.8 + 2, 0.75) node[left] {$\overline{\text{Q\i}}$};
+            \draw (\i*3.8 + 1, 3) node[anchor=north] (PR\i) {PR};
+            \draw (\i*3.8 + 1, 0) node[anchor=south] (CL\i) {CL};
+            \draw (\i*3.8, 1.25) -- (\i*3.8 + 0.25, 1.5) -- (\i*3.8, 1.75);
+            \coordinate (CLK\i) at (\i*3.8, 1.5);
+            \coordinate (preCLK\i) at (\i*3.8 - 0.5, 1.5);
+            \coordinate (preK\i) at (\i*3.8 - 0.2, 0.75);
+        };
+        \coordinate (init) at (1, -1);
+        \draw
+            (1, -2) node[rground] {}
+            to [C, l=470 nF] (init) node[left] {A}
+        ;
+        \draw
+            (init) to [R, l=10<\kilo\ohm>] (1, 1)
+            node[anchor=south] {$V\ped{CC}$}
+        ;
+        \draw
+            (init) -| (2.5, 4) -| (PR1)
+            (init) -| (CL2)
+            (init) -| (CL3)
+            (init) -| (CL4)
+            
+            (Q1) -| (J2.west)
+            (Q1) --++ (1, 0) --++ (0, 4.5) node[above] {Q1}
+            (Q1) --++ (1, 0) |- (preK2) ++ (0.1, 0) circle (0.1cm)
+            
+            (Q2) -| (J3.west)
+            (Q2) --++ (1, 0) --++ (0, 4.5) node[above] {Q2}
+            (Q2) --++ (1, 0) |- (preK3) ++ (0.1, 0) circle (0.1cm)
+            
+            (Q3) -| (J4.west)
+            (Q3) --++ (1, 0) --++ (0, 4.5) node[above] {Q3}
+            (Q3) --++ (1, 0) |- (preK4) ++ (0.1, 0) circle (0.1cm)
+            
+            (Q4.east) --++ (0.5, 0) |- (3, 6) |- (J1.west)
+            (Q4.east) --++ (1, 0) --++ (0, 4.5) node[above] {Q4}
+            (3, 6) |- (preK1) ++ (0.1, 0) circle (0.1cm)
+        ;
+        \draw
+            (1, 4.75) node[left] (CLK) {CLK}
+            (CLK) -| (preCLK1) -- (CLK1)
+            (CLK) -| (preCLK2) -- (CLK2)
+            (CLK) -| (preCLK3) -- (CLK3)
+            (CLK) -| (preCLK4) -- (CLK4)
+        ;
+        \draw
+            (CL1.south) ++ (0, -0.1) circle (0.1) ++ (0, -0.1) --++ (0, -0.5) node[right] {$V\ped{CC}$}
+            (PR2.north) ++ (0, 0.1) circle (0.1) ++ (0, 0.1) --++ (0, 0.75) node[above] {$V\ped{CC}$}
+            (PR3.north) ++ (0, 0.1) circle (0.1) ++ (0, 0.1) --++ (0, 0.75) node[above] {$V\ped{CC}$}
+            (PR4.north) ++ (0, 0.1) circle (0.1) ++ (0, 0.1) --++ (0, 0.75) node[above] {$V\ped{CC}$}
+        ;
+    \end{circuitikz}
+    \caption{Shift resister ciclico.}
+    \label{fig:shift11}
+\end{figure*}
+
+\paragraph{Shift register.}
+
+Gli shift register, o registri a scorrimento, sono circuiti che mantengono in memoria un certo numero di bit
+e spostano la sequenza di 1 bit ogni volta che arriva un fronte d'onda negativo (I FF da noi usati erano negative edge triggered).
+I registri a scorrimento
+servono principalmente per costruire convertitori seriale-parallelo e parallelo-seriale, ma trovano
+impiego anche in altri campi.
+
+
+La figura \ref{fig:shift11} mostra lo shift register che abbiamo costruito. Il registro
+è costruito con 4 flip-flop JK e di conseguenza memorizza 4 bit. Inoltre è l'uscita dell'ultimo FF
+è collegata con l'entrata del primo, per fare un registro ciclico, che cicla la sequenza di bit.
+
+Vediamo come funziona il circuito. La prima cosa da fare all'accensione del circuito è caricare
+una sequenza di bit in memoria. Questo risultato è ottenuto grazie alle porte preser (PR) e clear (CL),
+che, come fa intuire il nome, servono rispettivamente per importare un valore all'uscita Q o a
+``pulire'' i valori precedenti, impostando 0. Entrambe queste entrate sono negate, cioè vengono impostate
+a 1 se non si vuole usarle. Infatti le porte preset dei FF 2, 3 e 4 e la clear del primo sono
+state collegate tutte a $V\ped{CC}$, in modo che non siano mai utilizzate. Il trucco viene poi con
+la resistenza e il condensatore; il punto A è collegato con il preset del primo FF
+e ai clear dei restanti. All'accensione dell'alimentazione il condensatore impiega un certo
+tempo per caricarsi, per cui all'inizio il punto A è a 0 logico e carica un 1 sul primo FF,
+mentre gli altri sono impostati a 0 mediante le porte clear.
+
+Ogni volta che arriva un fronte d'onda negativo (cioè c'è un passaggio da 1 a 0) nel clock,
+i flip-flop leggono i loro ingressi e copiano il valore all'uscita. Poiché ci sono
+dei ritardi di pochi nanosecondi tra l'arrivo del fronte e la copiatura del valore in ingresso
+si ha che la sequenza di bit viene spostata a destra (si noti che l'ultimo valore $Q_4$ viene spostato
+a $Q_1$).
+
+Abbiamo quindi collegato il circuito alla schedina con i LED che ci permette di visualizzare i valori
+0 o 1 alle uscite $Q_1,\dots,Q_4$. Fornendo un onda quadra di frequenza bassa (1-10 Hz) è stato possibile
+vedere il bit 1 impostato all'inizio ciclare.
+
+\paragraph{Contatore a 8 bit.}
+
+Un utilissima applicazione dei FF sono i contatori. A parte il loro utilizzo in moltissime componenti
+elettroniche, in ambito scientifico sperimentale sono molto utili per realizzare esperimenti
+in cui sia necessario contare degli oggetti, per esempio il numero di particelle arrivate su di un rivelatore.
+In queste applicazioni si usano degli integrati come il 74LS191, che includono al loro interno tutto il necessario
+per il conteggio. Non resta che collegarli opportunamente.
+
+Tuttavia i 74LS191 sono contatori a 4 bit e noi vogliamo realizzare un contatore a 8 bit, per
+cui ce ne servono 2 in cascata, il secondo dei quali conta il numero delle volte che il primo
+è andato in overflow. Il circuito in figura \ref{fig:contatore11} è il circuito adatto allo scopo.
+
+Gli integrati 74LS191 hanno le seguenti porte:
+
+\begin{itemize}
+    \item{CE (Count Enable): se bassa il contatore è abilitato, altrimenti il contatore non fa nulla.}
+    \item{D/$\overline{\text{U}}$ (Down/Up): se 0 il contatore conta da 0 (0000) a 15 (1111), mentre se
+        è alta il conteggio avviene al rovescio.}
+    \item{RC (Ripple Clock): quest'uscita è normalmente a 1, ma scende a 0 quando si è raggiunto il valore massimo
+        o minimo, in base alla direzione in cui si sta contando (crescente o decrescente rispettivamente).
+        Rimane bassa finché il clock non ritorna basso (il 74LS191 è positive edge triggered).}
+    \item{LOAD e $P_1,\dots,P_4$: Quando LOAD è basso il segnale agli ingressi $P_1,\dots,P_4$ viene copiato
+        in modo asincrono alle uscite, indipendentemente dal clock. Utile per impostare i valori iniziali.}
+\end{itemize}
+
+La parte in basso a sinistra del circuito è composta da un interruttore che permette di scegliere la direzione
+del conteggio. Il FF JK serve per assicurarsi che lo stato delle porte U/$\overline{\text{U}}$ venga cambiato
+soltanto quando il clock è alto, poiché sulle specifiche del 74LS191 è scritto che cambiarlo in altri momenti
+causa uno stato non definito all'interno dell'integrato. 
+
+\begin{figure*}
+    \centering
+    \begin{circuitikz}[x=0.9cm, y=0.9cm]
+        \draw
+            (3, -4) -| (5, -7) -| (3, -4)
+            (3, -4.75) node[right] (J) {J}
+            (3, -6.25) node[right] (K) {K}
+            (5, -4.75) node[left] (Q) {Q}
+            (5, -6.25) node[left] {$\overline{\text{Q}}$}
+            (3, -5.25) -- (3.25, -5.5) -- (3, -5.75)
+            (4, -4) node[below] (PR) {PR} to[short, o-o] ++ (0, 0.5) node[above] {$V\ped{CC}$}
+            (4, -7) node[above] (CL) {CL} to[short, o-o] ++ (0, -0.5) node[below] {$V\ped{CC}$}
+        ;
+        \coordinate (preCLK_JK) at (2, -6);
+        \coordinate (preJ) at (2.5, -4.75);
+        \coordinate (preK) at (2.5, -6.25);
+        \coordinate (CLK_JK) at (3, -6);
+        
+        \draw
+            (-1, -6) node[above] {$V\ped{CC}$} |- (0, -7) ++ (0.1, 0) circle (0.1)
+            ++ (0.1, 0) --++ (0.5, 0.3) ++ (0, -0.3) circle (0.1) ++ (0.1, 0)
+            coordinate (switch)
+        ;
+        
+        \draw
+            (switch) -| (preJ) -- (J.west)
+            (switch) -| (preK) to [short, -o] (K.west)
+            (switch) --++ (0.5, 0) to[R, l=1<\kilo\ohm>] ++(0, -1.5) node[rground] {}
+        ;
+    
+        \draw
+            (-1, 0) node[left] (CLK) {CLK} -| (preCLK_JK) -- (CLK_JK)
+        ;
+        
+        \foreach \i in {0,1} {
+            \draw (11, -\i*6 + 2) -| (14, -\i*6 - 3) -| (11, -\i*6 + 2);
+            \draw
+                (11, -\i*6 + 2 - 0.5) node[right] (P0\i) {P0}
+                (11, -\i*6 + 2 - 1) node[right] (P1\i) {P1}
+                (11, -\i*6 + 2 - 1.5) node[right] (P2\i) {P2}
+                (11, -\i*6 + 2 - 2) node[right] (P3\i) {P3}
+                (11, -\i*6 + 2 - 3.5) node[right] (CE\i) {CE}
+                (11, -\i*6 + 2 - 4) node[right] (DU\i) {D/$\overline{\text{U}}$}
+                (11, -\i*6 + 2 - 4.5) node[right] (LOAD\i) {LOAD}
+                (11, -\i*6 + 2 - 2.5) --++ (0.25, -0.25) --++ (-0.25, -0.25)
+                (14, -\i*6 + 2 - 0.5) node[left] (Q0\i) {Q0}
+                (14, -\i*6 + 2 - 1) node[left] (Q1\i) {Q1}
+                (14, -\i*6 + 2 - 1.5) node[left] (Q2\i) {Q2}
+                (14, -\i*6 + 2 - 2) node[left] (Q3\i) {Q3}
+                (14, -\i*6 + 2 - 3.5) node[left] (CR\i) {RC}
+            ;
+            \draw
+                (P0\i) --++ (-1, 0)
+                (P1\i) --++ (-1, 0)
+                (P2\i) --++ (-1, 0)
+                (P3\i) --++ (-1, 0) |- ++ (-1, 2) node[rground] {}
+                (Q0\i.east) to[short, -o]++ (1, 0)
+                (Q1\i.east) to[short, -o]++ (1, 0)
+                (Q2\i.east) to[short, -o]++ (1, 0)
+                (Q3\i.east) to[short, -o]++ (1, 0)
+            ;
+            \coordinate (CLK\i) at (11, -\i*6 + 2 - 2.75);
+            \coordinate (preCE\i) at (10.5, -\i*6 + 2 - 3.5);
+        };
+
+        \draw
+            (Q) --++ (2, 0) |- (DU0.west)
+            (Q) ++ (2, 0) |- (DU1.west)
+            (CLK) --++ (7, 0) |- (CLK0)
+            (CLK) ++ (7, 0) |- (CLK1)
+            (CR0.east)  to[short, o-] ++ (1, 0) |- ++ (-6.5, -2) |- (preCE1) to[short, -o] (CE1.west)
+            (CE0.west) to[short, o-] ++ (-1, 0) node[rground] {}
+        ;
+        \draw
+            (LOAD0.west) to[short, o-] ++(-0.1, 0) -| (7.5, -8.5)
+            (LOAD1.west) to[short, o-] ++(-0.1, 0) -| (7.5, -11)
+            --++ (1, 0)
+        ;
+        \coordinate (LS) at (8.5, -11);
+        \draw
+            (LS) to[C, l=470 nF] ++ (0, -1) node[rground] {}
+            (LS) to[R, l_=10<\kilo\ohm>] ++(0, 1.5) node[above] {$V\ped{CC}$}
+        ;
+    \end{circuitikz}
+    \caption{Contatore a 8 bit.}
+    \label{fig:contatore11}
+\end{figure*}
