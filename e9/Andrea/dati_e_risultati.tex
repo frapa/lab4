@@ -7,8 +7,10 @@ In elettronica digitale ricordiamo che alla tensione continua di \SI{+5}{\volt} 
 \subsection*{Porta NAND}
 
 In questo paragrafo vogliamo verificare il corretto funzionamento di una porta NAND. Questa porta, intuitivamente non è altro che una porta AND la cui uscita è negata, ovvero è come se vi fosse un NOT all'uscitta della porta AND.
-Quindi dalla teoria sappiamo che se denotiamo con A e B gli stati di ingresso di una porta logica e con O lo stato di uscita della stessa, la tabella di verità per la porta NAND deve risultare essere:
-\begin{center}
+Quindi dalla teoria sappiamo che se denotiamo con A e B gli stati di ingresso di una porta logica e con O lo stato di uscita della stessa, la tabella di verità per la porta NAND risulta essere quella riportata in Tabella \ref{tab:nand}.
+
+\begin{wrapfloat}{table}{I}{200pt}
+\centering
 	\begin{tabular}{lll}
 	\toprule
 		A & B & O \\
@@ -19,7 +21,10 @@ Quindi dalla teoria sappiamo che se denotiamo con A e B gli stati di ingresso di
 		1 & 1 & 0 \\
 	\bottomrule
 	\end{tabular}
-\end{center}
+	\caption{Tabella di verità della porta ogica NAND.}
+	\label{tab:nand}
+\end{wrapfloat}
+
 Operativamente noi abbiamo fatto quanto segue: abbiamo collegato le alimentazioni $V\ped{cc}^+$ e $V\ped{cc}^-$ del circuito integrato SN74LS00N a \SI{+5}{\volt} e al comune (\SI{0}{\volt}) rispettivamente. Ricordiamo che tale circuito integrato presenta ben quattro porte NAND sullo stesso chip. Successivamente abbiamo collegato l'uscita della porta logica usata alla schedina LED e abbiamo verificato, variando i valori di tensione (\SI{+5}{\volt} e \SI{0}{\volt}) ai capi degli ingressi A e B, che la tablla di verità ottenuta corrispondesse con quella teorica.
 Il risultato, come previsto, è stata la corretta corrispondenza tra teoria e pratica. Inoltre abbiamo osservato come in uscita dalla porta logica la tensione ($V\ped{out}$) fosse di \SI{+3}{\volt}.
 
@@ -27,22 +32,17 @@ Il risultato, come previsto, è stata la corretta corrispondenza tra teoria e pr
 
 In questa sezione vogliamo verificare il corretto funzionamento di una porta logica NOT. Innanzitutto abbiamo sfruttato il circuito integrato SN74LS00N per realizzare tale porta. Dal momento che l'SN74LS00N è una NAND, al fine di ottenere da tale porta logica un NOT, non dobbiamo fare altro che collegare entrambi gli ingressi allo stesso potenziale. Vedi Figura \ref{fig:not}
 
-Detto questo sfruttando l'integrato SN74LS00N abbiamo collegato i suoi due ingressi al generatore di funzioni d'onda, e gli abbiamo dato in imput un'onda quadra di frequenza $f=\SI{2}{\hertz}$, di ampiezza \SI{2.5}{\volt} picco picco e con un offset di \SI{1.25}{\volt}.
-Quindi siamo andati a verificarne il corretto funzionamento sulla schedina LED, collegata all'uscita della porta logica in esame. Quello che abbiamo osservato è che se in ingresso la tensione è \SI{+5}{\volt}, quindi 1 logico, in uscita si ottiene 0, mentre se in ingresso la tensione è di \SI{0}{\volt}, quindi lo 0 logico, in uscita si ottiene 1. Il risultato è corretto. Inoltre abbiamo anche visualizzato, grazie all'oscilloscopio, l'andamento della tensione in ingresso alla porta logica $V\ped{in}$ e l'andamento di $V\ped{out}$, tensione in uscita dalla porta. Quello che abbiamo ottenuto è riportato in Figura \ref{fig:not_plot}.
+Detto questo sfruttando l'integrato SN74LS00N abbiamo collegato i suoi due ingressi al generatore di funzioni d'onda, e gli abbiamo dato in imput un'onda quadra di frequenza $f=\SI{2}{\hertz}$, di ampiezza \SI{5}{\volt} picco picco e con un offset di \SI{2.5}{\volt}.
+Quindi siamo andati a verificarne il corretto funzionamento sulla schedina LED, collegata all'uscita della porta logica in esame. Quello che abbiamo osservato è che se in ingresso la tensione è \SI{+5}{\volt}, quindi 1 logico, in uscita si ottiene 0, mentre se in ingresso la tensione è di \SI{0}{\volt}, quindi lo 0 logico, in uscita si ottiene 1. Il risultato è pertanto corretto.% Inoltre abbiamo anche visualizzato, grazie all'oscilloscopio, l'andamento della tensione in ingresso alla porta logica $V\ped{in}$ e l'andamento di $V\ped{out}$, tensione in uscita dalla porta. Quello che abbiamo ottenuto è riportato in Figura \ref{fig:not_plot}.
+
+\begin{SCfigure}[.90][h!]
+    \centering
+    \includegraphics[width=0.55\columnwidth]{ist.pdf}
+    \caption{Il grafico mostra l'isteresi della porta NOT. L'ampiezza dell'isteresi è di circa 0.1 V e avviene attorno alla tensione di input di valore \SI{1.1}{\volt}. Questo significa che partendo da \SI{0}{\volt} e salendo in tensione, si ha la commutazione tra i due stati logici a circa \SI{1.15}{\volt}, mentre scendendo da \SI{5}{\volt} la commutazione avviene a circa \SI{1.05}{\volt}. Come è possibile osservare la tensione alta non è sempre 5 V, anzi in base alla tensione di ingresso l'outut varia visibilmente. Questo è uno dei motivi per cui in elettronica digitale si lascia una certa tolleranza ai valori di tensione sia in ingresso che in uscita, dal momento che nessun componente è ideale.}
+    \label{fig:not_tensioni}
+\end{SCfigure}
 
 Successivamente abbiamo studiato la variazione della tensione in uscita dalla porta logica $V\ped{out}$ al variare della tensione in ingresso $V\ped{in}$ della stessa. La tensione in ingresso è stata variata partendo da una tensione di \SI{0}{\volt} fino ad arrivare ad una tensione di \SI{+5}{\volt}, e viceversa, partendo da \SI{+5}{\volt} e arrivando a \SI{0}{\volt}. Quello che abbiamo ottenuto è riportato nel grafico in Figura \ref{fig:not_tensioni}.
-
-%Funzione IN/OUT di una porta NOT
-%Visualizzazione della caratteristica IN/out in tensione di una porta NOT
-%Realizzare una porta NOT tramite la NAND
-%Collegare in input il generatore di funzioni impostato su:
-%Onda: triangolare
-%Ampiezza: 2,5 Vpp
-%Offset = 1,25Vdc
-%Freq = 100KHz
-%Impostare oscilloscopio in modalità X/Y
-%collegare canale X a input porta NOT e Y a out porta (effettuare uno zoom in asse X).
-%valutare la caratteristica di trasferimento
 
 \subsection*{Porta AND}
 
@@ -92,7 +92,7 @@ In questa sezione vogliamo cercare di realizzare un sistema che presi in input i
 
 Quindi per ralizzare tale circuito come prima cosa dobbiamo creare la tabella di verità. Questa è riportata in Tabella \ref{tab:votazione}.
 
-\begin{wrapfloat}{table}{I}{220pt}
+\begin{wrapfloat}{table}{I}{250pt}
 \centering
 \begin{tabular}{l c c c | l}
 	\toprule
@@ -142,8 +142,56 @@ otteniamo il seguente risultato:
 \label{eq:Y_votazione}
 \end{equation}
 
-Quindi dall'equazione (\ref{eq:Y_votazione}) possiamo dedurre che per realizzare il circuito ci occorrono due porte NAND e due porte NOT.
-Quindi a questo punto siamo in grado di realizzare il nostro circuito per la votazione. Infatti ricordandoci che l'operazione di moltiplicazione, in algebra di Boole, è associata alla porta logica AND e l'operazione di somma è associata alla porta logica OR, sfruttando la doppia negazione possiamo ricondurci alle due porte logiche NAND e NOT analizzate in precedenza. Il risultato è illustrato in Figura \ref{fig:votazione}.
+Quindi dall'equazione (\ref{eq:Y_votazione}) possiamo dedurre che per realizzare il circuito ci occorrono solamente delle porte NAND, infatti ricordiamoci che una porta NOT può essere ottenuta grazie ad una porta NAND, come abbiamo già visto. Quindi a questo punto siamo in grado di realizzare il nostro circuito per la votazione. Infatti ricordandoci che l'operazione di moltiplicazione, in algebra di Boole, è associata alla porta logica AND e l'operazione di somma è associata alla porta logica OR, sfruttando la doppia negazione possiamo ricondurci alle porte logiche NAND e NOT analizzate in precedenza. Il risultato è illustrato in Figura \ref{fig:votazione}.
+
+\begin{figure}[h!]
+    \centering
+    \begin{circuitikz}[scale=0.65, transform shape]
+        % Parte sopra
+        \draw
+        (2, 3) node[american nand port] (nand1A) {}
+        (2, 1) node[american nand port] (nand1B) {}
+        (4, 2) node[american nand port] (nand1C) {}
+        (5, 2) node[american not port] (not1) {}
+        (nand1A.out) -| (nand1C.in 1)
+        (nand1B.out) -| (nand1C.in 2)
+        (nand1C.out) -- (not1.in)
+        (nand1A.in 2) -- ++(-2,0) node[left]{A}
+        (nand1B.in 2) -- ++(-2,0) node[left]{B}
+        (nand1A.in 1) ++(-2,0) node[left]{P} -| (nand1B.in 1)
+        ;
+        
+        % Prima parte sotto
+        \draw
+        (2, -1) node[american nand port] (nand2) {}
+        (2, -3) node[american not port] (not2) {}
+        (nand1A.in 1) ++(-0.3,0) |- (nand2.in 1)
+        (nand1B.in 2) ++(-0.6,0) |- (nand2.in 2)
+        (nand1A.in 1) ++(-0.9,0) |- (not2.in)
+        ;
+         
+        % Seconda parte sotto
+        \draw
+        (4.5, -2) node[american nand port] (nand3A) {}
+        (6.5, -3) node[american nand port] (nand3B) {}
+        (nand2.out) -| (nand3A.in 1)
+        (not2.out) -| (nand3A.in 2)
+        (nand3A.out) -| (nand3B.in 1)
+        (nand3B.in 2) -- ++(-1,0) node[left]{C}
+        ;
+        
+        % Unione
+        \coordinate (U) at ($ (nand3B.out) !0.5! (not1.out) $); % !0.5! moltiplica per 0.5
+        \draw
+        (U) ++ (3,0) node [american nand port] (nand4) {}
+        (not1.out) -| (nand4.in 1)
+        (nand3B.out) -| (nand4.in 2)
+        (nand4.out) -- ++(0.5,0) node[right]{OUT}
+        ;
+    \end{circuitikz}
+    \caption{}
+    \label{fig:votazione}
+\end{figure}
 
 \subsection*{Allarme}
 
@@ -156,7 +204,7 @@ In quest'ultima sezione vogliamo cercare di realizzare un semplice sistema di al
 \end{itemize}
 Quindi in modo analogo a quanto fatto per la progettazione del sistema di votazione andiamo a realizzare la tabella di verità di questo circuito. La tabella di verità è riportata in Tabella \ref{tab:allarme}.
 
-\begin{wrapfloat}{table}{I}{220pt}
+\begin{wrapfloat}{table}{I}{250pt}
 \centering
 \begin{tabular}{l c c c | l}
 	\toprule
@@ -199,7 +247,41 @@ Quindi grazie alle leggi di De Morgan otteniamo che:
 	\label{eq:Y_allarme}
 \end{equation}
 
+\begin{wrapfloat}{figure}{O}{350pt}
+    \centering
+        \begin{circuitikz}
+            \draw
+                (1.8, 0) node[nand port] (nand1) {}
+				(1.8, 2) node[nand port] (nand2) {}
+				(1.8, 4) node[nand port] (nand3) {}
+				(0, 0) node[anchor=east] {F} -| (nand1.in 1)
+				(0, 0) -| (nand1.in 2)
+				(0, 2) node[anchor=east] {P} -| (nand2.in 1)
+				(0, 2) -| (nand2.in 2)
+				(0, 4) node[anchor=east] {C} -| (nand3.in 1)
+				(0, 4) -| (nand3.in 2)
+				(3.5, 5) node[nand port] (nand4) {}
+				(3.5, 1) node[nand port] (nand5) {}
+				(5, 1) node[nand port] (nand6) {}
+				(nand1.out) -| (nand5.in 2)
+				(nand2.out) -| (nand5.in 1)
+				(0, 6) node[anchor=east] {I} -| (nand4.in 1)
+				(nand3.out) -| (nand4.in 2)
+				(nand5.out) -| (nand6.in 1)
+				(nand5.out) -| (nand6.in 2)
+				(7, 3) node[nand port] (nand7) {}
+				(nand6.out) -| (nand7.in 2)
+				(nand4.out) -| (nand7.in 1)
+				(nand7.out) node[anchor=west] {OUT}
+            ;
+        \end{circuitikz}
+    \caption{}
+    \label{fig:allarme}
+\end{wrapfloat}
+
 Quindi grazie all'equazione (\ref{eq:Y_allarme}) noi sappiamo che ci occorrono 3 porte NAND e 4 porte NOT per realizzare il circuito desiderato. Infatti basta ricordarsi che per realizzare un AND occorre un NAND la cui uscita deve essere negata con un NOT. Questo è un risultato ottenuto nella sezione relativa all'analisi della porta NAND. Inoltre se si folesse usare solamente la porta NAND, invece che NAND e NOT basta ricordarsi che una NAND può essere vista come un NOT, basta collegare entrambi gli inressi della NAND allo stesso segnale. Quindi grazie a queste informazioni abbiamo realizzato il circuito in Figura \ref{fig:allarme}.
+
+
 
 %\begin{wrapfloat}{figure}{I}{0pt}
 %\includegraphics[width=0.5\textwidth]{Relativo}

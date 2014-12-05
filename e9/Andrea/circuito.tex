@@ -15,4 +15,64 @@ Il materiale utilizzato per questa esperienza di laboratorio è il seguente:
 
 Facciamo presente che sui valori di resistenza riportati in tutto l'elaborato non abbiamo riportato la loro incertezza per motivi di chiarezza e leggibilità dello scritto. Tuttavia abbiamo assunto un errore del $5\%$ sul valore nominale delle resistenze.
 
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.44\columnwidth}
+        \centering
+        \begin{circuitikz}
+            \draw
+                (1.75, 0) node[american nand port] (nand1) {}
+                (nand1.in 1) to (nand1.in 2) 
+                (0, 0) node [anchor=east] {IN} -| (nand1.in 1)
+                (nand1.out) node [anchor=west] {OUT}
+            ;
+        \end{circuitikz}
+        \caption{NOT}
+        \label{fig:not}
+    \end{subfigure}
+    \begin{subfigure}{0.54\columnwidth}
+        \centering
+        \begin{circuitikz}
+            \draw
+                (1.75, 0) node[american nand port] (nand1) {}
+                (3.5, 0) node[american nand port] (nand2) {}
+                (nand1.out) -| (nand2.in 1)
+                (nand1.out) -| (nand2.in 2)
+                (nand1.in 1) node [anchor=east] {A}
+                (nand1.in 2) node [anchor=east] {B}
+                (nand2.out) node [anchor=west] {OUT}
+            ;
+        \end{circuitikz}
+        \caption{AND}
+        \label{fig:and}
+    \end{subfigure}
+    \begin{subfigure}{\columnwidth}
+        \centering
+        \begin{circuitikz}
+            \draw
+                (1, 0) node[american nand port] (nand1) {}
+                (3, 1) node[american nand port] (nand2) {}
+                (3, -1) node[american nand port] (nand3) {}
+                (5, 0) node[american nand port] (nand4) {}
+                (nand1.out) -| (nand2.in 2)
+                (nand1.out) -| (nand3.in 1)
+                (nand2.out) -| (nand4.in 1)
+                (nand3.out) -| (nand4.in 2)
+                (nand2.in 1) to ++ (-2.5, 0) node [anchor=east] {A}
+                (nand3.in 2) to ++ (-2.5, 0) node [anchor=east] {B}
+                (nand1.in 1) to ++ (0, 1)
+                (nand1.in 2) to ++ (0, -1)
+                (nand4.out) node [anchor=west] {OUT}
+            ;
+        \end{circuitikz}
+        \caption{XOR}
+        \label{fig:xor}
+    \end{subfigure}
+    \caption{Tutte le altre porte logiche possono essere costruite utilizzando porte NAND.
+	Per una NOT (\ref{fig:not}) è sufficiente collegare tra di loro gli ingressi,
+	la AND si ottiene mettendo una NAND in serie ad un NOT, per rovesciare lo stato logico,
+	mentre una XOR è un poco più complicata, ma sempre realizzabile con poche porte NAND.
+	Anche la OR non è difficile da realizzare, con due not agli ingressi di una NAND.}
+    \label{fig:porte}
+\end{figure}
 %\section*{Circuito}
