@@ -62,19 +62,19 @@
         ;
     \end{circuitikz}
     \caption{Shift resister ciclico.}
-    \label{fig:shift11}
+    \label{fig:shift12}
 \end{figure*}
 
 \paragraph{Shift register.}
 
 Gli shift register, o registri a scorrimento, sono circuiti che mantengono in memoria un certo numero di bit
-e spostano la sequenza di 1 bit ogni volta che arriva un fronte d'onda negativo (I FF da noi usati erano negative edge triggered).
+e spostano la sequenza di 1 bit ogni volta che arriva un fronte d'onda positivo (I FF da noi usati erano positive edge triggered).
 I registri a scorrimento
 servono principalmente per costruire convertitori seriale-parallelo e parallelo-seriale, ma trovano
 impiego anche in altri campi.
 
 
-La figura \ref{fig:shift11} mostra lo shift register che abbiamo costruito. Il registro
+La figura \ref{fig:shift12} mostra lo shift register che abbiamo costruito. Il registro
 è costruito con 4 flip-flop JK e di conseguenza memorizza 4 bit. Inoltre è l'uscita dell'ultimo FF
 è collegata con l'entrata del primo, per fare un registro ciclico, che cicla la sequenza di bit.
 
@@ -109,7 +109,7 @@ per il conteggio. Non resta che collegarli opportunamente.
 
 Tuttavia i 74LS191 sono contatori a 4 bit e noi vogliamo realizzare un contatore a 8 bit, per
 cui ce ne servono 2 in cascata, il secondo dei quali conta il numero delle volte che il primo
-è andato in overflow. Il circuito in figura \ref{fig:contatore11} è il circuito adatto allo scopo.
+è andato in overflow/underflow. Il circuito in figura \ref{fig:contatore12} è il circuito adatto allo scopo.
 
 Gli integrati 74LS191 hanno le seguenti porte:
 
@@ -127,7 +127,25 @@ Gli integrati 74LS191 hanno le seguenti porte:
 La parte in basso a sinistra del circuito è composta da un interruttore che permette di scegliere la direzione
 del conteggio. Il FF JK serve per assicurarsi che lo stato delle porte U/$\overline{\text{U}}$ venga cambiato
 soltanto quando il clock è alto, poiché sulle specifiche del 74LS191 è scritto che cambiarlo in altri momenti
-causa uno stato non definito all'interno dell'integrato. 
+causa uno stato non definito all'interno dell'integrato. Il flip-flop cambia lo stato di Q e quindi delle porte
+U/$\overline{\text{U}}$ soltanto quando il clock diventa alto, poiché i JK sono positive edge triggered.
+La resistenza da \SI{1}{\kilo\ohm} è un semplice pull-down.
+
+In seguito sono presenti due contatori a 4 bit, collegati a clock e al FF JK come visto prima. Inolte
+la porta CE (Count Enable) del primo è collegata al riferimento per attivare il contatore, mentre quella del
+secondo è collegata all'uscita RC del primo, in modo che il secondo venga attivato solo quando il primo
+va in overflow/undeflow. Inoltre è necessario azzerare il contatore all'accensione. Questo viene assicurato
+collegando a comune le uscite $P_1,\dots,P_4$ di ciascun contatore e collegando la porta LOAD, attiva negativa,
+con una resistenza ed un condensatore, come è stato fatto nel circuito precedente. All'accensione il condensatore
+impiega del tempo per caricarsi e nel frattempo attiva la porta LOAD.
+
+Quindi questo circuito conta il numero di fronti d'onda che arrivano dal clock. Se il clock è collegato
+ad un rilevatore di particelle, per esempio, verrà contato il numero di particelle rilevate. Ovviamente
+il rivelatore deve fornire un segnale a 5 volt quando arriva la particella.
+
+La verifica del funzionamento è stata fatta con la solita scheda coi LED, fornendo sul clock
+un onda quadra di frequenza bassa (pochi Hertz) per poter vedere il conteggio. Una verifica
+migliore verrà fatta nel prossimo paragrafo.
 
 \begin{figure*}
     \centering
@@ -214,5 +232,56 @@ causa uno stato non definito all'interno dell'integrato.
         ;
     \end{circuitikz}
     \caption{Contatore a 8 bit.}
-    \label{fig:contatore11}
+    \label{fig:contatore12}
 \end{figure*}
+
+\paragraph{Convertitore digitale-analogico.}
+
+L'ultima parte dell'esperienza si è svolta con l'utilizzo del DAC08 un convertitore digitale
+analogico a 8 bit  (DAC sta per Digital to Analog Converter). Questo integrato prende in input 8 canali digitali
+fornisce un output analogico. Abbiamo quindi collegato il DAC08 al circuito illustrato nel paragrafo precedente,
+in modo da poter costruire un generatore di onde a dente di sega. Questo è il modo in cui la granparte dei
+generatori di forme d'onda funzionano, poiché è molto semplice da implementare.
+
+Il DAC08 ha 8 ingressi sui quali si può inviare un numero a 8 bit per la conversione.
+Ovviamente questi ingressi sono stati collegati con le uscite dei contatori, come si può vedere nello
+schema in figura \ref{fig:dac12}.
+Oltre agli ingressi il DAC08 necessita di alimentazione ai pin 13 (positiva)
+e 3 (negativa) compresa tra i 9 e i 36 V (anche non simmetrici). Noi abbiamo usato $\pm \SI{5}{\volt}$ 
+Questo integrato fornisce in output una corrente
+sul pin 4 ($I\ped{out}$) che è proporzionale al numero binario in ingresso, e una corrente sul pin 2 ($\overline{I\ped{out}}$) che è il complemento
+di quella sul pin 4. Possono essere usate entrambe; nel caso in cui una non vada usata è necessario collegarla
+a terra per far fluire la corrente. Nel nostro caso, il piedino 2 è stato collegato a terra.
+La corrente assorbita dal pin 4 ($I\ped{out}$) rispetta la seguente formula
+
+\begin{equation}
+	I\ped{out} = I\ped{FS} \frac{n}{256} = I\ped{ref} \frac{255}{256} \cdot \frac{n}{256}
+\end{equation}
+%
+dove $n$ è il numero binario in ingresso, $I\ped{FS} = 255/256 \times I\ped{ref}$ è la corrente massima di uscita (a $n = 255$)
+e $I\ped{ref}$ è la corrente di riferimento. La corrente di riferimento può andare da 0.2 mA a 4 mA, e può essere impostata
+grazie al pin 14 (VR+). Abbiamo deciso $I\ped{ref} = 2 mA$. Per ottenere questo valore è necessario sapere che
+i pin 14 (VR+) e 15 (VR-) sono le entrate di un operazionale. Il pin 15 è stato collegato a riferimento, mentre l'altro è stato alimentato
+con 4.4 V e interponendo tra l'alimentazione e il pin una resistenza da 2.2 \si{\kilo\ohm}, in modo da generare 2 mA (l'operazionale crea un
+ground virtuale). Inoltre per eliminare l'effetto delle correnti di polerizzazzione, anche VR- è stato collegato a terra con una resistenza
+da 2.2 \si{\kilo\ohm}.
+
+Poiché il circuito può essere usato con famiglie di logiche diverse dalla TTL, è necessario impostare
+il tipo di logica da usare, utilizzando il pin 1 (VLC). Nel caso della TTL è sufficiente collegare il VLC a ground.
+Infine il DAC08 è dotato di una porta (COMP) per compensare l'operazionale. Quest pin (16) deve essere collegato all'alimentazione negativa
+mediante una capacità. Abbiamo usato una capacità da 10 nF.
+
+Infine è necessario trasfromare la corrente di output in una tensione. Si è quindi collegato l'uscita a
+riferimento mediante una resistenza da 2 \si{\kilo\ohm}, in modo da avere una tensione di uscita $V\ped{out}$
+compresa tra 0 e -4 V (la corrente è entrante).
+
+È chiaro che il circuito così costruito darà in output un'onda a dente di sega di frequenza dipendente da quella del clock,
+o per essere più precisi pari a 1/256 della frequenza del clock. La figura \ref{fig:dds12} mostra un tipico output del circuito.
+La frequenza del dente di sega in figura è 3.9 Hz, che è esattamente 1 kHz nel clock, ovvero la frequenza dell'onda quadra che abbiamo
+fornito sul clock per far funzionare il circuito.
+
+\begin{figure}
+    \includegraphics[width=\columnwidth]{figure/dds.pdf}
+    \caption{Output del circuito $\bigotimes$}
+    \label{fig:dds12}
+\end{figure}
