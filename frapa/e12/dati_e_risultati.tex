@@ -147,9 +147,9 @@ La verifica del funzionamento è stata fatta con la solita scheda coi LED, forne
 un onda quadra di frequenza bassa (pochi Hertz) per poter vedere il conteggio. Una verifica
 migliore verrà fatta nel prossimo paragrafo.
 
-\begin{figure*}
+\begin{figure*}[p]
     \centering
-    \begin{circuitikz}[x=0.9cm, y=0.9cm]
+    \begin{circuitikz}[scale=0.8, transform shape]
         \draw
             (3, -4) -| (5, -7) -| (3, -4)
             (3, -4.75) node[right] (J) {J}
@@ -235,12 +235,132 @@ migliore verrà fatta nel prossimo paragrafo.
     \label{fig:contatore12}
 \end{figure*}
 
+\begin{figure*}
+    \centering
+    \begin{circuitikz}[scale=0.7, transform shape]
+       \draw
+           (3, -4) -| (5, -7) -| (3, -4)
+           (3, -4.75) node[right] (J) {J}
+           (3, -6.25) node[right] (K) {K}
+           (5, -4.75) node[left] (Q) {Q}
+           (5, -6.25) node[left] {$\overline{\text{Q}}$}
+           (3, -5.25) -- (3.25, -5.5) -- (3, -5.75)
+           (4, -4) node[below] (PR) {PR} to[short, o-o] ++ (0, 0.5) node[above] {$V\ped{CC}$}
+           (4, -7) node[above] (CL) {CL} to[short, o-o] ++ (0, -0.5) node[below] {$V\ped{CC}$}
+       ;
+       \coordinate (preCLK_JK) at (2, -6);
+       \coordinate (preJ) at (2.5, -4.75);
+       \coordinate (preK) at (2.5, -6.25);
+       \coordinate (CLK_JK) at (3, -6);
+       
+       \draw
+           (-1, -6) node[above] {$V\ped{CC}$} |- (0, -7) ++ (0.1, 0) circle (0.1)
+           ++ (0.1, 0) --++ (0.5, 0.3) ++ (0, -0.3) circle (0.1) ++ (0.1, 0)
+           coordinate (switch)
+       ;
+       
+       \draw
+           (switch) -| (preJ) -- (J.west)
+           (switch) -| (preK) to [short, -o] (K.west)
+           (switch) --++ (0.5, 0) to[R, l=1<\kilo\ohm>] ++(0, -1.5) node[rground] {}
+       ;
+       \draw
+           (-1, 0) node[left] (CLK) {CLK} -| (preCLK_JK) -- (CLK_JK)
+       ;
+       
+       \foreach \i in {0,1} {
+           \draw (11, -\i*6 + 2) -| (14, -\i*6 - 3) -| (11, -\i*6 + 2);
+           \draw
+               (11, -\i*6 + 2 - 0.5) node[right] (P0\i) {P0}
+               (11, -\i*6 + 2 - 1) node[right] (P1\i) {P1}
+               (11, -\i*6 + 2 - 1.5) node[right] (P2\i) {P2}
+               (11, -\i*6 + 2 - 2) node[right] (P3\i) {P3}
+               (11, -\i*6 + 2 - 3.5) node[right] (CE\i) {CE}
+               (11, -\i*6 + 2 - 4) node[right] (DU\i) {D$\overline{\text{U}}$}
+               (11, -\i*6 + 2 - 4.5) node[right] (LOAD\i) {LOAD}
+               (11, -\i*6 + 2 - 2.5) --++ (0.25, -0.25) --++ (-0.25, -0.25)
+               (14, -\i*6 + 2 - 0.5) node[left] (Q0\i) {Q0}
+               (14, -\i*6 + 2 - 1) node[left] (Q1\i) {Q1}
+               (14, -\i*6 + 2 - 1.5) node[left] (Q2\i) {Q2}
+               (14, -\i*6 + 2 - 2) node[left] (Q3\i) {Q3}
+               (14, -\i*6 + 2 - 3.5) node[left] (CR\i) {CR}
+           ;
+           \draw
+               (P0\i) --++ (-1, 0)
+               (P1\i) --++ (-1, 0)
+               (P2\i) --++ (-1, 0)
+               (P3\i) --++ (-1, 0) |- ++ (-1, 2) node[rground] {}
+               (Q0\i.east) to[short]++ (1, 0) % node (Q0R\i)
+               (Q1\i.east) to[short]++ (1, 0)
+               (Q2\i.east) to[short]++ (1, 0)
+               (Q3\i.east) to[short]++ (1, 0)
+           ;
+           \coordinate (CLK\i) at (11, -\i*6 + 2 - 2.75); }
+       
+       \draw
+           (Q) --++ (2, 0) |- (DU0.west)
+           (Q) ++ (2, 0) |- (DU1.west)
+           (CLK) --++ (7, 0) |- (CLK0)
+           (CLK) ++ (7, 0) |- (CLK1)
+           (CR0.east)  to[short, o-] ++ (1, 0) |- ++ (-6.5, -2) |- (CE1)
+           (CE0.west) --++ (-1, 0) node[rground] {}
+       ;
+       \draw
+           (LOAD0.west) -| (7.5, -8.5)
+           (LOAD1.west) -| (7.5, -11)
+           --++ (1, 0)
+       ;
+       \coordinate (LS) at (8.5, -11);
+       \draw
+           (LS) to[C, l=470 nF] ++ (0, -1) node[rground] {}
+           (LS) to[R, l_=10<\kilo\ohm>] ++(0, 1.5) node[above] {$V\ped{CC}$}
+       ;
+       
+       % PARTE Matteo
+       
+       % linee  b1-b4
+       \foreach \j/\jtext in {0/4,1/3,2/2,3/1}{
+       \draw (Q\j1.east) ++(1,0) -- ++(2.5,0) node(B\jtext)[right]{B\jtext};
+       }
+       % linee b5-b8
+       \foreach \j/\jRa/\jRb/\jtext in {0/2/0.5/8,1/1.5/1/7,2/1/1.5/6,3/0.5/2/5}{
+       \draw (Q\j0.east) ++(1,0) -- ++(\jRa,0) -- ++(0,-4) -- ++(\jRb,0) node(B\jtext)[right]{B\jtext};
+       % VR+ e VR- con resistenze
+       \draw
+           (B1) ++ (0.1,-1) node (VRP) {$V\ped{R+}$}
+           (VRP) ++ (0,-0.5) node (VRM) {$V\ped{R-}$}
+           (VRP.west) -- ++(-2,0) -- ++(0,-1) to[R, l_=2.2<\kilo\ohm>] ++(0, -3) node[rground] {}
+           (VRM.west) -- ++(-1,0) -- ++(0,-0.5) to[R, l=2.2<\kilo\ohm>] ++(0, -3) node[rground] {}
+       ;
+       % disegno il rettangolo
+       \draw ($(B8.west)+(0,0.5)$) rectangle ($(VRM.west)+(3,-0.5)$);
+       }
+       % nodi della parte destra
+       \node (IOUT)  at ($(B8.west)+(3,0)$)  [left]{$I\ped{OUT}$};
+       \node (IOUTN) at ($(B5.west)+(3,0)$)  [left]{$\overline{I\ped{OUT}}$};
+       \node (COMP)  at ($(B1.west)+(3,0)$)  [left]{COMP};
+       \node (VLC)   at ($(VRM.west)+(2.9,0)$) [left]{VLC};
+       % componenti e fine
+       \draw
+           (VLC.east) ++(0.1, 0) -- ++(1,0) node[rground] {}
+           (COMP.east) to[C,l=10 nF, -o] ++(1.5,0) node[right]{$-15V$}
+           (IOUTN.east) -- ++(1,0) node[rground]{}
+           (IOUT.east) -- ++(1,0) to[R,l=2<\kilo\ohm>] ++(1.5,0) -- ++(0.5,0)  node[rground]{}
+           (IOUT.east) ++(0.5,0) -- ++(0,1) node[above]{$V\ped{OUT}$}
+       ;
+       % label=above:$s\le3$] 
+    \end{circuitikz}
+    \caption{Generatore di onde a dente di sega.}
+    \label{fig:ds_dac12}
+\end{figure*}
+
 \paragraph{Convertitore digitale-analogico.}
 
 L'ultima parte dell'esperienza si è svolta con l'utilizzo del DAC08 un convertitore digitale
 analogico a 8 bit  (DAC sta per Digital to Analog Converter). Questo integrato prende in input 8 canali digitali
 fornisce un output analogico. Abbiamo quindi collegato il DAC08 al circuito illustrato nel paragrafo precedente,
-in modo da poter costruire un generatore di onde a dente di sega. Questo è il modo in cui la granparte dei
+in modo da poter costruire un generatore di onde a dente di sega come quello in
+figura \ref{fig:ds_dac12}. Questo è il modo in cui la granparte dei
 generatori di forme d'onda funzionano, poiché è molto semplice da implementare.
 
 Il DAC08 ha 8 ingressi sui quali si può inviare un numero a 8 bit per la conversione.
@@ -260,7 +380,7 @@ La corrente assorbita dal pin 4 ($I\ped{out}$) rispetta la seguente formula
 %
 dove $n$ è il numero binario in ingresso, $I\ped{FS} = 255/256 \times I\ped{ref}$ è la corrente massima di uscita (a $n = 255$)
 e $I\ped{ref}$ è la corrente di riferimento. La corrente di riferimento può andare da 0.2 mA a 4 mA, e può essere impostata
-grazie al pin 14 (VR+). Abbiamo deciso $I\ped{ref} = 2 mA$. Per ottenere questo valore è necessario sapere che
+grazie al pin 14 (VR+). Abbiamo deciso $I\ped{ref} = 2$ mA. Per ottenere questo valore è necessario sapere che
 i pin 14 (VR+) e 15 (VR-) sono le entrate di un operazionale. Il pin 15 è stato collegato a riferimento, mentre l'altro è stato alimentato
 con 4.4 V e interponendo tra l'alimentazione e il pin una resistenza da 2.2 \si{\kilo\ohm}, in modo da generare 2 mA (l'operazionale crea un
 ground virtuale). Inoltre per eliminare l'effetto delle correnti di polerizzazzione, anche VR- è stato collegato a terra con una resistenza
@@ -282,6 +402,6 @@ fornito sul clock per far funzionare il circuito.
 
 \begin{figure}
     \includegraphics[width=\columnwidth]{figure/dds.pdf}
-    \caption{Output del circuito $\bigotimes$}
+    \caption{Output del circuito \ref{fig:ds_dac12}}
     \label{fig:dds12}
 \end{figure}

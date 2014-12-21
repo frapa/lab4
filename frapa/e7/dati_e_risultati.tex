@@ -4,14 +4,15 @@
 
 Per capire come misurare l'attività cardiaca è necessaria una breve introduzione
 al funzionamento del cuore. In cuore è composto da due atrii e due ventricoli,
-come mostrato in figura \ref{fig:heart7}. Si gonfiano e poi congraggono prima gli atrii e poi ventricoli
-in modo da pompare il sangue lungo i vasi sanguigni. Un appostito sistema di valvole
+come mostrato in figura \ref{fig:heart7}. Si gonfiano e si contraggono prima gli atrii e poi ventricoli
+in modo da pompare il sangue lungo i vasi sanguigni. Un apposito sistema di valvole
 fa in modo che il sangue non venga spinto nella direzione sbagliata diminuendo l'efficienza
 dell'organo.
 
-La membrana cellulare in condizioni normali è polarizzata, ovvero c'è una differenza di potenziale
-tra interno ed esterno a causa delle diverse concentrazioni di ioni tra interno ed esterno. Il miocardio, o muscolo cardiaco,
-contiene alcune cellule (formanti miocardio specifico) che sono in grado di depolarizzarsi. Queste cellule
+Ma come fa in cuore a coordinare con precisione le contrazioni? La membrana cellulare di tutte
+le cellule del corpo, in condizioni normali, è polarizzata, ovvero c'è una differenza di potenziale
+tra interno ed esterno a causa delle diverse concentrazioni di ioni. Il miocardio, il muscolo cardiaco,
+contiene alcune cellule (formanti il miocardio specifico) che sono in grado di depolarizzarsi. Queste cellule
 forniscono, ad intervalli circa regolari, l'impulso elettrico che fa contrarre il cuore.
 Essendo il cuore un organo complicato la stimolazione elettrica deve essere precisa ed è composta
 di varie fasi che agiscono su svariate parti del cuore in successione.
@@ -25,7 +26,7 @@ di varie fasi che agiscono su svariate parti del cuore in successione.
 
 Poiché il corpo è un buon conduttore, essendo formato in gran parte da soluzioni ioniche, questi impulsi
 si trasmettono facilmente a tutto il corpo, generando differenze di potenziale abbastanza semplici
-da misurare. In questo modo è possibile rilevare, senza intervanti invasivi, le varie fasi di contrazione
+da misurare. Così è possibile rilevare, senza interventi invasivi, le fasi di contrazione
 del cuore e verificare l'insorgenza di problemi di salute.
 
 \begin{figure}[b]
@@ -44,8 +45,8 @@ del cuore e verificare l'insorgenza di problemi di salute.
         \node (sotto)  at ($(0,-4)+(-0.2,+0.2)$) {};
         \draw [->] (sotto) to [out=135,in=225] node [left] {$\Delta V\ped{cuore}$} (sopra);
     \end{circuitikz}
-    \caption{Le $R_T$ rappresentano la resisenza del corpo, mentre la parte a destra della
-        linea tratteggiata é il ciruito equivalente dell'elettrodo. }
+    \caption{Le $R_T$ rappresentano la resistenza del corpo, mentre la parte a destra della
+        linea tratteggiata é il circuito equivalente dell'elettrodo. }
     \label{fig:elettrodi7}
 \end{figure}
 
@@ -83,7 +84,7 @@ prossimo paragrafo.
 \paragraph{Blocchi funzionali}
 
 Il circuito per la misura è mostrato in figura \ref{fig:circ7}. Il circuito è stato alimentato da due batterie da
-9 V al fine di evitare contatti accidentali tra tensione di rete, terra e corpo. Questi contatti potrebebro portare
+9 V al fine di evitare contatti accidentali tra tensione di rete, terra e corpo. Questi contatti potrebbero portare
 a folgorazioni del paziente. Analizziamo quindi i vari blocchi funzionali del circuito.
 
 Il segnale che arriva dai polsi è piuttosto piccolo, nell'ordine dei millivolt, ed è molto sporco.
@@ -92,7 +93,7 @@ la differenza di potenziale tra i polsi del paziente. Per ridurre il rumore i du
 di due filtri passa-basso formati dalle resistenze $R_F$ e dai condensatori $C_c$. Inoltre per ridurre
 ulteriormente le frequenze molto alte, il condensatore $C_m$ mette gli ingressi in modo comune
 a frequenze alte. Abbiamo poi scelto le resistenze di guadagno $R_G$ in modo da avere un guadagno elevato:
-la scelta è caduta su due resistenze da \SI{120}{\ohm}, il guadagno dell'AD622 era quindi
+la scelta è caduta su due resistenze da \SI{220}{\ohm}, il guadagno dell'AD622 era quindi
 $G = 1 + 2R_G/\SI{50.5}{\kilo\ohm} = 1 + 440/\SI{50.5}{\kilo\ohm} = 116$. 
 
 Una volta amplificato il segnale, abbiamo utilizzato un filtro passa alto (blocco 2)
@@ -103,11 +104,11 @@ In questo modo, anche se il segnale viene attenuato un po', si eliminano le comp
 che non vogliamo avere nell'ECG. Il blocco contiene anche un follower (opamp U2),
 per avere un alta impedenza all'uscita del filtro.
 
-Infine il blocco 3 è costituito da un ulteriore stadio di amplificazione, realizzato operazionale in modalità
+Infine il blocco 3 è costituito da un ulteriore stadio di amplificazione, realizzato con un operazionale in modalità
 di amplificatore invertente con guadagno G = -10. L'unica cosa da notare è la capacità $C_2$, che non è altro che un ulteriore
 filtro per il rumore ad alta frequenza. Il condensatore evita che vengano amplificato i segnali ad alte frequenze.
 
-Un altro accorgmento per ridurre il rumore è il blocco 4. Questo blocco preleva tra le 2 $R_G$ la media
+Un altro accorgimento per ridurre il rumore è il blocco 4. Questo blocco preleva tra le 2 $R_G$ la media
 delle due tensioni all'ingresso dell'AD622 e dopo l'opamp U4, la cui funzione è solo di
 aumentare l'impedenza in modo da non disturbare il funzionamento dell'AD622, questa tensione media viene
 inserita nelle calze dei cavi di collegamento agli elettrodi. Le calze sono degli involucri conduttori che avvolgono i
@@ -121,12 +122,12 @@ cavi veri e propri, e hanno due funzioni:
 \end{itemize}
 
 Dopo questo stadio abbiamo quindi il segnale finale che formerà l'ECG. Tuttavia c'è ancora un problema
-di sicurezza. Collegando questo circuito, che è stato alimentato da +9 V e -9 V forniti da due batterie
-in serie per evitare collegamenti con la rete, con l'oscilloscopio c'è il rischio che qualche parte venga
+di sicurezza. Collegando questo circuito, che è stato alimentato da due batterie
+per evitare collegamenti con la rete, con l'oscilloscopio c'è il rischio che qualche parte venga
 a contatto con tensioni di rete (per esempio perché l'oscilloscopio è malfunzionante, ma anche perché
 semplicemente non sappiamo come sia realizzato internamente). Abbiamo quindi utilizzato un amplificatore
 isolante ISO 124. Questo componente accetta in ingresso due diverse coppie di tensioni di alimentazione e due
-riferimenti diversi, indicati rispettivamente con $+V_{S1}$, $-V_{S2}$, GND1, $+V_{S2}$, $-V_{S2}$, GND2 in
+riferimenti diversi, indicati rispettivamente con $+V_{S1}$, $-V_{S1}$, GND1, $+V_{S2}$, $-V_{S2}$, GND2 in
 figura \ref{fig:circ7}.
 Inoltre possiede un ingresso e un uscita: l'uscita è una replica l'ingresso, ma è riferita a GND2 e alimentata
 da $+V_{S2}$, $-V_{S2}$ invece che essere riferita a GND1 come l'entrata. Questo permette di separare

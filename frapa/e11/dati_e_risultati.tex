@@ -56,12 +56,12 @@ un informazione. Questo è possibile poiché un ingresso di ciascuna delle porte
 rimangono a 0, facendo passare l'informazione contenuta all'uscita dell'altra porta (negata).
 Il sistema è quindi stabile. Per impostare il valore delle uscite si possono utilizzare
 le configurazione $S=1$ e $R=0$ oppure $S=0$ e $R=1$. Il caso R e S entrambi a 1 è invece da
-evitare, perché porta il circuito in uno stato non ben definito, poiché una volta che gli ingressi
-cambiano da 1 a 0 non si sa più qual'è l'output, ovvero esso dipende da come avviene la transizione.
+evitare, perché porta il circuito in uno stato non ben definito. Infatti una volta che gli ingressi
+cambiano da 1 a 0 non si sa più qual'è l'output, perché esso dipende da come avviene la transizione (da quale passa prima a 0).
 
 Questo piccolo circuito è quindi un elemento di memoria che può immagazzinare un dato binario.
 Non ci è rimasto che verificare il funzionamento del circuito utilizzando la schedina con i LED,
-che ha dato esiti positivi. 
+test che ha dato esiti positivi. 
 
 \paragraph{Flip-Flop SR sincronizzato}
 
@@ -105,7 +105,7 @@ Anche in questo caso la verifica è stata immediata.
 
 È spesso utile poter salvare lo stato di un segnale. Torna utile per questo scopo il flip-flop
 di tipo D. Il circuito è riportato in figura \ref{fig:ff_sr_dtype11}. Non c'è molto
-da commentare sul circuito poiché è molto simile ai precedenti. La differenza sta nel fatto che
+da commentare sul circuito poiché è molto simile ai precedenti. La differenza è che
 quando il CLK è alto viene immagazzinato in Q il segnale proveniente dall'ingresso D.
 
 \begin{figure}

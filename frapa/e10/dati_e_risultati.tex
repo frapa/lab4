@@ -37,18 +37,18 @@ La porta NAND in fondo alla serie di NOT trasforma il ritardo in un impulso.
 \end{figure}
 
 Nello stato iniziale, ovvero ingresso costante 0, la porta NAND ha un uscita uguale a 1, poiché ad
-un ingresso riceve direttamente lo 0 a ell'altro 1. Quando l'input passa da 0 a 1,
+un ingresso riceve direttamente lo 0 e all'altro 1. Quando l'input passa da 0 a 1,
 la porta NAND commuta stato e il suo output diventa 0: ad un ingresso c'è 1, mentre all'altro c'è ancora 1 a causa del ritardo delle
 porte NOT. Quando anche le porte NOT commutano, la NAND si ritrova con un input 1 e l'altro 0, quindi
-l'ucita torna ad essere 1. Al momento della discesa da 1 a 0 non accade nulla.
+l'uscita torna ad essere 1. Al momento della discesa da 1 a 0 non accade nulla.
 
-Idealmente si forma un circuito che da in output un inpulso rettangolare di durata pari a quella
+Idealmente si forma un circuito che da in output un impulso rettangolare di durata pari a quella
 della commutazione delle 3 porte. Chiaramente, avendo anche la porta NAND un suo tempo di commutazione
-l'inpulso in realtà non sarà rettangolare, ma smussato. Per questo è importante usare 3 porte NOT:
+l'impulso in realtà non sarà rettangolare, ma smussato. Per questo è importante usare 3 porte NOT:
 in questo modo si evita che il ritardo della porta NAND renda incomprensibile il segnale di uscita,
 assicurandoci che la commutazione dei NOT duri circa il triplo di quella della NAND.
 
-Il risultato della micura è mostrato nel grafico in figura \ref{fig:comm_time_10}.
+Il risultato della misura è mostrato nel grafico in figura \ref{fig:comm_time_10}.
 La figura mostra l'input e l'output del circuito \ref{fig:ritardo10}. All'ingresso è stata applicata
 un'onda quadra di frequenza 100 kHz tra 0 V e 5 V e la figura mostra il fronte in salita dell'onda.
 La commutazione ha una durata di circa 60 ns che significa 20 ns per ciascuna porta NOT.
@@ -88,7 +88,7 @@ circa $(9-1-0.4)/0.005 = 1.52$ \si{\kilo\ohm}. Abbiamo quindi utilizzato una res
 e un trimmer da 1 \si{\kilo\ohm}, in modo da poter regolare la corrente, misurata con il multimetro
 mentre la NOT era in funzione, fino al valore desiderato.
 
-In seguito, abbiamo verificato il funzionamento fornendo 0 o 1 in inmput al NOT e osservando il LED.
+In seguito, abbiamo verificato il funzionamento fornendo 0 o 1 in input al NOT e osservando il LED.
 Risultato:
 
 \begin{itemize}
@@ -240,7 +240,7 @@ spento se S = 1. Il circuito ha funzionato a dovere.
 
 Congiuntamente con un altro gruppo, abbiamo realizzato un sistema di Multiplexing/Demultiplexing. Il multiplexing
 è una tecnica che consente di trasmettere più segnali attraverso un unico cavo (per esempio per
-risparmiare prezioso cavo come nel telefono). L'idea di base è questa:
+risparmiare prezioso cavo come nelle linee telefoniche). L'idea di base è questa:
 si hanno N diverse segnali digitali da trasmettere. Si inizia trasmettendo il primo segnale e segnalando
 all'altro capo, attraverso dei cavi di selezione o di controllo, quale degli N segnali si sta trasmettendo.
 Poi si trasmette il secondo segnale, poi il terzo e così via, fino all'N-esimo e poi si ricomincia.
@@ -251,7 +251,7 @@ invece del tempo.
 Noi abbiamo realizzato un multiplexing a 4 linee, cioè in grado di trasmettere fino a 4 segnali diversi.
 Abbiamo quindi 4 segnali in entrata, un cavo di collegamento che contiene un filo per la trasmissione, 2 per
 la selezione e un filo che trasporta il comune, in modo da non avere trasmittente e ricevente flottanti.
-I 2 cavi di selezione sono necessari perché 2 bit codificano 4 divesi stati, corrispondenti a quale delle 4
+I 2 cavi di selezione sono necessari perché 2 bit codificano 4 diversi stati, corrispondenti a quale delle 4
 linee di dati è attiva.
 
 \begin{figure}
@@ -347,5 +347,5 @@ All'altro terminale del cavo è presente un circuito di demultiplexing, che agis
 maniera molto simile. Questo componente è stato realizzato dal nostro gruppo partner. Una volta montato il circuito
 lo abbiamo testato inviando segnali generati con il generatore di funzioni d'onda, a uno degli input e selezionando
 con le linee di selezione i 4 canali a rotazione. L'altro gruppo, mediante una scheda con i LED, ha verificato
-la ricezione del segnale. Anche se il circuito è piuttosto intricato, anche se ripetitivo, siamo riusciti a realizzarlo
+la ricezione del segnale. Anche se il circuito è piuttosto intricato, siamo riusciti a realizzarlo
 correttamente al primo tentativo.

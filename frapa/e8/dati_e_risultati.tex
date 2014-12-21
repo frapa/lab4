@@ -1,7 +1,7 @@
 \subsection{Dati e risultati}
 
 L'oscillatore a ponte di Wien (figura \ref{fig:circ8}), che prende il nome dal fatto che non è altro
-che un ponte di wien modificato con l'inserimento di un amplificatore operazionale, è un particolare
+che un ponte di Wien modificato con l'inserimento di un amplificatore operazionale, è un particolare
 tipo di oscillatore che genera onde sinusoidali. È evidente che un oscillatore deve avere un
 feedback positivo, altrimenti non è caratterizzato dall'instabilità tipica di un oscillatore.
 
@@ -82,8 +82,9 @@ in modo che $V^-$ sia una replica di $v^+$. In questo caso significa che $V\ped{
 delle frequenze presenti all'ingresso $V^+$, poiché il ramo di retroazione negativa è puramente resistivo e non filtra
 le frequenze.
 
-A questo punto il ``ciclo'' ricomincia, poiché all'ingresso non invertente giunge una versione filtrata di $V\ped{out}$.
-Il sistema tende ad attenuare di molto le frequenze molto distanti dal picco a 1.6 kHZ, ma avendo un guadagno di 1/3 tende
+A questo punto il ``ciclo'' ricomincia con $V\ped{out}$ che contiene principalmente le frequenze non filtrate,
+dato che all'ingresso non invertente giunge una versione filtrata della $V\ped{out}$ iniziale.
+Il sistema tende ad attenuare di molto le frequenze molto distanti dal picco a 1.6 kHz, ma avendo un guadagno di 1/3 tende
 ad attenuare anche le frequenze di picco. È evidente che se sul ramo di retroazione negativa il guadagno fosse esattamente 3
 in modo da compensare il guadagno 1/3 sull'altro ramo,
 si avrebbe che tutte le frequenze tranne quella centrale vengono rimosse, mentre quella centrale rimane inalterata.
@@ -193,13 +194,13 @@ delle capacità.
 
 \paragraph{Compensazione delle sonde.}
 
-Oltre alla costruzione dell'oscillatore, abbiamo anche compensato una sonda di misura. Ma vediamo la regione per cui
+Oltre alla costruzione dell'oscillatore, abbiamo anche compensato una sonda di misura. Ma vediamo la ragione per cui
 in alcuni casi è necessario utilizzare sonde che prevedono la possibilità di aggiustare la capacità interna.
 
 In figura \ref{fig:circ_sonda8} è riportato uno schema di un oscilloscopio con collegata una generica sonda.
 La sonda, non essendo un conduttore ideale, presenta una certa resistenza e possiede una capacità propria, causata
-dal rumore di rete, dalle trasmissioni elettromagnetiche, ma anche dalla posizione del cavo rispetto ad altri conduttori.
-L'ingresso dell'oscilloscopio presenta una capacità ed una resistenza, come tutti i circuiti elettrici.
+dalla posizione del cavo rispetto ad altri conduttori. Inoltre è soggetta al rumore di rete, e alle trasmissioni
+elettromagnetiche. L'ingresso dell'oscilloscopio presenta una capacità ed una resistenza, come tutti i circuiti elettrici.
 
 È immediato comprendere che si forma un partitore, la cui tensione di uscita, contenendo delle capacità, dipende anche dalla
 frequenza. All'ingresso dell'oscilloscopio abbiamo quindi un segnale diverso da quello che volevamo misurare ed inoltre non

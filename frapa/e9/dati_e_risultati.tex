@@ -87,7 +87,7 @@ la cui costruzione utilizzando porte NAND è riportata in figura \ref{fig:porte9
 Ogni componente digitale ha delle bande di tensione che vengono trattate come 0 e 1 logici. Per esempio
 una porta logica può considerare 0 le tensioni più basse di una certa soglia (nella TTL, 0.8 V), 
 e 1 le tensioni superiori ad un altra soglia (nella TTL, 2 V). La banda a metá tra le due soglie
-da un risultato indefinito. Tuttavia le soglie non sono fisse, ma dipendono se si sta salendo o
+dà un risultato indefinito. Tuttavia le soglie non sono fisse, ma dipendono se si sta salendo o
 scendendo di tensione, ovvero è presente un ciclo di isteresi. Inoltre questi dispositivi
 devono rispondere ad uno standard che prevede che la loro uscita per i livelli logici 0 e 1 sia
 contenuta in certe bande di tensione. Noi non abbiamo verificato quest'ultimo aspetto.
@@ -98,7 +98,7 @@ contenuta in certe bande di tensione. Noi non abbiamo verificato quest'ultimo as
     \caption{Il grafico mostra l'isteresi della porta NOT. L'ampiezza dell'isteresi è di circa 0.1 V e avviene attorno a 1.1 V.
         Questo significa che partendo da 0 V e salendo in tensione, si ha la commutazione a circa 1.15 V, mentre
         scendendo da 5 V la commutazione avviene a circa 1.05 V. La tensione alta non è sempre 5 V, anzi in base alla tensione di ingresso
-        l'outut varia visibilmente.}
+        l'output varia visibilmente.}
     \label{fig:ist9}
 \end{figure}
 
@@ -207,9 +207,9 @@ che sono a 0 se la voto è contrario e 1 se è favorevole all'emendamento in vot
     \label{tab:karnaugh_vota9}
 \end{table}
 
-La tabella di verità che vogliamo ottenere è la \ref{tab:karnaugh_vota9} e come
+La tabella di verità che vogliamo ottenere è la \ref{tab:vota9} e come
 si nota tende verso la dittatura del presidente. Dalla tabella si può costruire la
-mappa di Karnaught corrispondente. Raggruppando sulla mappa i gruppi di celle vicine,
+mappa di Karnaugh corrispondente (tabella \ref{tab:karnaugh_vota9}). Raggruppando sulla mappa i gruppi di celle vicine,
 si ottiene l'espressione logica corrispondente alla tabella:
 
 \begin{equation}
@@ -225,7 +225,7 @@ teorema di De Morgan
 \end{equation}
 
 In questo modo è possibile costruire un circuito che produca il risultato desiderato mediante
-sole porte NAND. Il circuito che rispetta questa logica è mostrato in figura \ref{fig:circ_voto9}
+sole porte NAND. Il circuito che rispetta questa logica è mostrato in figura \ref{fig:circ_vota9}
 ed è quello che siamo andati a realizzare. Il circuito è stato controllato utilizzando la
 scheda che permette di visualizzare con dei LED lo stato logico delle uscite, e possiamo
 dire che è stato un successo perché lo abbiamo montato correttamente al primo colpo, nonostante
