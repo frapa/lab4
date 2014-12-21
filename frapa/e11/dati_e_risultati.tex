@@ -269,8 +269,9 @@ mentre negli altri casi l'output rimane costante.
 
 Grazie a questo possiamo vedere che il circuito in figura \ref{fig:freq_div11} funziona nel seguente modo.
 Analizziamo solo il primo blocco, poiché il secondo FF è in cascata e serve a dividere ulteriormente per 2 la frequenza.
-Inizialmente $V\ped{out} = 0$. Quando giunge un fronte d'onda negativo non succede nulla. Tuttavia, una volta che
-l'input torna a 0, essendo il FF negative edge triggered, si ha che Q cambia stato salendo a 1 (supponendo che all'inizio fosse nullo).
+Inizialmente $V\ped{out} = 0$. Quando giunge un fronte d'onda positivo non succede nulla, poiché il FF è negative edge triggered.
+Tuttavia, una volta che
+l'input torna a 0 si ha che Q cambia stato salendo a 1 (supponendo che all'inizio fosse nullo).
 All'arrivo di un altro
 impulso non accade nulla, ma quando arriva la discesa Q cambia stato di nuovo, tornando a 0.
 È chiaro che in Q c'è un onda quadra che varia a metà della frequenza del segnale in ingresso.
