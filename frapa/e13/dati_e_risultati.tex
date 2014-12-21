@@ -95,16 +95,17 @@ con il segnale da leggere. L'LM311 è un comparatore open-collector e quindi è 
 una tensione a scelta mediante una resistenza di pull-up. Noi abbiamo collegato l'uscita del comparatore a una tensione 
 di 5 V e l'entrata invertente all'output del DAC08 e quella non invertente al segnale da misurare.
 In questo modo l'uscita dell'LM311 è un 1 logico se il segnale è più grande della tensione proveniente dal DAC08
-altrimenti. Ora arriva l'idea geniale del circuito: l'uscita del comparatore è poi collegata con l'ingresso
-U/D del contatore contenuto del primo blocco (si veda \ref{fig:ds_dac12}).
+e 0 altrimenti. Ora arriva l'idea geniale del circuito: l'uscita del comparatore è poi collegata con l'ingresso
+U/D del contatore contenuto del primo blocco (si veda \ref{fig:ds_dac12}, in questo caso è assente il flip-flop JK).
 
 In pratica il circuito si comporta così: all'accensione il segnale è più alto dell'output del DAC08,
-poiché quest'ultimo parte dalla tensione più bassa. L'output del comparatore è tale per cui il contatore
+poiché quest'ultimo parte dalla tensione più bassa possibile. L'output del comparatore è tale per cui il contatore
 conta verso l'altro, facendo aumentare l'uscita del DAC08. Ad un certo punto l'output del DAC08 supera il
 segnale in ingresso: in comparatore cambia stato e il contatore conta verso il basso, facendo tornare il
 DAC08 sotto al segnale. Allora il comparatore cambia ancora la direzione del conteggio, e poi di nuovo, etc.
 Il segnale del DAC08 oscilla attorno al valore del segnale analogico. Se il segnale analogico cambia questo
-sistema seguirà l'andamento del segnale molto velocemente. È un cosidetto sistema di tracking.
+sistema seguirà l'andamento del segnale molto velocemente poiché usualmente i segnali analogici variano con continuità.
+È un cosiddetto sistema di tracking.
 
 \begin{figure*}[b]
     \centering
@@ -119,9 +120,9 @@ sistema seguirà l'andamento del segnale molto velocemente. È un cosidetto sist
     \label{fig:camp13}
 \end{figure*}
 
-Questo sistema rispetto ad altri simili ma senza tracking ha il,vantaggio di avere la stessa precisione
+Questo sistema rispetto ad altri simili ma senza tracking ha il vantaggio di avere la stessa precisione
 ma di essere più veloce, perché spesso i segnali cambiano lentamente e quindi il contatore parte da un valore vicino
-a quello da misurare. Il valore digitale misurato è quindi l'uscita del contatore.
+a quello da misurare. Il valore digitale misurato è l'uscita del contatore.
 
 Per testare il circuito abbiamo usato un potenziometro ed una resistenza (figura \ref{fig:adc13}) per scegliere
 e variare il segnale analogico, abbiamo usato una frequenza di clock bassa (100 Hz) per poter vedere il comportamento
@@ -159,7 +160,8 @@ di campionamento invariata, variando la frequenza del segnale da campionare.
 La figura \ref{fig:camp13} mostra un esempio di campionamento di un onda sinusoidale. La frequenza di
 campionamento è stata mantenuta fissa a 10 kHz, mentre abbiamo misurato sinusoidi di 100 Hz, 1 kHz, 10 kHz, etc.
 Evidentemente finché si sta al di sotto dei 5 kHz, come affermato dal teorema di Shannon, la sinusoide viene
-campionata correttamente, anche se già a 1 kHz è visibile un degrado nella qualità del risultato. Andando invece a
+campionata correttamente (cioè la frequenza della sinusoide campionata è uguale alla frequenza della sinusoide vera),
+anche se già a 1 kHz è visibile un degrado nella qualità del risultato. Andando invece a
 frequenze vicine o superiori a quelle di campionamento, si mostra il fenomeno dell'aliasing, ovvero si ottengono
 sempre sinusoidi, ma di frequenze completamente sbagiate, perché il campionamento non è abbastanza fitto.
 Nel grafico si vede una sinusoide di 10 kHz che sembra avere una frequenza di 0.1 Hz!

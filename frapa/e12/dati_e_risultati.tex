@@ -68,14 +68,15 @@
 \paragraph{Shift register.}
 
 Gli shift register, o registri a scorrimento, sono circuiti che mantengono in memoria un certo numero di bit
-e spostano la sequenza di 1 bit ogni volta che arriva un fronte d'onda positivo (I FF da noi usati erano positive edge triggered).
+e spostano la sequenza di 1 bit ogni volta che arriva un fronte d'onda positivo al clock
+(I FF da noi usati erano positive edge triggered).
 I registri a scorrimento
 servono principalmente per costruire convertitori seriale-parallelo e parallelo-seriale, ma trovano
 impiego anche in altri campi.
 
 
 La figura \ref{fig:shift12} mostra lo shift register che abbiamo costruito. Il registro
-è costruito con 4 flip-flop JK e di conseguenza memorizza 4 bit. Inoltre è l'uscita dell'ultimo FF
+è costruito con 4 flip-flop JK e di conseguenza memorizza 4 bit. Inoltre l'uscita dell'ultimo FF
 è collegata con l'entrata del primo, per fare un registro ciclico, che cicla la sequenza di bit.
 
 Vediamo come funziona il circuito. La prima cosa da fare all'accensione del circuito è caricare
@@ -87,11 +88,12 @@ state collegate tutte a $V\ped{CC}$, in modo che non siano mai utilizzate. Il tr
 la resistenza e il condensatore; il punto A è collegato con il preset del primo FF
 e ai clear dei restanti. All'accensione dell'alimentazione il condensatore impiega un certo
 tempo per caricarsi, per cui all'inizio il punto A è a 0 logico e carica un 1 sul primo FF,
-mentre gli altri sono impostati a 0 mediante le porte clear.
+mentre gli altri sono impostati a 0 mediante le porte clear. Quando il condensatore si carica,
+A diventa un 1 logico e fa si che tutti i preset e clear siano disattivati.
 
-Ogni volta che arriva un fronte d'onda negativo (cioè c'è un passaggio da 1 a 0) nel clock,
+Ogni volta che arriva un fronte d'onda positivo nel clock,
 i flip-flop leggono i loro ingressi e copiano il valore all'uscita. Poiché ci sono
-dei ritardi di pochi nanosecondi tra l'arrivo del fronte e la copiatura del valore in ingresso
+dei ritardi di pochi nanosecondi tra l'arrivo del fronte e la copiatura del valore in ingresso,
 si ha che la sequenza di bit viene spostata a destra (si noti che l'ultimo valore $Q_4$ viene spostato
 a $Q_1$).
 
@@ -160,10 +162,10 @@ migliore verrà fatta nel prossimo paragrafo.
             (4, -4) node[below] (PR) {PR} to[short, o-o] ++ (0, 0.5) node[above] {$V\ped{CC}$}
             (4, -7) node[above] (CL) {CL} to[short, o-o] ++ (0, -0.5) node[below] {$V\ped{CC}$}
         ;
-        \coordinate (preCLK_JK) at (2, -6);
+        \coordinate (preCLK_JK) at (2, -5.5);
         \coordinate (preJ) at (2.5, -4.75);
         \coordinate (preK) at (2.5, -6.25);
-        \coordinate (CLK_JK) at (3, -6);
+        \coordinate (CLK_JK) at (3, -5.5);
         
         \draw
             (-1, -6) node[above] {$V\ped{CC}$} |- (0, -7) ++ (0.1, 0) circle (0.1)
@@ -248,10 +250,10 @@ migliore verrà fatta nel prossimo paragrafo.
            (4, -4) node[below] (PR) {PR} to[short, o-o] ++ (0, 0.5) node[above] {$V\ped{CC}$}
            (4, -7) node[above] (CL) {CL} to[short, o-o] ++ (0, -0.5) node[below] {$V\ped{CC}$}
        ;
-       \coordinate (preCLK_JK) at (2, -6);
+       \coordinate (preCLK_JK) at (2, -5.5);
        \coordinate (preJ) at (2.5, -4.75);
        \coordinate (preK) at (2.5, -6.25);
-       \coordinate (CLK_JK) at (3, -6);
+       \coordinate (CLK_JK) at (3, -5.5);
        
        \draw
            (-1, -6) node[above] {$V\ped{CC}$} |- (0, -7) ++ (0.1, 0) circle (0.1)
@@ -360,19 +362,25 @@ L'ultima parte dell'esperienza si è svolta con l'utilizzo del DAC08 un converti
 analogico a 8 bit  (DAC sta per Digital to Analog Converter). Questo integrato prende in input 8 canali digitali
 fornisce un output analogico. Abbiamo quindi collegato il DAC08 al circuito illustrato nel paragrafo precedente,
 in modo da poter costruire un generatore di onde a dente di sega come quello in
-figura \ref{fig:ds_dac12}. Questo è il modo in cui la granparte dei
+figura \ref{fig:ds_dac12}. Questo è il modo in cui la gran parte dei
 generatori di forme d'onda funzionano, poiché è molto semplice da implementare.
 
 Il DAC08 ha 8 ingressi sui quali si può inviare un numero a 8 bit per la conversione.
 Ovviamente questi ingressi sono stati collegati con le uscite dei contatori, come si può vedere nello
-schema in figura \ref{fig:dac12}.
+schema in figura \ref{fig:ds_dac12}.
 Oltre agli ingressi il DAC08 necessita di alimentazione ai pin 13 (positiva)
-e 3 (negativa) compresa tra i 9 e i 36 V (anche non simmetrici). Noi abbiamo usato $\pm \SI{5}{\volt}$ 
+e 3 (negativa) compresa tra i 9 e i 36 V (anche non simmetrici). Noi abbiamo usato $\pm \SI{15}{\volt}$. 
 Questo integrato fornisce in output una corrente
-sul pin 4 ($I\ped{out}$) che è proporzionale al numero binario in ingresso, e una corrente sul pin 2 ($\overline{I\ped{out}}$) che è il complemento
-di quella sul pin 4. Possono essere usate entrambe; nel caso in cui una non vada usata è necessario collegarla
-a terra per far fluire la corrente. Nel nostro caso, il piedino 2 è stato collegato a terra.
-La corrente assorbita dal pin 4 ($I\ped{out}$) rispetta la seguente formula
+sul pin $I\ped{out}$ che è proporzionale al numero binario in ingresso, e una corrente sul $\overline{I\ped{out}}$ che è il complemento
+di $I\ped{out}$. Possono essere usate entrambe; nel caso in cui una non vada usata è necessario collegarla
+a terra per far fluire la corrente. Nel nostro caso, il piedino $\overline{I\ped{out}}$ è stato collegato a terra.
+La corrente assorbita dal pin $I\ped{out}$ rispetta la seguente formula
+
+\begin{figure}[b!]
+    \includegraphics[width=\columnwidth]{figure/dds.pdf}
+    \caption{Output del circuito \ref{fig:ds_dac12}}
+    \label{fig:dds12}
+\end{figure}
 
 \begin{equation}
 	I\ped{out} = I\ped{FS} \frac{n}{256} = I\ped{ref} \frac{255}{256} \cdot \frac{n}{256}
@@ -380,28 +388,22 @@ La corrente assorbita dal pin 4 ($I\ped{out}$) rispetta la seguente formula
 %
 dove $n$ è il numero binario in ingresso, $I\ped{FS} = 255/256 \times I\ped{ref}$ è la corrente massima di uscita (a $n = 255$)
 e $I\ped{ref}$ è la corrente di riferimento. La corrente di riferimento può andare da 0.2 mA a 4 mA, e può essere impostata
-grazie al pin 14 (VR+). Abbiamo deciso $I\ped{ref} = 2$ mA. Per ottenere questo valore è necessario sapere che
-i pin 14 (VR+) e 15 (VR-) sono le entrate di un operazionale. Il pin 15 è stato collegato a riferimento, mentre l'altro è stato alimentato
-con 4.4 V e interponendo tra l'alimentazione e il pin una resistenza da 2.2 \si{\kilo\ohm}, in modo da generare 2 mA (l'operazionale crea un
-ground virtuale). Inoltre per eliminare l'effetto delle correnti di polerizzazzione, anche VR- è stato collegato a terra con una resistenza
+grazie al pin VR+. Abbiamo deciso $I\ped{ref} = 2$ mA. Per ottenere questo valore è necessario sapere che
+i pin VR+ e VR- sono le entrate di un operazionale. Il pin VR- è stato collegato a riferimento, mentre l'altro è stato alimentato
+con 4.4 V. Interponendo tra l'alimentazione e il pin una resistenza da 2.2 \si{\kilo\ohm}, si possono generare 2 mA (l'operazionale crea un
+ground virtuale). Inoltre per eliminare l'effetto delle correnti di polarizzazzione, anche VR- è stato collegato a terra con una resistenza
 da 2.2 \si{\kilo\ohm}.
 
 Poiché il circuito può essere usato con famiglie di logiche diverse dalla TTL, è necessario impostare
-il tipo di logica da usare, utilizzando il pin 1 (VLC). Nel caso della TTL è sufficiente collegare il VLC a ground.
-Infine il DAC08 è dotato di una porta (COMP) per compensare l'operazionale. Quest pin (16) deve essere collegato all'alimentazione negativa
-mediante una capacità. Abbiamo usato una capacità da 10 nF.
+il tipo di logica da usare, utilizzando il pin VLC. Nel caso della TTL è sufficiente collegare il VLC a ground.
+Infine il DAC08 è dotato di una porta COMP per compensare l'operazionale. Questo pin deve
+essere collegato all'alimentazione negativa mediante una capacità. Abbiamo usato una capacità da 10 nF.
 
-Infine è necessario trasfromare la corrente di output in una tensione. Si è quindi collegato l'uscita a
+Infine è necessario trasformare la corrente di output in una tensione. Si è quindi collegato l'uscita a
 riferimento mediante una resistenza da 2 \si{\kilo\ohm}, in modo da avere una tensione di uscita $V\ped{out}$
 compresa tra 0 e -4 V (la corrente è entrante).
 
 È chiaro che il circuito così costruito darà in output un'onda a dente di sega di frequenza dipendente da quella del clock,
 o per essere più precisi pari a 1/256 della frequenza del clock. La figura \ref{fig:dds12} mostra un tipico output del circuito.
 La frequenza del dente di sega in figura è 3.9 Hz, che è esattamente 1 kHz nel clock, ovvero la frequenza dell'onda quadra che abbiamo
-fornito sul clock per far funzionare il circuito.
-
-\begin{figure}
-    \includegraphics[width=\columnwidth]{figure/dds.pdf}
-    \caption{Output del circuito \ref{fig:ds_dac12}}
-    \label{fig:dds12}
-\end{figure}
+fornito per far funzionare il circuito.

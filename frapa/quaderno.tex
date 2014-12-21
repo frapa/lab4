@@ -24,6 +24,7 @@
 \usetikzlibrary{arrows,decorations.pathreplacing,decorations.pathmorphing,backgrounds,positioning,fit,shapes.misc,intersections}
 \usepackage[siunitx]{circuitikz}
 \usepackage{rotating}
+\usepackage{titletoc}
 
 \setitemize{itemsep=-1pt}
 
@@ -47,13 +48,21 @@
     \tikz[overlay,remember picture] 
         \node (marker-#1-a) at (-0.3ex,1.5ex) {};%
 }
-
 \newcommand\markbottomright[1]{%
     \tikz[overlay,remember picture] 
         \node (marker-#1-b) at (0,0) {};%
     \tikz[overlay,remember picture,thick,inner sep=3pt]
         \node[draw,rectangle,fit=(marker-#1-a.center) (marker-#1-b.center)] {};%
 }
+
+\setlength{\frameboxrule}{1pt}
+
+\titlecontents{section}
+[0cm]             % left margin
+{\vspace{0.25em}}             % above code
+{\framebox[1.3em]{\thecontentslabel}\hspace{0.5em}}             % numbered format
+{}             % unnumbered format
+{\titlerule*[9pt]{.}\contentspage}             % filler-page-format, e.g dots
 
 \begin{document}
 	\input{titolo.tex}
