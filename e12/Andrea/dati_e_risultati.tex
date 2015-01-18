@@ -8,6 +8,71 @@ Quindi andiamo ad alimentare il circuito con una tensione $V\ped{cc}^+\,=\,\SI{+
 Quindi possiamo notare, aiutandoci dalla Figura \ref{fig:registro}, che il segnale di clock è comune atutti e quattro i flip-flop. In questo modo, sfruttando le linee di Preset e Clear io memorizzo in fase di accensione un 1 logico nel primo flip-flop e uno 0 in tutti gli altri. Sucessivamente, grazie al segnale di clock l'uno logico si sposta man mano da sinistra a destra passando da un flip-flop a quellosuccessivo ogni fronte in salita dell'impulso di clock. Infine possiamo notare che, dal momento che l'uscita dell'ultimo flip-flop e riportata in ingresso al primo flip-flop, l'uno logico cicla all'infinito. In questo modo collegando alle quatro uscite la schedina LED possiamo effettivamente osservare l'accensione del led corrispondente all'uscita che si trova ad 1 logico.
 Idealmente abbiamo riprodotto ad esempio una ila di luci ad intermittenza che vengono utilizzate negli aereoporti per segnalare la pista di atterraggio.
 
+\begin{figure*}[h]
+    \centering
+    \begin{circuitikz}[x=0.9cm, y=0.9cm]
+        \foreach \i in {1,...,4} {
+            \draw (\i*3.8, 0) -- (\i*3.8, 3) -- (\i*3.8 + 2, 3) -- (\i*3.8 + 2, 0) -- (\i*3.8, 0);
+            \draw (\i*3.8, 2.25) node[right] (J\i) {J\i};
+            \draw (\i*3.8, 0.75) node[right] (K\i) {K\i};
+            \draw (\i*3.8 + 2, 2.25) node[left] (Q\i) {Q\i};
+            \draw (\i*3.8 + 2, 0.75) node[left] {$\overline{\text{Q\i}}$};
+            \draw (\i*3.8 + 1, 3) node[anchor=north] (PR\i) {PR};
+            \draw (\i*3.8 + 1, 0) node[anchor=south] (CL\i) {CL};
+            \draw (\i*3.8, 1.25) -- (\i*3.8 + 0.25, 1.5) -- (\i*3.8, 1.75);
+            \coordinate (CLK\i) at (\i*3.8, 1.5);
+            \coordinate (preCLK\i) at (\i*3.8 - 0.5, 1.5);
+            \coordinate (preK\i) at (\i*3.8 - 0.2, 0.75);
+        };
+        \coordinate (init) at (1, -1);
+        \draw
+            (1, -2) node[rground] {}
+            to [C, l=470 nF] (init) node[left] {A}
+        ;
+        \draw
+            (init) to [R, l=10<\kilo\ohm>] (1, 1)
+            node[anchor=south] {$V\ped{CC}$}
+        ;
+        \draw
+            (init) -| (2.5, 4) -| (PR1)
+            (init) -| (CL2)
+            (init) -| (CL3)
+            (init) -| (CL4)
+            
+            (Q1) -| (J2.west)
+            (Q1) --++ (1, 0) --++ (0, 4.5) node[above] {Q1}
+            (Q1) --++ (1, 0) |- (preK2) ++ (0.1, 0) circle (0.1cm)
+            
+            (Q2) -| (J3.west)
+            (Q2) --++ (1, 0) --++ (0, 4.5) node[above] {Q2}
+            (Q2) --++ (1, 0) |- (preK3) ++ (0.1, 0) circle (0.1cm)
+            
+            (Q3) -| (J4.west)
+            (Q3) --++ (1, 0) --++ (0, 4.5) node[above] {Q3}
+            (Q3) --++ (1, 0) |- (preK4) ++ (0.1, 0) circle (0.1cm)
+            
+            (Q4.east) --++ (0.5, 0) |- (3, 6) |- (J1.west)
+            (Q4.east) --++ (1, 0) --++ (0, 4.5) node[above] {Q4}
+            (3, 6) |- (preK1) ++ (0.1, 0) circle (0.1cm)
+        ;
+        \draw
+            (1, 4.75) node[left] (CLK) {CLK}
+            (CLK) -| (preCLK1) -- (CLK1)
+            (CLK) -| (preCLK2) -- (CLK2)
+            (CLK) -| (preCLK3) -- (CLK3)
+            (CLK) -| (preCLK4) -- (CLK4)
+        ;
+        \draw
+            (CL1.south) ++ (0, -0.1) circle (0.1) ++ (0, -0.1) --++ (0, -0.5) node[right] {$V\ped{CC}$}
+            (PR2.north) ++ (0, 0.1) circle (0.1) ++ (0, 0.1) --++ (0, 0.75) node[above] {$V\ped{CC}$}
+            (PR3.north) ++ (0, 0.1) circle (0.1) ++ (0, 0.1) --++ (0, 0.75) node[above] {$V\ped{CC}$}
+            (PR4.north) ++ (0, 0.1) circle (0.1) ++ (0, 0.1) --++ (0, 0.75) node[above] {$V\ped{CC}$}
+        ;
+    \end{circuitikz}
+    \caption{Registro a scorrimento.}
+    \label{fig:registro}
+\end{figure*}
+
 \subsection*{Contatore binario}
 
 In questa sezione della relazione vogliamo realizzare un contatore binario. A tal fine abbiamo deciso di sfruttare due circuiti integrati SN74LS191 e un circuito integrato SN74LS109. Abbiamo quindi realizzato il circuito illustrato in Figura \ref{fig:contatore}.
@@ -26,26 +91,239 @@ Quindi che affinchè un flip-flop possa enrare in funzione deve ricevere un segn
 
 Ricordiamo che il segnale di clock è un'onda quadra di ampiezza \SI{5}{\volt} picco picco con una tensione di offset di \SI{+2.5}{\volt} e una frequenza a piacere, in base alla velocità con cui si vuole contare il segnale di clock. Naturalmente se la frequenza è troppo alta l'occhio umano non riesce a seguire i LED che si illuminano.
 
+\begin{figure*}[h]
+    \centering
+    \begin{circuitikz}[scale=0.8, transform shape]
+        \draw
+            (3, -4) -| (5, -7) -| (3, -4)
+            (3, -4.75) node[right] (J) {J}
+            (3, -6.25) node[right] (K) {K}
+            (5, -4.75) node[left] (Q) {Q}
+            (5, -6.25) node[left] {$\overline{\text{Q}}$}
+            (3, -5.25) -- (3.25, -5.5) -- (3, -5.75)
+            (4, -4) node[below] (PR) {PR} to[short, o-o] ++ (0, 0.5) node[above] {$V\ped{CC}$}
+            (4, -7) node[above] (CL) {CL} to[short, o-o] ++ (0, -0.5) node[below] {$V\ped{CC}$}
+        ;
+        \coordinate (preCLK_JK) at (2, -5.5);
+        \coordinate (preJ) at (2.5, -4.75);
+        \coordinate (preK) at (2.5, -6.25);
+        \coordinate (CLK_JK) at (3, -5.5);
+        
+        \draw
+            (-1, -6) node[above] {$V\ped{CC}$} |- (0, -7) ++ (0.1, 0) circle (0.1)
+            ++ (0.1, 0) --++ (0.5, 0.3) ++ (0, -0.3) circle (0.1) ++ (0.1, 0)
+            coordinate (switch)
+        ;
+        
+        \draw
+            (switch) -| (preJ) -- (J.west)
+            (switch) -| (preK) to [short, -o] (K.west)
+            (switch) --++ (0.5, 0) to[R, l=1<\kilo\ohm>] ++(0, -1.5) node[rground] {}
+        ;
+    
+        \draw
+            (-1, 0) node[left] (CLK) {CLK} -| (preCLK_JK) -- (CLK_JK)
+        ;
+        
+        \foreach \i in {0,1} {
+            \draw (11, -\i*6 + 2) -| (14, -\i*6 - 3) -| (11, -\i*6 + 2);
+            \draw
+                (11, -\i*6 + 2 - 0.5) node[right] (P0\i) {P0}
+                (11, -\i*6 + 2 - 1) node[right] (P1\i) {P1}
+                (11, -\i*6 + 2 - 1.5) node[right] (P2\i) {P2}
+                (11, -\i*6 + 2 - 2) node[right] (P3\i) {P3}
+                (11, -\i*6 + 2 - 3.5) node[right] (CE\i) {CE}
+                (11, -\i*6 + 2 - 4) node[right] (DU\i) {D/$\overline{\text{U}}$}
+                (11, -\i*6 + 2 - 4.5) node[right] (LOAD\i) {LOAD}
+                (11, -\i*6 + 2 - 2.5) --++ (0.25, -0.25) --++ (-0.25, -0.25)
+                (14, -\i*6 + 2 - 0.5) node[left] (Q0\i) {Q0}
+                (14, -\i*6 + 2 - 1) node[left] (Q1\i) {Q1}
+                (14, -\i*6 + 2 - 1.5) node[left] (Q2\i) {Q2}
+                (14, -\i*6 + 2 - 2) node[left] (Q3\i) {Q3}
+                (14, -\i*6 + 2 - 3.5) node[left] (CR\i) {RC}
+            ;
+            \draw
+                (P0\i) --++ (-1, 0)
+                (P1\i) --++ (-1, 0)
+                (P2\i) --++ (-1, 0)
+                (P3\i) --++ (-1, 0) |- ++ (-1, 2) node[rground] {}
+                (Q0\i.east) to[short, -o]++ (1, 0)
+                (Q1\i.east) to[short, -o]++ (1, 0)
+                (Q2\i.east) to[short, -o]++ (1, 0)
+                (Q3\i.east) to[short, -o]++ (1, 0)
+            ;
+            \coordinate (CLK\i) at (11, -\i*6 + 2 - 2.75);
+            \coordinate (preCE\i) at (10.5, -\i*6 + 2 - 3.5);
+        };
+
+        \draw
+            (Q) --++ (2, 0) |- (DU0.west)
+            (Q) ++ (2, 0) |- (DU1.west)
+            (CLK) --++ (7, 0) |- (CLK0)
+            (CLK) ++ (7, 0) |- (CLK1)
+            (CR0.east)  to[short, o-] ++ (1, 0) |- ++ (-6.5, -2) |- (preCE1) to[short, -o] (CE1.west)
+            (CE0.west) to[short, o-] ++ (-1, 0) node[rground] {}
+        ;
+        \draw
+            (LOAD0.west) to[short, o-] ++(-0.1, 0) -| (7.5, -8.5)
+            (LOAD1.west) to[short, o-] ++(-0.1, 0) -| (7.5, -11)
+            --++ (1, 0)
+        ;
+        \coordinate (LS) at (8.5, -11);
+        \draw
+            (LS) to[C, l=470 nF] ++ (0, -1) node[rground] {}
+            (LS) to[R, l_=10<\kilo\ohm>] ++(0, 1.5) node[above] {$V\ped{CC}$}
+        ;
+    \end{circuitikz}
+    \caption{Contatore a 8 bit.}
+    \label{fig:contatore}
+\end{figure*}
+
 \subsection*{Convertitore analogico-digitale.}
+
+\begin{wrapfloat}{figure}{O}{280pt}
+\centering
+    \includegraphics[width=0.5\textwidth]{figure/dds.pdf}
+    \caption{Output del circuito \ref{fig:convertitore}}
+    \label{fig:converter_plot}
+\end{wrapfloat}
 
 In quest'ultima sezione di questa relazione vogliamo realizare un contatore a 8 bit. A tal fine sfruttiamo il circuito realizzato in precedenza, Figura \ref{fig:contatore}, e usando l'intgrato DAC08, al quale colleghiamo le uscite dei flip-flop visti nella sezione sopra, otteniamo il circuito illustarto in Figura \ref{fig:convertitore}.
 
 Per comprendere al meglio il funzionamento del circuito che abbiamo realizzato dobbiamo prima capire come lavora un DAC08. Quindi iniziamo col dire che il DAC08 è un convertitore ad 8 bit in cui l'uscita è il prodotto di un numero digitale per il valore della corrente di riferimento.
-Quindi definiamo le seguenti gandezze: $I\ped{ref}$ corrente di riferimento i cui valori normalmente sono compresi tra \SI{0.2}{\milli\ampere} e \SI{4}{\milli\ampere}, $I\ped{14}\,=\,I\ped{ref}$ la corrente sul pin 14 e $I\ped{fr}$ la corrente di uscita (Full Scale).
-Ricordiamo la relazione che lega la corrente $I\ped{fr}$ con $I\ped{ref}$:
+Quindi definiamo le seguenti gandezze: $I\ped{ref}$ corrente di riferimento i cui valori normalmente sono compresi tra \SI{0.2}{\milli\ampere} e \SI{4}{\milli\ampere} e può essere impostata grazie al pin VR+ e $I\ped{out}$ la corrente di uscita (Full Scale).
+Ricordiamo la relazione che lega la corrente $I\ped{out}$ con $I\ped{ref}$:
 
 \begin{equation}
-	I\ped{ref}\,=\,\frac{255}{256} \cdot I\ped{ref}
+	I\ped{out}\,=\, I\ped{FS} \frac{n}{256}\,=\,I\ped{ref} \frac{255}{256} \cdot \frac{n}{256}
 	\label{eq:corrente}
 \end{equation}
 
-A questo punto abbiamo usato l'alimentatore per alimentare il DAC08 a tensioni di +15 e -15 \si{\volt} e per fornire la tensione di riferimento $V\ped{ref}\,=\,\SI{+4}{\volt}$. Sucessivamente abbiamo alimentato la logica TTL con una tensione di \SI{+5}{\volt}. Inoltre abbiamo regolato la tensione di riferimento $V\ped{ref}$ affinchè la corrente di riferimento sia pari a circa \SI{2}{\milli\ampere}.
+dove $n$ è il numero binario in ingresso, $I\ped{FS} = \frac{255}{256} \cdot I\ped{ref}$ è la corrente massima di uscita (a $n = 255$).
+Abbiamo deciso $I\ped{ref} = 2$ mA. Per ottenere questo valore è necessario sapere che i pin VR+ e VR- sono le entrate di un operazionale. Il pin VR- è stato collegato a riferimento, mentre l'altro è stato alimentato con 4.4 \si{\volt}. Interponendo tra l'alimentazione e il pin una resistenza da 2.2 \si{\kilo\ohm}, si possono generare 2 \si{\milli\ampere} (l'operazionale crea un ground virtuale). Inoltre per eliminare l'effetto delle correnti di polarizzazzione, anche VR- è stato collegato a terra con una resistenza da 2.2 \si{\kilo\ohm}.
+A questo punto abbiamo usato l'alimentatore per alimentare il DAC08 a tensioni di +15 e -15 \si{\volt} e per fornire la tensione di riferimento $V\ped{ref}\,=\,\SI{+4}{\volt}$. Sucessivamente abbiamo alimentato la logica TTL con una tensione di \SI{+5}{\volt}.
 Infine per verificare il corretto funzionamento del nostro dispositivo abbiamo collegato l'uscita del circuito con l'oscilloscopio.
-Quello che abbiamo otenuto è riportato nel grafico in Figura \ref{fig:converter_plot}
 
-Come possiamo notare da quanto ricavato dal grafico in Figura \ref{fig:converter_plot} il segnale in uscita è un dente di sega a scalini. Piu precisamente gli scalini sono equivalenti al valore di tensione in ingresso del circuito. Possiamo vedere che operando con un circuito ad 8 bit, è possibile contare fino a 256. Questo fatto si può verificare prendendo la tensione massima dell'onda a dente di sega e dividendola per l'altezza di uno scalino...
+Quello che abbiamo otenuto è riportato nel grafico in Figura \ref{fig:converter_plot}. Come possiamo notare da quanto ricavato dal grafico in Figura \ref{fig:converter_plot} il segnale in uscita è un dente di sega a scalini. Piu precisamente gli scalini sono equivalenti al valore di tensione in ingresso del circuito. Possiamo vedere che operando con un circuito ad 8 bit, è possibile contare fino a 256. Questo fatto si può verificare prendendo la tensione massima dell'onda a dente di sega e dividendola per l'altezza di uno scalino...
 
-
+\begin{figure*}[h]
+    \centering
+    \begin{circuitikz}[scale=0.7, transform shape]
+       \draw
+           (3, -4) -| (5, -7) -| (3, -4)
+           (3, -4.75) node[right] (J) {J}
+           (3, -6.25) node[right] (K) {K}
+           (5, -4.75) node[left] (Q) {Q}
+           (5, -6.25) node[left] {$\overline{\text{Q}}$}
+           (3, -5.25) -- (3.25, -5.5) -- (3, -5.75)
+           (4, -4) node[below] (PR) {PR} to[short, o-o] ++ (0, 0.5) node[above] {$V\ped{CC}$}
+           (4, -7) node[above] (CL) {CL} to[short, o-o] ++ (0, -0.5) node[below] {$V\ped{CC}$}
+       ;
+       \coordinate (preCLK_JK) at (2, -5.5);
+       \coordinate (preJ) at (2.5, -4.75);
+       \coordinate (preK) at (2.5, -6.25);
+       \coordinate (CLK_JK) at (3, -5.5);
+       
+       \draw
+           (-1, -6) node[above] {$V\ped{CC}$} |- (0, -7) ++ (0.1, 0) circle (0.1)
+           ++ (0.1, 0) --++ (0.5, 0.3) ++ (0, -0.3) circle (0.1) ++ (0.1, 0)
+           coordinate (switch)
+       ;
+       
+       \draw
+           (switch) -| (preJ) -- (J.west)
+           (switch) -| (preK) to [short, -o] (K.west)
+           (switch) --++ (0.5, 0) to[R, l=1<\kilo\ohm>] ++(0, -1.5) node[rground] {}
+       ;
+       \draw
+           (-1, 0) node[left] (CLK) {CLK} -| (preCLK_JK) -- (CLK_JK)
+       ;
+       
+       \foreach \i in {0,1} {
+           \draw (11, -\i*6 + 2) -| (14, -\i*6 - 3) -| (11, -\i*6 + 2);
+           \draw
+               (11, -\i*6 + 2 - 0.5) node[right] (P0\i) {P0}
+               (11, -\i*6 + 2 - 1) node[right] (P1\i) {P1}
+               (11, -\i*6 + 2 - 1.5) node[right] (P2\i) {P2}
+               (11, -\i*6 + 2 - 2) node[right] (P3\i) {P3}
+               (11, -\i*6 + 2 - 3.5) node[right] (CE\i) {CE}
+               (11, -\i*6 + 2 - 4) node[right] (DU\i) {D$\overline{\text{U}}$}
+               (11, -\i*6 + 2 - 4.5) node[right] (LOAD\i) {LOAD}
+               (11, -\i*6 + 2 - 2.5) --++ (0.25, -0.25) --++ (-0.25, -0.25)
+               (14, -\i*6 + 2 - 0.5) node[left] (Q0\i) {Q0}
+               (14, -\i*6 + 2 - 1) node[left] (Q1\i) {Q1}
+               (14, -\i*6 + 2 - 1.5) node[left] (Q2\i) {Q2}
+               (14, -\i*6 + 2 - 2) node[left] (Q3\i) {Q3}
+               (14, -\i*6 + 2 - 3.5) node[left] (CR\i) {CR}
+           ;
+           \draw
+               (P0\i) --++ (-1, 0)
+               (P1\i) --++ (-1, 0)
+               (P2\i) --++ (-1, 0)
+               (P3\i) --++ (-1, 0) |- ++ (-1, 2) node[rground] {}
+               (Q0\i.east) to[short]++ (1, 0) % node (Q0R\i)
+               (Q1\i.east) to[short]++ (1, 0)
+               (Q2\i.east) to[short]++ (1, 0)
+               (Q3\i.east) to[short]++ (1, 0)
+           ;
+           \coordinate (CLK\i) at (11, -\i*6 + 2 - 2.75); }
+       
+       \draw
+           (Q) --++ (2, 0) |- (DU0.west)
+           (Q) ++ (2, 0) |- (DU1.west)
+           (CLK) --++ (7, 0) |- (CLK0)
+           (CLK) ++ (7, 0) |- (CLK1)
+           (CR0.east)  to[short, o-] ++ (1, 0) |- ++ (-6.5, -2) |- (CE1)
+           (CE0.west) --++ (-1, 0) node[rground] {}
+       ;
+       \draw
+           (LOAD0.west) -| (7.5, -8.5)
+           (LOAD1.west) -| (7.5, -11)
+           --++ (1, 0)
+       ;
+       \coordinate (LS) at (8.5, -11);
+       \draw
+           (LS) to[C, l=470 nF] ++ (0, -1) node[rground] {}
+           (LS) to[R, l_=10<\kilo\ohm>] ++(0, 1.5) node[above] {$V\ped{CC}$}
+       ;
+       
+       % PARTE Matteo
+       
+       % linee  b1-b4
+       \foreach \j/\jtext in {0/4,1/3,2/2,3/1}{
+       \draw (Q\j1.east) ++(1,0) -- ++(2.5,0) node(B\jtext)[right]{B\jtext};
+       }
+       % linee b5-b8
+       \foreach \j/\jRa/\jRb/\jtext in {0/2/0.5/8,1/1.5/1/7,2/1/1.5/6,3/0.5/2/5}{
+       \draw (Q\j0.east) ++(1,0) -- ++(\jRa,0) -- ++(0,-4) -- ++(\jRb,0) node(B\jtext)[right]{B\jtext};
+       % VR+ e VR- con resistenze
+       \draw
+           (B1) ++ (0.1,-1) node (VRP) {$V\ped{R+}$}
+           (VRP) ++ (0,-0.5) node (VRM) {$V\ped{R-}$}
+           (VRP.west) -- ++(-2,0) -- ++(0,-1) to[R, l_=2.2<\kilo\ohm>] ++(0, -3) node[rground] {}
+           (VRM.west) -- ++(-1,0) -- ++(0,-0.5) to[R, l=2.2<\kilo\ohm>] ++(0, -3) node[rground] {}
+       ;
+       % disegno il rettangolo
+       \draw ($(B8.west)+(0,0.5)$) rectangle ($(VRM.west)+(3,-0.5)$);
+       }
+       % nodi della parte destra
+       \node (IOUT)  at ($(B8.west)+(3,0)$)  [left]{$I\ped{OUT}$};
+       \node (IOUTN) at ($(B5.west)+(3,0)$)  [left]{$\overline{I\ped{OUT}}$};
+       \node (COMP)  at ($(B1.west)+(3,0)$)  [left]{COMP};
+       \node (VLC)   at ($(VRM.west)+(2.9,0)$) [left]{VLC};
+       % componenti e fine
+       \draw
+           (VLC.east) ++(0.1, 0) -- ++(1,0) node[rground] {}
+           (COMP.east) to[C,l=10 nF, -o] ++(1.5,0) node[right]{$-15V$}
+           (IOUTN.east) -- ++(1,0) node[rground]{}
+           (IOUT.east) -- ++(1,0) to[R,l=2<\kilo\ohm>] ++(1.5,0) -- ++(0.5,0)  node[rground]{}
+           (IOUT.east) ++(0.5,0) -- ++(0,1) node[above]{$V\ped{OUT}$}
+       ;
+       % label=above:$s\le3$] 
+    \end{circuitikz}
+    \caption{Generatore di onde a dente di sega.}
+    \label{fig:convertitore}
+\end{figure*}
 
 %\begin{wrapfloat}{table}{I}{300pt}
 %\centering
