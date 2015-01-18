@@ -4,14 +4,36 @@
 
 In questa sezione della relazione vogliamo studiare il tempo di propagazione di un segnale all'interno di una porta logica. Nel nostro caso useremo porte NAND.
 
-Prima di procedere, è doveroso chiarire come mai la risposta della porta ad una variazione del segnale e alla sua propagazione non sia immediata.
-Per rispondere a questa domanda ome prima cosa è doveroso ricordare che tutte le porte logiche che tilizziamo e andeamo ad utilizzare sono basate sulla Logica Transistor-Transistor o in forma abbreviata logica TTL. Pertanto le porte utilizzate logiche sono implementate tramite reti di transistor e resistenze opportunamente interconnessi. Quindi l'intera rete presenta delle giunzioni che come sappiamo possono assumere il ruolo di fastidiose capacità parassite. E naturalmente una caparità per quanto piccola possa essere produce sempre un ritardo nella propagazione di un segnale.
+Prima di procedere, è doveroso chiarire come mai la risposta della porta ad una variazione del segnale e alla sua propagazione non sia immediata. Per rispondere a questa domanda ome prima cosa è doveroso ricordare che tutte le porte logiche che tilizziamo e andeamo ad utilizzare sono basate sulla Logica Transistor-Transistor o in forma abbreviata logica TTL. Pertanto le porte utilizzate logiche sono implementate tramite reti di transistor e resistenze opportunamente interconnessi. Quindi l'intera rete presenta delle giunzioni che come sappiamo possono assumere il ruolo di fastidiose capacità parassite. E naturalmente una caparità per quanto piccola possa essere produce sempre un ritardo nella propagazione di un segnale.
+
+\begin{figure}[h]
+\centering
+        \begin{circuitikz}
+                \draw
+                    (7, -0.3) node[nand port] (nand) {}
+                    (0, 0) node[anchor=east] {IN}
+                    to (nand.in 1)
+                    (0.5, 0) to (0.5, -1)
+                    (2.2, -1) node[nand port] (not1) {}
+                    (3.8, -1) node[nand port] (not2) {}
+                    (5.4, -1) node[nand port] (not3) {}
+                    (0.5, -1) -| (not1.in 1) -| (not1.in 2)
+                    (not1.out) -| (not2.in 1) -| (not2.in 2)
+                    (not2.out) -| (not3.in 1) -| (not3.in 2)
+                    (not3.out) -| (nand.in 2)
+                    (nand.out) node[anchor=west] {OUT}
+                ;
+        \end{circuitikz}
+        \caption{Circuito per la misura del ritardo.}
+        \label{fig:ritardo}
+\end{figure}
 
 Detto questo possiamo andare a realizzare il circuito che ci permette di apprezzare questo ritardo nella trasmissione del segnale. Il circuito è raffigurato in Figura \ref{fig:ritardo}. Con questo circuito vogliamo amplificare questo effetto di ritardo solo su uno dei due ingressi della quarta porta NAND. In questo modo possiamo capire infatti se sussiste un ritardo e, se sì, quanto vale indicativamente. Come possiamo osservare le porte NAND così connesse non sono altro che una serie di NOT messi in cascata.
 
-Inoltre ricordiamo quale sia la tabella di verità di una porte NAND:
+Ricordiamo la tabella di verità di una porte NAND:
 
-\begin{center}
+\begin{figure}[h]
+\centering
 	\begin{tabular}{lll}
 	\toprule
 		A & B & O\\
@@ -22,7 +44,7 @@ Inoltre ricordiamo quale sia la tabella di verità di una porte NAND:
 		1 & 1 & 0 \\
 	\bottomrule
 	\end{tabular}
-\end{center}
+\end{figure}
 %
 Quindi in base alla geometria del circuito che abbiamo realizzato, dato un segnale A di ingresso, l'uscita del circuito dovrebbe assumere lo stesso valore dell'ingresso. Infatti se anlizziamo la tabella di verità di questo circuito otteniamo quanto illustrato nella Tabela \ref{tab:ritardo}.
 
@@ -40,26 +62,60 @@ Quindi in base alla geometria del circuito che abbiamo realizzato, dato un segna
 	\label{tab:ritardo}
 \end{wrapfloat}
 
-Nella Tabella \ref{tab:ritardo} abbiamo indicato con In il valore del segnale in ingresso al circuito, con Out il valore del segnale in uscita dallo stesso e le altre lettere sono riferite alle uscite delle varie porte NAND riportate in Figura \ref{fig:ritardo}.
-
-Andiamo ora a verificare sperimentalmente che la tabela di verità sia corretta. A tal fine abbiamo Connesso l'ingresso del circuito al generatore di funzioni. Abbiamo dato come segnale in input un'onda quadra di frequenza $f\,=\,\SI{100}{\kilo\hertz}$ di ampiezza \SI{2.5}{\volt} con una tensione di offset di \SI{1.25}{\volt}. Dopo di chè abbiamo connesso l'uscita del circuito all'oscilloscopio e siamo andati a osservare il comportamento del segnale in uscita.
+Nella Tabella \ref{tab:ritardo} abbiamo indicato con In il valore del segnale in ingresso al circuito, con Out il valore del segnale in uscita dallo stesso e le altre lettere sono riferite alle uscite delle varie porte NAND riportate in Figura \ref{fig:ritardo}.Andiamo ora a verificare sperimentalmente che la tabela di verità sia corretta. A tal fine abbiamo Connesso l'ingresso del circuito al generatore di funzioni. Abbiamo dato come segnale in input un'onda quadra di frequenza $f\,=\,\SI{100}{\kilo\hertz}$ di ampiezza \SI{2.5}{\volt} con una tensione di offset di \SI{1.25}{\volt}. Dopo di chè abbiamo connesso l'uscita del circuito all'oscilloscopio e siamo andati a osservare il comportamento del segnale in uscita.
 
 Quello che abbiamo ottenuto è riportato in Figura \ref{fig:ritardo1_plot}:
 
-Come è possibile osservare dal grafico in Figura \ref{fig:ritardo1} l'uscita del nostro circuito non è quella prevista, o meglio, lo sarebbe a meno di un piccolo intervallo temporale in cui l'uscita del circuito assume valore di verità nullo. Questo è dovuto appunto alla presenza delle capacità parassite interne alle porte logiche che rallentano la trasmissione del segnale. Infatti se si parte con un segnale in ingresso ad 0 logico, sugli ingressi della quarta porta NAND (C e D) giungeranno i valori di verità 1 e 0 rispettivamente. Pertanto l'uscita del circuito deve essere ad 1 logico, trattandosi di una porta NAND. Nel momento in cui il segnale in ingresso assume valore di verità 1 abbiamo un ritardo nella trasmissione della variazione in uno dei due ingressi della quarta porta NAND. Per questo motivo, per un breve intervallo temporale, stimato circa XXX, abbiamo la seguente situazione: In = 1, C = 1 (a causa del ritardo di trasmissione del segnale ha ancora il valore di verità relativo al segnale in ingresso precedente), D = 1 e quindi Out = 0. Quindi questa è la spiegazione per la breve variazione di tensione in uscita dal circuito. Infine facciamo notare che questo fenomeno non occorre quando l'input passa da 1 a 0 in quanto si avrebbe che C = 0 e D = 0 quindi Out = 1.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/comm_time.pdf}
+    \caption{Questo grafico illustra il ritardo del segnale di output (linea nera) rispetto al segnale di input (linea grigia). Come è possibile osservare c'è un ritardo di trasmissione del segnale di circa \SI{40}{\nano\second} dovuto principalmente alle capacità parassite interne alle porte logiche. Infine dal momento che questo ritardo è dovuto alla serie di tre porte NAND possimo dire che ogni porta presenta un ritardo nella trasmissione del segnale di circa \SI{13}{\nano\second}.}
+    \label{fig:ritardo1}
+\end{figure}
+
+Come è possibile osservare dal grafico in Figura \ref{fig:ritardo1} l'uscita del nostro circuito non è quella prevista, o meglio, lo sarebbe a meno di un piccolo intervallo temporale in cui l'uscita del circuito assume valore di verità nullo. Questo è dovuto appunto alla presenza delle capacità parassite interne alle porte logiche che rallentano la trasmissione del segnale. Infatti se si parte con un segnale in ingresso ad 0 logico, sugli ingressi della quarta porta NAND (C e D) giungeranno i valori di verità 1 e 0 rispettivamente. Pertanto l'uscita del circuito deve essere ad 1 logico, trattandosi di una NAND. Nel momento in cui il segnale in ingresso assume valore di verità 1 abbiamo un ritardo nella trasmissione della variazione in uno dei due ingressi della quarta porta NAND. Per questo motivo, per un breve intervallo temporale, stimato circa \SI{40}{\nano\second}, abbiamo la seguente situazione: In = 1, C = 1 (a causa del ritardo di trasmissione del segnale ha ancora il valore di verità relativo al segnale in ingresso precedente), D = 1 e quindi Out = 0. Quindi questa è la spiegazione per la breve variazione di tensione in uscita dal circuito. Infine facciamo notare che questo fenomeno non occorre quando l'input passa da 1 a 0 in quanto si avrebbe che C = 0 e D = 0 quindi Out = 1.
 
 \subsection*{Porta NOT TTL Open Collector}
 
-In questa sezione vogliamo verificare il corretto funzionamento di una porta NOT con tecnologia TTL Open Collector, modello SN74LS05N. Una porta NOT TTL Open Collector si può schemattizzare come un transistor. Il segnale in ingresso alla base è l'input della porta logica, mentre il collettore è l'output della porta logica.
-Detto questo passiamo alla realizzazione del circuito: Figura \ref{fig:not}.
-Dal momento che vogliamo pilotare un LED dobbiamo anche prestare attenzione alle sue caratteistihe, in modo da non farci passare una corrente eccessiva e rischiare pertanto di bruciarlo. A tal fine abbiamo dimensionato il circuito sapendo che: c'è una caduta di tensione di \SI{1}{\volt} sul LED in conduzione, l'intensità di corrente indicata che dovrebbe scorrere sul LED è di \SI{5}{\milli\ampere}, una caduta di \SI{0.4}{\volt} tra collettore ed emettitore del transistor e l'alimentazione del collettore a \SI{9}{\volt}. Quindi trammite una serie di calcoli elementari abbiamo ottenuto che il valore di resistenza $R$ teorico deve essere di circa \SI{1.52}{\kilo\ohm}. Tuttavia abbiamo deciso di realizzare la nostra resistenza con una resistenza da \SI{1}{\kilo\ohm} in serie con un trimmer. In questo modo, grazie al multimetro, abbiamo regolato il trimmer in modo da avere esattamente \SI{5}{\milli\ampere} di corrente passanti sul LED. Il valore di resistenza sperimentale trovaro vale: $R\,=\,\SI{1.34}{\kilo\ohm}$.
+In questa sezione vogliamo verificare il corretto funzionamento di una porta NOT con tecnologia TTL Open Collector, modello SN74LS05N. Una porta NOT TTL Open Collector si può schemattizzare come un transistor. Il segnale in ingresso alla base è l'input della porta logica, mentre il collettore è l'output della porta logica. Queste porte spesso sono usate per pilotare altre porte, ma si deve fare attenzione, che in quanto molto simili a ransistor, possono sopportare un carico limitato di corrente. Noi cerheremo di pilotare un LED con tale porta.
 
-Quindi a questo punto siamo andati a verificare il corretto funzionamento della nostra porta NOT TTL Open collector. Abbiamo ottenuto che quando in input il segnale è ad 1 logico, ovvero \SI{5}{\volt} il LED è acceso quindi l'uscita è all'1 logico, mentre quando l'input si trova allo 0 logico il LED è anch'esso spento, 0 ogico.
-Questo comportamento è corretto. Infatti quando l'input è ad 1 logico, il transistor è in conduzione e l'uscita si trova a circa \SI{0.4}{\volt} che è ancora 0 logico, pertanto c'è una differenza di potenziale ei cali del LED e questo si accende. Al contrario, quando l'input è allo 0 logico, il ransistor è interdetto, non scorre corrente, quindi il collettore sarà ad una tensione di circa \SI{9}{\volt} quindi ad 1 logico. Pertanto non passando corrente il LED è spento.
+Dal momento che vogliamo pilotare un LED dobbiamo anche prestare attenzione alle sue caratteistiche, in modo da non farci passare una corrente eccessiva e rischiare pertanto di bruciarlo. A tal fine abbiamo dimensionato il circuito sapendo che: c'è una caduta di tensione di \SI{1}{\volt} sul LED in conduzione, l'intensità di corrente indicata, che dovrebbe scorrere sul LED, è di \SI{5}{\milli\ampere}, una caduta di \SI{0.4}{\volt} tra collettore ed emettitore del transistor e l'alimentazione del collettore a \SI{+9}{\volt}. Quindi trammite una serie di calcoli elementari abbiamo ottenuto che il valore di resistenza $R$ teorico deve essere di circa \SI{1.52}{\kilo\ohm}. Tuttavia abbiamo deciso di realizzare la nostra resistenza con una resistenza da \SI{1}{\kilo\ohm} in serie con un trimmer. In questo modo, grazie al multimetro, abbiamo regolato il trimmer in modo da avere esattamente \SI{5}{\milli\ampere} di corrente passanti sul LED. Il valore di resistenza sperimentale trovaro vale: $R\,=\,\SI{1.34}{\kilo\ohm}$.
+
+A questo punto siamo andati a verificare il corretto funzionamento della nostra porta NOT TTL Open collector. Abbiamo ottenuto che quando in input il segnale è ad 1 logico, ovvero \SI{5}{\volt} il LED è acceso quindi l'uscita è ad 1 logico, mentre quando l'input si trova allo 0 logico il LED è anch'esso spento, 0 logico.
+Questo comportamento è corretto. Infatti quando l'input è ad 1 logico, il transistor è in conduzione e l'uscita si trova a circa \SI{0.4}{\volt} che è ancora 0 logico, pertanto c'è una differenza di potenziale ei cali del LED e questo si accende. Al contrario, quando l'input è allo 0 logico, il transistor è interdetto, non scorre corrente, quindi il collettore sarà ad una tensione di circa \SI{9}{\volt} quindi ad 1 logico. Pertanto non passando corrente il LED è spento.
 
 \subsection*{Porta buffer TTL 3State}
 
 In questa sezione vogliamo verificare il corretto funzionamento di una porta buffer TTL 3-state modello 74LS125A. Per farlo realizziamo un circuito per trasmissione half-duplex tramite porte 3-state al fine di condividere lo stesso canale trasmissivo. Circuito riportato in Figura \ref{fig:buffer}. Quindi fatta la tabela di verità di tale circuito ne verificheremo la correttezza.
+
+\begin{figure}
+    \centering
+    \begin{circuitikz}
+                \draw
+                        (-0.5, 0.5) node[rground] {}
+                        to [sqV] (-0.5, 2)
+                        (3, 2) node[buffer] (b1) {} (3, 3) node {B1}
+                        (4, 0) node[buffer] (b2) {} (4.5, -0.5) node {B2}
+                        (-0.5, 2) to (b1.in)
+                        (b1.out) -| (5, 1)
+                        (b2.out) -| (5, 1)
+                        to [leDo] (7, 1) (6, 1.75) node {LED} (7, 1)
+                        to (7, 0) node[rground] {}
+                        (b2.in) to (2.75, 0) node[rground] {}
+                        (0, -1) node[left] {S}
+                        to (1, -1) -| (1, 1) to (3, 1) to (3, 1.4)
+                        (3, 1.5) circle (0.1cm)
+                        (3, -1.5) node[nand port] (n) {}
+                        (1, -1) to (1, -1.5)
+                        (1, -1.5) -| (n.in 1)
+                        (1, -1.5) -| (n.in 2)
+                        (n.out) -| (4, -0.6)
+                        (4, -0.5) circle (0.1cm)
+                ;
+        \end{circuitikz}
+        \caption{}
+        \label{fig:buffer}
+\end{figure}
 
 Ricordiamo che in elettronica digitale, una porta logica si dice three state, tri-state o 3-state quando la sua uscita può trovarsi in un terzo stato di alta impedenza (Z) oltre ai due livelli logici della logica binaria.
 Uno dei principali dispositivi a tre stati è il buffer a tre stati (o buffer tri-state). La sua tabella di verità è la seguente:
@@ -102,10 +158,10 @@ Tale tabella è stata conferata anche dall'analisi sperimentale del circuito. Ci
 In questa ultima sezione il nostro obbiettivo è quello di realizzare un Multiplexing. Che cosa è? In parole povere è un dispositivo che permette a segnali in ingresso (detti tributari) tramite canali separati, quindi distinti tra di loro, di essere trasmessi mediante un solo segnale in uscita (detto multiplato). Quindi la trasmissione di numerosi segnali viene effettuata da un unico collegamento fisico. In questo modo non occorre associare ad ogni input un output differente, ma si riesce a convogliare tutto il segnale in unica uscita.
 
 Tale circuito si può schematizzare in due blocchi principali: i primo blocco è quello di selezione, mentre il secondo blocco è quello di ``gating''. 
-Questi due blocchi sono raffigurati in Figura BHO.
+Questi due blocchi sono illustrati di seguito:
 
 \paragraph*{Blocco di selezione:}
-la sua configurazione circuitale è riportata in Fugura XXX. Questo blocco sfrutta le proprieta delle porte logiche NOT e NAND. Grazie a queste porte io con due segnali in in ingresso posso ottenere quattro uscite che non sono mai contemporaneamente spente, o a 0 logico. Quindi, se io indico con $S_0$ e $S_1$ le due linee di selezione che abbiamo deciso di utilizzare (input), posso ottenere la seguente tabella di verità, dove con $Q_i$ abbiamo indicato le uscite del selettore.
+la sua configurazione circuitale è riportata in Fugura \ref{fig:selezione}. Questo blocco sfrutta le proprieta delle porte logiche NOT e NAND. Grazie a queste porte io con due segnali in in ingresso posso ottenere quattro uscite che non sono mai contemporaneamente spente, o a 0 logico. Quindi, se io indico con $S_0$ e $S_1$ le due linee di selezione che abbiamo deciso di utilizzare (input), posso ottenere la seguente tabella di verità, dove con $Q_i$ abbiamo indicato le uscite del selettore.
 
 \begin{center}
 	\begin{tabular}{ll|llll}
@@ -122,24 +178,178 @@ la sua configurazione circuitale è riportata in Fugura XXX. Questo blocco sfrut
 
 Indichiamo con $D_i$ i segnali che devono essere trasmessi. Questo primo blocco diventa pertanto una sorta di interruttore che mi permette di decidere quale segnale in ingresso ($D_i$) trasmettere lungo la linea dati comune. Pertanto a seconda dei valori che io imposto di $S_0$ ed $S_1$ posso decidere se trasmettere il segnale $D_0$ o $D_2$ ad esempio, ma mai due di questi contemporaneamente. Questo processo avviene grazie al secondo blocco detto di ``gating''.
 
+\begin{figure}[h]
+	\centering
+	\begin{circuitikz}[transform shape, scale=0.9]
+	    \draw
+		% Piazzo le NAND
+		  (3,0) node[rotate=-90, american nand port] (nand3) {}
+		++(1.5,0) node[rotate=-90, american nand port] (nand2) {}
+		++(1.5,0) node[rotate=-90, american nand port] (nand1) {}
+		++(1.5,0) node[rotate=-90, american nand port] (nand0) {}
+	    ;
+		% Metto l'output
+		\node at (nand3.out) [below] {$Q_3$};
+		\node at (nand2.out) [below] {$Q_2$};
+		\node at (nand1.out) [below] {$Q_1$};
+		\node at (nand0.out) [below] {$Q_0$};
+		
+		% Coordinate inizio linee
+		\coordinate (cS0)  at (0,2) ;
+		\coordinate (cS0N) at (0,3)   ;
+		\coordinate (cS1)  at (0,4) ;
+		\coordinate (cS1N) at (0,5)   ;
+		
+		% Scrivo gli ingressi
+		\node at (cS0)  [left] {$S_0$};
+		\node at (cS0N) [left] {$\overline{S_0}$};
+		\node at (cS1)  [left] {$S_1$};
+		\node at (cS1N) [left] {$\overline{S_1}$};
+		    
+		% path per intersezioni linee di ingresso
+		% Linee:
+		\path[name path=S0]  (cS0)  -- ++(12,0);
+		\path[name path=S0N] (cS0N) -- ++(12,0);
+		\path[name path=S1]  (cS1)  -- ++(12,0);
+		\path[name path=S1N] (cS1N) -- ++(12,0);
+		% Porte:
+		\path[name path=n31] (nand3.in 1) -- ++(0,6);
+		\path[name path=n32] (nand3.in 2) -- ++(0,6);
+		\path[name path=n21] (nand2.in 1) -- ++(0,6);
+		\path[name path=n22] (nand2.in 2) -- ++(0,6);
+		\path[name path=n11] (nand1.in 1) -- ++(0,6);
+		\path[name path=n12] (nand1.in 2) -- ++(0,6);
+		\path[name path=n01] (nand0.in 1) -- ++(0,6);
+		\path[name path=n02] (nand0.in 2) -- ++(0,6);
+		
+		% prima parte (linee e not)
+		\draw
+		    (cS0N) ++(2,0) node[american not port] (not0) {} 
+		    (cS0) ++(1,0) |- (not0.in)
+		    (cS1N) ++(2,0) node[american not port] (not1) {} 
+		    (cS1) ++(1,0) |- (not1.in)
+		;
+		
+		% definizione di coordinate di partenza per le linee
+		\coordinate (nS0)  at (cS0)      ;
+		\coordinate (nS0N) at (not0.out) ;
+		\coordinate (nS1) at (cS1)       ;
+		\coordinate (nS1N) at (not1.out) ;
+		
+		% S0
+		\draw [name intersections={of=n32 and S0, by=x}]
+		    (nS0)--(x)--(nand3.in 2);
+		\draw [name intersections={of=n22 and S0, by=y}]
+		    (x)--(y)--(nand2.in 2);
+		    
+		% S0N
+		\draw [name intersections={of=n12 and S0N, by=x}]
+		    (nS0N)--(x)--(nand1.in 2);
+		\draw [name intersections={of=n02 and S0N, by=y}]
+		    (x)--(y)--(nand0.in 2);            
+	    
+		% S1
+		\draw [name intersections={of=n31 and S1, by=x}]
+		    (nS1)--(x)--(nand3.in 1);
+		\draw [name intersections={of=n11 and S1, by=y}]
+		    (x)--(y)--(nand1.in 1);
+		    
+		% S1N
+		\draw [name intersections={of=n21 and S1N, by=x}]
+		    (nS1N)--(x)--(nand2.in 1);
+		\draw [name intersections={of=n01 and S1N, by=y}]
+		    (x)--(y)--(nand0.in 1);            
+		
+		
+		%(0,1) node[left] {$S_1$} -| (nand1.in 1)
+	\end{circuitikz}
+	\caption{Circuito di selezione della linea.}
+	\label{fig:selezione}
+\end{figure}
+
 \paragraph*{Blocco di ``gating'':}
-questo blocco, illustrato in Figura XXX, è la parte di circuito che effettivamente permette o meno il passaggio dei dati, Indicati con $D_i$. Come già detto in precedenza sfruttando la porta porta buffer TTL 3State possiamo ottenere degli interruttori. Quindi se ad ogni $D_i$ accoppiamo il $Q_i$ corrispondente, per evitare confusione, otteniamo un interruttore che a seconda del valore assunto da $Q_i$ permette o meno la trasmissione del segnale. $Q_i\,=\,0$ il segnale è trasmesso se $Q_i\,=\,1$ il segnale non è trasmesso. Quindi, farendo riferimento alla tabella di verità del selettore, possiamo osservare come sia possibile permettere il passaggio di un solo segnale alla volta in un unica linea dati in uscita dal ``gating''.
+questo blocco, illustrato in Figura \ref{fig:filtro}, è la parte di circuito che effettivamente permette o meno il passaggio dei dati, Indicati con $D_i$. Come già detto in precedenza sfruttando la porta porta buffer TTL 3State possiamo ottenere degli interruttori. Quindi se ad ogni $D_i$ accoppiamo il $Q_i$ corrispondente, per evitare confusione, otteniamo un interruttore che a seconda del valore assunto da $Q_i$ permette o meno la trasmissione del segnale. $Q_i\,=\,0$ il segnale è trasmesso se $Q_i\,=\,1$ il segnale non è trasmesso. Quindi, farendo riferimento alla tabella di verità del selettore, possiamo osservare come sia possibile permettere il passaggio di un solo segnale alla volta in un unica linea dati in uscita dal ``gating''.
+
+\begin{figure}[h]
+	\centering
+	\begin{circuitikz}[transform shape, scale=0.78]
+
+	% Nodi inizio linee
+		\node (D0) at (0,2) [left] {$D_0$} ;
+		\node (D1) at (0,3) [left] {$D_1$} ;
+		\node (D2) at (0,4) [left] {$D_2$} ;
+		\node (D3) at (0,5) [left] {$D_3$} ;
+		
+	     % Coordinate fine linee
+	     	\coordinate (D0F) at ($(D0)+(9,0)$);
+		\coordinate (D1F) at ($(D1)+(9,0)$);
+		\coordinate (D2F) at ($(D2)+(9,0)$);
+		\coordinate (D3F) at ($(D3)+(9,0)$);
+		
+	     % Piazzo i buffer
+	     	\node (buf0) at ($(D0)+(8,0)$)[buffer] {} ;
+	\node (buf1) at ($(D1)+(6,0)$)[buffer] {} ;
+		\node (buf2) at ($(D2)+(4,0)$)[buffer] {} ;
+		\node (buf3) at ($(D3)+(2,0)$)[buffer] {} ;
+		
+	     % Tiro le linee
+	     	\draw
+		(D0) -- (buf0.in) (buf0.out) -- (D0F)
+		    (D1) -- (buf1.in) (buf1.out) -- (D1F)
+		    (D2) -- (buf2.in) (buf2.out) -- (D2F)
+		    (D3) -- (buf3.in) (buf3.out) -- (D3F)
+		;
+		
+	     % Rettangolo
+	     	\draw
+		($(buf3.in)+(0,-5)$) rectangle ($(buf0.out)+(0,-4.4)$)
+		($(buf3)+(0,-5)$) node (Q3) [below] {$Q_3$}
+		    ($(buf2)+(0,-4)$) node (Q2) [below] {$Q_2$}
+		    ($(buf1)+(0,-3)$) node (Q1) [below] {$Q_1$}
+		    ($(buf0)+(0,-2)$) node (Q0) [below] {$Q_0$}
+		;
+		
+	     % Ingressi
+	     	\coordinate (S1Q) at ($(buf3.in)+(0,-5.8)$);
+		\coordinate (S1I) at ($(D3.east)+(0,-5.8)$);
+	    \draw
+		(S1Q) -- (S1I) node [left] {$S_1$}
+		    ($(S1Q)+(0,-0.8)$) -- ($(S1I)+(0,-0.8)$) node [left] {$S_0$}
+		;
+		
+	     % Metto i pallini
+	     	\node (buf3C) at ($(buf3)+(0,-0.55)$) [circle=0.1cm, draw]{};
+		\node (buf2C) at ($(buf2)+(0,-0.55)$) [circle=0.1cm, draw]{};
+		\node (buf1C) at ($(buf1)+(0,-0.55)$) [circle=0.1cm, draw]{};
+		\node (buf0C) at ($(buf0)+(0,-0.55)$) [circle=0.1cm, draw]{};
+		
+	     % Collego i Q ai pallini
+	     	\draw
+		(Q3.north) -- (buf3C.south)
+		    (Q2.north) -- (buf2C.south)
+		    (Q1.north) -- (buf1C.south)
+		    (Q0.north) -- (buf0C.south)
+		;
+		
+	     % Linea finale e output
+	     	\draw
+		(D0F)--(D3F)
+		    ($(D0F)!.5!(D3F)$) -- ++(0.5,0) node[right]{$OUT$}
+		;
+	    
+	    % Disegno i pallini di collegamento
+	    %	\fill (D3F) circle[radius=0.07cm] ;
+	 	%	\fill (D2F) circle[radius=0.07cm] ;
+	 	%	\fill (D1F) circle[radius=0.07cm] ;
+	 	%	\fill (D0F) circle[radius=0.07cm] ;
+
+	\end{circuitikz}
+	\caption{Filtro. Permette solo ad una linea di essere trasmessa.
+		Il quadrato in basso indica il selettore.}
+	\label{fig:filtro}
+\end{figure}
 
 Quanto appena descritto è il funzionamento del nostro multiplexing.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 %\begin{wrapfloat}{figure}{I}{0pt}
 %\includegraphics[width=0.5\textwidth]{Relativo}

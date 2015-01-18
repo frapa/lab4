@@ -4,6 +4,29 @@
 
 Il primo circuito che andiamo ad analizzare è un Flip-Flop SR, anche noto in letteratura come Latch SR. Questo è il Flip-Flop più semplice da realizzare.
 Il suo schema circuitale è riportato in Figura \ref{fig:latch}. Possiamo notare che è stato realizzato sfruttando solo quattro porte NAND.
+
+\begin{figure}[h]
+	\centering
+	\begin{circuitikz}
+		\draw
+			(2, 0) node[nand port] (s) {}
+			(2, 3) node[nand port] (r) {}
+			(5, 0) node[nand port] (q) {} (4.75, -0.75) node {$U_1$}
+			(5, 3) node[nand port] (qbar) {} (4.75, 3.75) node {$U_2$}
+			(0, 0) node[left] {S} -| (s.in 1) -| (s.in 2)
+			(0, 3) node[left] {R} -| (r.in 1) -| (r.in 2)
+			(s.out) -| (q.in 2)
+			(r.out) -| (qbar.in 1)
+			(q.out) --++ (0.5, 0) node[right] {Q} --++ (0, 0.5) 
+			(qbar.out) --++ (0.5, 0) node[right] {$\bar{\text{Q}}$} --++ (0, -0.5)
+			(qbar.in 2) --++ (0, -0.5) -- (5.65, 0.5)
+			(q.in 1) --++(0, 0.5) -- (5.65, 2.5)
+		;
+	\end{circuitikz}
+	\caption{}
+	\label{fig:latch}
+\end{figure}
+
 Quello che abbiamo fatto è stato collegare le due uscite $Q$ e $\overline{Q}$ alla schedina LED in modo che si potesse visualizzare l'uscita in funzione della tensione dei due ingressi S ed R (\SI{+5}{\volt} o \SI{0}{\volt}). Ricordiamo che S ed R stanno per Set (imposta) e Reset (reimposta).
 A questo punto vogliamo verificarne il funzionamento. Abbiamo ottenuto il seguente risultato:
 
@@ -28,6 +51,30 @@ Nel momento in cui entrambi gli ingressi si trovano allo stato 1 logico le uscit
 Quindi se S = 1 e R = 0 abbiamo che Q = 1 e $\overline{Q}$ = 0 e portando S a 0 le uscite rimangono invariate. Mentre se si parte con S = 0 e R = 1 quindi Q = 0 e $\overline{Q}$ = 1 e si commuta R a 0 le uscite rimangono a 0 e 1 rispettivamente. Pertanto possiamo osservare, escludendo la situazione in cui entrambi gli ingressi si trovano ad 1 logico, che variando semplicemente 1 solo dei due stati in ingresso la situazione rimane immutata, ma nel momento che i valori in ingresso vengono variati entrambi, quindi passando da 1 e 0 a 0 ed 1 anche i valori in uscita variano di conseguenza. Quindi a meno che non si cambi la tensione ai capi di entrambi gli ingressi, il dispositivo memorizza lo stato in cui si trova.
 
 \subsection*{Flip-Flop SR Sincronizzato}
+
+\begin{figure}[h]
+	\centering
+	\begin{circuitikz}
+		\draw
+			(2, 0) node[nand port] (s) {}
+			(2, 3) node[nand port] (r) {}
+			(5, 0) node[nand port] (q) {} (4.75, -0.75) node {$U_1$}
+			(5, 3) node[nand port] (qbar) {} (4.75, 3.75) node {$U_2$}
+			(0, 0) node[left] {S} -| (s.in 2)
+			(0, 3) node[left] {R} -| (r.in 1)
+			(s.out) -| (q.in 2)
+			(r.out) -| (qbar.in 1)
+			(q.out) --++ (0.5, 0) node[right] {Q} --++ (0, 0.5) 
+			(qbar.out) --++ (0.5, 0) node[right] {$\bar{\text{Q}}$} --++ (0, -0.5)
+			(qbar.in 2) --++ (0, -0.5) -- (5.65, 0.5)
+			(q.in 1) --++(0, 0.5) -- (5.65, 2.5)
+			(0, 1.5) node[left] (clk) {CLK} -| (r.in 2)
+			(clk) -| (s.in 1)
+		;
+	\end{circuitikz}
+	\caption{}
+	\label{fig:syncro}
+\end{figure}
 
 Questo dispositivo è una variante dl dispositivo visto in precedenza. Il suo schema ciruitale è riportato in Figura \ref{fig:syncro}. Come è possibile osservare dalla Figura \ref{fig:syncro} l'unica variazione rispetto al caso precedente è quella di aver collegato i pin numero due di entrambe le porte NAND di S e R al generatore di funzioni d'onda. Quindi entrambi gli ingressi ricevono un'onda quadra in ingressodi ampiezza \SI{5}{\volt} picco picco con un offset di \SI{2.5}{\volt} e una fraquenza variabile. La frequenza in ingresso è detta di clock. A questo punto siamo andati a verificarne il funzionamento e abbiamo il seguente risultato (Tabella \ref{tab:syncro})
 
@@ -54,6 +101,33 @@ Quindi possiamo dire che il segnale di clk serve per abilitare o meno la scrittu
 \subsection*{Flip-Flop SR D-Type}
 
 Il Flip-Flop SR D-Type è il dispositivo che maggiormente approssima il concetto di memoria che abbiamo. Ovvero un dispositivo elettronico che se abilitato assume valore logico 1 o 0 e una volta disabilitato lo mantiene. Lo schema circuitale di questo FF SR D-Type è rappresentato in Figura \ref{fig:d-type}.
+
+\begin{figure}[h]
+	\centering
+	\begin{circuitikz}[transform shape, scale=0.95]
+		\draw
+			(2, 0) node[nand port] (s) {}
+			(2, 3) node[nand port] (r) {}
+			(5, 0) node[nand port] (q) {}
+			(5, 3) node[nand port] (qbar) {}
+			(-0.75, 3) node[not port] (not) {}
+			(-2, 0) node[left] (d) {D} -| (s.in 2)
+			(d) -| (not.in)
+			(not.out) -- (r.in 1)
+			(s.out) -| (q.in 2)
+			(r.out) -| (qbar.in 1)
+			(q.out) --++ (0.5, 0) node[right] {Q} --++ (0, 0.5) 
+			(qbar.out) --++ (0.5, 0) node[right] {$\bar{\text{Q}}$} --++ (0, -0.5)
+			(qbar.in 2) --++ (0, -0.5) -- (5.65, 0.5)
+			(q.in 1) --++(0, 0.5) -- (5.65, 2.5)
+			(0, 1.5) node[left] (clk) {CLK} -| (r.in 2)
+			(clk) -| (s.in 1)
+		;
+	\end{circuitikz}
+	\caption{}
+	\label{fig:d-type}
+\end{figure}
+
 Quindi anche di questo circuito andiamo ad analizzarne la tabella di verità:
 
 \begin{table}[h]
@@ -71,13 +145,13 @@ Quindi anche di questo circuito andiamo ad analizzarne la tabella di verità:
     \label{tab:d-type}
 \end{table}
 
-Nella Tabella \ref{tab:d-type} possiamo notare che quando ilsegnale di clk è a 0 logico allora la scrittura è disabilitata e quindi l'uscita del dispositivo non è ben definita (y e z) nonostante in ingresso ci possa essere sia 1 che 0. Al contrario nel momento in cui clk è ad 1 logico la srittura è abilitata e quindi a seconda del valore di A che dò in ingresso in uscita (Q) avrò una replica di questo valore. Naturalmente per l'uscita $\overline{Q}$ il valore logico sarà il negato di Q.
+Nella Tabella \ref{tab:d-type} possiamo notare che quando il segnale di clk è a 0 logico allora la scrittura è disabilitata e quindi l'uscita del dispositivo non è ben definita (y e z) nonostante in ingresso ci possa essere sia 1 che 0. Al contrario nel momento in cui clk è ad 1 logico la srittura è abilitata e quindi a seconda del valore di A che dò in ingresso in uscita (Q) avrò una replica di questo valore. Naturalmente per l'uscita $\overline{Q}$ il valore logico sarà il negato di Q.
 Quindi come è possibile intuire questo circuito memorizza l'ingresso dato se clk = 1 e una volta disabilitato clk = 0, anche variando il valore di A, non cambiano i valori di uscita del circuito.
 
 \subsection*{Antirimbalzo}
 
 In questa sezione andremo a studiare e a capire il funzionamento del circuito realizzato in Figura \ref{fig:rimbalzo}.
-La tabella di verità che abbiamo ricavato per questo circuito è la seguente:
+La tabella di verità che abbiamo ricavato per questo circuito è la seguente: Tabella \ref{tab:rimbalzo}.
 
 \begin{table}[h]
     \centering
@@ -94,26 +168,121 @@ La tabella di verità che abbiamo ricavato per questo circuito è la seguente:
     \caption{Tabella di verità del circuito in Figura \ref{fig:rimbalzo}. S e R sono rispettivamente i valori di tensione assunti dagli ingressi del circuito. Dipendono dalla posizione dell'interruttore. Q e $\overline{Q}$ sono i valori di uscita del circuito.}
     \label{tab:rimbalzo}
 \end{table}
-
+%
 Nella Tabella \ref{tab:rimbalzo} è illustarto il comportamento del nostro circuito a seconda dei valori di tensione assunti dai due ingressi S e R. Aiutandoci sia con la Figura \ref{fig:rimbalzo} che con la Tabella \ref{tab:rimbalzo} possiamo notare come entrambi gli ingressi siano collegati ad una tensione di \SI{+5}{\volt} mediante una resistenza da \SI{1}{\kilo\ohm}. Quindi, a seconda della posiszione dell'interruttore, la tensione ai capi di un ingresso può essere alta (\SI{+5}{\volt}) o bassa (\SI{0}{\volt}). Naturalmente nel momento in cui un ingresso è ad alta tensione l'altro si troverà a bassa tensione, in quanto siamo al cospetto di un interruttore. Quindi della Tabella \ref{tab:rimbalzo} le configurazioni possibili sono quelle per cui S e R assumono rispettivamente valori 0-1 o 1-0.
 
-Su questo circuito abbiamo sperimentato due tipi differenti di interruttore. Il primo è un interruttotre con lamina. Abbiamo analizzato sull'oscilloscopio l'uscita Q del circuito per capire come si comportasse l'interruttore con lamina. Abbiamo trovato il risultato riportato in Figura \ref{fig:rimbalzo_lamina_plot}.
+\begin{wrapfloat}{figure}{I}{250pt}
+	\centering
+	\begin{circuitikz}
+		\draw
+			(0, 1.5) node[rground] (gnd) {}
+			(1, 1.5) node[spdt] (i) {}
+			(gnd) -- (i.in)
+			(5, 0) node[nand port] (q) {}
+			(5, 3) node[nand port] (qbar) {}
+			(i.out 2) --++ (0, -1.46) -| (q.in 2)
+			(i.out 1) --++ (0, 1.46) -| (qbar.in 1)
+			(q.out) --++ (0.5, 0) node[right] {Q} --++ (0, 0.5) 
+			(qbar.out) --++ (0.5, 0) node[right] {$\bar{\text{Q}}$} --++ (0, -0.5)
+			(qbar.in 2) --++ (0, -0.5) -- (5.65, 0.5)
+			(q.in 1) --++(0, 0.5) -- (5.65, 2.5)
+			(qbar.in 1) ++ (-1, 0) to[R, l=1 k] ++(0, 1.5) node[anchor=south] {$V\ped{cc}$}
+			(q.in 2) ++ (-1, 0) to[R, l=1 k] ++(0, -1.5) node[anchor=north] {$V\ped{cc}$}
+			(i.out 2) ++ (-0.4, -0.4) node {S}
+		;
+	\end{circuitikz}
+	\caption{}
+	\label{fig:rimbalzo}
+\end{wrapfloat}
+
+Su questo circuito abbiamo sperimentato due tipi differenti di interruttore. Il primo è un interruttotre con lamina. Abbiamo analizzato sull'oscilloscopio l'uscita Q del circuito per capire come si comportasse l'interruttore con lamina. Abbiamo trovato il risultato riportato in Figura \ref{fig:rimbalzo}.
 
 Possiamo notare che la tensione ai capi di Q prima di stabilizzarsi ci impiega circa \SI{200}{\micro\second}. Queste fluttuazioni sono dovute ai rimbalzi della lamina dell'interruttore contro il contatto del circuito che provocano l'oscillazione del segnale in igresso e dunque anche di quello in uscita tra le tensioni di \SI{+5}{\volt} e \SI{0}{\volt}.
 
-Abbiamo fatto lo stesso tipo di misura per un interruttore del tipo a molla. Il risultato trovato e riportato in Figure \ref{fig:rimbalzo_molla_plot}.
-
-Quello che possiamo osservare è che:
+Abbiamo fatto lo stesso tipo di misura per un interruttore del tipo a molla. Il risultato trovato e riportato in Figure \ref{fig:rimbalzo} Interruttore 2.
 
 Infine mantnendo la stessa configurazione circuitale fatta eccezione per l'interruttore, sostituito grezzamente con due cavi collegati direttamente a massa, possiamo manipolare la tensione ai capi dei due ingressi sfruttando due cavetti mobili che connettiamo manualmente con i cavetti a massa.
 Quello che abbiamo ottenuto è un funzionamento analogo a quello riscontrato per il circuito in Figura \ref{fig:rimbalzo}.
-L'unica variante che otteniamo e che i due ingressi possono avere lo stesso valore logico. Quindi in questo caso la tabella di verità é esattamente la Tabella \ref{tab:rimbalzo} con tutte e quattro le combinazioni di S e R possibili. 
+L'unica variante che otteniamo e che i due ingressi possono avere lo stesso valore logico. Quindi in questo caso la tabella di verità é esattamente la Tabella \ref{tab:rimbalzo} con tutte e quattro le combinazioni di S e R possibili.
 
 \subsection*{Divisore di frequenza}
 
+\begin{figure}[h]
+	\centering
+	\begin{circuitikz}
+    \draw % primo flip flop
+        (-1,-1.6) rectangle (1,1.6)
+            (-1,0) ++(0,-0.2) -- ++(0.2,0.2) -- ++(-0.2,0.2)
+            (-1,0.8)  node[right] (J1)   {J}
+            (-0.8,0)    node[right] (CLK1) {CLK}
+            (-1,-0.8) node[right] (K1)   {K}
+            (0,-1.6)  node[above] (CL1)  {CL}
+            (1,-0.8)  node[left]  (QN1)  {$\overline{\text{Q}}$}
+            (1,0.8)   node[left]  (Q1)   {Q}
+            (0,1.6)   node[below] (PR1)  {PR}
+            % metto i tondini
+            (K1.west)   ++(-0.1cm,0cm) circle (0.1cm)
+            (PR1.north) ++(0cm,0.1cm)  circle (0.1cm)
+            (CL1.south) ++(0cm,-0.1cm) circle (0.1cm)
+            % collegamenti
+            (J1.west) -- ++(-0.5,0) -- ++(0,0.5) node[above]{$V\ped{CC}$}
+            (PR1.north) ++(0cm,0.2cm) -- ++(0,0.5) node[above]{$V\ped{CC}$}
+            (CL1.south) ++(0cm,-0.2cm) -- ++(0,-0.5) node[below]{$V\ped{CC}$}
+            (K1.west) ++(-0.2cm,0cm) -- ++(-0.8,0) node[rground]{}
+        ;
+        \draw[xshift=4cm] % secondo flip flop
+        (-1,-1.6) rectangle (1,1.6)
+            (-1,0) ++(0,-0.2) -- ++(0.2,0.2) -- ++(-0.2,0.2)
+            (-1,0.8)  node[right] (J2)   {J}
+            (-0.8,0)    node[right] (CLK2) {CLK}
+            (-1,-0.8) node[right] (K2)   {K}
+            (0,-1.6)  node[above] (CL2)  {CL}
+            (1,-0.8)  node[left]  (QN2)  {$\overline{\text{Q2}}$}
+            (1,0.8)   node[left]  (Q2)   {Q2}
+            (0,1.6)   node[below] (PR2)  {PR}
+            % metto i tondini
+            (K2.west)   ++(-0.1cm,0cm) circle (0.1cm)
+            (PR2.north) ++(0cm,0.1cm)  circle (0.1cm)
+            (CL2.south) ++(0cm,-0.1cm) circle (0.1cm)
+            % collegamenti
+            (J2.west) -- ++(-0.5,0) -- ++(0,0.5) node[above]{$V\ped{CC}$}
+            (PR2.north) ++(0cm,0.2cm) -- ++(0,0.5) node[above]{$V\ped{CC}$}
+            (CL2.south) ++(0cm,-0.2cm) -- ++(0,-0.5) node[below]{$V\ped{CC}$}
+            (K2.west) ++(-0.2cm,0cm) -- ++(-0.8,0) node[rground]{}        
+        ;
+        % collego i due flip flop e metto le uscite
+        \draw
+            (Q1.east) -- ++(0.5,0) |- (3, 0)
+            (CLK1.west) ++ (-0.2, 0) -- ++(-1,0) node[left]{$V\ped{in}$}
+            (Q2.east) -- ++(0.5,0) node[right]{$V\ped{out}$}
+        ;
+    \end{circuitikz}
+	\caption{PR è il preset e CL sta per clear. Entrambi i piedini vanno collegati all'alimentazione
+        in modo da non creare problemi.}
+	\label{fig:divisore}
+\end{figure}
+
 In questa ultima sezione vogliamo analizzare un divisore di frequenze. Se ci si pensa bene, già di per sè non è compito semlice realizzare un dispositivo che moltiplichi per un nuero intero positivo una frequenza, figuriamoci un dispositico che ne fraziona una data!
+
+\begin{figure}[h]
+	\centering
+	\begin{circuitikz}
+        \draw (0, 0) node[left] {$V\ped{in}$} -| (0.5, 0.5) -| (1, 0) -| (1.5, 0.5) -| (2, 0) -| (2.5, 0.5) -| (3, 0) -| (3.5, 0.5) -| (4, 0);
+        \draw (0, -1) node[left] {Q} -| (1, -0.5) -| (2, -1) -| (3, -0.5) -| (4, -1);
+    \end{circuitikz}
+	\caption{}
+	\label{fig:freqs11}
+\end{figure}
+
 Ebbene grazie al dispositivo Flip-Flop è possibile fare anche questa operazione. In particolare andiamo a realizzare un divisore di frequenze, ovvero un dispositivo che restituisce in uscita un segnale che ha una frequenza dimezzata rispetto a quello in ingresso.
 Il circuito che ci permette di fare questa operazione è raffigurato in Figura \ref{fig:divisore}. Questo circuito è realizzato a partire da un circuito integrato SN74LS109 a 16 pin che racchiude due FF JK Toggle.
+
+\begin{wrapfloat}{figure}{O}{350pt}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figure/freq.pdf}
+	\caption{L'input era un onda quadra a 1 kHz. Il primo grafico (Q) mostra la divisione della frequenza con un solo dispositivo in cascata. Il secondo grafico ($Q_2$) è realizato con due dispositivi in cascata. Quindi la frequanta e divisa per 4, non più dimezzata.}
+	\label{fig:divisore_plot}
+\end{wrapfloat}
 
 Al fine di capire come in uscita si possa ottenere una frequenza che è la metà rispetto a quella in ingresso dobbiamo spendere alcune parole per il Flip-Flop JK Toggle. Questo particolare tipo di FF ha la caratteristica che fissati i valori dei due ingressi J e K come 0-1 o 1-0 rispettivamente, sfruttando il segnale di clk, il dispositivo, solo sul fronte di discesa del segnale, fa cambiare stato alle uscite. In particolare inverte i valori di Q e $\overline{Q}$. Quindi dato un segnale di clock, le oscillazioni del segnale in uscita saranno scandite solo dal fronte in discesa dell'impulso di clk, quindi la frequenza in output risulta essere la metà di quella in in ingresso. Questo perchè tra due fronti di discesa di clk, che sono l'ampiezza dell'oscillazione di outpu, si hanno due cicli del segnale di clock.
 
